@@ -6,7 +6,7 @@ This is a four-day workshop that will introduce students to Python as a data sci
 
 ## Getting started
 
-These workshops are Jupyter notebooks, which are interactive Python code blocks interleaved with formatted text. You can participate in this workshop by downloading the appropriate student notebook below and then simply uploading it to [Google Colab](https://colab.research.google.com/). That's it! The notebook should load and be able to run without any additional setup.
+These workshops are Jupyter notebooks, which are interactive Python code blocks interleaved with formatted text. You can participate in this workshop by downloading the appropriate student notebook below and then simply uploading it to [Google Colab :octicons-link-external-24:](https://colab.research.google.com/). That's it! The notebook should load and be able to run without any additional setup.
 
 ---
 
@@ -44,15 +44,15 @@ These workshops are Jupyter notebooks, which are interactive Python code blocks 
 
 * Python review
 * Reading and writing files
-* Introduction to [Numpy](https://numpy.org/)
+* Introduction to [Numpy :octicons-link-external-24:](https://numpy.org/)
 
 [Download the student jupyter notebook :octicons-download-24:](Python-Day4-student.ipynb){ .md-button }
  - [View completed jupyter notebook :material-arrow-right:](Python-Day4.ipynb){ .md-button }
 
 ### Day 5: Pandas dataframes and plotting
 
-* Introduction to [Pandas](https://pandas.pydata.org/)
-* Plotting data with [Seaborn](https://seaborn.pydata.org/)
+* Introduction to [Pandas :octicons-link-external-24:](https://pandas.pydata.org/)
+* Plotting data with [Seaborn :octicons-link-external-24:](https://seaborn.pydata.org/)
 
 [Download the student jupyter notebook :octicons-download-24:](Python-Day5-student.ipynb){ .md-button } - [View completed jupyter notebook :material-arrow-right:](Python-Day5.ipynb){ .md-button }
 
