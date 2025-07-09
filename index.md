@@ -1,6 +1,15 @@
 ---
 title: Introduction to Python for Data Science
+authors:
+    - Adam Freedman
+    - Danielle Khost
+    - Lei Ma
+    - Tim Sackton    
+    - Gregg Thomas
+author_header: Workshop Developers
 ---
+
+{{ author_row(page) }}
 
 This is a four-day workshop that will introduce students to Python as a data science language. We teach the basics of programming and logic in the context of Python and go on to show the tools that use Python for modern data analysis. This assumes no prior knowledge of Python, but will move at a quick pace to cover all the content. The workshop meets for 3 hours for 4 sessions. 
 
@@ -63,3 +72,5 @@ These workshops are Jupyter notebooks, which are interactive Python code blocks 
 
 [Download the student jupyter notebook :octicons-download-24:](Python-Day6-student.ipynb){ .md-button }
  - [View completed jupyter notebook :material-arrow-right:](Python-Day6.ipynb){ .md-button }
+
+ ---
