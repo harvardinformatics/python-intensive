@@ -1,5 +1,5 @@
 ---
-title: Introduction to Python for Data Science
+title: "[Workshop] Introduction to Python for Data Science"
 authors:
     - Adam Freedman
     - Danielle Khost
@@ -8,6 +8,8 @@ authors:
     - Gregg Thomas
 author_header: Workshop Developers
 ---
+
+# Introduction to Python for Data Science
 
 {{ author_row(page) }}
 
