@@ -1237,7 +1237,7 @@ sns.histplot(storms_subset, x="EVENT_TYPE", hue="CZ_NAME", multiple="dodge", shr
 &lt;Axes: xlabel='EVENT_TYPE', ylabel='Count'&gt;
 </pre>
 
-![A barplot showing the number of Floods and Flash Floods in different counties in Indiana. The x-axis separates 'Flood' and 'Flash Flood' events, while the y-axis shows the number of events. Bars in each category are colored by county name.](Python-Day6_files/Python-Day6_39_1.png)
+![A barplot showing the number of Floods and Flash Floods in different counties in Indiana. The x-axis separates 'Flood' and 'Flash Flood' events, while the y-axis shows the number of events. Bars in each category are colored by county name. For Flash flood: Spencer 1, Marion 6, Vermillion 1, Monroe 0, Tippecanoe 0. For Flood: Spencer 1, Marion 4, Vermillion 1, Monroe 1, Tippecanoe 1. ](Python-Day6_files/Python-Day6_39_1.png)
     
 
 
@@ -2019,7 +2019,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   storms_no_flood["EVENT_DURATION_HOURS"] = storms_no_flood["EVENT_DURATION"].dt.total_seconds() / 3600
 </pre>
 
-![A strip plot showing the duration of different events in hours in hours on the x-axis, ranging from 0 to 35. The y-axis shows the event type.](Python-Day6_files/Python-Day6_58_1.png)
+![A strip plot showing the duration of different events in hours in hours on the x-axis, ranging from 0 to 35. The y-axis shows the event type. Event types are 'Winter Weather', 'Heavy Snow', 'Thunderstorm Wind', 'Extreme Cold/Wind Chill', 'Hail', 'Heavy Rain', ''Tornado', 'Heat', 'Dense Fog', 'Cold/Wind Chill', and 'Winter Storm'. Winter Weather and Heavy Snow span the range of durations, while Winter Storms last between 10 and 26 hours. Thunderstorm Wind, Hail, and Tornados have short durations, less than 1 hour. There are few Extreme Cold/Wind Chill events, mostly around 13 hours long. Heat, Dense Fog, and Cold/Wind Chill events all last between 4 and 13 hours.](Python-Day6_files/Python-Day6_58_1.png)
     
 
 
@@ -2049,7 +2049,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   storms_flood_only["EVENT_DURATION_HOURS"] = storms_flood_only["EVENT_DURATION"].dt.total_seconds() / 3600
 </pre>
 
-![A strip plot showing the duration of Flood and Flash flood events in hours on the x-axis, ranging from 0 to 35. The y-axis shows the event type.](Python-Day6_files/Python-Day6_59_1.png)
+![A strip plot showing the duration of Flood and Flash flood events in hours on the x-axis, ranging from 0 to 700. The y-axis shows the event type. Flash Floods all last under 24 hours while Floods can last up to 700 hours.](Python-Day6_files/Python-Day6_59_1.png)
     
 
 

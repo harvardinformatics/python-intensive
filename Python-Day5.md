@@ -1917,7 +1917,7 @@ penguins.head(10)
 >
 > **Hint:** The volume of a cylinder is given by the formula $V = \pi r^2 h$, where $r$ is the radius (half the diameter) and $h$ is the height.
 
-![An illustration of a penguin's head with 'bill length' and 'bill depth'. Note: In the raw data, bill dimensions are recorded as 'culmen length' and 'culmen depth'. The culmen is the dorsal ridge atop the bill.](https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png)
+![An illustration of a penguin's head with 'bill length' and 'bill depth'. The bill length is the distance from the tip of the bill to the base, while the bill depth is the distance from the top of the bill to the bottom.  Note: In the raw data, bill dimensions are recorded as 'culmen length' and 'culmen depth'. The culmen is the dorsal ridge atop the bill.](https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png)
 
 
 ```python
@@ -2633,7 +2633,7 @@ Just as before, it can be helpful to think about what your end goal looks like. 
 We are going to continue using our penguins data set. `seaborn` has numerous functions for drawing different plots, summarized in the figure below. There are three different broad "families" of `seaborn` plots, which are shown in the figure below:
 
 
-![An image showing the different seaborn plot categories and the types of plots within them: relplots are scatter plots and line plots; distplots are histograms, KDE plots, ecdf plots, and rug plots; catplots are bar plots, box plots, violin plots, strip plots, swarm plots, and point plots](Python-Day5_files/image.png)
+![The different seaborn plot categories and the types of plots within them: relplots are scatter plots and line plots; distplots are histograms, KDE plots, ecdf plots, and rug plots; catplots are bar plots, box plots, violin plots, strip plots, swarm plots, and point plots](Python-Day5_files/image.png)
 
 - `relplot` plots show relationships between variables
 - `displot` show distibutions
@@ -2791,7 +2791,7 @@ sns.histplot(data=penguins, x="flipper_length_mm",hue="species")
 &lt;Axes: xlabel='flipper_length_mm', ylabel='Count'&gt;
 </pre>
 
-![An overlapping histogram showing the distribution of 'flipper length' in millimeters for 3 species of penguins: Adelie, Gentoo, and Chinstrap. The x-axis ranges from 170-230mm and the y-axis is 'Count'. Because the bars overlap, the data is difficult to parse.](Python-Day5_files/Python-Day5_113_1.png)
+![An overlapping histogram showing the distribution of 'flipper length' in millimeters for 3 species of penguins: Adelie, Gentoo, and Chinstrap. The x-axis ranges from 170-230mm and the y-axis is 'Count'. Because the bars overlap, the data is difficult to parse. ](Python-Day5_files/Python-Day5_113_1.png)
     
 
 
@@ -2809,7 +2809,7 @@ sns.histplot(data=penguins, x="flipper_length_mm",hue="species",multiple="stack"
 &lt;Axes: xlabel='flipper_length_mm', ylabel='Count'&gt;
 </pre>
 
-![A stacked histogram showing the distribution of 'flipper length' in millimeters for 3 species of penguins: Adelie, Gentoo, and Chinstrap. The x-axis ranges from 170-230mm and the y-axis is 'Count'. The bars are stacked on top of each other, making it easier to see the distribution of each species.](Python-Day5_files/Python-Day5_115_1.png)
+![A stacked histogram showing the distribution of 'flipper length' in millimeters for 3 species of penguins: Adelie, Gentoo, and Chinstrap. The x-axis ranges from 170-230mm and the y-axis is 'Count'. The bars are stacked on top of each other. The distributions for the 3 species are roughly normal. The Adelie species has a peak around 190mm with a count of 80, the Gentoo species has a peak around 210mm with a count of 20, and the Chinstrap species has a peak around 220mm with a count of 40.](Python-Day5_files/Python-Day5_115_1.png)
     
 
 
@@ -2827,7 +2827,7 @@ sns.scatterplot(data=penguins, x='bill_length_mm', y='body_mass_g', hue='species
 &lt;Axes: xlabel='bill_length_mm', ylabel='body_mass_g'&gt;
 </pre>
 
-![A scatter plot with 'bill length' in millimeters on the x-axis ranging from 35-60 and 'body mass' in grans on the y-axis ranging from 3000-6000. The points are colored by species: Adelie, Gentoo, and Chinstrap. dots represent males and x's represent females. The plot shows a clear separation between the species based on bill length and body mass and a separation between sexes within species.](Python-Day5_files/Python-Day5_117_1.png)
+![A scatter plot with 'bill length' in millimeters on the x-axis ranging from 35-60 and 'body mass' in grams on the y-axis ranging from 3000-6000. The points are colored by species: Adelie, Gentoo, and Chinstrap. dots represent males and x's represent females. The plot shows a clear separation between the species based on bill length and body mass and a separation between sexes within species. Adelie have the smallest bill length and body mass, centered around 40mm and 4000g, respectively. Chinstrap have longer bill lengths centered around 450mm, but a similar range of body mass to the Adelie, centered around 3800g. The Gentoo have a bill length between the other two species, centered around 47mm but higher body mass, centered around 5000g. In all species, females have both shorter bills and lower body masses.](Python-Day5_files/Python-Day5_117_1.png)
     
 
 
