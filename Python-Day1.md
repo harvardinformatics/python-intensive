@@ -6,6 +6,8 @@ authors:
     - Tim Sackton
 ---
 
+# Python intensive, day 1
+
 ## Introduction
 
 Welcome to the first day of the Harvard Informatics Python intensive workshop. This is a six day workshop intended to give a whirlwind, yet thorough, introduction programming concepts, the Python programming language, and how to use Python to facilitate data analysis.
@@ -413,7 +415,6 @@ What about if you know what you want to do, but you're not sure if there is a fu
 However, there are some resources that will pop-up that are generally pretty reliable. For instance, the official [Python documentation :octicons-link-external-24:](https://docs.python.org/3/){:target="_blank"} can be helpful, but is sometimes cryptic (e.g. the / above in the `abs()` `help()` output). StackExchange and [StackOverflow :octicons-link-external-24:](https://stackoverflow.com/){:target="_blank"} are great resources that provide community answers to programming problems. But sometimes it is difficult to find an answer to your specific problem unless you post it yourself.
 
 Now, it is also feasible to ask a LLM chatbot (e.g. ChatGPT, CoPilot) to help with coding problems. While these bots have their issues with reliability for real world information, they tend to be quite accurate for basic programming problems. For instance, you could ask, "How do I get the largest number of a list of numbers in Python?" and it would probably reply with some answer related to the `max()` function.
-
 
 
 ### Functions and data types

@@ -125,7 +125,6 @@ This behavior can be changed by using the `skipna` argument, which is `True` by 
 print(ser1.mean(skipna=False))
 ```
 
-
 One very useful function to know is how to get rid of rows with missing data in them, as including them can often cause errors in downstream analysis or skew your results. There is a convenient function built in to `pandas` that does this called `.dropna()`. By default, it will drop any row that has a missing value in any column. This may not always be what you want. You can specify which columns to look at using the `subset` arugment. 
 
 
@@ -134,7 +133,6 @@ penguins_nona = penguins.dropna()
 
 penguins_nona.info()
 ```
-
 
 ```python
 penguins_nona_bill_len = penguins.dropna(subset=["bill_length_mm"])

@@ -6,6 +6,8 @@ authors:
     - Lei Ma
 ---
 
+# Python intensive, day 6
+
 ## Putting it all together: exploring storm data
 
 For our final section, we are going to do some exploratory analysis of a real world dataset, coding in pairs or groups as we did on the previous days. There are several different "paths" you can choose to follow based on what you are interested in working on, so either come to a consensus within your group, or group up based on shared interest! First, let's download our data:
@@ -77,7 +79,6 @@ Even if you aren't doing time series analysis, you will find it useful to import
 
 Here's an example of pandas in action with datetime objects: [link :octicons-link-external-24:](https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html){:target="_blank"}
 
-
 ```python
 # Convert all date time columns to datetime objects with correct timezone parsing
 # I wrote a regex to extract just the number from the timezone column and then made it an ISO8601 compliant timezone string
@@ -93,7 +94,6 @@ Here's what the times look like now:
 storms_df["BEGIN_DATE_TIME"].head()
 ```
 
-
 ```python
 storms_df.info()
 ```
@@ -108,7 +108,6 @@ Here are some warm-up exercises to get started working with data that is a mix o
 
 storms_df["END_DATE_TIME"].dt.day_of_year
 ```
-
 
 ```python
 # example of using a method of a datetime object
@@ -143,7 +142,6 @@ storms_df[~storms_df["BEGIN_LOCATION"].isna()]["EVENT_TYPE"].value_counts()
 >**Exercise:** Which events tend to be multi-day events? Display the counts of each event type that has a duration of more than 1 day (24 hours).
 >
 >You will need to use the `pd.Timedelta()` function in your filtering criteria. Docs [here :octicons-link-external-24:](https://pandas.pydata.org/docs/user_guide/timedeltas.html){:target="_blank"} and [here :octicons-link-external-24:](https://pandas.pydata.org/docs/reference/api/pandas.Timedelta.html#pandas.Timedelta){:target="_blank"}
-
 
 ```python
 # Your code here
@@ -219,7 +217,6 @@ def storm_by_county(storms, county, storm_type=None):
 # should return 8 rows of data
 storm_by_county(storms_df, ["OHIO"])
 ```
-
 
 ```python
 # test your function
@@ -351,13 +348,9 @@ county_info = pd.read_html("https://en.wikipedia.org/wiki/List_of_counties_in_In
 county_info = county_info[1]
 ```
 
-You will need to do some data cleaning to get the county names to match up and to extract the area of each county. Then you will need to merge the two dataframes together. 
-
-
 ```python
 county_info[["County", "Area[3][12]"]]
 ```
-
 
 ```python
 # cleaning county_info
@@ -397,7 +390,6 @@ df_clouds.groupby(df_clouds["BEGIN_DATE_TIME"].dt.month)["EVENT_TYPE"].count().r
 
 **Question 3:** Create a plot that compares the duration in hours of each common event type. Some events occur only infrequently, so your first step would be to filter those out. Then, you will need to decide what type of plot to make. Take a look at the [seaborn gallery :octicons-link-external-24:](https://seaborn.pydata.org/examples/index.html){:target="_blank"}. If you are having trouble deciding how to represent your data, take a look at this [infographic :octicons-link-external-24:](https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/poster.png){:target="_blank"}
 
-
 ```python
 # get event duration. We've already done this, but the code is reproduced before
 
@@ -414,11 +406,9 @@ print(storms_filtered.groupby("EVENT_TYPE")["EVENT_DURATION"].mean())
 
 ```
 
-
 ```python
 storms_filtered.groupby("EVENT_TYPE")["EVENT_DURATION"].describe()
 ```
-
 
 ```python
 # plot the distribution of event durations as a stripplot with points using seaborn
@@ -437,7 +427,6 @@ ax = sns.stripplot(data=storms_no_flood, x="EVENT_DURATION_HOURS", y="EVENT_TYPE
 
 plt.show()
 ```
-
 
 ```python
 # plot the distribution of event durations as a stripplot with points using seaborn

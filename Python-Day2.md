@@ -6,7 +6,9 @@ authors:
     - Danielle Khost
 ---
 
-## Introduction - Day 2
+# Python intensive, day 2
+
+## Introduction
 
 Welcome (back) to the Harvard Informatics Python workshop. This is day two of six, where we aim to give a whirlwind, yet thorough, introduction programming concepts, the Python programming language, and how to use Python and some popular libaries to facilitate data analyses.
 
