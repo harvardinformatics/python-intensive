@@ -38,19 +38,19 @@ This workshop exists as a **Jupyter notebook**. You can participate in this work
 
 If for some reason Google Colab isn't working, or you prefer to run this locally, you will need to install Python, Anaconda, and the necessary libraries. You will have to follow these steps to do so. Note that some steps are only meant for specific operating systems.
 
-0. If you are on Windows, [install WSL](https://learn.microsoft.com/en-us/windows/wsl/install). Once WSL is installed, you'll have a Linux terminal available to you in Windows. You can open this terminal by typing "wsl" in the search bar and clicking the app that appears. You'll also find your Linux distribution as a mounted drive in your file explorer.
+0. If you are on Windows, [install WSL :octicons-link-external-24:](https://learn.microsoft.com/en-us/windows/wsl/install){:target="_blank"}. Once WSL is installed, you'll have a Linux terminal available to you in Windows. You can open this terminal by typing "wsl" in the search bar and clicking the app that appears. You'll also find your Linux distribution as a mounted drive in your file explorer.
 
 1. Install mamba, a package manager using the command line - Terminal for Mac or WSL for Windows.
 
     1.1. For Mac, if you already have brew installed, install mamba using `brew install miniforge` and initialize it using `conda init zsh`. Then restart your terminal. If you don't have homebrew (i.e. the brew command doesn't exist), install brew first using `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
     
-    1.2. For Windows, download the Linux (x86_64) installer from the miniforge repository [here](https://github.com/conda-forge/miniforge) and install with `bash Miniforge3-Linux-x86_64.sh`.
+    1.2. For Windows, download the Linux (x86_64) installer from the miniforge repository [here :octicons-link-external-24:](https://github.com/conda-forge/miniforge){:target="_blank"} and install with `bash Miniforge3-Linux-x86_64.sh`.
 
 2. Create a new environment using mamba with `mamba create -n pyworkshop numpy pandas matplotlib seaborn jupyter` and activate it with `conda activate pyworkshop`.
 
 3. You can now run the jupyter notebook by typing `jupyter notebook` in the terminal. This will open a browser window with the jupyter notebook interface. You can navigate to the folder where you saved this notebook and open it.
 
-4. Alternatively, install [VSCode](https://code.visualstudio.com/) and the Python extension. Then open this notebook in VSCode and run it with the kernel that belongs to the pyworkshop environment. [How to guide here](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
+4. Alternatively, install [VSCode :octicons-link-external-24:](https://code.visualstudio.com/){:target="_blank"} and the Python extension. Then open this notebook in VSCode and run it with the kernel that belongs to the pyworkshop environment. [How to guide here :octicons-link-external-24:](https://code.visualstudio.com/docs/datascience/jupyter-notebooks){:target="_blank"}
 
 ---
 
@@ -412,10 +412,9 @@ This tells us what `abs()` does and tells us that it requires one argument, `x`.
 
 What about if you know what you want to do, but you're not sure if there is a function to do it. This begins to touch a bit on a host of 'meta-skills' that one picks up as they start to code and work with computers more. It may seem obvious, but the first solution is to simply search the internet. The difficulty comes when you try to word your search, and unfortunately that will change depending on the task.
 
-However, there are some resources that will pop-up that are generally pretty reliable. For instance, the official [Python documentation](https://docs.python.org/3/) can be helpful, but is sometimes cryptic (e.g. the / above in the `abs()` `help()` output). StackExchange and [StackOverflow](https://stackoverflow.com/) are great resources that provide community answers to programming problems. But sometimes it is difficult to find an answer to your specific problem unless you post it yourself.
+However, there are some resources that will pop-up that are generally pretty reliable. For instance, the official [Python documentation :octicons-link-external-24:](https://docs.python.org/3/){:target="_blank"} can be helpful, but is sometimes cryptic (e.g. the / above in the `abs()` `help()` output). StackExchange and [StackOverflow :octicons-link-external-24:](https://stackoverflow.com/){:target="_blank"} are great resources that provide community answers to programming problems. But sometimes it is difficult to find an answer to your specific problem unless you post it yourself.
 
 Now, it is also feasible to ask a LLM chatbot (e.g. ChatGPT, CoPilot) to help with coding problems. While these bots have their issues with reliability for real world information, they tend to be quite accurate for basic programming problems. For instance, you could ask, "How do I get the largest number of a list of numbers in Python?" and it would probably reply with some answer related to the `max()` function.
-
 
 
 ### Functions and data types

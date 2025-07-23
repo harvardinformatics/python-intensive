@@ -8,34 +8,6 @@ authors:
 
 # Python intensive, day 4
 
-## Getting started: Installation
-
-This workshop exists as a **Jupyter notebook**. You can participate in this workshop by using this notebook interactively simply by uploading it to Google Colab. Go to https://colab.research.google.com/ and upload this notebook. That's it! This is the recommended way for participating in this workshop. Skip the below instructions if you will be using Google Colab.
-
-<br>
-
----
-
-**See above for the recommended way to participate in this workshop. Only follow these instructions if Google Colab isn't working**
-
-If for some reason Google Colab isn't working, or you prefer to run this locally, you will need to install Python, Anaconda, and the necessary libraries. You will have to follow these steps to do so. Note that some steps are only meant for specific operating systems.
-
-0. If you are on Windows, [install WSL](https://learn.microsoft.com/en-us/windows/wsl/install). Once WSL is installed, you'll have a Linux terminal available to you in Windows. You can open this terminal by typing "wsl" in the search bar and clicking the app that appears. You'll also find your Linux distribution as a mounted drive in your file explorer.
-
-1. Install mamba, a package manager using the command line - Terminal for Mac or WSL for Windows.
-
-    1.1. For Mac, if you already have brew installed, install mamba using `brew install miniforge` and initialize it using `conda init zsh`. Then restart your terminal. If you don't have homebrew (i.e. the brew command doesn't exist), install brew first using `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-    
-    1.2. For Windows, download the Linux (x86_64) installer from the miniforge repository [here](https://github.com/conda-forge/miniforge) and install with `bash Miniforge3-Linux-x86_64.sh`.
-
-2. Create a new environment using mamba with `mamba create -n pyworkshop numpy pandas matplotlib seaborn jupyter` and activate it with `conda activate pyworkshop`.
-
-3. You can now run the jupyter notebook by typing `jupyter notebook` in the terminal. This will open a browser window with the jupyter notebook interface. You can navigate to the folder where you saved this notebook and open it.
-
-4. Alternatively, install [VSCode](https://code.visualstudio.com/) and the Python extension. Then open this notebook in VSCode and run it with the kernel that belongs to the pyworkshop environment. [How to guide here](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
-
----
-
 ## What is python and why do we need it/why are you taking this workshop?
 
 * Python is a programming language that is commonly used for data analysis
@@ -120,10 +92,6 @@ Everything in python is an **object**, and depending on the type of object, they
 my_string = "hello"
 my_string.upper()
 ```
-
-
-
-
 <pre class="output-block">
 'HELLO'
 </pre>
@@ -136,9 +104,6 @@ my_string = "hello"
 # This first makes the first letter uppercase, then swaps the cases of each letter
 my_string.capitalize().swapcase()
 ```
-
-
-
 
 <pre class="output-block">
 'hELLO'
@@ -157,14 +122,13 @@ my_array = np.array([1, 2, 3, 4, 5])
 my_array.size
 ```
 
-
-
-
 <pre class="output-block">
 (5,)
 </pre>
 
 ## Base Python Data Structures
+
+When we want to store multiple pieces of data, we use data structures, which are a more complex type of object. We will go over two fundamental data structures that exist in base python (i.e. that don't require additional libraries). 
 
 ### Lists
 
@@ -172,7 +136,7 @@ my_array.size
 
 Lists are our first introduction to a **mutable** data structure, meaning you can change a list without having to create a new one. Indeed, list methods may modify your data **in place** and/or **return** a new object. If the method modifies the object in place, its return value will be `None`. Modifying in place means you don't have to assign the result of the method to a new variable, while returning a new object means you do have to assign it. For example, `list.append(x)` updates the list in place, while `list.pop()` both returns the last element and removes it from the list in place.
 
-Below are some useful operations and methods for lists. For a full list of methods, you can use `help()` on the list or consult the [docs](https://docs.python.org/3/library/stdtypes.html#list) page.
+Below are some useful operations and methods for lists. For a full list of methods, you can use `help()` on the list or consult the [docs :octicons-link-external-24:](https://docs.python.org/3/library/stdtypes.html#list){:target="_blank"} page.
 
 **Operations and methods for lists**
 
@@ -228,11 +192,11 @@ Programming involves reading primarily documentation, but also code, search resu
 
 **There are a variety of ways software can be documented**
 
-You may be handed a single script from a colleague to perform some action and that script may have **comments** in the code detailing what it does or what certain lines do. Individual functions may have what is called a **docstring**, which is a string that occurs immediately after the function definition detailing how do use that function, inputs, and outputs. Another type of documentation is a docs page or **API reference** on a website for that software, such as the page for the seaborn's [scatterplot](https://seaborn.pydata.org/generated/seaborn.scatterplot.html) function. Many software packages also have some introductory pages like **vignettes** or **tutorials** that guide you through the basics of the software. The [Getting started tutorials](https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html) of Pandas is a good example of this.
+You may be handed a single script from a colleague to perform some action and that script may have **comments** in the code detailing what it does or what certain lines do. Individual functions may have what is called a **docstring**, which is a string that occurs immediately after the function definition detailing how do use that function, inputs, and outputs. Another type of documentation is a docs page or **API reference** on a website for that software, such as the page for the seaborn's [scatterplot :octicons-link-external-24:](https://seaborn.pydata.org/generated/seaborn.scatterplot.html){:target="_blank"} function. Many software packages also have some introductory pages like **vignettes** or **tutorials** that guide you through the basics of the software. The [Getting started tutorials :octicons-link-external-24:](https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html){:target="_blank"} of Pandas is a good example of this.
 
 **What documentation are we meant to read?**
 
-In general, documentation is meant to be a reference manual more than a textbook. A lot of documentation is really repetitive, because it has to exhaustively cover every single function, class, and use-case available to the user. I do not recommend reading documentation like a book or in any linear way. That's like learning a foreign language by reading the dictionary. For example, `numpy` has a variety of [mathematical functions](https://numpy.org/doc/stable/reference/routines.math.html), but you are not required to look at the doc page of each of those. It is enough to know that it exists and when you do want to use a particular one, to check the page of that specific function. The most important parts of the documentation to read first are the tutorials/user guides, which introduce the basic functionality of the software with some example code. Often times, this code is exactly what you need to get started. If you get stuck, then it's time to read the docs pages for the specific commands you are using.
+In general, documentation is meant to be a reference manual more than a textbook. A lot of documentation is really repetitive, because it has to exhaustively cover every single function, class, and use-case available to the user. I do not recommend reading documentation like a book or in any linear way. That's like learning a foreign language by reading the dictionary. For example, `numpy` has a variety of [mathematical functions :octicons-link-external-24:](https://numpy.org/doc/stable/reference/routines.math.html){:target="_blank"}, but you are not required to look at the doc page of each of those. It is enough to know that it exists and when you do want to use a particular one, to check the page of that specific function. The most important parts of the documentation to read first are the tutorials/user guides, which introduce the basic functionality of the software with some example code. Often times, this code is exactly what you need to get started. If you get stuck, then it's time to read the docs pages for the specific commands you are using.
 
 ### Anatomy of a docs page
 
@@ -254,48 +218,21 @@ Scientific articles typically have the same sections: Introduction, Methods, Res
 
 If this is your first time encountering the function, glance at the function name and description and then go directly to the examples. This will help you understand if this function does what you think it does and give you a template to use it.
 
-
->**Exercise:** Read the documentation page for plotting pie charts in matplotlib [here](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.pie.html). What is the minimal information you need to pass to the function to get a pie chart? What parameters are optional or already have defaults?
+>**Exercise:** TBD
 
 
 **Troubleshooting**
 
 Looking at a docs page is helpful for troubleshooting certain errors.
 
->**Exercise:** Below is some code that is meant to plot a pie chart using some functions in the matplotlib library. However, it's not working. Can you figure out what's wrong?
-
-
-```python
-labels = ['Python', 'Java', 'C++', 'Ruby']
-sizes = [215, 130, 245, 210]
-
-fig, ax = plt.subplots()
-
-#ax.pie(sizes, labs=labels, autopct='%1.1f%%', shadow=True, startangle=140)
-ax.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True, startangle=140)
-
-# Aspect ratio to ensure the pie chart is circular.
-ax.axis('equal')
-
-ax.set_title('Programming Language Popularity')
-```
-
-
-
-
-<pre class="output-block">
-Text(0.5, 1.0, 'Programming Language Popularity')
-</pre>
-
-![A pie chart titled 'Programming Language Popularity': Python 26.9%, Ruby 26.2%, C++ 30.6%, and Java 16.2%.](Python-Day4_files/Python-Day4_24_1.png)
-    
-
+>**Exercise:** TBD
 
 **Exploring**
 
 If you are trying to find a specific way to customize the pie chart, it is worth reading the entire list of parameters to see what options are available.
 
->**Discussion:** Read the pie plot function's [documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.pie.html) page. How does the function give you control over the look of your pie wedges?
+>**Discussion:** TBD
+=======
 
 ## Refresher: importing libraries
 
@@ -376,6 +313,7 @@ First, run this block to download the file to the Jupyter notebook environment..
 
 ```python
 # This line downloads the file locally to the same folder as your notebook
+
 !wget https://informatics.fas.harvard.edu/workshops/python-intensive/data/bird_names.csv
 ```
 
@@ -403,16 +341,14 @@ bird_names = dict()
 with open(filename, 'r') as file:
     for line in file:
         line = line.strip().split(',')
+
+        # split out line[2]
         bird_names[line[2]] = line[1]
 
 print(bird_names)
 ```
 
-<pre class="output-block">
-{'6924': 'American Black Duck', '473': 'American Coot', '145310': 'American Goldfinch', '4665': 'American Kestrel', '12727': 'American Robin', '474210': 'American Tree Sparrow', '3936': 'American Woodcock', '16010': 'Ash-throated Flycatcher', '5305': 'Bald Eagle', '9346': 'Baltimore Oriole', '19893': 'Barred Owl', '2548': 'Belted Kingfisher', '144815': 'Black-capped Chickadee', '4981': 'Black-crowned Night Heron', '199916': 'Black-throated Blue Warbler', '8229': 'Blue Jay', '7458': 'Brown Creeper', '10373': 'Brown-headed Cowbird', '6993': 'Bufflehead', '7089': 'Canada Goose', '7513': 'Carolina Wren', '7428': 'Cedar Waxwing', '6571': 'Chimney Swift', '9135': 'Chipping Sparrow', '9602': 'Common Grackle', '4626': 'Common Loon', '7004': 'Common Merganser', '8010': 'Common Raven', '9721': 'Common Yellowthroat', '5112': "Cooper's Hawk", '10094': 'Dark-eyed Junco', '10676': 'Dickcissel', '120479': 'Domestic Greylag Goose', '236935': 'Domestic Mallard', '1454382': 'Double-crested Cormorant', '792988': 'Downy Woodpecker', '16782': 'Eastern Kingbird', '17008': 'Eastern Phoebe', '494355': 'Eastern Red-tailed Hawk', '515821': 'Eastern Song Sparrow', '319123': 'Eastern Wild Turkey', '14850': 'European Starling', '544795': 'European house sparrow', '122767': 'Feral Pigeon', '9156': 'Fox Sparrow', '117100': 'Golden-crowned Kinglet', '14995': 'Gray Catbird', '4368': 'Great Black-backed Gull', '4956': 'Great Blue Heron', '16028': 'Great Crested Flycatcher', '20044': 'Great Horned Owl', '7047': 'Greater Scaup', '5020': 'Green Heron', '6937': 'Green-winged Teal', '514057': 'Greylag × Canada Goose', '792990': 'Hairy Woodpecker', '12890': 'Hermit Thrush', '204533': 'Herring Gull', '7109': 'Hooded Merganser', '4209': 'Horned Grebe', '199840': 'House Finch', '13858': 'House Sparrow', '7562': 'House Wren', '4793': 'Killdeer', '10479': 'Lark Sparrow', '7054': 'Lesser Scaup', '6930': 'Mallard', '326092': 'Mallard × Muscovy Duck', '4672': 'Merlin', '3454': 'Mourning Dove', '6921': 'Mute Swan', '9083': 'Northern Cardinal', '18236': 'Northern Flicker', '14886': 'Northern Mockingbird', '555736': 'Northern Yellow-shafted Flicker', '979757': 'Orange-crowned Warbler', '116999': 'Osprey', '62550': 'Ovenbird', '4647': 'Peregrine Falcon', '17364': 'Philadelphia Vireo', '4246': 'Pied-billed Grebe', '18205': 'Red-bellied Woodpecker', '6996': 'Red-breasted Merganser', '14823': 'Red-breasted Nuthatch', '5212': 'Red-tailed Hawk', '9744': 'Red-winged Blackbird', '7056': 'Redhead', '4364': 'Ring-billed Gull', '7044': 'Ring-necked Duck', '3017': 'Rock Pigeon', '1289388': 'Ruby-crowned Kinglet', '6432': 'Ruby-throated Hummingbird', '850859': 'Ruddy Duck', '9100': 'Song Sparrow', '72458': 'Spotted Sandpiper', '11935': 'Tree Swallow', '13632': 'Tufted Titmouse', '17394': 'Warbling Vireo', '14801': 'White-breasted Nuthatch', '9176': 'White-crowned Sparrow', '9184': 'White-throated Sparrow', '906': 'Wild Turkey', '7107': 'Wood Duck', '145238': 'Yellow Warbler', '18463': 'Yellow-bellied Sapsucker'}
-</pre>
-
->**Exercise**: Rerun the code above and remove the `strip()` method. What happens?
+>*Discussion:* Explain each line
 
 Here are some handy functions when working with lines in files. These are all string methods, so you can use them on any string, including strings that are read from a file.
 
@@ -527,11 +463,7 @@ print(bird_observations)
 
 ```
 
-<pre class="output-block">
-{'Northern Mockingbird': 23, 'Common Merganser': 4, 'Bufflehead': 9, 'House Sparrow': 69, 'European Starling': 51, 'Northern Cardinal': 28, 'Mourning Dove': 31, 'Blue Jay': 39, 'American Black Duck': 2, 'Domestic Mallard': 14, 'Mute Swan': 33, 'Green-winged Teal': 8, 'American Robin': 92, 'Mallard': 49, 'Great Blue Heron': 26, 'Red-tailed Hawk': 36, 'Canada Goose': 112, 'Downy Woodpecker': 24, 'Ring-necked Duck': 22, 'Wild Turkey': 82, 'Common Loon': 9, 'Horned Grebe': 4, 'Redhead': 8, 'Feral Pigeon': 31, 'Golden-crowned Kinglet': 7, 'Red-bellied Woodpecker': 15, 'Hooded Merganser': 18, 'Belted Kingfisher': 3, 'Red-winged Blackbird': 35, 'Black-capped Chickadee': 14, 'Ruddy Duck': 2, 'Bald Eagle': 2, 'Dark-eyed Junco': 9, 'Carolina Wren': 7, 'House Finch': 19, 'White-throated Sparrow': 5, 'Song Sparrow': 24, 'Yellow-bellied Sapsucker': 3, 'White-breasted Nuthatch': 10, 'Eastern Red-tailed Hawk': 5, 'Tufted Titmouse': 8, "Cooper's Hawk": 17, 'Domestic Greylag Goose': 14, 'Rock Pigeon': 9, 'American Coot': 1, 'Greylag × Canada Goose': 1, 'Eastern Wild Turkey': 1, 'Brown Creeper': 7, 'Hairy Woodpecker': 2, 'Northern Flicker': 6, 'Greater Scaup': 1, 'Red-breasted Merganser': 2, 'American Woodcock': 7, 'Red-breasted Nuthatch': 1, 'Great Horned Owl': 23, 'Peregrine Falcon': 5, 'American Goldfinch': 18, 'Barred Owl': 2, 'Black-crowned Night Heron': 2, 'Tree Swallow': 11, 'Common Grackle': 14, 'Hermit Thrush': 4, 'Northern Yellow-shafted Flicker': 1, 'Chipping Sparrow': 3, 'Killdeer': 2, 'Gray Catbird': 20, 'Double-crested Cormorant': 17, 'Yellow Warbler': 3, 'Warbling Vireo': 2, 'Baltimore Oriole': 7, 'Common Yellowthroat': 2, 'White-crowned Sparrow': 2, 'Black-throated Blue Warbler': 1, 'Ovenbird': 1, 'Brown-headed Cowbird': 4, 'House Wren': 1, 'Cedar Waxwing': 4, 'European house sparrow': 1, 'Herring Gull': 4, 'Eastern Kingbird': 7, 'Great Black-backed Gull': 1, 'Green Heron': 10, 'Great Crested Flycatcher': 1, 'Wood Duck': 6, 'American Kestrel': 1, 'Osprey': 1, 'Ruby-throated Hummingbird': 3, 'Spotted Sandpiper': 2, 'Chimney Swift': 1, 'Eastern Phoebe': 1, 'Lark Sparrow': 2, 'Ring-billed Gull': 1, 'Dickcissel': 1, 'Merlin': 1, 'Ash-throated Flycatcher': 6, 'Pied-billed Grebe': 5, 'Lesser Scaup': 2, 'Orange-crowned Warbler': 2, 'Eastern Song Sparrow': 1, 'Philadelphia Vireo': 1, 'Ruby-crowned Kinglet': 2, 'Mallard × Muscovy Duck': 1, 'Fox Sparrow': 1, 'American Tree Sparrow': 1, 'Common Raven': 1}
-</pre>
-
-If you routinely find yourself reading delimited files, you might want to use the `csv` library. The `csv` library also has the ability to parse Excel files or read and write to/from dictionaries directly. For more information, here's the [doc page](https://docs.python.org/3/library/csv.html). Here's what the above code would look like using the `csv` module:
+If you routinely find yourself reading delimited files, you might want to use the `csv` library. The `csv` library also has the ability to parse Excel files or read and write to/from dictionaries directly. For more information, here's the [doc page :octicons-link-external-24:](https://docs.python.org/3/library/csv.html){:target="_blank"}. Here's what the above code would look like using the `csv` module:
 
 
 ```python
@@ -577,16 +509,7 @@ with open('my_text.txt', 'r') as file:
         print(line)
 ```
 
-<pre class="output-block">
-this is a test
-
-this is another test
-
-this is the final test
-</pre>
-
->**Exercise:** Use the `csv` module to write the species counts to a new file. The file should have two columns: the species name and the number of observations. The file should be comma-delimited. How this is written may depend on how you stored the species counts.
-
+>**BONUS Exercise:** Use the `csv` module to write the species counts to a new file. The file should have two columns: the species name and the number of observations. The file should be comma-delimited. How this is written may depend on how you stored the species counts.
 
 ```python
 # your code here
@@ -600,6 +523,321 @@ with open('bird_counts.csv', 'w') as file:
         writer.writerow([bird, count])
 ```
 
+# Pandas
+
+In this section, we will learn about a python package called `pandas` that contains very helpful functions and data structures just for flat data types like the tab or comma-delimited files you might normally read in Excel. In previous iterations of this class, we taught both `pandas` and `numpy`. In this workshop, we will focus on `pandas` only, and do a deeper dive. 
+
+## Importing data to pandas
+One of the most useful features of pandas DataFrames is its ability to easily perform complex data transformations. This makes it a powerful tool for cleaning, filtering, and summarizing tabular data. As shown above, we can manually create a DataFrame from scratch, but more commonly you will want to read in data from an external source, such as the output of a bioinformatic program, and do some manipulation of it. Let's read some data into a DataFrame to demonstrate. 
+
+Below you can see an example of how to read files into pandas using the `pd.read_csv()` function. The `csv` stands for 'comma-separated values', which means by defaults it will assume that our columns are separated by **commas**; if we wanted to change the delimiter (e.g. in the case of a tab-separated file), we can set the delimiter explicitly using the `sep=` argument. 
+
+
+```python
+penguins = pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv", sep=',')
+
+# The head() function from pandas prints only the first N lines of a dataframe (default: 10)
+penguins.head()
+```
+
+When importing data into a DataFrame, pandas automatically detects what data type each column should be. For example, if the column contains only numbers, it will be imported as an floating point or integer data type. If the column contains strings or a mixture of strings and numbers, it will be imported as an "object" data type. Below are the different data types for the penguins column. 
+
+
+```python
+penguins.info()
+```
+
+### Looping through a dataframe
+As a note, if we want to go through a dataframe line-by-line (i.e. row by row), because both the rows and columns are indexed it requires slightly more syntax than looping through other data structures (e.g. a dictionary or list). Specifically we need to use the `.iterrows()` method to make the data frame iterable. The `.iterrows()` method outputs each row as a `Series` object with a row index and the column:   
+
+
+```python
+for index, row in penguins.iterrows():
+    print(f"Row index: {index}, {row['species']}, {row['island']}")
+```
+
+This can be slow for very large dataframes, but is useful if you need to perform actions on individual rows.
+
+>Consider: based on what we've learned the past several days, what are some *limitations* of `numpy`? Can you think of any tasks you might want to do or analysis you might like to perform that would be difficult with `numpy`? Does this give you a guess as to what `pandas` specializes in?
+
+Answer: `numpy` is specialized primarily for numerical operations, e.g. matrix multiplication, vector math, etc., but is more limited when dealing with other data types such as string, python objects, etc. In contrast, `pandas` objects are able to handle mixed data easily! As you will often run into this type of data when doing bioinformatics, `pandas` can be very useful.
+
+Before we dive into the syntax, let's take a look at an example real-world application of `pandas` for a task that you might commonly face in biology. We are going to use the "Palmer penguins" dataset, which is a collection of various biometric data for several different penguin species and is a commonly used example dataset. Let's take a quick look at what the data looks like.
+
+In the Palmer penguins dataset, each row represents an individual penguin, and each column represent a different measurement or characteristic of the penguin, such as its body mass or island of origin. The data are organized in this way so that variables (things we may want to compare against each other) are the columns while observations (the individual penguins) are the rows. This is a common way to organize data in data science and is called **tidy data**. Tidy data formatting also makes it easy to use code to manipulate and analyze, which we will see in this lesson. 
+
+
+
+```python
+penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv')
+penguins.head()
+```
+
+Here is an example of a transformation that we will be able to do with `pandas` that would be difficult to do manually or with `numpy`. We can summarize the data by calculating the average body mass (in kg) of each penguin species, broken up by sex. Using a few lines of code we can go from our raw data to a table that looks like this:
+
+
+| species   | sex    | body_mass_kg|
+|-----------|--------|----------|
+| Adelie    | female | 3.368836 |
+| Adelie    | male   | 4.043493 |
+| Chinstrap | female | 3.527206 |
+| Chinstrap | male   | 3.938971 |
+| Gentoo    | female | 4.679741 |
+| Gentoo    | male   | 5.484836 |
+
+
+Now, let's get started learning how this is done!
+
+
+## Pandas Series
+A `Series` is the simplest data structure in Pandas. They are one dimensional (1D) objects composed of a **single data type** of any variety (string, integers); you can basically think of them as a single column in a spreadsheet. They are similar to arrays in `numpy`, however unlike those other 1D structures Series also have **label-based indexing**, meaning each element in the object can be accessed by specifying its specific label. In that way, they are similar to dictionaries in python. 
+
+We can manually create a Series in several ways:
+
+Using the `pd.Series()` function, we provide it the data we want to store as a list, and optionally we can give each row of the data a label using the `index` argument. If we don't give it the index argument, it will automatically assign a numerical index to each row starting from 0. 
+
+When we print the Series, it will display as a column with the index on the left and the data on the right. The type of data being held in the series will be displayed at the bottom of the output. 
+
+
+
+```python
+#Using the pd.Series method:
+s0 = pd.Series([10, 20, 30, 40])
+
+print(s0)
+
+```
+
+
+```python
+#Using the pd.Series method:
+s1 = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'])
+
+print(s1)
+
+```
+
+Another way to create a Series is to convert a (non-nested) dictionary into a Series. The keys of the dictionary will become the index labels while the values will become the data. 
+
+
+```python
+# Converting from dictionary to series
+my_dictionary = {'first': 10, 'second': 20, 'third': 30}
+s2 = pd.Series(my_dictionary)
+
+print(s2)
+```
+
+We can then access specific elements in the Series by referring to its index label enclosed in quotes and brackets. This is very similar to how a dictionary works!
+
+
+```python
+print(s0[0])
+
+print(s1["a"])
+
+print(s2["second"])
+```
+
+### Multi-indexed Series
+
+Series objects may have multiple levels of indices. We call this **multi-indexed**. Using layers of indexing is a way of representing two-dimensional data within a one-dimensional `Series` object. Some people really like using multi-indexed Series. You can create a multi-indexed series by passing a list of lists to the `index` argument of the `pd.Series()` function. The first list will be the outermost level of the index, the second list will be the next level, and so on.
+
+
+```python
+my_index = [["California", "California", "New York", "New York", "Texas", "Texas"], 
+            [2001, 2002, 2001, 2002, 2001, 2002]]
+my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
+
+s3 = pd.Series(my_values, index=my_index)
+
+print(s3)
+
+```
+
+Retrieving an item from this data structure is similar to a nested dictionary, using successive `[]` notation. Or, you can passs it a tuple. You must pass the index labels in the order they were created (left to right)
+
+
+```python
+print(s3["California"])
+
+print("---")
+print(s3["California"][2001])
+
+print("---")
+print(s3[("California", 2001)])
+
+print("---")
+# you can also use slicing to select multiple elements
+print(s3["California":"New York"])
+
+```
+
+In our work, we typically don't use multi-indexed Series. However, they are often the output of pandas functions, so it's good to know how to work with them. If you don't like the idea of multi-indexed Series, you can always convert them to a DataFrame using the `reset_index()` method.
+
+
+```python
+s3.reset_index()
+```
+
+## Pandas DataFrame
+
+While Series is a "one-dimensional" data structure, DataFrames are two-dimensional. Where Series can only contain one type of data, the pandas DataFrame can have a combination of numerical and categorical data. Additionally, DataFrames allow you do have labels for your rows and columns. 
+
+DataFrames are essentially a **collection of Series objects**. You can also think of python DataFrames as spreadsheets from Excel or dataframes from R. 
+
+Let's manually create a simple dataframe in pandas to showcase their behavior. In the below code, we create a dictionary where the keys are the column names and the values are lists of data. We then pass this dictionary to the `pd.DataFrame()` function to create a DataFrame. 
+
+When we print the DataFrame, it will display as a table with the column names at the top and the data below. The index (in this case, automatically generated numerical index starting at 0) will be displayed on the left side of the table.
+
+
+```python
+tournamentStats = {
+    "wrestler": ["Terunofuji", "Ura", "Shodai", "Takanosho"],
+    "wins": [13, 6, 10, 12],
+    "rank": ["yokozuna", "maegashira2", "komusubi", "maegashira6"]
+}
+
+#Converting to a pandas DataFrame
+sumo = pd.DataFrame(tournamentStats)
+
+print(sumo)
+```
+
+Pandas dataframes have many **attributes**, including `shape`, `columns`, `index`, `dtypes`. These are useful for understanding the structure of the dataframe.
+
+
+```python
+print(sumo.shape)
+
+print("---")
+print(sumo.columns)
+
+print("---")
+print(sumo.index)
+
+print("---")
+print(sumo.dtypes)
+```
+
+Pandas DataFrames also have the handy `info()` function that summarizes the contents of the dataframe, including counts of the non-null values of each column and the data type of each column.
+
+
+```python
+sumo.info()
+```
+
+## Selecting data in a Pandas dataframe
+
+As with series objects, pandas dataframes rows and columns are *explicitly indexed*, which means that every row and column has a label associated with it. You can think of the explicit indices as the being the names of the rows and the names of the columns.  
+
+Unfortunately, in pandas the syntax for subsetting rows v.s. columns is different and can get a little confusing, so let's go through several different use cases.
+
+### Selecting columns
+We can always check the names of the columns in a Pandas dataframe byt using the built-in `.columns` method, which simply lists the column index:
+
+
+```python
+sumo.columns
+```
+
+If we want to refer to a specific column, we can specify its index (enclosed in double quotes) inside of square brackets `[]` like so:
+
+
+```python
+#Single column:
+sumo["wrestler"]
+```
+
+If we want to refer to *multiple* columns, we need to pass the columns as a **list** by enclosing the column indices in square brackets, so you will end up with *double brackets*:
+
+
+```python
+#Multiple columns (note the double []!):
+sumo[["wrestler", "rank"]]
+```
+
+### Selecting rows:
+
+The syntax for selecting specific rows is slightly different. Let's first check the labels of the row index; to do this we use the `.index` method:
+
+
+```python
+print(sumo.index)
+```
+
+Here we can see that while the column index labels were strings, the row index labels are *numerical values*, in this case `0` thru `3`. If we wanted to pull out the first row, we need to specify its index label (`0`) in combination with the `.loc` method (which is required for rows): 
+
+
+```python
+sumo.loc[0]
+```
+
+If we want to select multiple rows, like with columns we need to pass it as a list using the double brackets. If we want to specify a **range** of rows (i.e. from this row to that row), we **don't** use double brackets and instead use `:`:
+
+
+```python
+print(sumo.loc[[0,1]])
+```
+
+
+```python
+
+print(sumo.loc[0:2])
+```
+
+Note that in this case the row index labels are numbers, but do not have to be numerical, and can have string labels similar to columns. Let's show how we could change the row index labels by taking the column with the wrestler's rank and setting it as the index label (note that the labels should be unique!):
+
+
+```python
+sumo = sumo.set_index("rank")
+
+print(sumo)
+```
+
+
+```python
+sumo.loc["yokozuna"]
+```
+
+We also need to use `.loc` if we are referring to a specific row AND column, e.g.:
+
+
+```python
+print(sumo.loc["komusubi", "wrestler"])
+```
+
+If we want to purely use numerical indexing, we can use the `.iloc()` method. If you use `.iloc()`, you can index a DataFrame just as you would a numpy array. 
+
+
+```python
+# Select the first two rows and the first two columns
+
+sumo.iloc[0:2, 0:2]
+```
+
+There are many ways to select subsets of a dataframe. The rows and columns of a dataframe can be referred to either by their integer position or by their indexed name. Typically, for columns, you'll use the indexed name and can just do `[]` with the name of the column. For rows, if you want to use the integer position, you will use `.iloc[]`. If you want to use the index name, you will use `.loc[]`. 
+
+For reference, here's a handy table on the best ways to index into a dataframe:
+
+|Action|Named index|Integer Position|
+|---|---|---|
+|Select single column|`df['column_name']`|`df.iloc[:, column_position]`|
+|Select multiple columns|`df[['column_name1', 'column_name2']]`|`df.iloc[:, [column_position1, column_position2]]`|
+|Select single row|`df.loc['row_name']`|`df.iloc[row_position]`|
+|Select multiple rows|`df.loc[['row_name1', 'row_name2']]`|`df.iloc[[row_position1, row_position2]]`|
+
+> Exercise: we'll use the penguins dataset from our initial example.
+> 1) Print the 'species' column
+> 2) Print the first five columns and first five rows
+> 3) Print the columns "species", "island", and "sex" and the first ten rows of the dataframe
+
+
+```python
+penguins.info()
+```
+
+=======
 ## Numpy
 
 Numpy is an open-source **library** written in Python. It's main feature is the implementation of efficient **data structures** that can be used for large datasets and **functions** and **methods** for those data structures. This makes numpy well suited for scientific computing and data science.
@@ -1565,58 +1803,17 @@ This way of saving the data prepends the header row with a `#` character to indi
 >
 > Every chemical property on the wine dataset is measured in different units. Let's normalize all the data so that it is on the same scale. To do this, we will first subtract the mean (`np.mean`) of each column from each element in the column, then divide by the standard deviation of the column (`np.std`). The quality column (last column) is not a chemical property, so we will not normalize it. Save the normalized data + original quality column to a new array.
 
-
 ```python
 # Your code here
 
-# make a reference to the wines array without the last column
-wines_array_chemicals = wines_array[:,:-1]
-# calculate the mean of each column
-means = np.mean(wines_array_chemicals, axis=0)
-# calculate the standard deviation of each column
-stds = np.std(wines_array_chemicals, axis=0)
-# calculate the z-scores and assign them to a new array, z_scores
-z_scores = (wines_array_chemicals - means) / stds
-# add back the quality column to the z_scores array (hint: use np.column_stack)
-z_scores = np.column_stack((z_scores, wines_array[:,-1]))
-print(z_scores)
+print(penguins['species'])
 
+print("---")
+print(penguins.iloc[0:5,0:5])
+
+print("---")
+print(penguins.loc[0:10, ['species', 'island', 'sex']])
 ```
-
-<pre class="output-block">
-[[-0.52835961  0.96187667 -1.39147228 ... -0.57920652 -0.96024611
-   5.        ]
- [-0.29854743  1.96744245 -1.39147228 ...  0.1289504  -0.58477711
-   5.        ]
- [-0.29854743  1.29706527 -1.18607043 ... -0.04808883 -0.58477711
-   5.        ]
- ...
- [-1.1603431  -0.09955388 -0.72391627 ...  0.54204194  0.54162988
-   6.        ]
- [-1.39015528  0.65462046 -0.77526673 ...  0.30598963 -0.20930812
-   5.        ]
- [-1.33270223 -1.21684919  1.02199944 ...  0.01092425  0.54162988
-   6.        ]]
-</pre>
-
-## Numpy is a foundational library
-
-Numpy forms the basis of many other python libraries, and can be used as-is to analyze a surprising range of data.
-
-Here is an example tutorial that use numpy to perform image analysis.
-
-The package skimage is used for image processing. Images are easily represented as numpy arrays, where each pixel is a value in the array. You can represent color images at 3D arrays, where each dimension is a different color channel. Take a look at this [tutorial](https://scikit-image.org/docs/stable/user_guide/numpy_images.html) to get an introduction to image processing.
-
-Numpy is the basis of machine learning libraries like sklearn, pandas, scipy, and inspires libraries like tensorflow. For a more in depth tutorial on numpy, check out the [visual guide to numpy](https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d)
-
-# Wrap-up
-
-1.   **Reading documentation** is an important skill when using new functions, especially from **imported libraries**.
-2.   **Numpy** is an **external library** that implements efficient data structures for large computations called **arrays**. Arrays can be single dimensional (*e.g.* one row of data), in which case they are called **vectors**, but can also be **multi-dimensional** Operations can be performed quickly on arrays with **broadcasting**.
-3.   Arrays can be **filtered** with boolean masks.
-4.   Data can be **read** directly from text files into Python data structures and Numpy arrays. Likewise, data can be **written** from Python to text files.ff
-
-Next time, we will learn how to use pandas, a library that is built on top of numpy and is specifically designed for data analysis. We will learn how to read into dataframes, how to manipulate data, and how to create visualizations.
 
 ---
 
