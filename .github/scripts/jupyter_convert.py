@@ -13,6 +13,13 @@ import subprocess
 ############################################################        
 
 def style_link(match):
+    """
+    This function styles links in markdown files.
+    It checks if the link is from a specific domain (excluded_domain) or if it is
+    a relative link. If so, it does not style the link.
+    Otherwise, it styles the link with an external link icon and opens in a new tab.
+    """
+    
     excluded_domain = "https://informatics.fas.harvard.edu/"
     link_text = match.group(1)
     link_url = match.group(2).strip()
