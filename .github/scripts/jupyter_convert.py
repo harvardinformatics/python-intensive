@@ -19,7 +19,7 @@ def style_link(match):
     a relative link. If so, it does not style the link.
     Otherwise, it styles the link with an external link icon and opens in a new tab.
     """
-    
+
     excluded_domain = "https://informatics.fas.harvard.edu/"
     link_text = match.group(1)
     link_url = match.group(2).strip()
@@ -97,6 +97,8 @@ def wrapOutputBlocks(md_lines):
 
 jupyter_dir = "docs/workshops/python-intensive/"
 
+
+## The dict with notebook info hardcoded...
 jupyter_files = {
     "Python-Day1.ipynb": {
         "title": "[Workshop] Python intensive, day 1",
