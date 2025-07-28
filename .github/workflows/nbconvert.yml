@@ -5,8 +5,7 @@ on:
     paths:
       - 'Python-Day*.ipynb' 
       - '.github/scripts/jupyter_convert.py'
-    paths-ignore:
-      - 'Python-Day*-Student.ipynb' 
+      - '!Python-Day*-Student.ipynb' 
   workflow_dispatch:
 
 jobs:
