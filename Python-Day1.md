@@ -6,8 +6,6 @@ authors:
     - Tim Sackton
 ---
 
-This is a test block to trigger the workflow.
-
 # Python intensive, day 1
 
 ## Introduction
