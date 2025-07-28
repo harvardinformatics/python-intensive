@@ -10,7 +10,7 @@ authors:
 
 ## Introduction
 
-Welcome to the first day of the Harvard Informatics Python intensive workshop. This is a six day workshop intended to give a whirlwind, yet thorough, introduction programming concepts, the Python programming language, and how to use Python to facilitate data analysis.
+Welcome to the first day of the Harvard Informatics Python intensive workshop. This is a six day workshop intended to give a quick, yet thorough, introduction programming concepts, the Python programming language, and how to use Python to facilitate data analysis.
 
 Programmatic analysis of data allows the scientist to have full control over how their data is parsed, assessed, and presented, unlike using third party programs (like Excel) which may make unwanted assumptions about how you want to read your data. The upside of this is that one could conceivably perform any analysis imaginable on their data, assuming they have enough coding skills. The downside is that one must know how to program. But that is the goal of this workshop: to give you the understanding of programming concepts and underlying skills such that you can see a problem or question in your work and then be able to understand how you would code the solution.
 
@@ -415,6 +415,7 @@ What about if you know what you want to do, but you're not sure if there is a fu
 However, there are some resources that will pop-up that are generally pretty reliable. For instance, the official [Python documentation :octicons-link-external-24:](https://docs.python.org/3/){:target="_blank"} can be helpful, but is sometimes cryptic (e.g. the / above in the `abs()` `help()` output). StackExchange and [StackOverflow :octicons-link-external-24:](https://stackoverflow.com/){:target="_blank"} are great resources that provide community answers to programming problems. But sometimes it is difficult to find an answer to your specific problem unless you post it yourself.
 
 Now, it is also feasible to ask a LLM chatbot (e.g. ChatGPT, CoPilot) to help with coding problems. While these bots have their issues with reliability for real world information, they tend to be quite accurate for basic programming problems. For instance, you could ask, "How do I get the largest number of a list of numbers in Python?" and it would probably reply with some answer related to the `max()` function.
+
 
 
 ### Functions and data types
