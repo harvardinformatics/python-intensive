@@ -261,6 +261,7 @@ Write your code below. If you get stuck, check out your concept map, work with a
 !!! Note
     If you are reading the completed solution to this exercise, you will notice extra code that **raise exceptions** in **try ... except** blocks. To learn more about how to use exceptions, check out our companion notebook "Python Healthy Habits" which covers some more advanced function writing. 
 
+
 ```python
 import random
 
