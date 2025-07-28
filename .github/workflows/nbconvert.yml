@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '**.ipynb'
-      - 'scripts/jupyter_convert.py'
+      - '.github/scripts/jupyter_convert.py'
   workflow_dispatch:
 
 jobs:
