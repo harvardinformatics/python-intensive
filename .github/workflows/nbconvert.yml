@@ -35,7 +35,7 @@ jobs:
 
       - name: Commit and push any changes to .md files
         run: |
-          git add *.md */*.md */*/*.md 2>/dev/null || true
+          git add *.md 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
