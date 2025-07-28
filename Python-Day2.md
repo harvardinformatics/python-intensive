@@ -70,6 +70,841 @@ if eggs:
 
 This joke illustrates that what may make sense in natural language does not immediately translate to computer language. And therefore we have to be really specific, giving every instruction even, when we're programming.
 
+## Control Flow
+
+### Conditional statements
+
+Let's recall the recipe to get a robot to bake us some chocolate chip cookies. We left our recipe in this state:
+
+```
+  1. Walk_anywhere(distance=2 and angle=40).
+  2. Extend your arm towards the power button.
+  3. Push the power button.
+  4. Move your arm to the temperature dial.
+  5. Set the temperature dial to 375°F (190°C).
+  6. Lower your arm.
+  7. Walk_anywhere(distance=0.6 and angle=120).
+  8. Extend your arm.
+  9. Grasp the cabinet handle.
+  10. Pull the cabinet open.
+  11. Release the cabinet handle.
+  12. Extend both arms toward the large mixing bowl on the shelf.
+  13. Grasp the mixing bowl with both hands.
+  .
+  .
+  .
+  and so on.
+```
+
+We also had these other recipes in our recipe book that the robot could look up everytime it saw them in our main recipe:
+
+```
+Step:
+  1. Lift right leg.
+  2. Extend right leg.
+  3. Lower right leg and lift left leg.
+  4. Extend left leg.
+  5. Lower left leg and lift right leg.
+
+Walk_anywhere(*distance*, *angle*):
+  1. Turn body *angle* degrees
+  2. Repeat Step until the *distance* has been traversed
+```
+
+We now know that these sub-recipes are called **functions**.
+
+In our main recipe, we've called `Walk_anywhere()` twice, first to get the robot to the oven, then to get to the cabinet.
+
+But, what if before it starts baking the cookies, the robot is already standing at the oven? While we could call `Walk_anywhere(distance=0, angle=0)`, it would be kind of pointless, and it may waste valuable time - those few seconds it takes us to lookup the `Walk_anywhere()` recipe only to have to immediately flip back to the main recipe are going to delay us from our cookies.
+
+This is a perfect situation to check the **conditions** of our program, and only execute the `Walk_anywhere()` function if certain conditions are True (or not True, depending on the context).
+
+In order to do this, we need one more piece of information in our recipe: our current location. Then our recipe may look like this:
+
+```
+  The current location is in front of the oven.
+
+  1. If we aren't at our oven, Walk_anywhere(distance=2 and angle=40).
+  2. Extend your arm towards the power button.
+  3. Push the power button.
+  .
+  .
+  .
+  and so on.
+```
+
+Now, we've given the robot's location and we've said in step 1, only execute `Walk_anywhere()` **if** is isn't already at our oven. Now our robot knows not to bother looking up and running `Walk_anywhere()` in this case. We could change the location accordingly in the recipe and the robot would know whether or not it needed to `Walk_anywhere()`. For instance:
+
+```
+  The current location is in the living room.
+
+  1. If we aren't at our oven, Walk_anywhere(distance=2 and angle=40).
+  2. Extend your arm towards the power button.
+  3. Push the power button.
+  .
+  .
+  .
+  and so on.
+```
+
+We can make our pseudocode look a little bit more programmatic by doing the following:
+1. Make the current location a string variable using the `=` asignment operator.
+2. In the conditional **if statement**, use a logical comparison between strings.
+
+```
+  current_location = "living room"
+
+  1. If current_location != "oven", Walk_anywhere(distance=2 and angle=40).
+  2. Extend your arm towards the power button.
+  3. Push the power button.
+  .
+  .
+  .
+  and so on.
+```
+
+We of course would also have to update the `distance` and `angle` arguments in our function call to be dependent on the `current_location`, but we can ignore that for now.
+
+> **Exercise**: Imagine you are programming a robot to navigate a maze. You know that this maze can be navigated by following the "right hand rule", which is to always keep your right hand on the wall. The robot can move or look in four directions: up, down, left, and right. How would you give the robot instructions to navigate the maze? Write pseudocode for this robot navigating the maze.
+
+
+```
+Look to the right:
+    If there is a wall:
+        Try to Move Forward
+        If you can't move forward:
+            Turn Left
+    Else:
+        Turn right
+        Move Forward
+```
+
+#### `if` statements and code blocks
+
+What we described above are called **conditional statements**. In Python (and many other programming languages), these are denoted by the keyword `if`. Following `if` is a logical expression, and if that expression returns `True`, the code *within* the if statement will be executed. If it is not `True`, the code will be skipped and the subsequent lines of code will executed. Together, the `if` keyword and the logical expression are called an **if statement**.
+
+We mention code *within* an if statement. What does that mean? When programming, separate parts of code are broken up into chunks, or **blocks** of code. Different languages handle the denotion of blocks of code in different ways. **For Python, blocks of code are indicated by indented text**, either using tabs or spaces (though you must be consistent throughout your code).
+
+For example:
+
+
+```python
+x = 5
+
+if x < 10:
+  print("The number is smaller than 10")
+  # code to execute if condition is true
+  # this part is indented
+
+print("Done.")
+```
+
+Here, we have set the value of `x` to be 5, then used the keyword `if` along with a logical expression (`x < 10`). Since the logical expression evaluates to `True`, the indented code block is executed.
+
+Code blocks can be more than one line. After an **if statement** that returns `True`, every subsequent line that is indented one more level than the **if statement** itself will be executed.
+
+
+```python
+x = 5
+
+if x < 10:
+  print("Your number is", x)
+  print("The number is smaller than 10")
+
+print("Done.")
+```
+
+This indentation syntax is required by Python, as that is how it knows which instructions to execute after an if statement. If the indentation is incorrect, you will see an error, such as the following:
+
+
+```python
+x = 5
+
+if x < 10:
+print("Your number is", x)
+print("The number is smaller than 10")
+
+print("Done.")
+```
+
+
+```python
+x = 5
+
+if x < 10:
+  print("Your number is", x)
+    print("The number is smaller than 10")
+
+print("Done.")
+```
+
+In addition to syntax errors, which Python will catch, mis-placed indentation can also lead to **logic errors**, where the code will run, but with unexpected results.
+
+Here, we will change the value of `x` so that the if statement is no longer `True`, but we will make a mistake with our indentation.
+
+
+```python
+x = 12
+
+if x < 10:
+  print("Your number is", x)
+print("The number is smaller than 10")
+
+print("Done.")
+```
+
+In this case, the program is telling us that our number is smaller than 10, even though it is clearly not. This is because the second `print()` statement is not indented to be included in the if statement, rather it is part of the outer code block that will be executed regardless of the result of the if statement.
+
+Remember, the computer doesn't know what you intend with your program. It will run according to its rules, so you have to be explicit with your instructions, in this case with indentation.
+
+Also note the colon character, `:`, after the `if` keyword and logical expression. This is also syntactically required by Python after any if statement. Without it, you will see an error:
+
+
+```python
+x = 5
+
+if x < 10
+  print("Your number is", x)
+  print("The number is smaller than 10")
+
+print("Done.")
+```
+
+> **Exercise**: Pick a message and store it as a string. Print the message only if the string has at least 10 characters. This will require you to use the built-in `len()` function that we learned about before.
+
+
+```python
+# Your code here
+my_msg = "the quick brown fox jumped over the lazy dog"
+my_msg_length = len(my_msg)
+
+if my_msg_length > 10:
+  print("'", my_msg, "' has", my_msg_length, "characters.")
+  print("This is more than 10 characters.")
+
+print("Done.")
+```
+
+#### `elif` and `else`
+
+**if statements** are extremely powerful. They essentially let us change the instructions in our program given various inputs to it.
+
+However, two other keywords, **`elif`** and **`else`**, give us even more control over the flow of our program.
+
+Let's talk about `else` first. `else` essentially provides an alternative block of code to be run if an `if` statement is `False`. `else` does not require a logical expression of its own, rather it uses the same one in the preceding `if` statement.
+
+*   `else` : Used after an `if` statement. The block of code within `else` will be executed only if the condition in the if statement is `False`.
+
+
+
+
+
+```python
+x = 12
+
+print("Your number is", x)
+
+if x < 10:
+  print("The number is smaller than 10")
+else:
+  print("The number is equal to or larger than 10")
+
+print("Done.")
+```
+
+So here, the value of `x` is set to 12. Then we evaluate the expression `x < 10`. This returns `False`, so the code within the if statement is skipped. However, since the **next unindented line of code** after the if statment is `else:` (again note the required colon `:`), we instead execute the code within the **else statement**, again denoted by indentation.
+
+**`else` must always follow a block of code from an `if` statement!**. `else` will not work if it is before the `if`, because Python reads the file from top-to-bottom:
+
+
+```python
+x = 12
+
+print("Your number is", x)
+
+else:
+  print("The number is equal to or larger than 10")
+if x < 10:
+  print("The number is smaller than 10")
+
+
+print("Done.")
+```
+
+`else` will also not work on its own, because it has no logical expression to evaluate:
+
+
+```python
+x = 12
+
+print("Your number is", x)
+
+else:
+  print("The number is equal to or larger than 10")
+
+print("Done.")
+```
+
+
+
+> **Exercise**: Debug the following code so the code block runs without error.
+
+
+
+
+```python
+## Debug this code
+x = 12
+
+print("Your number is", x)
+
+if x < 10:
+  print("The number is smaller than 10")
+print("You will have to find a larger number.")
+else:
+  print("The number is equal to or larger than 10")
+
+print("Done.")
+```
+
+`elif` is also used in conjunction with `if`, but unlike `else`, elif allows us to test another condition. Like `if`, the keyword `elif` is typed followed by the logical statement to evaluate. If *that* statement evaluates to `True`, the code within the `elif` statement is executed. It is important to know that **`elif`'s logical expression will only be evaluated if the `if` statement was `False`**. This structure essentially allows us to test alternate conditions in sequence.
+
+
+```python
+x = 12
+
+print("Your number is", x)
+
+if x < 10:
+  print("The number is smaller than 10")
+elif x < 20:
+  print("The number is larger than 10 but smaller than 20")
+else:
+  print("The number is equal to or larger than 20")
+
+print("Done.")
+```
+
+In this case, with `x` being 12, the logical statement in the if statement is tested first. Since `x < 10` is `False`, now the logical statement in the `elif` statement is evaluated, skipping the code within the if statement (indented under it). Since `x < 20` is `True` in this case, the code enters the `elif` block and executes the instructions to print a message. Then, since **none of the above conditions were `False`, the `else` statement is ignored**.
+
+Again, note the colon `:` character which is required after any conditional statement.
+
+You can use any number of `elif` statements in a row (as long as they follow an initial `if` statement).
+
+
+```python
+x = 16
+
+print("Your number is", x)
+
+if x < 10:
+  print("The number is smaller than 10")
+elif x < 15:
+  print("The number is larger than 10 but smaller than 15")
+elif x < 20:
+  print("The number is larger than 15 but smaller than 20")
+else:
+  print("The number is equal to or larger than 20")
+
+print("Done.")
+```
+
+#### More complex conditional statements
+
+And remember, logical statements can be more complex using the `and` and `or` operators.
+
+
+```python
+temperature = 72
+weather = "rainy"
+
+print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
+
+if temperature <= 32 and weather == "snowy":
+  print("Wear a heavy coat and snow boots.")
+elif temperature > 32 and weather == "rainy":
+  print("Wear a raincoat and boots.")
+else:
+  print("Your guess is as good as mine!")
+```
+
+Here, our very basic weather bot checks a couple of conditions based on the temperature and precipiation and gives clothing recommendations. Obviously, there are many more combinations of temperature and weather we could test.
+
+> **Exercise**: Add another `elif` statement that checks any other combination of conditions and gives a recommendation.
+
+
+```python
+temperature = 72
+weather = "rainy"
+
+print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
+
+if temperature <= 32 and weather == "snowy":
+  print("Wear a heavy coat and snow boots.")
+elif temperature > 32 and weather == "rainy":
+  print("Wear a raincoat and boots.")
+
+# Add your elif here
+elif temperature > 60 and weather == "sunny":
+  print("Wear shorts and a t-shirt.")
+
+
+else:
+  print("Your guess is as good as mine!")
+```
+
+> **Exercise**: initialize two integer variables called `x` and `y`, give them whatever values you like. Write a series of conditional statements that check the following:
+> 1. `x` and `y` are both even
+> 2. one is even and the other isn't
+> 3. `x` and `y` are both odd
+>
+> *Hint: If a number is even and you divide it by 2, what will the remainder be? Which operator returns the remainder of a division?*
+
+
+```python
+# Your code here
+
+x = 5
+y = 8
+
+if x % 2 == 0 and y % 2 == 0:
+    print("x and y are both even")
+elif (x % 2 == 0 and y % 2 != 0) or (x % 2 != 0 and y % 2 == 0):
+    print("one is even, one is odd")
+elif x % 2 != 0 and y % 2 != 0:
+    print("x and y are both odd")
+```
+
+---
+
+Recall also the `in` operator for strings. You can use it to check if one string is contained within the other. It will return `True` if it is and `False` if it isn't:
+
+
+```python
+my_string = "1234"
+print("2" in my_string)
+```
+
+Since this returns a boolean value (`True` or `False`), it can also be used when checking conditions with `if` or `elif`:
+
+
+```python
+my_string = "1234"
+
+if "2" in my_string:
+  print("In the if statement.")
+else:
+  print("In the else statement.")
+
+print("Done.")
+```
+
+Likewise, the `not` operator can be used to negate a logical condition in `if` statements:
+
+
+```python
+my_string = "1234"
+
+if not "2" in my_string:
+  print("In the if statement.")
+else:
+  print("In the else statement.")
+
+print("Done.")
+```
+
+> **Exercise:** Store a string (`my_string`) and store two other smaller strings (`my_substr1`, `my_substr2`). Then use a series of `if` and `elif` statements to:
+
+*   Print a message indicating if both sub-strings are contained within `my_string`
+*   Otherwise, print a message if only one of the sub-strings is contained within `my_string`. The message should indicate which sub-string was found, so you will need two `elif`s.
+*   Finally, use an `else` statement to print a different string if neither sub-string is contained within `my_string`
+
+
+```python
+# Your code here: Pick your string and sub-strings
+my_string = "everything changed when the fire nation attacked"
+my_substr1 = "fire nation"
+my_substr2 = "water tribe"
+
+# Your code here: Fill in the conditional statements
+if my_substr1 in my_string and my_substr2 in my_string: # An if statement if both sub-strings are found
+  print("Both substrings found:", my_substr1, ",", my_substr2)
+elif my_substr1 in my_string and not my_substr2 in my_string: # An elif statement if only sub-string 1 is found
+  print("Substring 1 found:", my_substr1)
+elif not my_substr1 in my_string and my_substr2 in my_string: # An elif statement if only sub-string 2 is found
+  print("Substring 2 found:", my_substr2)
+else: # Else handles if neither sub-strings are found
+  print("Neither substring found.")
+
+print("Done.")
+```
+
+#### Nested conditional statements
+
+Stringing `if`, `elif`, and `else` statements together is a great way to execute code under different conditions, especially if the conditions are independent of one another. However, if the evaluation of conditions depends on previous conditions, you would need to use a **nested conditional** statement.
+
+Here is a simple example of an un-nested `if` statement that programs typical car driving behavior.
+
+Nesting is useful when the outcome of one condition directly influences whether another condition should be checked. These can be thought of as a decision tree.
+
+
+```python
+light = "green"
+pedestrian = False
+
+if light == "green" and not pedestrian:
+    print("Go")
+else:
+    print("Stop")
+```
+
+Here, the `if` statement evaluates both whether the light is green and whether a pedestrian is present. If either of those evaluated to `False`, the `if` statement wouldn't be executed and the `else` statement would. Here since `light == "green"` is `True` and `not pedestrian` (which in this case is the same as saying `not False`) is also `True`, so "Go" is printed out.
+
+However, we can write this code another, equivalent way with nesting.
+
+
+```python
+light = "green"
+pedestrian = False
+
+if light == "green":
+    if pedestrian == False:
+        print("Go")
+    else:
+        print("Stop")
+elif light == "red":
+    print("Stop")
+```
+
+This code has the same behavior as above. However, instead of a two part logical expression with `and`, we've broken that up into two separate `if`statements.
+
+First, `light == "green"` is evaluated. Since that is `True`, we execute the code within the `if` statement. In this case, that code is another `if` statement, and since `pedestrian == False` evaluates to `True`, "Go" is printed to the screen. If either were `False`, "Stop" would be printed.
+
+**In this way, you could think of nested if statements as implicit `and`s**.
+
+The question then is when is it best to use nested statements? In the above example, the non-nested solution is the one I would use because it requires fewer lines of code and is generally easier to understand for someone used to looking at logical statements.
+
+Nested if statements are best when the conditions are dependent on one another.
+
+Let's return to our terrible weatherbot. We can add a nested if statement to make it a little better.
+
+
+```python
+temperature = 72
+weather = "rainy"
+
+print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
+
+if temperature <= 32:
+  if weather == "snowy":
+    print("Wear a heavy coat and snow boots.")
+  else:
+    print("Wear a heavy coat and warm shoes.")
+elif temperature > 32 and weather == "rainy":
+  print("Wear a raincoat and boots.")
+elif temperature > 60 and weather == "sunny":
+  print("Wear shorts and a t-shirt.")
+else:
+  print("Your guess is as good as mine!")
+```
+
+Now, the bot first checks if the temperature is below 32, and then checks whether it is precipitating or not before it gives a recommendation. This allows us to build a better decision tree and makes the bot a little more flexible.
+
+> **Exercise**: Improve the weatherbot further. Consider temperature ranges from below 32, 33-60, and 60-90 as well as weather conditions "sunny", "cloudy", and "precipitating". Make recommendations for each combination.
+>
+> **BONUS**: Add another variable, `windy`, which will be a boolean. For each temperature category, if it is rainy (precipitating when above freezing), also check if it is windy or not and recommend an umbrella accordingly (yes if not windy, no if windy).
+
+
+```python
+# Your code here
+# Edit weatherbot to give more specific recommendations
+# Consider temperatures below 32, 33-60, and 60-90
+# Consider conditions "sunny", "cloudy", "precipitating"
+# Make weatherbot give recommendations for each temperature-weather combination
+# BONUS: Add a windy variable that is a boolean and give recommendations about
+#        whether or not to bring an umbrella when its raining (no if windy, yes if not)
+
+temperature = 72
+weather = "precipitating" # Possible conditions: "sunny", "cloudy", or "precipitating"
+windy = True
+
+print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
+
+if temperature <= 32:
+  if weather == "precipitating":
+    print("Wear a heavy coat and snow boots.")
+  else:
+    print("Wear a heavy coat and warm shoes.")
+elif temperature > 32 and temperature <= 60:
+  if weather == "precipitating":
+    print("Wear a raincoat and boots.")
+    if windy:
+      print("Leave your umbrella at home.")
+    else:
+      print("And take an umbrella.")
+  if weather == "cloudy":
+    print("Wear a heavy jacket and warm shoes.")
+  else:
+    print("Wear a light jacket and light shoes.")
+elif temperature > 60 and temperature <= 80:
+  if weather == "precipitating":
+    print("Wear a light raincoat and rain shoes.")
+    if windy:
+      print("Leave your umbrella at home.")
+    else:
+      print("And take an umbrella.")
+  elif weather == "cloudy":
+    print("Wear a light jacket and light shoes.")
+  else:
+    print("Wear shorts and a t-shirt.")
+else:
+  print("Your guess is as good as mine!")
+```
+
+#### Review of conditionals
+
+By default, computer programs are read line-by-line from top to bottom by the computer with each instruction occuring one after the other. Here, with conditional statements, we've learned that we can tell the computer to only read some lines depending on the conditions of the program.
+
+We should know:
+
+1.   How `if`, `elif`, and `else` work to check logical statements and execute code accordingly. We know that `if` always comes first and doesn't necessarily need to be followed by any `elif` or `else` statements -- that depends on the problem you are trying to code around and is up to you to determine.
+2.   The proper syntax of these statements, which includes `<keyword> <logical expressions>:` where keyword is one of the three conditionals mentioned in point 1. Remember the colon `:`!
+3.   That conditional statements are followed by **blocks of code indicated by indentation**. Indentation is how Python knows what to execute given a conditional.
+4. Nested conditional statements are useful for dependent logical expressions and building decision trees.
+
+### Loops
+
+Another important way to control the flow of a program is with **loops**. Loops allow us to automatically repeat certain blocks of code while changing some of the variables through each **iteration** of the loop. This *automatic repetition* is one of the main benefits of having computers complete tasks for us.
+
+We've already introduced loops without calling them out with our robot cookie recipe. Indeed, loops are so integral to computing it would be hard to come up with an example that doesn't introduce them.
+
+Recall our `Walk_anywhere()` function:
+
+```
+Walk_anywhere(*distance*, *angle*):
+  1. Turn body *angle* degrees
+  2. Repeat Step until the *distance* has been traversed
+```
+
+The word "Repeat" here is an implicit loop!
+
+Much like the conditional keywords (`if`/`else`), almost universally across programming languages there are two types of loops: `while` and `for` loops.
+
+Our `Walk_anywhere()` function seems like a perfect example to introduce the first of the two types of loops: the `while` loop.
+
+#### `while` loops
+
+`while` loops work by first checking a logical statement. If the statement evaluates to `True`, the code inside of the `while` loop is executed. In this way, `while` loops are very similar to `if` statements. However, unlike `if` statements, the code within the `while` loop is **repeated until the logical statement is no longer `True`**.
+
+Here is a simple example:
+
+
+```python
+x = 0
+
+while x < 5:
+  print(x)
+  x = x + 1
+
+print("Done.")
+```
+
+Let's break this down. First, we have an integer called `x` and initially set to be 0. Then the program encounters the `while` line followed by a logical statement, `x < 5`. Since `x` is 0, this evaluates to `True` and the code inside of the `while` loop is executed.
+
+Here is where things start to differ. First, we simply print the value of `x`, which is useful for demonstrating how the loop works.
+
+Then, we change the value of `x` by saying `x = x + 1`. This is a key technique in programming, especially for `while` loops. This update statement takes the previous value of `x` and adds 1 to it with the addition `+` operator. Then it assigns this value to be the new value of `x`. After this is done, since we're in a `while` loop, Python knows to go back up to the line with `while` and re-evaluate the logical statement. If it is still `True`, the code within the loop is executed again.
+
+A few key points related to logic and syntax:
+1.   Just like an `if` statement, the colon is required after the logical statement of a `while` line.
+2.   Also like conditionals, indentation is required syntactically and to ensure the code runs according to the programmer's goal. Everything under the `while` line that is indented is included in the **block** of code that will be run in the `while` loop.
+3.   Notice that the last iteration prints out 4. This is because of our logical statement, `x < 5`.
+
+> **Exercise**: Change the above loop to also print out the value of `x` when it is 5.
+
+
+
+
+
+
+```python
+# Edit code here so the loop prints out 5 as well
+
+x = 0
+
+while x <= 5:
+  print(x)
+  x = x + 1
+
+print("Done.")
+
+## OR ##
+
+x = 0
+
+while x < 5:
+  print(x)
+  x = x + 1
+
+print(x)
+print("Done.")
+```
+
+This can actually be done two ways in this case. We could change the logical statement itself, or we could simply print `x` after the loop. The second solution works because during the iteration when `x` is 4, the line `x = x + 1` is still executed, thus updating the value of `x` even though the loop will not be run for another iteration.
+
+##### Update operators
+
+Updating a variable, e.g. `x = x + 1` is such a common occurrence in programming that many languages have implemented special **operators** to do this automatically and with less typing (programmers are efficient/lazy). Remember, an **operator** is just a special symbol or word that performs a specific task, like another recipe in our recipe book.
+
+We know that with the addition `+` operator, we can add two integers together, and we've just seen how this can be used in the `while` loop.
+
+The **in-place addition operator** or **addition update operator** looks like this in Python:
+
+```
+x += 1
+```
+
+When talking about this operator, we may say **plus-equals**. However, this is exactly equivalent to typing `x = x + 1`.
+
+> **Exercise**: Use the in-place addition operator `+=` in the loop that counts from 0 to 5.
+
+
+```python
+## Edit the loop to use the in-place addition operator
+
+x = 0
+
+while x < 5:
+  print(x)
+  x += 1
+
+print("Done.")
+```
+
+Each arithmetic operator has a corresponding in-place update operator:
+
+* `+=` : Addition
+* `-=` : Subtraction
+* `*=` : Multiplication
+* `/=` : Division (floating-point)
+* `//=` : Floor Division
+* `%=` : Modulus
+* `**=` : Exponentiation
+
+
+##### Infinite loops
+
+Be wary of infinite loops. Since `while` loops run as long as a logical statement is `True`, if your code is written such that the statement is never updated to conditions where it is `False`, the loop will run forever. This is called an **infinite loop**.
+
+Here is a common way this can occur. I've commented this code block out so it doesn't get run unintentionally. If you'd like to run it, uncomment the code by deleting the `#` symbols at the beginning of each line. But running it may crash your notebook.
+
+```python
+x = 0
+
+while x <= 5:
+  print(x)
+x = x + 1
+
+print("Done.")
+```
+
+> **Exercise**: Why does this result in an infinite loop? Take a moment to discuss.
+
+##### `while` exercises
+
+> **Exercise**: Print out every number between 10 and 20 (inclusive).
+>
+> **BONUS**: Adjust your code to print only even numbers between 10 and 20 (inclusive)
+
+
+```python
+# Your code here: print out every number between 10 and 20 (inclusive)
+# BONUS: Edit your code so it only prints the even numbers between 10 and 20 (inclusive)
+
+x = 10
+
+while x <= 20:
+  print(x)
+  #x = x + 1
+  x = x + 2 # Bonus solution
+print("Done.")
+```
+
+> **Exercise**: For a colony with an initial population size of 1, write a program that prints out the population size for 10 generations given that it doubles every generation.
+>
+> *Hint: You will need to initialize two variables and then use a `while` loop to update them.*
+
+
+```python
+# Your code here: calculate the population size of a colony over 10 generations that
+# doubles in size every generation.
+
+generation = 1
+pop_size = 1
+
+while generation <= 10:
+  pop_size *= 2
+  print("Population size in generation", generation, "is:", pop_size)
+  generation += 1;
+```
+
+#### `for` loops
+
+`while` loops work by repeating a set of instructions (i.e. a block of code) until some condition is met.
+
+`for` loops, on the other hand, work by taking a group of inputs and performing a set of instructions on them one at a time. The key concept here is the **group of multiple inputs**, which leads into **data structures**, which we'll cover tomorrow in depth. Up until now, every piece of code we've run has used single pieces of data. `x = 5` is a single integer. `my_string = "Hello world!" is a single string. `for` loops work by taking **lists** of integers or strings, or lines in a file, and performing actions on each one individually.
+
+More on that tomorrow. For now, we can demonstrate `for` loops with **strings**. This is because **strings are essentially a group of characters**. This means we can use a `for` loop to iterate over each character individually. In other words, strings are **iterable**.
+
+Here is how a `for` loop would work to print out every character in a string:
+
+
+```python
+my_string = "Hello world!"
+
+for current_character in my_string:
+  print(current_character)
+
+```
+
+We start by defining a string. Then we encounter the `for` line where the first thing we see after `for` is a new variable, `current_character`. This is the **loop** or **update** variable. It's name, like other variables, is determind by the programmer, so we could have called it something else: `cur_char`, `current_letter`, `akjhgak`. It's purpose is to be used only within the loop, and its value is assigned based on the current iteration of the loop. Then, after that iteration it is **automatically updated** to be the next object in the string (or other **iterable**) that we're looping over. For a string, each object is an individual character, so the result of the loop is one character being printed per line of output.
+
+After the loop variable we see the keyword **`in`**. We talked about `in` before as the **inclusion operator**. Here, confusingly, it acts somewhat differently, simply as a keyword to denote that the loop variable on the left will take on values according to the iterable on the right.
+
+Then, we have our string, `my_string`, which is the thing over which we are iterating.
+
+Again, syntactically, the colon `:` and indenation are required.
+
+> **Exercise**: Are infinite loops possible when using `for`?
+
+> **Exercise**: Use a `for` loop to calculate the length of a string without using the `len()` function.
+
+
+```python
+# Your code here: replicate the functionality of the len() function
+
+my_string = "Hello world!"
+char_tally = 0
+
+for char in my_string:
+  char_tally += 1
+
+print(char_tally)
+print(len(my_string))
+```
+
+We will cover `for` loops much more tomorrow when we learn about other **iterable** data structures.
+
+### Review of loops
+
+We've learned about the two types of loops in Python `while` and `for`. Loops are used for the most important and useful computational purposes: automatic repetition of tasks.
+
+1.   `while` loops, like `if` statements run a block of code depending on a condition. However, they repeat that block of code until the condition is no longer met.
+2.   `for` loops repeat blocks of code for different inputs given in an **iterable**.
+3. In Python, indentation defines code blocks for loops (and conditional statements). If your line of code isn't indented at the same level of the loop, it will not be evaluated in the loop. Sometimes this can cause errors, and sometimes the program will run but with undesired output. It's up to the programmer to catch this.
+
+
+
 ## Iterables
 
 We left off yesterday talking about `for` loops. `for` loops work by performing a set of instructions (block of code) on every item in a **sequence of items**. We talked about looping over the characters in a string:
@@ -1744,750 +2579,6 @@ And as mentioned above, set operations can be performed. This would introduce a 
 *   **Dictionaries** are iterables of **key-value pairs**, which allow association of one piece of information to another, potentially for labeling.
 
 
-
-## Importing libraries of functions
-
-Let's again think about our recipe telling a robot how to bake chocoloate chip cookies:
-
-```
-  1. Walk_anywhere(distance=2 meters and angle=40°).
-  2. Extend your arm towards the power button.
-  3. Push the power button.
-  4. Move your arm to the temperature dial.
-  5. Set the temperature dial to 375°F (190°C).
-  6. Lower your arm.
-  7. Walk_anywhere(distance=0.6 meters and angle=120°).
-  8. Extend your arm.
-  9. Grasp the cabinet handle.
-  10. Pull the cabinet open.
-  11. Release the cabinet handle.
-  12. Extend both arms toward the large mixing bowl on the shelf.
-  13. Grasp the mixing bowl with both hands.
-  .
-  .
-  .
-  and so on.
-```
-
-Elsewhere in the recipe book are step-by-step instructions for certain tasks, like:
-
-```
-Walk_anywhere(*distance*, *angle*):
-  1. Turn body *angle* degrees
-  2. Repeat Step until the *distance* has been traversed
-```
-
-and:
-
-```
-Step:
-  1. Lift right leg.
-  2. Extend right leg.
-  3. Lower right leg and lift left leg.
-  4. Extend left leg.
-  5. Lower left leg and lift right leg.
-```
-
-These recipes are analogous to **functions**, and because they already exist in the recipe book, we can think of them as **built-in functions**, those that come with your Python installation. We've learned about a lot of these, like `len()` for iterables, `sum()` for a list of numbers, and so on.
-
-However, there are lots of other chefs out there writing their own recipes, and they may make their recipe books available to anyone who wants them. This is great because you may end up needing to cook some similar recipes, in which case you can go to the public library or the bookstore and pick up their book to use.
-
-In programming terms, this is referred to as **importing a library**. The **library** written by someone else will have extra functions that, once imported, you can use in your program. **Libraries may also be referred to as modules**, among other names.
-
-For instance, there is no built-in function in Python to calculate the log of a number:
-
-
-```python
-print(log(100))
-```
-
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-1-85d71efb1520&gt; in &lt;cell line: 1&gt;()
-----&gt; 1 print(log(100))
-
-
-NameError: name 'log' is not defined
-</pre>
-
-However, there is a `math` library with a a `log()` function that you can import!
-
-
-```python
-import math
-print(math.log(100))
-```
-
-<pre class="output-block">
-4.605170185988092
-</pre>
-
-Note that by default it does natural log.
-
-Also, notice that, in order for Python to know where to find the function even though we've imported it, we have to tell it explicitly with `math.`. This helps in the circumstance that you import multiple libraries that happen to have a function with the same name.
-
-However, you can also directly import a function from a library with the `from` keyword:
-
-
-```python
-from math import log
-print(log(100))
-```
-
-<pre class="output-block">
-4.605170185988092
-</pre>
-
-One could also declare an **alias** for the library if you want to still import the whole library but not have to type the the complete name of it every time:
-
-
-```python
-import math as m
-print(m.log(100))
-```
-
-<pre class="output-block">
-4.605170185988092
-</pre>
-
-This means `m` exists as an object in your program (just as if you'd assigned it with `=`). But of course, this means you can't use `m` as an object name anywhere else in the program:
-
-
-```python
-import math as m
-
-m = "hello world!"
-
-print(m.log(100))
-```
-
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-AttributeError                            Traceback (most recent call last)
-
-&lt;ipython-input-7-b08afa73f34c&gt; in &lt;cell line: 5&gt;()
-      3 m = "hello world!"
-      4 
-----&gt; 5 print(m.log(100))
-
-
-AttributeError: 'str' object has no attribute 'log'
-</pre>
-
-There are many, many libraries out there. Some are pre-installed with Python (like `math`), but others you may find and have to install for yourself. Hopefully the authors have easy and clear instructions for installation...
-
-In later days, we'll work with some libraries meant for data analysis, `numpy` and `pandas`.
-
-## Writing functions
-
-Of course, there may come a time when you're coding and you notice you're repeating the same set of instructions on different inputs a lot. This, of course, is the perfect use-case for a function, and like the people that write the libraries you import, you can also write your own functions!
-
-**Write lots of functions! Functionalize everything!**
-
-There are many reasons to write functions, even if you think you might only use it once in your notebook or workflow. Using functions in your code improves the readability of the code, because rather than puzzle through many lines trying to interpret what was going on, you can just read the function name/description and understand what happened. It also improves readability by allowing the reader to focus on the important parts of the code rather than functions that may perform rote tasks.
-
-Functions make your code more modular and reproducible. By breaking down the analysis into discrete chunks, you can easily swap out functions to test things or move sections of code around because functions are very portable.
-
-Functions also make your code more testable. When you encounter a bug or an unexpected outcome, you can more easily trace the source of the problem if you have functions that are well-documented and do one thing. Think of it like mixing smaller batches of reagents that you use at a time rather than one big container.
-
-**Functions should do ONE thing**
-
-Functions are meant to do one thing, just like a sentence is meant to express a complete thought. If you bundle your entire analysis into a single function, it's akin to writing a run-on sentence by abusing colons, semi-colons, etc. It might be correct and it might run, but it will be hard to read and also hard to debug. Make liberal use of calling functions within functions and making your code modular.
-
-
-### Function syntax
-
-When writing a function, you must start the line with the `def` keyword, which stands for *define*. Then you can give the function a name. The name can be anything, as long as the name abides by the standard object naming conventions (see Day 1). Then you type parentheses `()` followed by a colon `:`:
-
-```
-def my_function():
-```
-
-> **Review question**: What other lines of code in Python end with a colon `:`? What has to happen after those lines?
-
-Here is an example function. What happens when we run this block?
-
-
-```python
-def my_function():
-  print("hello world!")
-```
-
-Nothing! Because though we've defined the function, we haven't yet **called** it. The same way when you're coding and call a built-in function (like `len()` or `abs()`), in your program, after you've defined the function, you can type its name to call it:
-
-
-```python
-my_function()
-```
-
-<pre class="output-block">
-hello world!
-</pre>
-
-Great! Now anytime we want to print "hello world!" all we have to do is type `my_function()`!
-
-Well, ok so that's not very useful. Let's make a more interesting function.
-
-> **Exercise**: Below, we've provided the code for a magic 8 ball type response. It randomly selects an answer from a list of answers. This code is not in a function. Put it in a function called `magic_8_ball()` and call it a few times in the code block. Remember, every line of code you want to be included in the function must be indented!
-
-
-```python
-import random # This is a built-in Python library for random-number generation tasks (such as randomly selecting an element from a list)
-
-# Your code here: move the code into a function called magic_8_ball()
-def magic_8_ball():
-    # List of possible responses
-    responses = [
-        "Yes", "No", "Maybe", "Ask again later", "Definitely",
-        "I have no idea", "Very doubtful", "Without a doubt", "Outlook not so good"
-    ]
-
-    # Select a random response
-    answer = random.choice(responses)
-
-    # Print the response
-    print("The Magic 8-Ball says:", answer)
-
-# Call the function to see the Magic 8-Ball in action
-magic_8_ball()
-magic_8_ball()
-magic_8_ball()
-```
-
-<pre class="output-block">
-The Magic 8-Ball says: Very doubtful
-The Magic 8-Ball says: No
-The Magic 8-Ball says: Outlook not so good
-</pre>
-
-### Handling arguments
-
-Of course, just like the built-in functions, our functions are a lot more versatile and useful if they **accept input in the form of arguments**.
-
-We know how to provide arguments by placing them in the parentheses during the function call (e.g. with `abs(-5)`, `-5` is the argument).
-
-When writing a function, we must also defined which arguments are accepted within the parentheses of our function definition:
-
-```
-def my_function(arg1, arg2, ...)
-```
-
-You can name the arguments anything you'd like, as long as the names conform to the object naming conventions we've gone over (see Day 1). And in this example, the `...` indicates that you can define more arguments for your function if they are needed. Of course, as we saw above with the hello world! and `magic_8_ball()` functions, a function doesn't have to have arguments at all.
-
-Here is an example of a simple function with one argument, a number:
-
-
-```python
-def square(num):
-  print(num * num)
-
-square(2)
-
-my_other_num = 4
-square(my_other_num)
-```
-
-<pre class="output-block">
-4
-16
-</pre>
-
-Here, we've told the function to expect a single number as an argument. Within the function, we call this number object `num`. The function then simply prints out the square of the number. And we've shown a couple of ways to call the function.
-
-Just like with built-in functions, if we don't provide the expected number of arguments to our function, the program will stop with an error:
-
-
-```python
-square(2, 4)
-```
-
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-TypeError                                 Traceback (most recent call last)
-
-&lt;ipython-input-8-6622a44528c4&gt; in &lt;cell line: 1&gt;()
-----&gt; 1 square(2, 4)
-
-
-TypeError: square() takes 1 positional argument but 2 were given
-</pre>
-
-> **Exercise**: Edit the `magic_8_ball()` function to take a question (a single string) as an argument and print it out before the response.
-
-
-```python
-import random # This is a built-in Python library for random-number generation tasks (such as randomly selecting an element from a list)
-
-# Your code here: edit the magic_8_ball function to accept a question string as an argument
-# and to print out the question in addition to the answer.
-def magic_8_ball(question):
-    # List of possible responses
-    responses = [
-        "Yes", "No", "Maybe", "Ask again later", "Definitely",
-        "I have no idea", "Very doubtful", "Without a doubt", "Outlook not so good"
-    ]
-
-    # Select a random response
-    answer = random.choice(responses)
-
-    # Print the response
-    print(question, ":", answer)
-
-# Call the function to see the Magic 8-Ball in action
-magic_8_ball("Will it snow tomorrow?")
-```
-
-<pre class="output-block">
-Will it snow tomorrow? : Outlook not so good
-</pre>
-
-#### Default arguments
-
-It is also possible to define default values for a particular argument, in which case they do not necessarily need to be provided when the function is called:
-
-
-```python
-def square(num=2):
-  print(num * num)
-
-square()
-square(3)
-```
-
-<pre class="output-block">
-4
-9
-</pre>
-
-This might be especially useful when you have optional code you'd like to run in your function only sometimes:
-
-
-```python
-def square(num, also_cube=False):
-  print(num * num)
-  if also_cube:
-    print(num ** 3)
-
-square(2)
-print("---")
-square(2, True)
-```
-
-<pre class="output-block">
-4
----
-4
-8
-</pre>
-
-> **Exercise**: Write a function that takes two numbers: one to be the base and another to be the exponent. By default, this function should square the provided base number. However, if an exponent is provided, it will raise the base to that power. Provide use cases that show the function being used both with its default behavior (squaring the base) and with another exponent.
-
-
-```python
-# Your code here
-def power(base, exponent=2):
-  print(base ** exponent)
-
-# Provide test cases for your function below
-power(2)
-power(2, 3)
-```
-
-<pre class="output-block">
-4
-8
-</pre>
-
-Note that arguments with default values must appear at the end of the list of arguments in your function definition:
-
-
-```python
-def add_2_nums(num1, also_multiply=False, num2):
-  print(num1 + num2)
-  if also_multiply:
-    print(num1 * num2)
-
-add_2_nums(2, 3)
-```
-
-This prevents the above from running, which would result in an error (because `num2` would be undefined).
-
-### Named arguments
-
-So far, whether its been built-in functions or those we've written, we've called them simply by specifying *the values of the arguments* in the function call:
-
-
-```python
-def square(num, also_cube=False):
-  print(num * num)
-  if also_cube:
-    print(num ** 3)
-
-my_num = 2
-square(my_num)
-print("---")
-square(my_num, True)
-```
-
-<pre class="output-block">
-4
----
-4
-8
-</pre>
-
-These are treated as **positional arguments**, which means they are assigned to the parameter in the function simply based on the order in which they are provided: the first argument provided will be given to the first parameter in the function, the second argument to the second parameter, and so on.
-
-However, we can also directly assign the values of the arguments directly in our function call:
-
-
-```python
-def square(num, also_cube=False):
-  print(num * num)
-  if also_cube:
-    print(num ** 3)
-
-my_num = 2
-square(num = my_num)
-print("---")
-square(num = my_num, also_cube = True)
-print("---")
-square(also_cube = True, num = 3)
-```
-
-<pre class="output-block">
-4
----
-4
-8
----
-9
-27
-</pre>
-
-These are now called **named arguments**.
-
-This can greatly increase the clarity of our code, and, as shown above, obviates the need to provide arguments in any particular order. This also let's us selectively specify argument values when each one has a default:
-
-
-```python
-def greet(person="Bob", greeting="Hello", punctuation="!"):
-  print(greeting, person, punctuation)
-
-message = greet(person="Alice", punctuation="?")
-
-
-```
-
-<pre class="output-block">
-Hello Alice ?
-</pre>
-
-Here, we only provided values for `person` and `puncutation`, skipping over `greeting` in our function call, which uses it's default value. The combined use of default values for our arguments in the function and calling the function with named arguments makes our function call clearer and less error-prone.
-
-### Writing functions exercise
-
-> **Exercise**: Write a function that takes a **list of numbers** as an argument and prints out the tally (number of numbers), and the min, max, sum, and average of the numbers in the list. Call this function `num_summary()`. Run it on the lists provided below.
->
-> *Hint: While you could code these simple tasks yourself with a `for` loop and some `if` statements, remember there are functions that do these tasks for us that you can call in your own function. See the [List functions](#list-functions) section.*
-
-
-```python
-# Your code here: a num_summary() function
-
-def num_summary(nums):
-  num_nums = len(nums)
-  max_num = max(nums)
-  min_num = min(nums)
-  sum_nums = sum(nums)
-
-  avg_num = sum_nums / num_nums
-
-  print("There are", num_nums, "numbers in the list.")
-  print("The largest number is:", max_num)
-  print("The smallest number is:", min_num)
-  print("The sum of all the numbers is:", sum_nums)
-  print("The average of the numbers is:", avg_num)
-
-# These are the test cases to run the num_summary() function on
-nums1 = [23, 85, 56, 34, 78, 22]
-nums2 = [17, 48, 92, 55, 83, 24, 63, 7, 31, 89]
-nums3 = [59, 44, 66, 12, 5, 95, 23, 37]
-
-for num_list in [nums1, nums2, nums3]:
-  num_summary(num_list)
-  print("---")
-```
-
-<pre class="output-block">
-There are 6 numbers in the list.
-The largest number is: 85
-The smallest number is: 22
-The sum of all the numbers is: 298
-The average of the numbers is: 49.666666666666664
----
-There are 10 numbers in the list.
-The largest number is: 92
-The smallest number is: 7
-The sum of all the numbers is: 509
-The average of the numbers is: 50.9
----
-There are 8 numbers in the list.
-The largest number is: 95
-The smallest number is: 5
-The sum of all the numbers is: 341
-The average of the numbers is: 42.625
----
-</pre>
-
-### `return`ing data
-
-So far we've covered how to pass information to the function in the form of arguments. However, we haven't done anything else with the information generated by the function other than print it to the screen. It wouldn't be very helpful if that's the only way functions provided information.
-
-However, this isn't the case. Functions can **return** information by using the `return` keyword:
-
-
-```python
-def square(num):
-  num_squared = num * num
-  return num_squared
-
-my_num = 2
-my_num_squared = square(my_num)
-print(my_num_squared)
-```
-
-<pre class="output-block">
-4
-</pre>
-
-Now, we're free to use the output of our function elsewhere in the program! Or we can just print it again.
-
-Any type of object can be returned:
-
-
-```python
-def list_to_dict(pairs):
-    return dict(pairs)
-
-pair_list = [('apple', 2), ('banana', 5), ('orange', 3)]
-fruit_dictionary = list_to_dict(pair_list)
-print(fruit_dictionary)
-```
-
-<pre class="output-block">
-{'apple': 2, 'banana': 5, 'orange': 3}
-</pre>
-
-For instance, this function, which takes a **list of tuples** and converts them into a **dictionary**. This dictionary is returned and printed to the screen.
-
-> **Exercise:** Write a function called `in_list` that takes a number and a list of numbers and checks if that number already exists in the list. If it does, print "number already exists!" or something similar. If it doesn't, add that number to the list. In both cases, return the list.
-
-
-```python
-# Your code here
-
-def in_list(value, a_list):
-  if value in a_list:
-    print(value, "is already in the list!")
-  else:
-    print("Adding", value, "to the list!")
-    a_list.append(value)
-  return a_list
-
-# Test your code on these lists
-my_list = [1, 2, 3, 4, 5]
-print("Original:", my_list)
-print("---")
-
-my_list = in_list(3, my_list)
-print("After first call:", my_list)
-print("---")
-
-my_list = in_list(30, my_list)
-print("After second call:", my_list)
-
-```
-
-<pre class="output-block">
-Original: [1, 2, 3, 4, 5]
----
-3 is already in the list!
-After first call: [1, 2, 3, 4, 5]
----
-Adding 30 to the list!
-After second call: [1, 2, 3, 4, 5, 30]
-</pre>
-
-#### Unpacking returned values
-
-Multiple values can be `return`ed from a function. This is done simply by separating them by commas `,` after the return keyword. By default, they are returned as a **tuple**:
-
-
-```python
-def square_and_cube(num):
-  num_squared = num * num
-  num_cubed = num ** 3
-
-  return num_squared, num_cubed
-
-my_result = square_and_cube(3)
-print(my_result)
-```
-
-<pre class="output-block">
-(9, 27)
-</pre>
-
-However, you can also explicitly assign each returned value to its own object as it is returned by separating your variable names by commas `,`:
-
-
-```python
-def square_and_cube(num):
-  num_squared = num * num
-  num_cubed = num ** 3
-
-  return num_squared, num_cubed
-
-result_squared, result_cubed = square_and_cube(3)
-print(result_squared)
-print(result_cubed)
-```
-
-<pre class="output-block">
-9
-27
-</pre>
-
-This can be done for any number of returned values, given enough variable names. However, if you don't provide the correct number of names, an error will occur.
-
-This is actually a general feature of lists and tuples called **unpacking**:
-
-
-```python
-my_list = [1,2,3]
-num1, num2, num3 = my_list
-
-print(num1)
-print(num2)
-print(num3)
-```
-
-<pre class="output-block">
-1
-2
-3
-</pre>
-
-> **Exercise**: Modify the `num_summary()` function so that instead of printing the information to the screen, it returns it to the function call. Do this any way you like (return a list or dict, unpack values, etc.). Do this for the three provided lists, then display the highest average number from the three lists. In other words, the output of this block should be a single number: the highest average number from the averages of the three lists.
-
-
-```python
-# Modify your function here
-def num_summary(nums):
-  num_nums = len(nums)
-  max_num = max(nums)
-  min_num = min(nums)
-  sum_nums = sum(nums)
-
-  avg_num = sum_nums / num_nums
-
-  return [num_nums, max_num, min_num, sum_nums, avg_num]
-
-# Run your modified function on these lists 
-nums1 = [23, 85, 56, 34, 78, 22]
-nums2 = [17, 48, 92, 55, 83, 24, 63, 7, 31, 89]
-nums3 = [59, 44, 66, 12, 5, 95, 23, 37]
-
-# Your code here
-avgs = []
-for num_list in [nums1, nums2, nums3]:
-  cur_result = num_summary(num_list)
-  avgs.append(cur_result[4])
-
-# Print only the highest of the averages
-print("The highest average number is:", max(avgs))
-```
-
-<pre class="output-block">
-The highest average number is: 50.9
-</pre>
-
-#### `None`
-
-In Python, in order for the language to function consistently, all functions return a value, even those without an explicit `return` statement. The default return value for a Python function is `None`:
-
-
-```python
-def greet():
-  print("hello world!")
-
-result = greet()
-print(result)
-
-```
-
-<pre class="output-block">
-hello world!
-None
-</pre>
-
-In Python, `None` is actually its own data type, meant to indicate the absence of information or as a placeholder. `None` is most often seen when trying to use the result of a function, as shown above, but it can actually be a useful initial or default data value, since it evaluates to `False` as a boolean:
-
-
-```python
-data = None
-print(data)
-print(bool(data))
-
-if data:
-  process_data(data)
-else:
-  print("No data has been provided")
-```
-
-<pre class="output-block">
-None
-False
-No data has been provided
-</pre>
-
-Other libraries may have their own special values, like `NA`, to indicate lack of data.
-
-### Documenting functions
-
-One step towards having a readable and well-documented function is to choose a descriptive name for it. The name should use a verb like "plot" or "calculate". Try and follow some consistent naming conventions with regard to capitalization and underscores. It'll be easier to remember what your functions are called if you don't mix up conventions like "plot" and "Plot" or "plot_this" and "plotThis". For more guidance, see the [python style guide :octicons-link-external-24:](https://peps.python.org/pep-0008/#naming-conventions){:target="_blank"}.
-
-Another tip for writing good functions: it is best practice to **document** it with what it does. That way, when future you or someone else reads it, the function's useage is immediately clear. You can annotate functions with a triple quote at the beginning of a function body, which is called a **docstring**. Typical contents of a docstring are:
-
-* one sentence describing the usage
-* list of all parameters and what type they should be
-* what the function returns
-
-See below:
-
-```python
-def fibonacci(n):
-    """
-    Calculate the nth number in the fibonacci sequence
-    Input: n, an integer
-    Returns: the nth number in the fibonacci sequence, an integer
-    """
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fibonacci(n-1) + fibonacci(n-2)
-```
 
 ## Commenting your code
 

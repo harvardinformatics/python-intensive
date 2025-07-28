@@ -1181,840 +1181,104 @@ Operator | Strings | Integers/floats | Boolean |
 `==`     | Compares 2 strings and returns `True` if they are identical, `False` otherwise | Compares two numbers and returns `True` if they are identical, `False` otherwise | Compares two booleans and returns `True` if they are identical, `False` otherwise |
 `!=` | Returns `True` if two strings are **not** identical, `False` otherwise | Returns `True` if two numbers are **not** identical, `False` otherwise | Returns `True` if two booleans are **not** identical, `False` otherwise |
 
-## Control Flow
+## Metaprogramming skills and debugging
 
-### Conditional statements
-
-Let's recall the recipe to get a robot to bake us some chocolate chip cookies. We left our recipe in this state:
-
-```
-  1. Walk_anywhere(distance=2 and angle=40).
-  2. Extend your arm towards the power button.
-  3. Push the power button.
-  4. Move your arm to the temperature dial.
-  5. Set the temperature dial to 375°F (190°C).
-  6. Lower your arm.
-  7. Walk_anywhere(distance=0.6 and angle=120).
-  8. Extend your arm.
-  9. Grasp the cabinet handle.
-  10. Pull the cabinet open.
-  11. Release the cabinet handle.
-  12. Extend both arms toward the large mixing bowl on the shelf.
-  13. Grasp the mixing bowl with both hands.
-  .
-  .
-  .
-  and so on.
-```
-
-We also had these other recipes in our recipe book that the robot could look up everytime it saw them in our main recipe:
-
-```
-Step:
-  1. Lift right leg.
-  2. Extend right leg.
-  3. Lower right leg and lift left leg.
-  4. Extend left leg.
-  5. Lower left leg and lift right leg.
-
-Walk_anywhere(*distance*, *angle*):
-  1. Turn body *angle* degrees
-  2. Repeat Step until the *distance* has been traversed
-```
-
-We now know that these sub-recipes are called **functions**.
-
-In our main recipe, we've called `Walk_anywhere()` twice, first to get the robot to the oven, then to get to the cabinet.
-
-But, what if before it starts baking the cookies, the robot is already standing at the oven? While we could call `Walk_anywhere(distance=0, angle=0)`, it would be kind of pointless, and it may waste valuable time - those few seconds it takes us to lookup the `Walk_anywhere()` recipe only to have to immediately flip back to the main recipe are going to delay us from our cookies.
-
-This is a perfect situation to check the **conditions** of our program, and only execute the `Walk_anywhere()` function if certain conditions are True (or not True, depending on the context).
-
-In order to do this, we need one more piece of information in our recipe: our current location. Then our recipe may look like this:
-
-```
-  The current location is in front of the oven.
-
-  1. If we aren't at our oven, Walk_anywhere(distance=2 and angle=40).
-  2. Extend your arm towards the power button.
-  3. Push the power button.
-  .
-  .
-  .
-  and so on.
-```
-
-Now, we've given the robot's location and we've said in step 1, only execute `Walk_anywhere()` **if** is isn't already at our oven. Now our robot knows not to bother looking up and running `Walk_anywhere()` in this case. We could change the location accordingly in the recipe and the robot would know whether or not it needed to `Walk_anywhere()`. For instance:
-
-```
-  The current location is in the living room.
-
-  1. If we aren't at our oven, Walk_anywhere(distance=2 and angle=40).
-  2. Extend your arm towards the power button.
-  3. Push the power button.
-  .
-  .
-  .
-  and so on.
-```
-
-We can make our pseudocode look a little bit more programmatic by doing the following:
-1. Make the current location a string variable using the `=` asignment operator.
-2. In the conditional **if statement**, use a logical comparison between strings.
-
-```
-  current_location = "living room"
-
-  1. If current_location != "oven", Walk_anywhere(distance=2 and angle=40).
-  2. Extend your arm towards the power button.
-  3. Push the power button.
-  .
-  .
-  .
-  and so on.
-```
-
-We of course would also have to update the `distance` and `angle` arguments in our function call to be dependent on the `current_location`, but we can ignore that for now.
-
-> **Exercise**: Imagine you are programming a robot to navigate a maze. You know that this maze can be navigated by following the "right hand rule", which is to always keep your right hand on the wall. The robot can move or look in four directions: up, down, left, and right. How would you give the robot instructions to navigate the maze? Write pseudocode for this robot navigating the maze.
-
-
-```
-Look to the right:
-    If there is a wall:
-        Try to Move Forward
-        If you can't move forward:
-            Turn Left
-    Else:
-        Turn right
-        Move Forward
-```
-
-#### `if` statements and code blocks
-
-What we described above are called **conditional statements**. In Python (and many other programming languages), these are denoted by the keyword `if`. Following `if` is a logical expression, and if that expression returns `True`, the code *within* the if statement will be executed. If it is not `True`, the code will be skipped and the subsequent lines of code will executed. Together, the `if` keyword and the logical expression are called an **if statement**.
-
-We mention code *within* an if statement. What does that mean? When programming, separate parts of code are broken up into chunks, or **blocks** of code. Different languages handle the denotion of blocks of code in different ways. **For Python, blocks of code are indicated by indented text**, either using tabs or spaces (though you must be consistent throughout your code).
-
-For example:
-
+Today we will learn how to turn functions into programs. So far, we have learned how to create small self-contained functions. But today we will build from these to create a simulation of a random walk. Given the inputs of a step size and boundary size, it will simulate a walk from the middle of a defined (represented by `-`) space until the object runs into a wall. Here's what it might look like to use this function:
 
 ```python
-x = 5
-
-if x < 10:
-  print("The number is smaller than 10")
-  # code to execute if condition is true
-  # this part is indented
-
-print("Done.")
+random_walk(step_size = 1, walk_size = 10)
 ```
 
-Here, we have set the value of `x` to be 5, then used the keyword `if` along with a logical expression (`x < 10`). Since the logical expression evaluates to `True`, the indented code block is executed.
+output:
 
-Code blocks can be more than one line. After an **if statement** that returns `True`, every subsequent line that is indented one more level than the **if statement** itself will be executed.
-
-
-```python
-x = 5
-
-if x < 10:
-  print("Your number is", x)
-  print("The number is smaller than 10")
-
-print("Done.")
+```jupyter
+Starting random walk with boundary size: 10 and step size: 1
+-----O----
+----O-----
+---O------
+--O-------
+-O--------
+--O-------
+-O--------
+--O-------
+-O--------
+--O-------
+-O--------
+O---------
+-O--------
+O---------
+X---------
+Reached boundary!
 ```
 
-This indentation syntax is required by Python, as that is how it knows which instructions to execute after an if statement. If the indentation is incorrect, you will see an error, such as the following:
+### Pair programming
 
+**Pair programming** is a technique where two programmers work together on the same code. One person is the "driver" who writes the code, while the other person is the "navigator" who reviews the code as it is written. This can be a very effective way to catch errors early and to learn from each other. Let's practice by working on one component of the random walk function together.
 
-```python
-x = 5
-
-if x < 10:
-print("Your number is", x)
-print("The number is smaller than 10")
-
-print("Done.")
-```
-
-
-```python
-x = 5
-
-if x < 10:
-  print("Your number is", x)
-    print("The number is smaller than 10")
-
-print("Done.")
-```
-
-In addition to syntax errors, which Python will catch, mis-placed indentation can also lead to **logic errors**, where the code will run, but with unexpected results.
-
-Here, we will change the value of `x` so that the if statement is no longer `True`, but we will make a mistake with our indentation.
-
-
-```python
-x = 12
-
-if x < 10:
-  print("Your number is", x)
-print("The number is smaller than 10")
-
-print("Done.")
-```
-
-In this case, the program is telling us that our number is smaller than 10, even though it is clearly not. This is because the second `print()` statement is not indented to be included in the if statement, rather it is part of the outer code block that will be executed regardless of the result of the if statement.
-
-Remember, the computer doesn't know what you intend with your program. It will run according to its rules, so you have to be explicit with your instructions, in this case with indentation.
-
-Also note the colon character, `:`, after the `if` keyword and logical expression. This is also syntactically required by Python after any if statement. Without it, you will see an error:
-
-
-```python
-x = 5
-
-if x < 10
-  print("Your number is", x)
-  print("The number is smaller than 10")
-
-print("Done.")
-```
-
-> **Exercise**: Pick a message and store it as a string. Print the message only if the string has at least 10 characters. This will require you to use the built-in `len()` function that we learned about before.
-
-
-```python
-# Your code here
-my_msg = "the quick brown fox jumped over the lazy dog"
-my_msg_length = len(my_msg)
-
-if my_msg_length > 10:
-  print("'", my_msg, "' has", my_msg_length, "characters.")
-  print("This is more than 10 characters.")
-
-print("Done.")
-```
-
-#### `elif` and `else`
-
-**if statements** are extremely powerful. They essentially let us change the instructions in our program given various inputs to it.
-
-However, two other keywords, **`elif`** and **`else`**, give us even more control over the flow of our program.
-
-Let's talk about `else` first. `else` essentially provides an alternative block of code to be run if an `if` statement is `False`. `else` does not require a logical expression of its own, rather it uses the same one in the preceding `if` statement.
-
-*   `else` : Used after an `if` statement. The block of code within `else` will be executed only if the condition in the if statement is `False`.
-
-
-
-
-
-```python
-x = 12
-
-print("Your number is", x)
-
-if x < 10:
-  print("The number is smaller than 10")
-else:
-  print("The number is equal to or larger than 10")
-
-print("Done.")
-```
-
-So here, the value of `x` is set to 12. Then we evaluate the expression `x < 10`. This returns `False`, so the code within the if statement is skipped. However, since the **next unindented line of code** after the if statment is `else:` (again note the required colon `:`), we instead execute the code within the **else statement**, again denoted by indentation.
-
-**`else` must always follow a block of code from an `if` statement!**. `else` will not work if it is before the `if`, because Python reads the file from top-to-bottom:
-
-
-```python
-x = 12
-
-print("Your number is", x)
-
-else:
-  print("The number is equal to or larger than 10")
-if x < 10:
-  print("The number is smaller than 10")
-
-
-print("Done.")
-```
-
-`else` will also not work on its own, because it has no logical expression to evaluate:
-
-
-```python
-x = 12
-
-print("Your number is", x)
-
-else:
-  print("The number is equal to or larger than 10")
-
-print("Done.")
-```
-
-
-
-> **Exercise**: Debug the following code so the code block runs without error.
-
-
-
-
-```python
-## Debug this code
-x = 12
-
-print("Your number is", x)
-
-if x < 10:
-  print("The number is smaller than 10")
-print("You will have to find a larger number.")
-else:
-  print("The number is equal to or larger than 10")
-
-print("Done.")
-```
-
-`elif` is also used in conjunction with `if`, but unlike `else`, elif allows us to test another condition. Like `if`, the keyword `elif` is typed followed by the logical statement to evaluate. If *that* statement evaluates to `True`, the code within the `elif` statement is executed. It is important to know that **`elif`'s logical expression will only be evaluated if the `if` statement was `False`**. This structure essentially allows us to test alternate conditions in sequence.
-
-
-```python
-x = 12
-
-print("Your number is", x)
-
-if x < 10:
-  print("The number is smaller than 10")
-elif x < 20:
-  print("The number is larger than 10 but smaller than 20")
-else:
-  print("The number is equal to or larger than 20")
-
-print("Done.")
-```
-
-In this case, with `x` being 12, the logical statement in the if statement is tested first. Since `x < 10` is `False`, now the logical statement in the `elif` statement is evaluated, skipping the code within the if statement (indented under it). Since `x < 20` is `True` in this case, the code enters the `elif` block and executes the instructions to print a message. Then, since **none of the above conditions were `False`, the `else` statement is ignored**.
-
-Again, note the colon `:` character which is required after any conditional statement.
-
-You can use any number of `elif` statements in a row (as long as they follow an initial `if` statement).
-
-
-```python
-x = 16
-
-print("Your number is", x)
-
-if x < 10:
-  print("The number is smaller than 10")
-elif x < 15:
-  print("The number is larger than 10 but smaller than 15")
-elif x < 20:
-  print("The number is larger than 15 but smaller than 20")
-else:
-  print("The number is equal to or larger than 20")
-
-print("Done.")
-```
-
-#### More complex conditional statements
-
-And remember, logical statements can be more complex using the `and` and `or` operators.
-
-
-```python
-temperature = 72
-weather = "rainy"
-
-print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
-
-if temperature <= 32 and weather == "snowy":
-  print("Wear a heavy coat and snow boots.")
-elif temperature > 32 and weather == "rainy":
-  print("Wear a raincoat and boots.")
-else:
-  print("Your guess is as good as mine!")
-```
-
-Here, our very basic weather bot checks a couple of conditions based on the temperature and precipiation and gives clothing recommendations. Obviously, there are many more combinations of temperature and weather we could test.
-
-> **Exercise**: Add another `elif` statement that checks any other combination of conditions and gives a recommendation.
-
-
-```python
-temperature = 72
-weather = "rainy"
-
-print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
-
-if temperature <= 32 and weather == "snowy":
-  print("Wear a heavy coat and snow boots.")
-elif temperature > 32 and weather == "rainy":
-  print("Wear a raincoat and boots.")
-
-# Add your elif here
-elif temperature > 60 and weather == "sunny":
-  print("Wear shorts and a t-shirt.")
-
-
-else:
-  print("Your guess is as good as mine!")
-```
-
-> **Exercise**: initialize two integer variables called `x` and `y`, give them whatever values you like. Write a series of conditional statements that check the following:
-> 1. `x` and `y` are both even
-> 2. one is even and the other isn't
-> 3. `x` and `y` are both odd
+>**Exercise:** Write a function called `display_walk` that takes a walk size and position argument and prints a string of dashes with an 'O' at the position. For example, `display_walk(size = 10, position = 3)` should print `---O------`. If the position is outside the walk size, it should print an 'X' at the end. For example, `display_walk(size = 10, position = 12)` should print `----------X`.
 >
-> *Hint: If a number is even and you divide it by 2, what will the remainder be? Which operator returns the remainder of a division?*
+> 1. Work together to write out pseudocode for this function. Make sure to check in on any potential logic errors.
+> 2. One person should write the code while the other person dictates out the pseudocode.
+> **Important** One line in your pseudocode could correspond to one line of code, but that may or may not be the case
+> 3. For each line of code, **PAUSE** and both of you should check to make sure it matches the pseudocode.
+>
+> You are allowed to use LLMs or the internet to look up how to do specific parts of your code, but try not to look up the entire solution.
 
 
 ```python
 # Your code here
 
-x = 5
-y = 8
+# Solution using lists
+def display_walk(size, position):
+    walk = list("-") * size
+    if position < size and position >= 0:
+        walk[position] = "O"
+    elif position >= size:
+        walk[size - 1] = "X"
+    elif position < 0:
+        walk[0] = "X"
+    print("".join(walk))
 
-if x % 2 == 0 and y % 2 == 0:
-    print("x and y are both even")
-elif (x % 2 == 0 and y % 2 != 0) or (x % 2 != 0 and y % 2 == 0):
-    print("one is even, one is odd")
-elif x % 2 != 0 and y % 2 != 0:
-    print("x and y are both odd")
+# Solution using string concatenation
+def display_walk(size, position):
+    if 0 <= position < size:
+    # Create a string with 'O' at the specified position
+        walk = '-' * position + 'O' + '-' * (size - position - 1)
+    elif position < 0:
+        # Position is out of bounds, place 'X' at the end
+        walk = "X" + '-' * (size - 1)
+    else: # position >= size
+        # Position is out of bounds, place 'X' at the beginning
+        walk = '-' * (size - 1) + "X"
+    print(walk)
 ```
-
----
-
-Recall also the `in` operator for strings. You can use it to check if one string is contained within the other. It will return `True` if it is and `False` if it isn't:
 
 
 ```python
-my_string = "1234"
-print("2" in my_string)
+# test your code here
+display_walk(10, -1)
+display_walk(10, 0)
+display_walk(10, 5)
+display_walk(10, 9)
+display_walk(10, 11)
+
+# Expected output
+# X---------
+# O---------
+# -----O----
+# ---------O
+# ---------X
 ```
 
-Since this returns a boolean value (`True` or `False`), it can also be used when checking conditions with `if` or `elif`:
-
-
-```python
-my_string = "1234"
-
-if "2" in my_string:
-  print("In the if statement.")
-else:
-  print("In the else statement.")
-
-print("Done.")
-```
-
-Likewise, the `not` operator can be used to negate a logical condition in `if` statements:
-
-
-```python
-my_string = "1234"
-
-if not "2" in my_string:
-  print("In the if statement.")
-else:
-  print("In the else statement.")
-
-print("Done.")
-```
-
-> **Exercise:** Store a string (`my_string`) and store two other smaller strings (`my_substr1`, `my_substr2`). Then use a series of `if` and `elif` statements to:
-
-*   Print a message indicating if both sub-strings are contained within `my_string`
-*   Otherwise, print a message if only one of the sub-strings is contained within `my_string`. The message should indicate which sub-string was found, so you will need two `elif`s.
-*   Finally, use an `else` statement to print a different string if neither sub-string is contained within `my_string`
-
-
-```python
-# Your code here: Pick your string and sub-strings
-my_string = "everything changed when the fire nation attacked"
-my_substr1 = "fire nation"
-my_substr2 = "water tribe"
-
-# Your code here: Fill in the conditional statements
-if my_substr1 in my_string and my_substr2 in my_string: # An if statement if both sub-strings are found
-  print("Both substrings found:", my_substr1, ",", my_substr2)
-elif my_substr1 in my_string and not my_substr2 in my_string: # An elif statement if only sub-string 1 is found
-  print("Substring 1 found:", my_substr1)
-elif not my_substr1 in my_string and my_substr2 in my_string: # An elif statement if only sub-string 2 is found
-  print("Substring 2 found:", my_substr2)
-else: # Else handles if neither sub-strings are found
-  print("Neither substring found.")
-
-print("Done.")
-```
-
-#### Nested conditional statements
-
-Stringing `if`, `elif`, and `else` statements together is a great way to execute code under different conditions, especially if the conditions are independent of one another. However, if the evaluation of conditions depends on previous conditions, you would need to use a **nested conditional** statement.
-
-Here is a simple example of an un-nested `if` statement that programs typical car driving behavior.
-
-Nesting is useful when the outcome of one condition directly influences whether another condition should be checked. These can be thought of as a decision tree.
-
-
-```python
-light = "green"
-pedestrian = False
-
-if light == "green" and not pedestrian:
-    print("Go")
-else:
-    print("Stop")
-```
-
-Here, the `if` statement evaluates both whether the light is green and whether a pedestrian is present. If either of those evaluated to `False`, the `if` statement wouldn't be executed and the `else` statement would. Here since `light == "green"` is `True` and `not pedestrian` (which in this case is the same as saying `not False`) is also `True`, so "Go" is printed out.
-
-However, we can write this code another, equivalent way with nesting.
-
-
-```python
-light = "green"
-pedestrian = False
-
-if light == "green":
-    if pedestrian == False:
-        print("Go")
-    else:
-        print("Stop")
-elif light == "red":
-    print("Stop")
-```
-
-This code has the same behavior as above. However, instead of a two part logical expression with `and`, we've broken that up into two separate `if`statements.
-
-First, `light == "green"` is evaluated. Since that is `True`, we execute the code within the `if` statement. In this case, that code is another `if` statement, and since `pedestrian == False` evaluates to `True`, "Go" is printed to the screen. If either were `False`, "Stop" would be printed.
-
-**In this way, you could think of nested if statements as implicit `and`s**.
-
-The question then is when is it best to use nested statements? In the above example, the non-nested solution is the one I would use because it requires fewer lines of code and is generally easier to understand for someone used to looking at logical statements.
-
-Nested if statements are best when the conditions are dependent on one another.
-
-Let's return to our terrible weatherbot. We can add a nested if statement to make it a little better.
-
-
-```python
-temperature = 72
-weather = "rainy"
-
-print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
-
-if temperature <= 32:
-  if weather == "snowy":
-    print("Wear a heavy coat and snow boots.")
-  else:
-    print("Wear a heavy coat and warm shoes.")
-elif temperature > 32 and weather == "rainy":
-  print("Wear a raincoat and boots.")
-elif temperature > 60 and weather == "sunny":
-  print("Wear shorts and a t-shirt.")
-else:
-  print("Your guess is as good as mine!")
-```
-
-Now, the bot first checks if the temperature is below 32, and then checks whether it is precipitating or not before it gives a recommendation. This allows us to build a better decision tree and makes the bot a little more flexible.
-
-> **Exercise**: Improve the weatherbot further. Consider temperature ranges from below 32, 33-60, and 60-90 as well as weather conditions "sunny", "cloudy", and "precipitating". Make recommendations for each combination.
->
-> **BONUS**: Add another variable, `windy`, which will be a boolean. For each temperature category, if it is rainy (precipitating when above freezing), also check if it is windy or not and recommend an umbrella accordingly (yes if not windy, no if windy).
-
-
-```python
-# Your code here
-# Edit weatherbot to give more specific recommendations
-# Consider temperatures below 32, 33-60, and 60-90
-# Consider conditions "sunny", "cloudy", "precipitating"
-# Make weatherbot give recommendations for each temperature-weather combination
-# BONUS: Add a windy variable that is a boolean and give recommendations about
-#        whether or not to bring an umbrella when its raining (no if windy, yes if not)
-
-temperature = 72
-weather = "precipitating" # Possible conditions: "sunny", "cloudy", or "precipitating"
-windy = True
-
-print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
-
-if temperature <= 32:
-  if weather == "precipitating":
-    print("Wear a heavy coat and snow boots.")
-  else:
-    print("Wear a heavy coat and warm shoes.")
-elif temperature > 32 and temperature <= 60:
-  if weather == "precipitating":
-    print("Wear a raincoat and boots.")
-    if windy:
-      print("Leave your umbrella at home.")
-    else:
-      print("And take an umbrella.")
-  if weather == "cloudy":
-    print("Wear a heavy jacket and warm shoes.")
-  else:
-    print("Wear a light jacket and light shoes.")
-elif temperature > 60 and temperature <= 80:
-  if weather == "precipitating":
-    print("Wear a light raincoat and rain shoes.")
-    if windy:
-      print("Leave your umbrella at home.")
-    else:
-      print("And take an umbrella.")
-  elif weather == "cloudy":
-    print("Wear a light jacket and light shoes.")
-  else:
-    print("Wear shorts and a t-shirt.")
-else:
-  print("Your guess is as good as mine!")
-```
-
-#### Review of conditionals
-
-By default, computer programs are read line-by-line from top to bottom by the computer with each instruction occuring one after the other. Here, with conditional statements, we've learned that we can tell the computer to only read some lines depending on the conditions of the program.
-
-We should know:
-
-1.   How `if`, `elif`, and `else` work to check logical statements and execute code accordingly. We know that `if` always comes first and doesn't necessarily need to be followed by any `elif` or `else` statements -- that depends on the problem you are trying to code around and is up to you to determine.
-2.   The proper syntax of these statements, which includes `<keyword> <logical expressions>:` where keyword is one of the three conditionals mentioned in point 1. Remember the colon `:`!
-3.   That conditional statements are followed by **blocks of code indicated by indentation**. Indentation is how Python knows what to execute given a conditional.
-4. Nested conditional statements are useful for dependent logical expressions and building decision trees.
-
-### Loops
-
-Another important way to control the flow of a program is with **loops**. Loops allow us to automatically repeat certain blocks of code while changing some of the variables through each **iteration** of the loop. This *automatic repetition* is one of the main benefits of having computers complete tasks for us.
-
-We've already introduced loops without calling them out with our robot cookie recipe. Indeed, loops are so integral to computing it would be hard to come up with an example that doesn't introduce them.
-
-Recall our `Walk_anywhere()` function:
-
-```
-Walk_anywhere(*distance*, *angle*):
-  1. Turn body *angle* degrees
-  2. Repeat Step until the *distance* has been traversed
-```
-
-The word "Repeat" here is an implicit loop!
-
-Much like the conditional keywords (`if`/`else`), almost universally across programming languages there are two types of loops: `while` and `for` loops.
-
-Our `Walk_anywhere()` function seems like a perfect example to introduce the first of the two types of loops: the `while` loop.
-
-#### `while` loops
-
-`while` loops work by first checking a logical statement. If the statement evaluates to `True`, the code inside of the `while` loop is executed. In this way, `while` loops are very similar to `if` statements. However, unlike `if` statements, the code within the `while` loop is **repeated until the logical statement is no longer `True`**.
-
-Here is a simple example:
-
-
-```python
-x = 0
-
-while x < 5:
-  print(x)
-  x = x + 1
-
-print("Done.")
-```
-
-Let's break this down. First, we have an integer called `x` and initially set to be 0. Then the program encounters the `while` line followed by a logical statement, `x < 5`. Since `x` is 0, this evaluates to `True` and the code inside of the `while` loop is executed.
-
-Here is where things start to differ. First, we simply print the value of `x`, which is useful for demonstrating how the loop works.
-
-Then, we change the value of `x` by saying `x = x + 1`. This is a key technique in programming, especially for `while` loops. This update statement takes the previous value of `x` and adds 1 to it with the addition `+` operator. Then it assigns this value to be the new value of `x`. After this is done, since we're in a `while` loop, Python knows to go back up to the line with `while` and re-evaluate the logical statement. If it is still `True`, the code within the loop is executed again.
-
-A few key points related to logic and syntax:
-1.   Just like an `if` statement, the colon is required after the logical statement of a `while` line.
-2.   Also like conditionals, indentation is required syntactically and to ensure the code runs according to the programmer's goal. Everything under the `while` line that is indented is included in the **block** of code that will be run in the `while` loop.
-3.   Notice that the last iteration prints out 4. This is because of our logical statement, `x < 5`.
-
-> **Exercise**: Change the above loop to also print out the value of `x` when it is 5.
-
-
-
-
-
-
-```python
-# Edit code here so the loop prints out 5 as well
-
-x = 0
-
-while x <= 5:
-  print(x)
-  x = x + 1
-
-print("Done.")
-
-## OR ##
-
-x = 0
-
-while x < 5:
-  print(x)
-  x = x + 1
-
-print(x)
-print("Done.")
-```
-
-This can actually be done two ways in this case. We could change the logical statement itself, or we could simply print `x` after the loop. The second solution works because during the iteration when `x` is 4, the line `x = x + 1` is still executed, thus updating the value of `x` even though the loop will not be run for another iteration.
-
-##### Update operators
-
-Updating a variable, e.g. `x = x + 1` is such a common occurrence in programming that many languages have implemented special **operators** to do this automatically and with less typing (programmers are efficient/lazy). Remember, an **operator** is just a special symbol or word that performs a specific task, like another recipe in our recipe book.
-
-We know that with the addition `+` operator, we can add two integers together, and we've just seen how this can be used in the `while` loop.
-
-The **in-place addition operator** or **addition update operator** looks like this in Python:
-
-```
-x += 1
-```
-
-When talking about this operator, we may say **plus-equals**. However, this is exactly equivalent to typing `x = x + 1`.
-
-> **Exercise**: Use the in-place addition operator `+=` in the loop that counts from 0 to 5.
-
-
-```python
-## Edit the loop to use the in-place addition operator
-
-x = 0
-
-while x < 5:
-  print(x)
-  x += 1
-
-print("Done.")
-```
-
-Each arithmetic operator has a corresponding in-place update operator:
-
-* `+=` : Addition
-* `-=` : Subtraction
-* `*=` : Multiplication
-* `/=` : Division (floating-point)
-* `//=` : Floor Division
-* `%=` : Modulus
-* `**=` : Exponentiation
-
-
-##### Infinite loops
-
-Be wary of infinite loops. Since `while` loops run as long as a logical statement is `True`, if your code is written such that the statement is never updated to conditions where it is `False`, the loop will run forever. This is called an **infinite loop**.
-
-Here is a common way this can occur. I've commented this code block out so it doesn't get run unintentionally. If you'd like to run it, uncomment the code by deleting the `#` symbols at the beginning of each line. But running it may crash your notebook.
-
-```python
-x = 0
-
-while x <= 5:
-  print(x)
-x = x + 1
-
-print("Done.")
-```
-
-> **Exercise**: Why does this result in an infinite loop? Take a moment to discuss.
-
-##### `while` exercises
-
-> **Exercise**: Print out every number between 10 and 20 (inclusive).
->
-> **BONUS**: Adjust your code to print only even numbers between 10 and 20 (inclusive)
-
-
-```python
-# Your code here: print out every number between 10 and 20 (inclusive)
-# BONUS: Edit your code so it only prints the even numbers between 10 and 20 (inclusive)
-
-x = 10
-
-while x <= 20:
-  print(x)
-  #x = x + 1
-  x = x + 2 # Bonus solution
-print("Done.")
-```
-
-> **Exercise**: For a colony with an initial population size of 1, write a program that prints out the population size for 10 generations given that it doubles every generation.
->
-> *Hint: You will need to initialize two variables and then use a `while` loop to update them.*
-
-
-```python
-# Your code here: calculate the population size of a colony over 10 generations that
-# doubles in size every generation.
-
-generation = 1
-pop_size = 1
-
-while generation <= 10:
-  pop_size *= 2
-  print("Population size in generation", generation, "is:", pop_size)
-  generation += 1;
-```
-
-#### `for` loops
-
-`while` loops work by repeating a set of instructions (i.e. a block of code) until some condition is met.
-
-`for` loops, on the other hand, work by taking a group of inputs and performing a set of instructions on them one at a time. The key concept here is the **group of multiple inputs**, which leads into **data structures**, which we'll cover tomorrow in depth. Up until now, every piece of code we've run has used single pieces of data. `x = 5` is a single integer. `my_string = "Hello world!" is a single string. `for` loops work by taking **lists** of integers or strings, or lines in a file, and performing actions on each one individually.
-
-More on that tomorrow. For now, we can demonstrate `for` loops with **strings**. This is because **strings are essentially a group of characters**. This means we can use a `for` loop to iterate over each character individually. In other words, strings are **iterable**.
-
-Here is how a `for` loop would work to print out every character in a string:
-
-
-```python
-my_string = "Hello world!"
-
-for current_character in my_string:
-  print(current_character)
-
-```
-
-We start by defining a string. Then we encounter the `for` line where the first thing we see after `for` is a new variable, `current_character`. This is the **loop** or **update** variable. It's name, like other variables, is determind by the programmer, so we could have called it something else: `cur_char`, `current_letter`, `akjhgak`. It's purpose is to be used only within the loop, and its value is assigned based on the current iteration of the loop. Then, after that iteration it is **automatically updated** to be the next object in the string (or other **iterable**) that we're looping over. For a string, each object is an individual character, so the result of the loop is one character being printed per line of output.
-
-After the loop variable we see the keyword **`in`**. We talked about `in` before as the **inclusion operator**. Here, confusingly, it acts somewhat differently, simply as a keyword to denote that the loop variable on the left will take on values according to the iterable on the right.
-
-Then, we have our string, `my_string`, which is the thing over which we are iterating.
-
-Again, syntactically, the colon `:` and indenation are required.
-
-> **Exercise**: Are infinite loops possible when using `for`?
-
-> **Exercise**: Use a `for` loop to calculate the length of a string without using the `len()` function.
-
-
-```python
-# Your code here: replicate the functionality of the len() function
-
-my_string = "Hello world!"
-char_tally = 0
-
-for char in my_string:
-  char_tally += 1
-
-print(char_tally)
-print(len(my_string))
-```
-
-We will cover `for` loops much more tomorrow when we learn about other **iterable** data structures.
-
-### Review of loops
-
-We've learned about the two types of loops in Python `while` and `for`. Loops are used for the most important and useful computational purposes: automatic repetition of tasks.
-
-1.   `while` loops, like `if` statements run a block of code depending on a condition. However, they repeat that block of code until the condition is no longer met.
-2.   `for` loops repeat blocks of code for different inputs given in an **iterable**.
-3. In Python, indentation defines code blocks for loops (and conditional statements). If your line of code isn't indented at the same level of the loop, it will not be evaluated in the loop. Sometimes this can cause errors, and sometimes the program will run but with undesired output. It's up to the programmer to catch this.
-
-
+<pre class="output-block">
+X---------
+O---------
+-----O----
+---------O
+---------X
+</pre>
+
+>**Discussion**: What were some questions that came up while writing this function? Did you get answers to them or are they still unanswered?
 
 ## End day 1
 
