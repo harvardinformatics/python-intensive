@@ -40,5 +40,5 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Auto-jupyter-to-md conversion [skip ci]"
-            git push
+            git push origin HEAD:$GITHUB_REF_NAME
           fi
