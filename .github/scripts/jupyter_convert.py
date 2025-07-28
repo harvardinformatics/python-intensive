@@ -6,9 +6,19 @@
 # Gregg Thomas, July 2025
 ############################################################
 
+# import sys
+# print(sys.executable)
+# if sys.platform == "win32":
+#     import asyncio
+#     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 import os
 import re 
 import subprocess
+
+# import nbformat
+# from nbconvert import MarkdownExporter
+# from nbconvert.preprocessors import ExecutePreprocessor
 
 ############################################################        
 
@@ -247,8 +257,24 @@ for jupyter_file in jupyter_files:
     #     continue  # Go to next notebook
 
     # Convert the notebooks to markdown
-    convert_cmd = ["jupyter", "nbconvert", "--to", "markdown", jupyter_file]
+    convert_cmd = ["jupyter", "nbconvert", "--to", "markdown", jupyter_file] # Add --execute to run the notebook (buggy for our use-case)
     subprocess.run(convert_cmd, check=True)
+
+    # with open(jupyter_file, encoding="utf-8") as f:
+    #     nb = nbformat.read(f, as_version=4)
+
+    # # Execute notebook in place
+    # ep = ExecutePreprocessor(timeout=600, kernel_name='python3', exclude_tags=['no-execute'])
+    # # for i, cell in enumerate(nb.cells):
+    # #     print(f"CELL {i} tags: {cell.get('metadata', {}).get('tags', [])}")
+    # ep.preprocess(nb, {'metadata': {'path': os.path.dirname(jupyter_file) or '.'}})
+
+    # # Export to Markdown
+    # exporter = MarkdownExporter()
+    # body, _ = exporter.from_notebook_node(nb)
+
+    # with open(md_path, "w", encoding="utf-8") as out_f:
+    #     out_f.write(body)    
 
      ##########
 
