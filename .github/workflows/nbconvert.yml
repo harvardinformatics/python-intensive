@@ -3,8 +3,10 @@ name: Jupyter nbconvert to Markdown
 on:
   push:
     paths:
-      - '**.ipynb'
+      - 'Python-Day*.ipynb' 
       - '.github/scripts/jupyter_convert.py'
+    paths-ignore:
+      - 'Python-Day*-Student.ipynb' 
   workflow_dispatch:
 
 jobs:
