@@ -24,6 +24,24 @@ Welcome to day 3 of our python intensive course. This is the last day of the "in
 10. **Dictionaries** are another type of basic data structure that store key-value pairs. They are indexed by their keys.
 11. How to write **functions** of your own and either print the results or return the values.
 
+### Jokes
+
+To re-iterate some of the concepts we talked about at the beginning of yesterday's workshop, let's start with a joke about computer programmers.
+
+Sam asks their computer programmer spouse to go get some groceries. Sam tells him, "Please go to the store to get some groceries. Buy a loaf of bread. If they have eggs, get a dozen." The spouse comes back with 13 loaves of bread. This joke is funny if you understand how computer programs evaluate commands.
+
+Below is some pseudocode that represents what the computer programmer did.
+
+```
+go to the store
+
+loaf_of_bread = 1
+if eggs:
+    loaf_of_bread += 12
+```
+
+This joke illustrates that what may make sense in natural language does not immediately translate to computer language. And therefore we have to be really specific, giving every instruction even, when we're programming.
+
 ## Importing libraries of functions
 
 Let's again think about our recipe telling a robot how to bake chocoloate chip cookies:
@@ -74,6 +92,24 @@ However, there are lots of other chefs out there writing their own recipes, and 
 In programming terms, this is referred to as **importing a library**. The **library** written by someone else will have extra functions that, once imported, you can use in your program. **Libraries may also be referred to as modules**, among other names.
 
 For instance, there is no built-in function in Python to calculate the log of a number:
+
+### Jokes
+
+To re-iterate some of the concepts we talked about at the beginning of yesterday's workshop, let's start with a joke about computer programmers.
+
+Sam asks their computer programmer spouse to go get some groceries. Sam tells him, "Please go to the store to get some groceries. Buy a loaf of bread. If they have eggs, get a dozen." The spouse comes back with 13 loaves of bread. This joke is funny if you understand how computer programs evaluate commands.
+
+Below is some pseudocode that represents what the computer programmer did.
+
+```
+go to the store
+
+loaf_of_bread = 1
+if eggs:
+    loaf_of_bread += 12
+```
+
+This joke illustrates that what may make sense in natural language does not immediately translate to computer language. And therefore we have to be really specific, giving every instruction even, when we're programming.
 
 
 ```python

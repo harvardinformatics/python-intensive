@@ -10,9 +10,9 @@ authors:
 
 ## Introduction
 
-Welcome to the first day of the Harvard Informatics Python intensive workshop. This is a six day workshop intended to give a quick, yet thorough, introduction programming concepts, the Python programming language, and how to use Python to facilitate data analysis.
+Welcome to the first day of the Harvard Informatics Python intensive workshop. This is a six day workshop intended to give a quick, yet thorough, introduction to programming concepts, the Python programming language, and how to use Python to facilitate data analysis.
 
-Programmatic analysis of data allows the scientist to have full control over how their data is parsed, assessed, and presented, unlike using third party programs (like Excel) which may make unwanted assumptions about how you want to read your data. The upside of this is that one could conceivably perform any analysis imaginable on their data, assuming they have enough coding skills. The downside is that one must know how to program. But that is the goal of this workshop: to give you the understanding of programming concepts and underlying skills such that you can see a problem or question in your work and then be able to understand how you would code the solution.
+Programmatic analysis of data allows scientist to have full control over how their data is parsed, assessed, and presented, unlike using third party programs (like Excel) which may make unwanted assumptions about how you want to read your data. The upside of this is that one could conceivably perform any analysis imaginable on their data, assuming they have enough coding skills. The downside is that one must know how to program. But that is the goal of this workshop: to give you the understanding of programming concepts and underlying skills such that you can see a problem or question in your work and then be able to understand how you would code the solution.
 
 While their are several programming languages one could use for data analysis, we chose to teach Python because it is more open-ended than alternatives (*e.g.* R being the main one for data analysis). Python is typed more like a traditional programming language, making the skills highly transferable to other languages.
 
@@ -34,6 +34,9 @@ This workshop exists as a **Jupyter notebook**. You can participate in this work
 
 ---
 
+<details>
+<summary>Click to show instructions for loading the notebook locally</summary>
+
 **See above for the recommended way to participate in this workshop. Only follow these instructions if Google Colab isn't working**
 
 If for some reason Google Colab isn't working, or you prefer to run this locally, you will need to install Python, Anaconda, and the necessary libraries. You will have to follow these steps to do so. Note that some steps are only meant for specific operating systems.
@@ -51,6 +54,7 @@ If for some reason Google Colab isn't working, or you prefer to run this locally
 3. You can now run the jupyter notebook by typing `jupyter notebook` in the terminal. This will open a browser window with the jupyter notebook interface. You can navigate to the folder where you saved this notebook and open it.
 
 4. Alternatively, install [VSCode :octicons-link-external-24:](https://code.visualstudio.com/){:target="_blank"} and the Python extension. Then open this notebook in VSCode and run it with the kernel that belongs to the pyworkshop environment. [How to guide here :octicons-link-external-24:](https://code.visualstudio.com/docs/datascience/jupyter-notebooks){:target="_blank"}
+</details>
 
 ---
 
@@ -87,6 +91,10 @@ my_string = "this is my code cell"
 ```python
 print(my_string)
 ```
+
+<pre class="output-block">
+this is my code cell
+</pre>
 
 Jupyter notebooks can be exported to pdf or html, so that other people can view both the code and its output. It's a good format for handing in homeworks, for example, since you can show your work. In this notebook, there will be exercises with placeholders for the code that you will have to fill in. For these exercises, we encourage you to work with each other, use google, LLMs, and whatever other resources if you are stuck. It's not an exam, but just a way to practice the concepts. Afterwards, we will post the completed notebook on our website so you can have examples of solutions.
 
@@ -160,7 +168,7 @@ Python is one of those languages, and even more luckily, there are built-in chun
 
 ### Walk - a pseudo-function
 
-Let's go back to our detailed recipe. I mentioned before that certain actions, like **Walk** are invoked multiple times. To me, Walk seems like a function. We can simply say Walk in our recipe, and somewhere in our recipe book, some other recipe is looked up that looks something like this:
+Let's go back to our detailed recipe. I mentioned before that certain actions, like **Walk** are invoked multiple times. To me, Walk seems like a **function**. That is, we should be able to say "Walk" in our recipe, and somewhere in our recipe book, some other recipe is looked up that looks something like this:
 
 ```
 Walk:
@@ -244,7 +252,7 @@ Walk_anywhere:
   2. Repeat Step until the *distance* has been traversed
 ```
 
-We'll take the Step function and put it somewhere else in our recipe book, so that everytime it is called in Walk_anywhere, we can go find the Step recipe to follow those instructions. And it just generally looks a lot cleaner typed out.Hopefully we'll be able to get this robot to bake us some nice cookies soon.
+We'll take the Step function and put it somewhere else in our recipe book, so that everytime it is called in Walk_anywhere, we can go find the Step recipe to follow those instructions. And it just generally looks a lot cleaner typed out. Hopefully we'll be able to get this robot to bake us some nice cookies soon.
 
 But how do we integrate these functions into our original recipe?
 
@@ -302,9 +310,9 @@ Now I want to edit the **syntax** (how we type) of our recipe, just to make it a
 
 This introduces our first explicit programming syntax. The item assignment operator **=**.
 
-Using the **=** operator simply means that the **thing on the left side assumes the value of the thing on the right side**. In programming, the thing on the left side is always a **variable** (and in this case an argument to our function). Variables can be re-used later on in our program with the last value they were assigned.
+Using the **=** operator simply means that the **thing on the left side assumes the value of the thing on the right side**. In programming, the thing on the left side is always a **variable** (and in this case an argument to our function). Variables can be re-used later on in our program with the last value they were assigned. Importantly, the thing on the right side of the **=** operator can be another variable or a **literal**, that is a raw piece of information like a number or a character.
 
-In our case, we're saying that we're setting the value of the variable *distance* to be 2 meters and the value of the variable *angle* to be 40°. And when we refer to *distance* and *angle* later on, we'll actually be referring to the values of 2 meters and 40°.
+In our case, we're saying that we're setting the value of the variable *distance* to be the literal 2 meters and the value of the variable *angle* to be the literal 40°. And when we refer to *distance* and *angle* later on, we'll actually be referring to the values of 2 meters and 40°.
 
 Then, our function will need to be modified to accept these **arguments** as **parameters**:
 
@@ -325,7 +333,7 @@ This means that both times we call the Walk_anywhere() function, we can specify 
 
 ```python
 # Your pseudocode here
-Walk_anywhere(distance=1 meter and angle=180°)
+Walk_anywhere(distance=1 meter and angle=180°) ### SL
 ```
 
 ### Pseudocode and syntax
@@ -335,6 +343,11 @@ What we've shown above a is a "program" in the sense that it lays out the instru
 The concepts conveyed about **functions** here directly translate into how functions work in computer programs. They are blocks of code (recipes) available in your recipe book (sometimes called a **library**) that are available to you even if you are on a different page in the recipe book or writing your own recipe. In other words, you can tell the robot to Walk_anywhere without you yourself having to know the exact text of the Walk_anywhere recipe.
 
 > **Exercise**: Write out pseudocode for getting on the bus to go to the grocery store. Let's go around and have each person write one line.
+
+
+```python
+# Your pseudocode here
+```
 
 While the concepts are the same, the main difference between this pseudocode and an actual program is the **syntax**, which I've mentioned before is simply how things are typed or written. Each programming language has a unique syntax that provides structure and underlying instructions to the computer.
 
@@ -348,9 +361,9 @@ Notice that we don't provide units (meters or °). Those things are useful for u
 
 ### Programming in practice
 
-Practically speaking, when we code, we type out the instructions we wish the computer to carry out using the syntax of the language in which we are coding. In most cases, we type **one instruction per line**. The computer then reads the instructions one line at a time, from top to bottom, though the most powerful basic programming techniques can change this behavior. We'll learn about those later on.
+Practically speaking, when we code, we type the instructions we wish the computer to carry out using the syntax of the language in which we are coding. In most cases, we type **one instruction per line**. The computer then reads the instructions one line at a time, from top to bottom, though the most powerful basic programming techniques can change this behavior. We'll learn about those later on.
 
-We write our programs by typing in a text file using a **text editor**. Some text editors are designed for coding with useful features such as syntax highlighting and automatic formatting. However, even the most plain text editor (e.g. Notepad) could be used to write a computer program.
+We write our programs by typing in a text file using a **text editor**. Some text editors are designed for coding with useful features such as syntax highlighting and automatic formatting. However, even the most plain text editor (*e.g.* Notepad) could be used to write a computer program.
 
 In this workshop, the text editor we're using is conveniently built-in to the Jupyter notebook as the code cells.
 
@@ -369,6 +382,13 @@ Let's look at a very basic function. What happens when you run the single line o
 abs(-5)
 ```
 
+
+
+
+<pre class="output-block">
+5
+</pre>
+
 The `abs()` function takes as input a single **integer** and **returns** its absolute value. In this case, the absolute value of -5 is 5. Under the hood, there is some block of code that Python has installed on your computer that is looked-up and run every time it sees that you've typed and run `abs()`. I don't know what this code looks like (though I could guess for such a simple function), and I don't even know where it is on the computer. But that's what's so great about functions: they simplify tasks that are repeated often, saving us programmers time and effort.
 
 For instance, if we needed to know the absolute value of 10 numbers and the underlying code for `abs()` is 4 lines of code and we DIDN'T have it stored as a function, we would have to write out those 4 lines 10 times (recall the Walk_to_oven and Walk_to_cabinet problem). Now, with `abs()`, we only need to write that function call 10 times.
@@ -384,6 +404,19 @@ What happens if you run this code block:
 abs()
 ```
 
+
+<pre class="output-block">
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[7], line 1
+----&gt; 1 abs()
+
+
+TypeError: abs() takes exactly one argument (0 given)
+</pre>
+
 You get an **error** (a very common occurrence when coding). Remember, almost all functions require additional information in the form of **arguments**. In the case of `abs()` it requires a single argument, a number. Without it, the underlying code doesn't work, so it stops the program and tells us before it even tries.
 
 How about this:
@@ -392,6 +425,19 @@ How about this:
 ```python
 abs(-5, 7, -12)
 ```
+
+
+<pre class="output-block">
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[8], line 1
+----&gt; 1 abs(-5, 7, -12)
+
+
+TypeError: abs() takes exactly one argument (3 given)
+</pre>
 
 Still no good. In this case, the function takes EXACTLY one number and runs some code using it. This may not always be the case, and different functions are going to require different inputs.
 
@@ -408,6 +454,13 @@ Try this:
 help(abs)
 ```
 
+<pre class="output-block">
+Help on built-in function abs in module builtins:
+
+abs(x, /)
+    Return the absolute value of the argument.
+</pre>
+
 This tells us what `abs()` does and tells us that it requires one argument, `x`. (The `/` indicates that the argument is positional, but you can ignore that for now.)
 
 What about if you know what you want to do, but you're not sure if there is a function to do it. This begins to touch a bit on a host of 'meta-skills' that one picks up as they start to code and work with computers more. It may seem obvious, but the first solution is to simply search the internet. The difficulty comes when you try to word your search, and unfortunately that will change depending on the task.
@@ -417,6 +470,10 @@ However, there are some resources that will pop-up that are generally pretty rel
 Now, it is also feasible to ask a LLM chatbot (e.g. ChatGPT, CoPilot) to help with coding problems. While these bots have their issues with reliability for real world information, they tend to be quite accurate for basic programming problems. For instance, you could ask, "How do I get the largest number of a list of numbers in Python?" and it would probably reply with some answer related to the `max()` function.
 
 
+
+#### Meta-skills and other Python tips
+
+While we'll occasionally touch on some of these meta-programming skills, like getting help and debugging, we're sticking mostly to actual programming in our workshop. However, these skills are really important, so we've compiled a notebook of [Healthy Habits for Python](https://informatics.fas.harvard.edu/workshops/python-intensive/python-healthy-habits/) to accompany this workshop. Be sure to read through it and we can talk about any specific questions you have.
 
 ### Functions and data types
 
@@ -456,9 +513,22 @@ For example, we know what `abs(-5)` will do. What about the following? Run the c
 abs("-5")
 ```
 
+
+<pre class="output-block">
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[10], line 1
+----&gt; 1 abs("-5")
+
+
+TypeError: bad operand type for abs(): 'str'
+</pre>
+
 It is more-or-less telling us that we gave it a string when this function only works for integers.
 
-This may seem obvious with such a simple example, but later on, when data types are obfuscated behind variable names and data structures, you may start getting errors like this.
+This may seem obvious with such a simple example, but later on, when data types are obfuscated behind variable names and data structures, you may start getting errors like this that may be harder to understand.
 
 
 
@@ -481,17 +551,38 @@ And we've entered this data into our Python script and **stored it as a variable
 my_string = "Teach a robot to bake cookies."
 
 # Your code here: Find a function to put here that counts the number of characters in my_string
-len(my_string)
+len(my_string) ### SL
 
 ```
 
+
+
+
+<pre class="output-block">
+30
+</pre>
 
 ```python
 my_integer = 124
 
 # Your code here: Use the same function to count the number of digits in my_integer
-len(my_integer)
+len(my_integer) ### SL
 ```
+
+
+<pre class="output-block">
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[12], line 4
+      1 my_integer = 124
+      3 # Your code here: Use the same function to count the number of digits in my_integer
+----&gt; 4 len(my_integer) ### SL
+
+
+TypeError: object of type 'int' has no len()
+</pre>
 
 #### print()
 
@@ -503,8 +594,12 @@ Another important function in Python is `print()`. This function takes any numbe
 
 ```python
 # Your code here: Display my_string and my_integer on a single line
-print(my_string, my_integer)
+print(my_string, my_integer) ### SL
 ```
+
+<pre class="output-block">
+Teach a robot to bake cookies. 124
+</pre>
 
 You'll notice that this worked even though we gave it mixed data types (a string and an integer).
 
@@ -540,10 +635,77 @@ This chunk demonstrates a few things:
 
 ```python
 # Your code here: Store a string, calculate its length, and print both
+### SL START
 my_string = "Teach a robot to bake cookies."
 my_string_length = len(my_string)
 print("The message: '", my_string, "' is", my_string_length, "characters long.")
+### SL END
 ```
+
+<pre class="output-block">
+The message: ' Teach a robot to bake cookies. ' is 30 characters long.
+</pre>
+
+### Indirection
+
+In programming, indirection is the use of one object to reference another. We've seen this a couple of times already, and we want to introduce this concept now because as we move to more advanced data structures, multiple levels of indirection can be used and may make things difficult to understand.
+
+In Python, we can say that using anything other than a **literal** value is a level of indirection. Here is a simple example:
+
+
+```python
+x = 5
+abs(x) # Here, we've indirectly referenced the literal of 5 by using the variable x.
+```
+
+This example seems pretty easy to understand, but this concept will be very important as we move forward. In fact, efficient and automated programs couldn't be written at all without indirection: indirection allows us to manipulate data within programs and accept different data when running the same program multiple times.
+
+As such, we may also occasionally do some "code golf" or "code bowling" exercises to show the trade-offs between too much and too little indirection. For example, we could easily "code golf" this block:
+
+
+```python
+a = 3
+b = 5
+c = 8
+d = 2
+e = 1
+
+print(a + b + c + d + e)
+```
+
+<pre class="output-block">
+19
+</pre>
+
+To just be:
+
+
+```python
+print(3 + 5 + 8 + 2 + 1)
+```
+
+<pre class="output-block">
+19
+</pre>
+
+Which is very succinct (1 line vs. 6 lines) and clear, but we lose the ability to manipulate the data easily elsewhere in our program, *e.g.*:
+
+
+```python
+a = 3
+b = 5
+c = 8
+d = 2
+e = 1
+
+a = a + 6
+
+print(a + b + c + d + e)
+```
+
+<pre class="output-block">
+25
+</pre>
 
 ### Variable naming rules
 
@@ -630,6 +792,10 @@ my_initial_data = my_data_point
 print(my_initial_data)
 ```
 
+<pre class="output-block">
+12
+</pre>
+
 So in a way, operators can be seen as syntactic shortcuts. Instead of having to type something like:
 
 ```
@@ -671,7 +837,7 @@ print(x / y)
 2.0
 </pre>
 
-Here, we've given the `print()` function a single argument: the result of the arithmetic operation, which it then displays.
+Here, we've used a bit of indirection by giving the `print()` function a single argument: the result of the arithmetic operation, which it then displays.
 
 Notice that, for division, we see that it has added a decimal place. It has converted our integers into **floating point** numbers, another numeric data type in Python, to deal with numbers that are not divisible:
 
@@ -691,7 +857,7 @@ A couple other arithmetic operators are:
 
 *   `**` : called the **exponentiation** operator, this raises the number on the left side to the power on the right side
 *   `%`  : called the **modulo** or **modulus** operator, this divides two numbers and returns the _remainder_ of the division
-*   `//` : called the **floor division operator, this divides and then rounds down
+*   `//` : called the **floor division operator**, this divides and then rounds down
 
 Let's take a look at some examples.
 
@@ -704,6 +870,12 @@ print(x ** y)
 print(x % y)
 print(x // y)
 ```
+
+<pre class="output-block">
+9
+1
+1
+</pre>
 
 Remember, when performing 3 / 2 with remainders, the remainder is 1, so `%` returns 1.
 
@@ -721,6 +893,14 @@ print("---")
 print(3 ** 2 - 1)
 print(3 ** (2 - 1))
 ```
+
+<pre class="output-block">
+7
+9
+---
+8
+3
+</pre>
 
 ### String operators, or why its important to know your data types
 
@@ -752,20 +932,28 @@ sum_of_important_data = important_data_point1 + important_data_point2
 print("I'm now showing my professor my important results:", sum_of_important_data)
 ```
 
-Here, no error is thrown telling you you are concatenating two strings rather than adding together two integers. That's because both things are vaild to do with Python syntax: Python has no way of knowing that you wanted to add these numbers rather than concatenate them - that's up to you to tell it! Remember, every little step of a computer program has to be given, otherwise you will get errors (relatively easy to debug) or **logic errors**, which occur when the program runs, but gives unexpected results, and are generally harder to debug.
+<pre class="output-block">
+I'm now showing my professor my important results: 98
+</pre>
+
+Here, no error is displayed telling you you are concatenating two strings rather than adding together two integers. That's because both things are vaild to do with Python syntax: Python has no way of knowing that you wanted to add these numbers rather than concatenate them - that's up to you to tell it! Remember, every little step of a computer program has to be given, otherwise you will get errors (relatively easy to debug) or **logic errors**, which occur when the program runs, but gives unexpected results, and are generally harder to debug.
 
 > **Exercise**: Correct the code so that it accurately prints the sum of the two data points.
 
 
 ```python
 # Edit and correct the code here
-important_data_point1 = 9
-important_data_point2 = 8
+important_data_point1 = 9 ### SL 9 : "9"
+important_data_point2 = 8 ### SL 8 : "8"
 
 sum_of_important_data = important_data_point1 + important_data_point2
 
 print("I'm now showing my professor my important results:", sum_of_important_data)
 ```
+
+<pre class="output-block">
+I'm now showing my professor my important results: 17
+</pre>
 
 Luckily, if we ever try to `+` a string and an integer together, it stops us with an error:
 
@@ -773,6 +961,19 @@ Luckily, if we ever try to `+` a string and an integer together, it stops us wit
 ```python
 x = "9" + 8
 ```
+
+
+<pre class="output-block">
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[24], line 1
+----&gt; 1 x = "9" + 8
+
+
+TypeError: can only concatenate str (not "int") to str
+</pre>
 
 #### Repeat strings with `*`
 
@@ -791,6 +992,10 @@ repeat_num = 4
 
 print(my_string * repeat_num)
 ```
+
+<pre class="output-block">
+hahahaha
+</pre>
 
 ## Booleans and logical operators
 
@@ -811,6 +1016,26 @@ print("--- print True check ---")
 print(true)
 print("--- print true check ---")
 ```
+
+<pre class="output-block">
+True
+--- print True check ---
+
+
+
+---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+Cell In[26], line 3
+      1 print(True)
+      2 print("--- print True check ---")
+----&gt; 3 print(true)
+      4 print("--- print true check ---")
+
+
+NameError: name 'true' is not defined
+</pre>
 
 Here, the boolean `True` is displayed along with the message telling us it has been displayed. However, since the keyword `true` doesn't exist in Python, the error is telling us that it thinks `true` should be a variable that the programmer has put in the program, but it can't find where it is defined.
 
@@ -878,6 +1103,12 @@ print(True and False)
 print(False and False)
 ```
 
+<pre class="output-block">
+True
+False
+False
+</pre>
+
 For **or**, only one of the two booleans must be `True` for the whole expression to be True:
 
 
@@ -886,6 +1117,12 @@ print(True or True)
 print(True or False)
 print(False or False)
 ```
+
+<pre class="output-block">
+True
+True
+False
+</pre>
 
 Any easy way to see how `and` and `or` work is with truth tables. In a truth table, we fill out all possible values for the variables in the expression and then evaluate each component of the expression. Here, the first two columns are for the variables being compared, A and B, and each row is a combination of values for those variables. The last columns show the result of the logical expression given those values of A and B.
 
@@ -910,17 +1147,24 @@ Remember, almost every object in a program can be evaluated as a Boolean.
 
 ```python
 # Your code here: Two integers with and that returns True
-print(1 and bool(573657))
+print(1 and bool(573657)) ### SL
 
 # Your code here: Two integers with or that returns False
-print(bool(0) or bool(0))
+print(bool(0) or bool(0)) ### SL
 
 # Your code here: Integer and string with and that returns True
-print(bool(235) and bool("hello"))
+print(bool(235) and bool("hello")) ### SL
 
-# Your code here: Integer and string with and that returns True
-print(bool(0) and bool(""))
+# Your code here: Integer and string with and that returns False
+print(bool(0) and bool("")) ### SL
 ```
+
+<pre class="output-block">
+True
+False
+True
+False
+</pre>
 
 #### Complex logical statements and order of operations
 
@@ -930,6 +1174,10 @@ Using `and` and `or`, we can evaluate multiple boolean values.
 ```python
 print(True or True and False)
 ```
+
+<pre class="output-block">
+True
+</pre>
 
 This statement returns `True`. Logical statements have their own order of operations, with **`and` taking precedence over `or`**. Given that, let's break the statement down.
 
@@ -943,12 +1191,20 @@ The order of operations can be made more explicit with parentheses.
 print(True or (True and False))
 ```
 
+<pre class="output-block">
+True
+</pre>
+
 This is the exact same logical expression as the one above, but we've added the parentheses to make things a little bit easier for us to parse. In logical expressions, **parentheses also affect the order of operations** as they do in mathematical expressions: they take precedence over anything else. In that way, we can change the result of this expression by moving the parentheses.
 
 
 ```python
 print((True or True) and False)
 ```
+
+<pre class="output-block">
+False
+</pre>
 
 Here, the parentheses tell Python to evaluate whatever is inside them first. Now the statement breaks down as:
 
@@ -1017,6 +1273,12 @@ print(not False)
 print(not False or False or False or False or True or False)
 ```
 
+<pre class="output-block">
+False
+True
+True
+</pre>
+
 Note that `not` works on individual parts of a logical expression, not the entire thing. So, `False or True` returns `True` and `not False or True` also returns `True`. This is because the `not` is only negating the first `False`, essentially making the statement `True or True`. To negate chunks of an expression, use parentheses. `not (False or True)` will indeed return `False`, since the expression itself is `True` and we are negating the whole thing.
 
 
@@ -1026,14 +1288,20 @@ print(not False or True)
 print(not (False or True))
 ```
 
+<pre class="output-block">
+True
+True
+False
+</pre>
+
 > **Exercise:** Fill out the following truth table. We will go from left to right. Double click on the table to edit.
 
 A | B | A and B | not B | A and not B | A and B or A and not B | A and (B or A) and not B |
 --- | --- | ------- | ----- | ----------- | ---------------------- | ------------- |
-T | T |    T    |   F   |      F      |           T            |        F
-T | F |    F    |   T   |      T      |           T            |        T
-F | T |    F    |   F   |      F      |           F            |        F
-F | F |    F    |   T   |      F      |           F            |        F
+T | T |    T    |   F   |      F      |           T            |        F ### SL     T    |   F   |      F      |           T            |        F : | | | |
+T | F |    F    |   T   |      T      |           T            |        T ### SL     F    |   T   |      T      |           T            |        T : | | | |
+F | T |    F    |   F   |      F      |           F            |        F ### SL     F    |   F   |      F      |           F            |        F : | | | |
+F | F |    F    |   T   |      F      |           F            |        F ### SL     F    |   T   |      F      |           F            |        F : | | | |
 
 What do you notice about the second to last column of the truth table representing the full expression?
 
@@ -1048,7 +1316,7 @@ In order to compare two numbers and return either a `True` or `False` boolean va
 *   `<` : Less than. Returns `True` if the number on the left is smaller than the number on the right. Returns `False` otherwise.
 *   `<=` : Less than or equal to. Returns `True` if the number on the left is smaller or the same as the number on the right. Returns `False` otherwise.
 *   `==` : Is equal to. Returns `True` if the numbers on the left and the right are the same. Returns `False` otherwise.
-*   `!=` : Is not equal to. Returns `True` if the numbers on the left and right are different. Returns `False` otherwise (i.e. if they are the same).
+*   `!=` : Is not equal to. Returns `True` if the numbers on the left and right are different. Returns `False` otherwise (*i.e.* if they are the same).
 
 Here are some examples.
 
@@ -1060,6 +1328,13 @@ print(9 >= 9)
 print(8 != 9)
 
 ```
+
+<pre class="output-block">
+False
+False
+True
+True
+</pre>
 
 ### `=` vs. `==`
 
@@ -1089,7 +1364,14 @@ print(my_int == 4)
 print(my_int)
 ```
 
-
+<pre class="output-block">
+True
+False
+---
+False
+True
+4
+</pre>
 
 > **Exercise**: In the code block below, do the following:
 > 1.   Assign any integer value to a variable called my_int1
@@ -1099,11 +1381,11 @@ print(my_int)
 
 ```python
 # Your code here: Assign any two integers to variables my_int1 and my_int2
-my_int1 = 5
-my_int2 = 5
+my_int1 = 5 ### SL
+my_int2 = 5 ### SL
 
 # Your code here: Print out whether the integers stored in your variables are equal to each other
-print(my_int1 == my_int2)
+print(my_int1 == my_int2) ### SL
 
 ```
 
@@ -1123,12 +1405,22 @@ print("robot" == "cookies")
 print("robot" != "cookies")
 ```
 
+<pre class="output-block">
+True
+False
+True
+</pre>
+
 Importantly, case matters for these comparisons:
 
 
 ```python
 print("Hello" == "hello")
 ```
+
+<pre class="output-block">
+False
+</pre>
 
 Like we said above, the other operators (e.g. `>`, `<=`, etc.) do indeed work on strings, but that use-case is not common for most programmers.
 
@@ -1145,20 +1437,86 @@ print("lo" in "hello")
 print("cookies" in "robot")
 ```
 
+<pre class="output-block">
+True
+False
+</pre>
+
 Checking for exact sub-strings with `in` is the most basic of pattern matching, which is extremely useful in programming.
+
+> **EXERCISE**: CODE BOWLING: Re-write the two lines of code using variables to indirectly refer to each of the four strings in the print statment.
+
+
+```python
+# Edit this code to use variables instead of literal strings
+print("lo" in "hello")
+print("cookies" in "robot")
+
+##
+
+### SL START
+string1 = "lo"
+string2 = "hello"
+print(string1 in string2)
+
+string3 = "cookies"
+string4 = "robot"
+print(string3 in string4)
+### SL END
+
+```
+
+<pre class="output-block">
+True
+False
+True
+False
+</pre>
+
+## Metaprogramming skills and debugging
+
+Recall that there are a host of meta-skills that we won't have time to discuss formally during the workshop. We've prepared the [Python Healthy Habits notebook](https://informatics.fas.harvard.edu/workshops/python-intensive/python-healthy-habits/) as a supplement for you to go through on your own, and we'll be happy to discuss any topics you have questions about!
+
+### Pair programming
+
+One meta-skill we want to touch on today though is **pair programming**. Pair programming is a technique where two programmers work together on the same code. One person is the "driver" who writes the code, while the other person is the "navigator" who reviews the code as it is written. This can be a very effective way to catch errors early and to learn from each other. Let's practice by "code golfing" the following block of code. Pair up with someone, and then try to make this code run with as few lines as possible, while achieving the same result.
+
+
+```python
+## Edit the to run with the same result using as few lines as possible
+first_str = "robot"
+second_str = "baking"
+third_str = "cookies"
+
+length_first_str = len(first_str)
+length_second_str = len(second_str)
+length_third_str = len(third_str)
+
+total_length = length_first_str + length_second_str + length_third_str
+print("The total length of the strings is:", total_length)
+
+##
+
+print("The total length of the strings is:", len("robot") + len("baking") + len("cookies")) ### SL
+```
+
+<pre class="output-block">
+The total length of the strings is: 18
+The total length of the strings is: 18
+</pre>
 
 ## Review
 
 So far, we've learned a few main things:
 
 1. Functions are little sub-recipes of code that perform specific tasks given the appropriate input. They are usually typed as `function_name(input1, input2, ...)`.
-2. Operators (e.g. `+`, `and`) can be thought of as special functions that instead take input based on what is place on either side of them.
+2. Operators (*e.g.* `+`, `and`) can be thought of as special functions that instead take input based on what is place on either side of them.
 3. Different data types exist in programming, notably **integers** and **strings** in Python. **Functions and operators may only work for a given data type**.
-4. Complex logical statements can be constructed with **boolean** values (`True`, `False`) and the associated operators (e.g. `>`, `not`, `in`). Again, some of these operators only work for specific data types.
+4. Complex logical statements can be constructed with **boolean** values (`True`, `False`) and the associated operators (*e.g.* `>`, `not`, `in`). Again, some of these operators only work for specific data types.
 
 These concepts form the basis of programming in any language (though the syntax will vary), however one cannot make more than very simple programs using these types of instructions alone.
 
-In order to write complex programs that take these basic concepts and allow them to be executed based on the **conditions** of the data within a program, and to automate the **repetition** of certain instructions, we need to learn the syntax that allows us to control the flow of the program.
+In order to write complex programs that take these basic concepts and allow them to be executed based on the **conditions** of the data within a program, and to automate the **repetition** of certain instructions, we need to learn the syntax that allows us to control the flow of the program. That is where we will begin on Day 2!
 
 ### Operators table
 
@@ -1180,105 +1538,6 @@ Operator | Strings | Integers/floats | Boolean |
 `not`    | *NA* | *NA* | Negates a boolean (e.g. returns `True` if `False` is input and vice versa) |
 `==`     | Compares 2 strings and returns `True` if they are identical, `False` otherwise | Compares two numbers and returns `True` if they are identical, `False` otherwise | Compares two booleans and returns `True` if they are identical, `False` otherwise |
 `!=` | Returns `True` if two strings are **not** identical, `False` otherwise | Returns `True` if two numbers are **not** identical, `False` otherwise | Returns `True` if two booleans are **not** identical, `False` otherwise |
-
-## Metaprogramming skills and debugging
-
-Today we will learn how to turn functions into programs. So far, we have learned how to create small self-contained functions. But today we will build from these to create a simulation of a random walk. Given the inputs of a step size and boundary size, it will simulate a walk from the middle of a defined (represented by `-`) space until the object runs into a wall. Here's what it might look like to use this function:
-
-```python
-random_walk(step_size = 1, walk_size = 10)
-```
-
-output:
-
-```jupyter
-Starting random walk with boundary size: 10 and step size: 1
------O----
-----O-----
----O------
---O-------
--O--------
---O-------
--O--------
---O-------
--O--------
---O-------
--O--------
-O---------
--O--------
-O---------
-X---------
-Reached boundary!
-```
-
-### Pair programming
-
-**Pair programming** is a technique where two programmers work together on the same code. One person is the "driver" who writes the code, while the other person is the "navigator" who reviews the code as it is written. This can be a very effective way to catch errors early and to learn from each other. Let's practice by working on one component of the random walk function together.
-
->**Exercise:** Write a function called `display_walk` that takes a walk size and position argument and prints a string of dashes with an 'O' at the position. For example, `display_walk(size = 10, position = 3)` should print `---O------`. If the position is outside the walk size, it should print an 'X' at the end. For example, `display_walk(size = 10, position = 12)` should print `----------X`.
->
-> 1. Work together to write out pseudocode for this function. Make sure to check in on any potential logic errors.
-> 2. One person should write the code while the other person dictates out the pseudocode.
-> **Important** One line in your pseudocode could correspond to one line of code, but that may or may not be the case
-> 3. For each line of code, **PAUSE** and both of you should check to make sure it matches the pseudocode.
->
-> You are allowed to use LLMs or the internet to look up how to do specific parts of your code, but try not to look up the entire solution.
-
-
-```python
-# Your code here
-
-# Solution using lists
-def display_walk(size, position):
-    walk = list("-") * size
-    if position < size and position >= 0:
-        walk[position] = "O"
-    elif position >= size:
-        walk[size - 1] = "X"
-    elif position < 0:
-        walk[0] = "X"
-    print("".join(walk))
-
-# Solution using string concatenation
-def display_walk(size, position):
-    if 0 <= position < size:
-    # Create a string with 'O' at the specified position
-        walk = '-' * position + 'O' + '-' * (size - position - 1)
-    elif position < 0:
-        # Position is out of bounds, place 'X' at the end
-        walk = "X" + '-' * (size - 1)
-    else: # position >= size
-        # Position is out of bounds, place 'X' at the beginning
-        walk = '-' * (size - 1) + "X"
-    print(walk)
-```
-
-
-```python
-# test your code here
-display_walk(10, -1)
-display_walk(10, 0)
-display_walk(10, 5)
-display_walk(10, 9)
-display_walk(10, 11)
-
-# Expected output
-# X---------
-# O---------
-# -----O----
-# ---------O
-# ---------X
-```
-
-<pre class="output-block">
-X---------
-O---------
------O----
----------O
----------X
-</pre>
-
->**Discussion**: What were some questions that came up while writing this function? Did you get answers to them or are they still unanswered?
 
 ## End day 1
 
