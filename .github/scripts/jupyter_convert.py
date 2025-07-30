@@ -6,21 +6,70 @@
 # Gregg Thomas, July 2025
 ############################################################
 
-# import sys
-# print(sys.executable)
-# if sys.platform == "win32":
-#     import asyncio
-#     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+import sys
+print(sys.executable)
+if sys.platform == "win32":
+    import asyncio
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 import os
 import re 
 import subprocess
 
-# import nbformat
-# from nbconvert import MarkdownExporter
-# from nbconvert.preprocessors import ExecutePreprocessor
+import nbformat
+from nbconvert.preprocessors import ExecutePreprocessor
+from nbconvert.preprocessors import Preprocessor
+from nbconvert import MarkdownExporter
 
 ############################################################        
+
+def strip_ansi(text):
+    ansi_escape = re.compile(r'\x1b\[[0-9;]*m')
+    return ansi_escape.sub('', text)
+class CombineCodeOutputInAdmonition(Preprocessor):
+    def preprocess(self, nb, resources):
+        new_cells = []
+        for cell in nb.cells:
+            if (
+                cell.cell_type == "code"
+                and "solution" in cell.metadata.get("tags", [])
+            ):
+                # Build the combined markdown/admonition cell
+                # 1. Input      
+                code_block = "```python\n" + cell.source.rstrip() + "\n```"
+                # 2. Output (if any)
+                output_block = ""
+                for output in cell.get("outputs", []):
+                    # Stream outputs
+                    if output.output_type == "stream":
+                        text = output.get("text", "")
+                        if text.strip():
+                            output_block += "\n<pre class=\"output-block\">\n" + text.rstrip() + "</pre>\n"
+                    # Display data / result
+                    elif output.output_type in {"execute_result", "display_data"}:
+                        text = output.get("data", {}).get("text/plain", "")
+                        if text.strip():
+                            output_block += "\n<pre class=\"output-block\">\n" + text.rstrip() + "</pre>\n"
+                    # Errors
+                    elif output.output_type == "error":
+                        text = "\n".join(output.get("traceback", []))
+                        text = strip_ansi(text)
+                        if text.strip():
+                            output_block += "\n<pre class=\"output-block\">" + text.rstrip() + "</pre>\n"
+                markdown = (
+                    '??? success "Solution"\n'
+                    f"    {code_block.replace(chr(10), chr(10)+'    ')}"
+                )
+                if output_block:
+                    markdown += "\n\n" + "    " + output_block.replace(chr(10), chr(10)+'    ')
+                # Build a markdown cell to insert
+                new_cells.append(nbformat.v4.new_markdown_cell(markdown))
+            else:
+                new_cells.append(cell)
+        nb.cells = new_cells
+        return nb, resources
+
+############################################################
 
 def style_link(match):
     """
@@ -83,15 +132,15 @@ def wrapOutputBlocks(md_lines):
             while i < len(md_lines) and (re.match(r' {4,}', md_lines[i]) or md_lines[i].strip() == ""):
                 output_line = md_lines[i][4:]  # Remove 4 spaces
                 output_line = output_line.replace("<", "&lt;").replace(">", "&gt;")
-                output_block.append(output_line)
+                output_block.append("   " + output_line)
                 i += 1
 
             while output_block and output_block[-1].strip() == "":
                 output_block.pop()
 
-            result.append('<pre class="output-block">')
+            result.append('    <pre class="output-block">')
             result.extend(output_block)
-            result.append('</pre>\n')
+            result.append('    </pre>\n')
             expect_output_block = False   # ONLY wrap *immediately after* code block
             continue
         else:
@@ -235,6 +284,9 @@ for jupyter_file in jupyter_files:
         print(f"[HOOK] Skipping {jupyter_file}")
         continue
 
+    if jupyter_file != "Python-Day1.ipynb":
+        continue;
+
     # Get input and output paths
     #ipynb_path = os.path.join(jupyter_dir, jupyter_file)
     md_path = os.path.splitext(jupyter_file)[0] + ".md"
@@ -257,24 +309,29 @@ for jupyter_file in jupyter_files:
     #     continue  # Go to next notebook
 
     # Convert the notebooks to markdown
-    convert_cmd = ["jupyter", "nbconvert", "--to", "markdown", jupyter_file] # Add --execute to run the notebook (buggy for our use-case)
-    subprocess.run(convert_cmd, check=True)
+    # convert_cmd = ["jupyter", "nbconvert", "--to", "markdown", jupyter_file] # Add --execute to run the notebook (buggy for our use-case)
+    # subprocess.run(convert_cmd, check=True)
 
-    # with open(jupyter_file, encoding="utf-8") as f:
-    #     nb = nbformat.read(f, as_version=4)
+    with open(jupyter_file, encoding="utf-8") as f:
+        nb = nbformat.read(f, as_version=4)
 
-    # # Execute notebook in place
-    # ep = ExecutePreprocessor(timeout=600, kernel_name='python3', exclude_tags=['no-execute'])
-    # # for i, cell in enumerate(nb.cells):
-    # #     print(f"CELL {i} tags: {cell.get('metadata', {}).get('tags', [])}")
-    # ep.preprocess(nb, {'metadata': {'path': os.path.dirname(jupyter_file) or '.'}})
+    # Execute notebook in place
+    ep = ExecutePreprocessor(timeout=600, kernel_name='python3', allow_errors=True, exclude_tags=['no-execute'])
+    # for i, cell in enumerate(nb.cells):
+    #     print(f"CELL {i} tags: {cell.get('metadata', {}).get('tags', [])}")
+    for cell in nb.cells:
+        if cell.cell_type == 'code':
+            lines = cell.source.splitlines()
+            cell.source = "\n".join(line for line in lines if not line.strip().startswith('#@title'))    
+    ep.preprocess(nb, {'metadata': {'path': os.path.dirname(jupyter_file) or '.'}})
 
-    # # Export to Markdown
-    # exporter = MarkdownExporter()
-    # body, _ = exporter.from_notebook_node(nb)
+    # Export to Markdown
+    exporter = MarkdownExporter()
+    exporter.register_preprocessor(CombineCodeOutputInAdmonition, enabled=True)
+    body, _ = exporter.from_notebook_node(nb)
 
-    # with open(md_path, "w", encoding="utf-8") as out_f:
-    #     out_f.write(body)    
+    with open(md_path, "w", encoding="utf-8") as out_f:
+        out_f.write(body)    
 
      ##########
 
@@ -409,7 +466,7 @@ authors:
 
     # === 3. Wrap code output blocks ===
     # Wrap the output block ins <pre class="output-block"> tags
-    md = wrapOutputBlocks(md)
+    # md = wrapOutputBlocks(md)
 
     # Write the markdown file with front-matter, alt-texts, and styles
     md = "\n".join(md)
