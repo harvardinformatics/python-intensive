@@ -305,6 +305,7 @@ SyntaxError: expected ':'
 
 ```python
 # Your code here
+<<<<<<< HEAD
 
 
 print("Done.")
@@ -316,12 +317,16 @@ Done.
 
 ```python
 #@title Solution {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 my_msg = "the quick brown fox jumped over the lazy dog"
 my_msg_length = len(my_msg)
 
 if my_msg_length > 10:
   print("'", my_msg, "' has", my_msg_length, "characters.")
   print("This is more than 10 characters.")
+### SL END
 
 print("Done.")
 ```
@@ -386,7 +391,11 @@ print("Done.")
 
 
 <pre class="output-block">
+<<<<<<< HEAD
   Cell In[10], line 5
+=======
+  Cell In[9], line 5
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
     else:
     ^
 SyntaxError: invalid syntax
@@ -408,7 +417,11 @@ print("Done.")
 
 
 <pre class="output-block">
+<<<<<<< HEAD
   Cell In[11], line 5
+=======
+  Cell In[10], line 5
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
     else:
     ^
 SyntaxError: invalid syntax
@@ -436,12 +449,17 @@ print("Done.")
 
 
 <pre class="output-block">
+<<<<<<< HEAD
   Cell In[12], line 9
+=======
+  Cell In[11], line 9
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
     else:
     ^
 SyntaxError: invalid syntax
 </pre>
 
+<<<<<<< HEAD
 ```python
 #@title Solution {display-mode: "form"}
 x = 12
@@ -463,6 +481,8 @@ The number is equal to or larger than 10
 Done.
 </pre>
 
+=======
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 `elif` is also used in conjunction with `if`, but unlike `else`, elif allows us to test another condition. Like `if`, the keyword `elif` is typed followed by the logical statement to evaluate. If *that* statement evaluates to `True`, the code within the `elif` statement is executed. It is important to know that **`elif`'s logical expression will only be evaluated if the `if` statement was `False`**. This structure essentially allows us to test alternate conditions in sequence.
 
 
@@ -558,6 +578,7 @@ elif temperature > 32 and weather == "rainy":
   print("Wear a raincoat and boots.")
 
 # Add your elif here
+<<<<<<< HEAD
 
 
 else:
@@ -584,17 +605,29 @@ elif temperature > 32 and weather == "rainy":
 # Add your elif here
 elif temperature > 60 and weather == "sunny":
   print("Wear shorts and a t-shirt.")
+=======
+elif temperature > 60 and weather == "sunny": ### SL
+  print("Wear shorts and a t-shirt.") ### SL
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 else:
   print("Your guess is as good as mine!")
 ```
 
 <pre class="output-block">
+<<<<<<< HEAD
 The temperature is 72 degrees Fahrenheit and the weather is sunny.
 Wear shorts and a t-shirt.
 </pre>
 
 > **Exercise**: Initialize two integer variables called `x` and `y`, give them whatever values you like. Write a series of conditional statements that check the following:
+=======
+The temperature is 72 degrees Fahrenheit and the weather is rainy.
+Wear a raincoat and boots.
+</pre>
+
+> **Exercise**: initialize two integer variables called `x` and `y`, give them whatever values you like. Write a series of conditional statements that check the following:
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 > 1. `x` and `y` are both even
 > 2. one is even and the other isn't
 > 3. `x` and `y` are both odd
@@ -605,11 +638,15 @@ Wear shorts and a t-shirt.
 ```python
 # Your code here
 
+<<<<<<< HEAD
 ```
 
 
 ```python
 #@title Solution {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 x = 5
 y = 8
 
@@ -619,6 +656,7 @@ elif (x % 2 == 0 and y % 2 != 0) or (x % 2 != 0 and y % 2 == 0):
     print("one of the numbers is even, one of the numbers is odd")
 elif x % 2 != 0 and y % 2 != 0:
     print("x and y are both odd")
+### SL END
 ```
 
 <pre class="output-block">
@@ -686,6 +724,7 @@ Done.
 
 ```python
 # Your code here: Pick your string and sub-strings
+<<<<<<< HEAD
 
 # Your code here: Fill in the conditional statements
 if : # An if statement if both sub-strings are found
@@ -710,9 +749,13 @@ SyntaxError: invalid syntax
 
 ```python
 #@title Solution {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 my_string = "everything changed when the fire nation attacked"
 my_substr1 = "fire nation"
 my_substr2 = "water tribe"
+### SL END
 
 # Your code here: Fill in the conditional statements
 if my_substr1 in my_string and my_substr2 in my_string: # An if statement if both sub-strings are found ### SL my_substr1 in my_string and my_substr2 in my_string : 
@@ -830,6 +873,26 @@ Now, the bot first checks if the temperature is below 32, and then checks whethe
 # BONUS: Add a windy variable that is a boolean and give recommendations about
 #        whether or not to bring an umbrella when its raining (no if windy, yes if not)
 
+### MD RM START
+temperature = 72
+weather = "precipitating" # Possible conditions: "sunny", "cloudy", or "precipitating"
+
+print("The temperature is", temperature, "degrees Fahrenheit and the weather is", weather + ".")
+
+if temperature <= 32:
+  if weather == "snowy":
+    print("Wear a heavy coat and snow boots.")
+  else:
+    print("Wear a heavy coat and warm shoes.")
+elif temperature > 32 and weather == "rainy":
+  print("Wear a raincoat and boots.")
+elif temperature > 60 and weather == "sunny":
+  print("Wear shorts and a t-shirt.")
+else:
+  print("Your guess is as good as mine!")
+### MD RM END
+
+### SL START
 temperature = 72
 weather = "precipitating" # Possible conditions: "sunny", "cloudy", or "precipitating"
 
@@ -890,10 +953,16 @@ elif temperature > 60 and temperature <= 80:
     print("Wear shorts and a t-shirt.")
 else:
   print("Your guess is as good as mine!")
+### SL END
 ```
 
 <pre class="output-block">
 The temperature is 72 degrees Fahrenheit and the weather is precipitating.
+<<<<<<< HEAD
+=======
+Your guess is as good as mine!
+The temperature is 72 degrees Fahrenheit and the weather is precipitating.
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 Wear a light raincoat and rain shoes.
 Leave your umbrella at home.
 </pre>
@@ -975,6 +1044,10 @@ A few key points related to logic and syntax:
 
 ```python
 # Edit code here so the loop prints out 5 as well
+<<<<<<< HEAD
+=======
+### MD RM START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 x = 0
 
 while x < 5:
@@ -982,6 +1055,7 @@ while x < 5:
   x = x + 1
 
 print("Done.")
+<<<<<<< HEAD
 ```
 
 <pre class="output-block">
@@ -995,6 +1069,11 @@ Done.
 
 ```python
 #@title Solution 1 {display-mode: "form"}
+=======
+### MD RM END
+
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 x = 0
 
 while x <= 5: # Change condition to <=
@@ -1024,6 +1103,7 @@ while x < 5:
 
 print(x) # x remains in the program's memory as its last value in the loop, so print x after the loop
 print("Done.")
+### SL END
 ```
 
 <pre class="output-block">
@@ -1057,6 +1137,9 @@ When talking about this operator, we may say **plus-equals**. However, this is e
 
 ```python
 ## Edit the loop to use the in-place addition operator
+<<<<<<< HEAD
+=======
+### MD RM START
 x = 0
 
 while x < 5:
@@ -1064,7 +1147,22 @@ while x < 5:
   x = x + 1
 
 print("Done.")
+### MD RM END
 
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+x = 0
+
+while x < 5:
+  print(x)
+  x = x + 1
+
+print("Done.")
+<<<<<<< HEAD
+
+=======
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -1136,12 +1234,16 @@ print("Done.")
 # Your code here: print out every number between 10 and 20 (inclusive)
 # BONUS: Edit your code so it only prints the even numbers between 10 and 20 (inclusive)
 
+<<<<<<< HEAD
 
 ```
 
 
 ```python
 #@title Solution {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 x = 10
 
 while x <= 20:
@@ -1149,6 +1251,7 @@ while x <= 20:
   #x = x + 1
   x = x + 2 # Bonus solution
 print("Done.")
+### SL END
 ```
 
 <pre class="output-block">
@@ -1170,11 +1273,15 @@ Done.
 # Your code here: calculate the population size of a colony over 10 generations that
 # doubles in size every generation.
 
+<<<<<<< HEAD
 ```
 
 
 ```python
 #@title Solution {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 generation = 1
 pop_size = 1
 
@@ -1182,6 +1289,7 @@ while generation <= 10:
   print("Population size in generation", generation, "is:", pop_size)
   pop_size *= 2
   generation += 1;
+### SL END
 ```
 
 <pre class="output-block">
@@ -1247,11 +1355,15 @@ Again, syntactically, the colon `:` and indenation are required.
 ```python
 # Your code here: replicate the functionality of the len() function
 
+<<<<<<< HEAD
 ```
 
 
 ```python
 #@title Solution {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 my_string = "Hello world!"
 char_tally = 0
 
@@ -1260,8 +1372,10 @@ for char in my_string:
 
 print(char_tally)
 print(len(my_string))
+### SL END
 ```
 
+<<<<<<< HEAD
 <pre class="output-block">
 12
 
@@ -1269,6 +1383,8 @@ print(len(my_string))
 12
 </pre>
 
+=======
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 We will cover `for` loops much more when we learn about other **iterable** data structures.
 
 ### Review of loops
@@ -1321,7 +1437,11 @@ print("Done.")
 
 TypeError                                 Traceback (most recent call last)
 
+<<<<<<< HEAD
 Cell In[45], line 1
+=======
+Cell In[31], line 1
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ----&gt; 1 for x in 1048:
       2   print(x)
       3 print("Done.")
@@ -1417,12 +1537,16 @@ We learned about the `len()` function yesterday. It takes as input a string argu
 ```python
 # Your code here: reverse a string
 
+<<<<<<< HEAD
 
 ```
 
 
 ```python
 #@title Solution 1 {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 my_string = "stressed"
 my_rev_string = "" # For bonus
 
@@ -1433,6 +1557,17 @@ for str_ind in range(len(my_string)):
   print(rev_char)
 
 print(my_rev_string) # For bonus
+<<<<<<< HEAD
+=======
+
+## Alternate bonus solution without indexing
+
+my_rev_string = ""
+for char in my_string:
+  my_rev_string = char + my_rev_string
+print(my_rev_string)
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -1540,14 +1675,19 @@ Let's break down the last one. We start at index 6, which is the 7th character `
 
 ```python
 # Your code here: reverse a string with slicing only
+<<<<<<< HEAD
 
 ```
 
 
 ```python
 #@title Solution {display-mode: "form"}
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 my_string = "stressed"
 print(my_string[::-1])
+### SL END
 ```
 
 <pre class="output-block">
@@ -1595,6 +1735,7 @@ x = 5
 abs(x) # Here we are using the variable x to reference the value 5, rather than using the value directly
 ```
 
+<<<<<<< HEAD
 
 
 
@@ -1602,6 +1743,8 @@ abs(x) # Here we are using the variable x to reference the value 5, rather than 
 5
 </pre>
 
+=======
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 With the introduction of iterables and indexing, you may begin to see how complicated this can get:
 
 
@@ -1618,14 +1761,23 @@ print(my_string[my_index])
 
 Here are two levels of indirection: the string itself and the index of the character we're accessing.
 
+<<<<<<< HEAD
 > **Exercise**: *CODE GOLF*. Re-write the code to be only one line and produce the same result. This will require removing all indirection.
 
 
 ```python
+=======
+> **EXERCISE**: CODE GOLF. Re-write the above to be only one line and produce the same result. This will require removing all indirection.
+
+
+```python
+### MD RM START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 my_string = "12345"
 my_index = 4
 
 print(my_string[my_index])
+<<<<<<< HEAD
 ```
 
 <pre class="output-block">
@@ -1635,10 +1787,19 @@ print(my_string[my_index])
 ```python
 #@title Solution {display-mode: "form"}
 print("12345"[4])
+=======
+### MD RM END
+
+print("12345"[4]) ### SL
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
 5
+<<<<<<< HEAD
+=======
+5
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 </pre>
 
 While this code without indirection is very succinct and efficient, it is also very inflexible. This works for one case and one case only. If we want to access the first character of the string, or index a different string, we'd have to write additional code. These trade-offs will become more obvious as we introduce more data structures. And we'll re-visit indirection again!
@@ -1672,7 +1833,11 @@ range("hello") # This will fail because the range function expects an integer, n
 
 TypeError                                 Traceback (most recent call last)
 
+<<<<<<< HEAD
 Cell In[64], line 1
+=======
+Cell In[63], line 1
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ----&gt; 1 range("hello") # This will fail because the range function expects an integer, not a string
 
 
@@ -1853,6 +2018,7 @@ Notice that there is no built-in mean() function. There are external libraries t
 
 ```python
 # Your code here
+<<<<<<< HEAD
 
 ```
 
@@ -1860,6 +2026,9 @@ Notice that there is no built-in mean() function. There are external libraries t
 ```python
 #@title Solution {display-mode: "form"}
 print(sum(my_list) / len(my_list))
+=======
+print(sum(my_list) / len(my_list)) ### SL
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -1880,7 +2049,11 @@ print(sum(my_mixed_list))
 
 TypeError                                 Traceback (most recent call last)
 
+<<<<<<< HEAD
 Cell In[72], line 2
+=======
+Cell In[46], line 2
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
       1 my_mixed_list = [1, 2, "hello", 3, 4, 5]
 ----&gt; 2 print(sum(my_mixed_list))
 
@@ -1918,6 +2091,7 @@ marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","V
 
 # Your code here to determine which location Waldo is in (if any!)
 
+<<<<<<< HEAD
 ```
 
 
@@ -1929,6 +2103,9 @@ history_class_students=["Emily","James","Wally","Ella","Jacob","Amelia","Michael
 office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael","Victoria","Samuel","Aubrey","Olive","Nathan","Camila","Gabriel","Isaac","Waldo","Savannah","Gabriella","Nora","Chloe","Zoe","Stella","Riley"]
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 waldo_found = False
 
 if "Waldo" in beach_tourists:
@@ -1953,6 +2130,7 @@ if "Waldo" in marathon_participants:
 
 if not waldo_found:
   print("Waldo isn't in any of these places!")
+### SL END
 ```
 
 <pre class="output-block">
@@ -1986,6 +2164,7 @@ office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael"
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
 # Your code here to concatenate lists and check if Waldo is in any
+<<<<<<< HEAD
 ```
 
 
@@ -1997,12 +2176,16 @@ history_class_students=["Emily","James","Wally","Ella","Jacob","Amelia","Michael
 office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael","Victoria","Samuel","Aubrey","Olive","Nathan","Camila","Gabriel","Isaac","Waldo","Savannah","Gabriella","Nora","Chloe","Zoe","Stella","Riley"]
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 all_names = beach_tourists + music_festival_attendees + history_class_students + office_building_employees + marathon_participants
 
 if "Waldo" in all_names:
   print("Waldo is in one of these locations!")
 else:
   print("Waldo is NOT in any of these locations!")
+### SL END
 ```
 
 <pre class="output-block">
@@ -2082,6 +2265,7 @@ office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael"
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
 # Your code here to determine if Waldo is in any of these locations with a nested list
+<<<<<<< HEAD
 
 ```
 
@@ -2094,6 +2278,9 @@ history_class_students=["Emily","James","Wally","Ella","Jacob","Amelia","Michael
 office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael","Victoria","Samuel","Aubrey","Olive","Nathan","Camila","Gabriel","Isaac","Waldo","Savannah","Gabriella","Nora","Chloe","Zoe","Stella","Riley"]
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
+=======
+#### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 all_names = [ beach_tourists, music_festival_attendees, history_class_students, office_building_employees, marathon_participants ]
 waldo_found = False
 
@@ -2104,7 +2291,11 @@ for location_list in all_names:
 
 if not waldo_found:
   print("Waldo is NOT in any of these locations!")
+<<<<<<< HEAD
 
+=======
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -2181,6 +2372,35 @@ print("The third element of the second list:", [ [1,2,3], [4,5,6] ][1][2])
 The third element of the second list: 6
 </pre>
 
+<<<<<<< HEAD
+=======
+All of this involves more confusing indirection for indexing. For instance, when we do:
+
+
+```python
+my_list1 = [1,2,3]
+my_list2 = [4,5,6]
+
+list_of_lists = [ my_list1, my_list2 ]
+print("The third element of the second list:", list_of_lists[1][2])
+```
+
+<pre class="output-block">
+The third element of the second list: 6
+</pre>
+
+We could equivalently type:
+
+
+```python
+print("The third element of the second list:", [ [1,2,3], [4,5,6] ][1][2])
+```
+
+<pre class="output-block">
+The third element of the second list: 6
+</pre>
+
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 So while indirection can obfuscate some aspects of the code, you can also see how in a way they make it more readable.
 
 #### Nested loops
@@ -2229,6 +2449,7 @@ office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael"
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
 all_names = [ beach_tourists, music_festival_attendees, history_class_students, office_building_employees, marathon_participants ]
+<<<<<<< HEAD
 
 ## Your code here to find the index of Waldo's name
 ```
@@ -2243,7 +2464,11 @@ office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael"
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
 all_names = [ beach_tourists, music_festival_attendees, history_class_students, office_building_employees, marathon_participants ]
+=======
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
+## Your code here to find the index of Waldo's name
+### SL START
 for location_list in all_names:
   for name_index in range(len(location_list)):
     if location_list[name_index] == "Waldo":
@@ -2252,6 +2477,7 @@ for location_list in all_names:
     # Bonus solution
     if "Wal" in location_list[name_index]:
       print("A name starting with 'Wal' is at index", name_index, "in one of the lists!")
+### SL END
 ```
 
 <pre class="output-block">
@@ -2393,6 +2619,7 @@ to_remove = 10
 print("The list is", len(my_list), "elements long and the number", to_remove, "appears", my_list.count(to_remove), "times.")
 
 # Add your code here
+<<<<<<< HEAD
 
 print("The list is", len(my_list), "elements long and the number", to_remove, "appears", my_list.count(to_remove), "times.")
 ```
@@ -2408,8 +2635,12 @@ my_list = [4, 10, 22, 15, 10, 8, 10, 37, 12, 10, 19, 10, 5, 27, 18, 10, 30, 7, 1
 to_remove = 10
 print("The list is", len(my_list), "elements long and the number", to_remove, "appears", my_list.count(to_remove), "times.")
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 while to_remove in my_list:
   my_list.remove(to_remove)
+### SL END
 
 print("The list is", len(my_list), "elements long and the number", to_remove, "appears", my_list.count(to_remove), "times.")
 ```
@@ -2498,6 +2729,7 @@ else:
 all_locations=[ beach_tourists,music_festival_attendees,history_class_students,office_building_employees,marathon_participants ]
 
 # Write your code below to move Waldo
+<<<<<<< HEAD
 
 # Write your code above to move Waldo
 
@@ -2530,6 +2762,9 @@ else:
 # List containing all lists
 all_locations=[ beach_tourists,music_festival_attendees,history_class_students,office_building_employees,marathon_participants ]
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 waldo_found=False
 
 for location in all_locations:
@@ -2545,6 +2780,11 @@ for location in all_locations:
 
 if not waldo_found:
     print("Waldo was not found in any location.")
+<<<<<<< HEAD
+=======
+### SL END
+# Write your code above to move Waldo
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 # Check and print if Waldo is at the beach after the move
 if "Waldo" in beach_tourists:
@@ -2565,7 +2805,11 @@ There are many ways to do this. However, they all have some problems. For instan
 
 Before we move to dictionaries, lets do another code golf exercise.
 
+<<<<<<< HEAD
 > **Exercise**: *CODE GOLF*. Re-write the code block below such that, other than the initializations of the lists, only one line of code is used. However, you must still reference each of the three lists.
+=======
+> **EXERCISE**: CODE GOLF. Re-write the code block below such that, other than the initializations of the lists, only one line of code is used. However, you must still reference each of the three lists.
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 
 ```python
@@ -2578,6 +2822,7 @@ num_from_b = b[num_from_c]
 answer = a[num_from_b]
 
 print("The answer is:", answer)
+<<<<<<< HEAD
 ```
 
 <pre class="output-block">
@@ -2597,6 +2842,15 @@ print("The answer is:", a[b[c[3]]])
 The answer is: correct!
 </pre>
 
+=======
+
+###
+
+print("The answer is:", a[b[c[3]]])  # This is the same as the above code, but more concise ### SL
+
+```
+
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ### Dictionaries
 
 While lists are flexible and intuitive and useful in many cases, one of their main drawbacks is in accessing specific parts of the data. To look up and use a particular list element (e.g. the name "Waldo"), you have to know that element's position(s) within the list, or its **index**. An element's index may not always be easily knowable, especially for large datasets or data that has been generated or parsed programmatically.
@@ -2660,7 +2914,11 @@ my_incorrect_dictionary = { ['key1'] : 1, 'key2' : 3, 'key3' : 6 }
 
 TypeError                                 Traceback (most recent call last)
 
+<<<<<<< HEAD
 Cell In[106], line 1
+=======
+Cell In[75], line 1
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ----&gt; 1 my_incorrect_dictionary = { ['key1'] : 1, 'key2' : 3, 'key3' : 6 }
 
 
@@ -2705,7 +2963,11 @@ print("Value of key 'key7':", my_dictionary['key7'])
 
 KeyError                                  Traceback (most recent call last)
 
+<<<<<<< HEAD
 Cell In[108], line 2
+=======
+Cell In[77], line 2
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
       1 my_dictionary = { 'key1' : 1, 'key2' : 3, 'key3' : 6 }
 ----&gt; 2 print("Value of key 'key7':", my_dictionary['key7'])
 
@@ -2801,6 +3063,7 @@ After removing key 'key1' with del: {'key2': 3, 'key3': 6, 'key4': 10}
 
 ```python
 ## Your code goes here
+<<<<<<< HEAD
 
 ```
 
@@ -2808,6 +3071,9 @@ After removing key 'key1' with del: {'key2': 3, 'key3': 6, 'key4': 10}
 ```python
 #@title Solution {display-mode: "form"}
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 student_grades = { 'Alice' : 85, 'Bob' : 90, 'Wesley' : 100 }
 print("Original grades:", student_grades)
 print("---")
@@ -2816,7 +3082,11 @@ print("New student 'Gregg':", student_grades['Gregg'])
 print("---")
 del(student_grades["Alice"])
 print("Alice moved:", student_grades)
+<<<<<<< HEAD
 
+=======
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -2911,6 +3181,7 @@ office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael"
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
 # Your code to convert these into a dictionary
+<<<<<<< HEAD
 
 ```
 
@@ -2925,6 +3196,9 @@ history_class_students=["Emily","James","Wally","Ella","Jacob","Amelia","Michael
 office_building_employees=["Walter","Charlotte","Alexander","Scarlett","Michael","Victoria","Samuel","Aubrey","Olive","Nathan","Camila","Gabriel","Isaac","Savannah","Gabriella","Nora","Chloe","Zoe","Stella","Riley"]
 marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","Victoria","Archer","Aurora","Brooklyn","Parker","Elias","Adeline","Julia","David","Liam","Josie","Carter","Jaxon"]
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 locations = {
     "beach" : beach_tourists,
     "music-fesitval" : music_festival_attendees,
@@ -2934,7 +3208,11 @@ locations = {
 }
 
 print(locations["office"][2])
+<<<<<<< HEAD
 
+=======
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -2960,6 +3238,7 @@ all_names = [ beach_tourists, music_festival_attendees, history_class_students, 
 key_names = ["beach", "music-festival", "history-class", "office", "marathon"]
 
 # Your code here
+<<<<<<< HEAD
 ```
 
 
@@ -2977,6 +3256,9 @@ marathon_participants=["Daniel","Harper","Henry","Grace","Sebastian","Hannah","V
 all_names = [ beach_tourists, music_festival_attendees, history_class_students, office_building_employees, marathon_participants ]
 key_names = ["beach", "music-festival", "history-class", "office", "marathon"]
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 locations = {}
 
 for i in range(len(key_names)):
@@ -2986,7 +3268,11 @@ for i in range(len(key_names)):
   locations[cur_key] = cur_names
 
 print(locations["office"][2])
+<<<<<<< HEAD
 
+=======
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -3057,6 +3343,7 @@ for i in range(len(key_names)):
   locations[cur_key] = cur_names
 
 # Your code here
+<<<<<<< HEAD
 ```
 
 
@@ -3083,11 +3370,18 @@ for i in range(len(key_names)):
 
   locations[cur_key] = cur_names
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 for location in locations:
   print("Searching for Waldo at the", location)
   if "Waldo" in locations[location]:
     print("Found Waldo at the", location, "!!")
+<<<<<<< HEAD
 
+=======
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
@@ -3226,6 +3520,7 @@ else:
     print("Waldo is not at the marathon.")
 
 # Your code below to move Waldo to the marathon
+<<<<<<< HEAD
 
 # Your code above to move Waldo to the marathon
 
@@ -3264,6 +3559,9 @@ if "Waldo" in locations['marathon']:
 else:
     print("Waldo is not at the marathon.")
 
+=======
+### SL START
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 for location in locations:
     if "Waldo" in locations[location]:
         print("Waldo found at the", location, "- Moving him to the marathon.")
@@ -3276,6 +3574,11 @@ if not waldo_found:
     print("Waldo was not found in any location.")
 else:
     locations['marathon'].append("Waldo")
+<<<<<<< HEAD
+=======
+### SL END
+# Your code above to move Waldo to the marathon
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 # Check and print if Waldo has been moved to the marathon
 if "Waldo" in locations['marathon']:
@@ -3337,7 +3640,11 @@ print("The value at index", current_index, "of", current_key, "is:", my_dictiona
 The value at index 1 of key2 is: 3
 </pre>
 
+<<<<<<< HEAD
 > **Exercise**: *CODE GOLF*. Reduce this block of code to 3 lines (the dictionary initialization + 2 lines of code) and have it produce the same result.
+=======
+> **EXERCISE**: CODE GOLF. Reduce this block of code to 3 lines (the dictionary initialization + 2 lines of code) and have it produce the same result.
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 
 ```python
@@ -3350,6 +3657,7 @@ key3_sum = my_dictionary['key3'][0] + my_dictionary['key3'][1] + my_dictionary['
 print('key1:', key1_sum)
 print('key2:', key2_sum)
 print('key3:', key3_sum)
+<<<<<<< HEAD
 ```
 
 <pre class="output-block">
@@ -3365,12 +3673,28 @@ my_dictionary = { 'key1' : [1,2,3], 'key2' : [2,3,4], 'key3' : [3,4,5] }
 for k in my_dictionary:
     print(k + ':', sum(my_dictionary[k]))
 
+=======
+
+###
+
+### SL START
+my_dictionary = { 'key1' : [1,2,3], 'key2' : [2,3,4], 'key3' : [3,4,5] }
+for k in my_dictionary:
+    print(k + ':', sum(my_dictionary[k]))
+### SL END
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 <pre class="output-block">
 key1: 6
 key2: 9
 key3: 12
+<<<<<<< HEAD
+=======
+key1: 6
+key2: 9
+key3: 12
+>>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 </pre>
 
 ### Other iterables
