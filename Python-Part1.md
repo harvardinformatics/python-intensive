@@ -1555,9 +1555,6 @@ False
     ```
 
     <pre class="output-block">True
-    </pre>
-
-    <pre class="output-block">
     False
     </pre>
 

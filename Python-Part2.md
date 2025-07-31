@@ -2329,10 +2329,7 @@ print("modified again:", my_list)
 print("the last element from the list:", the_last_element)
 ```
 
-<pre class="output-block">original:
-</pre>
-
-<pre class="output-block"> [1, 2, 3, 4, 5, 6]
+<pre class="output-block">original: [1, 2, 3, 4, 5, 6]
 modified: [1, 3, 4, 5, 6]
 the element it removed: 2
 ---

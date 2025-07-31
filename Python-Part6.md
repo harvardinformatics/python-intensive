@@ -21,13 +21,21 @@ For our final section, we are going to do some exploratory analysis of a real wo
 storms_file = 'indiana_storms_full.csv'
 ```
 
-<pre class="output-block">SYSTEM_WGETRC = c:/progra~1/wget/etc/wgetrc
-syswgetrc = C:\bin\programs\gnuwin32/etc/wgetrc
---2025-07-31 12:19:37--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
-Resolving raw.githubusercontent.com... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com|185.199.108.133|:443... connected.
-OpenSSL: error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol
-Unable to establish SSL connection.
+<pre class="output-block">--2025-07-31 16:39:59--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response...
+</pre>
+
+<pre class="output-block">200 OK
+Length: 952491 (930K) [text/plain]
+Saving to: ‘indiana_storms_full.csv.1’
+
+
+          indiana_s   0%[                    ]       0  --.-KB/s               
+indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.02s   
+
+2025-07-31 16:39:59 (39.6 MB/s) - ‘indiana_storms_full.csv.1’ saved [952491/952491]
 </pre>
 
 
@@ -38,67 +46,13 @@ storms_df.head()
 ```
 
 <pre class="output-block">---------------------------------------------------------------------------
-FileNotFoundError                         Traceback (most recent call last)
-Cell In[2], line 2
-      1 import pandas as pd
-----> 2 storms_df = pd.read_csv(storms_file)
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In[2], line 1
+----> 1 import pandas as pd
+      2 storms_df = pd.read_csv(storms_file)
       3 storms_df.head()
 
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:1026, in read_csv(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)
-   1013 kwds_defaults = _refine_defaults_read(
-   1014     dialect,
-   1015     delimiter,
-   (...)   1022     dtype_backend=dtype_backend,
-   1023 )
-   1024 kwds.update(kwds_defaults)
--> 1026 return _read(filepath_or_buffer, kwds)
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:620, in _read(filepath_or_buffer, kwds)
-    617 _validate_names(kwds.get("names", None))
-    619 # Create the parser.
---> 620 parser = TextFileReader(filepath_or_buffer, **kwds)
-    622 if chunksize or iterator:
-    623     return parser
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:1620, in TextFileReader.__init__(self, f, engine, **kwds)
-   1617     self.options["has_index_names"] = kwds["has_index_names"]
-   1619 self.handles: IOHandles | None = None
--> 1620 self._engine = self._make_engine(f, self.engine)
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:1880, in TextFileReader._make_engine(self, f, engine)
-   1878     if "b" not in mode:
-   1879         mode += "b"
--> 1880 self.handles = get_handle(
-   1881     f,
-   1882     mode,
-   1883     encoding=self.options.get("encoding", None),
-   1884     compression=self.options.get("compression", None),
-   1885     memory_map=self.options.get("memory_map", False),
-   1886     is_text=is_text,
-   1887     errors=self.options.get("encoding_errors", "strict"),
-   1888     storage_options=self.options.get("storage_options", None),
-   1889 )
-   1890 assert self.handles is not None
-   1891 f = self.handles.handle
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\common.py:873, in get_handle(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)
-    868 elif isinstance(handle, str):
-    869     # Check whether the filename is to be opened in binary mode.
-    870     # Binary mode does not support 'encoding' and 'newline'.
-    871     if ioargs.encoding and "b" not in ioargs.mode:
-    872         # Encoding
---> 873         handle = open(
-    874             handle,
-    875             ioargs.mode,
-    876             encoding=ioargs.encoding,
-    877             errors=errors,
-    878             newline="",
-    879         )
-    880     else:
-    881         # Binary mode
-    882         handle = open(handle, ioargs.mode)
-
-FileNotFoundError: [Errno 2] No such file or directory: 'indiana_storms_full.csv'
+ModuleNotFoundError: No module named 'pandas'
 </pre>
 
 
@@ -193,7 +147,7 @@ Cell In[6], line 4
 ----> 4 storms_df['BEGIN_DATE_TIME'] = pd.to_datetime(storms_df["BEGIN_DATE_TIME"]+"-0"+storms_df["CZ_TIMEZONE"].str.extract(r'([0-9]+)')[0]+"00", format="mixed", utc=True).dt.tz_convert("-05:00")
       5 storms_df['END_DATE_TIME'] = pd.to_datetime(storms_df["END_DATE_TIME"]+"-0"+storms_df["CZ_TIMEZONE"].str.extract(r'([0-9]+)')[0]+"00", format="mixed", utc=True).dt.tz_convert("-05:00")
 
-NameError: name 'storms_df' is not defined
+NameError: name 'pd' is not defined
 </pre>
 
 Here's what the times look like now:
@@ -629,7 +583,36 @@ county_info = pd.read_html("https://en.wikipedia.org/wiki/List_of_counties_in_In
 county_info = county_info[1]
 ```
 
-<pre class="output-block">Requirement already satisfied: lxml in c:\bin\miniforge3\lib\site-packages (6.0.0)
+<pre class="output-block">Collecting lxml
+</pre>
+
+<pre class="output-block">  Downloading lxml-6.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Downloading lxml-6.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/5.2 MB[0m [31m?[0m eta [36m-:--:--[0m
+</pre>
+
+<pre class="output-block">
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.2/5.2 MB[0m [31m39.1 MB/s[0m eta [36m0:00:00[0m
+[?25h
+</pre>
+
+<pre class="output-block">Installing collected packages: lxml
+</pre>
+
+<pre class="output-block">Successfully installed lxml-6.0.0
+
+[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m A new release of pip is available: [0m[31;49m25.1.1[0m[39;49m -> [0m[32;49m25.2[0m
+[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m To update, run: [0m[32;49mpip install --upgrade pip[0m
+</pre>
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[27], line 2
+      1 get_ipython().system('pip install lxml')
+----> 2 county_info = pd.read_html("https://en.wikipedia.org/wiki/List_of_counties_in_Indiana")
+      3 county_info = county_info[1]
+
+NameError: name 'pd' is not defined
 </pre>
 
 You will need to do some data cleaning to get the county names to match up and to extract the area of each county. Then you will need to merge the two dataframes together. 
@@ -639,20 +622,12 @@ You will need to do some data cleaning to get the county names to match up and t
 county_info[["County", "Area[3][12]"]]
 ```
 
-<pre class="output-block">                County            Area[3][12]
-0         Adams County    339 sq mi (878 km2)
-1         Allen County  657 sq mi (1,702 km2)
-2   Bartholomew County  407 sq mi (1,054 km2)
-3        Benton County  406 sq mi (1,052 km2)
-4     Blackford County    165 sq mi (427 km2)
-..                 ...                    ...
-87   Washington County  514 sq mi (1,331 km2)
-88        Wayne County  402 sq mi (1,041 km2)
-89        Wells County    368 sq mi (953 km2)
-90        White County  505 sq mi (1,308 km2)
-91      Whitley County    336 sq mi (870 km2)
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[28], line 1
+----> 1 county_info[["County", "Area[3][12]"]]
 
-[92 rows x 2 columns]
+NameError: name 'county_info' is not defined
 </pre>
 
 
@@ -667,12 +642,13 @@ storms_merged = pd.merge(storms_df, county_info, left_on="CZ_NAME", right_on="Co
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[29], line 6
+Cell In[29], line 2
+      1 # cleaning county_info
+----> 2 county_info["County"] = county_info["County"].str.replace(" County", "").str.upper()
       3 county_info["Area_sq_mi"] = pd.to_numeric(county_info["Area[3][12]"].str.extract(r'([0-9,]+)')[0])
       5 # merge the two dataframes
-----> 6 storms_merged = pd.merge(storms_df, county_info, left_on="CZ_NAME", right_on="County")
 
-NameError: name 'storms_df' is not defined
+NameError: name 'county_info' is not defined
 </pre>
 
 

@@ -19,13 +19,13 @@ import matplotlib.pyplot as plt
 
 <pre class="output-block">---------------------------------------------------------------------------
 ModuleNotFoundError                       Traceback (most recent call last)
-Cell In[1], line 4
-      2 import numpy as np
+Cell In[1], line 2
+      1 ## Importing libraries
+----> 2 import numpy as np
       3 import pandas as pd
-----> 4 import seaborn as sns
-      5 import matplotlib.pyplot as plt
+      4 import seaborn as sns
 
-ModuleNotFoundError: No module named 'seaborn'
+ModuleNotFoundError: No module named 'numpy'
 </pre>
 
 ## Review of Part 4
@@ -50,19 +50,13 @@ penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytu
 penguins.head()
 ```
 
-<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0  Adelie  Torgersen            39.1           18.7              181.0   
-1  Adelie  Torgersen            39.5           17.4              186.0   
-2  Adelie  Torgersen            40.3           18.0              195.0   
-3  Adelie  Torgersen             NaN            NaN                NaN   
-4  Adelie  Torgersen            36.7           19.3              193.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[2], line 1
+----> 1 penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv')
+      2 penguins.head()
 
-   body_mass_g     sex  year  
-0       3750.0    male  2007  
-1       3800.0  female  2007  
-2       3250.0  female  2007  
-3          NaN     NaN  2007  
-4       3450.0  female  2007
+NameError: name 'pd' is not defined
 </pre>
 
 ## Modifying a dataframe
@@ -81,38 +75,14 @@ penguins_filtered = penguins[penguins['body_mass_g'] > 3300]
 penguins_filtered.head()
 ```
 
-<pre class="output-block">       species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0       Adelie  Torgersen            39.1           18.7              181.0   
-6       Adelie  Torgersen            38.9           17.8              181.0   
-38      Adelie      Dream            37.6           19.3              181.0   
-58      Adelie     Biscoe            36.5           16.6              181.0   
-108     Adelie     Biscoe            38.1           17.0              181.0   
-293  Chinstrap      Dream            58.0           17.8              181.0   
-296  Chinstrap      Dream            42.4           17.3              181.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[3], line 1
+----> 1 print(penguins[penguins['flipper_length_mm'] == 181.0])
+      3 #Saving as new data frame:
+      4 penguins_filtered = penguins[penguins['body_mass_g'] > 3300]
 
-     body_mass_g     sex  year  
-0         3750.0    male  2007  
-6         3625.0  female  2007  
-38        3300.0  female  2007  
-58        2850.0  female  2008  
-108       3175.0  female  2009  
-293       3700.0  female  2007  
-296       3600.0  female  2007
-</pre>
-
-<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0  Adelie  Torgersen            39.1           18.7              181.0   
-1  Adelie  Torgersen            39.5           17.4              186.0   
-4  Adelie  Torgersen            36.7           19.3              193.0   
-5  Adelie  Torgersen            39.3           20.6              190.0   
-6  Adelie  Torgersen            38.9           17.8              181.0   
-
-   body_mass_g     sex  year  
-0       3750.0    male  2007  
-1       3800.0  female  2007  
-4       3450.0  female  2007  
-5       3650.0    male  2007  
-6       3625.0  female  2007
+NameError: name 'penguins' is not defined
 </pre>
 
 We can get more advanced with our filtering logic by adding multiple conditions and the following logical operators:
@@ -132,19 +102,13 @@ penguins_filtered = penguins[(penguins['body_mass_g'] > 3300) & (penguins['bill_
 penguins_filtered.head()
 ```
 
-<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0  Adelie  Torgersen            39.1           18.7              181.0   
-1  Adelie  Torgersen            39.5           17.4              186.0   
-5  Adelie  Torgersen            39.3           20.6              190.0   
-6  Adelie  Torgersen            38.9           17.8              181.0   
-7  Adelie  Torgersen            39.2           19.6              195.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[4], line 1
+----> 1 penguins_filtered = penguins[(penguins['body_mass_g'] > 3300) & (penguins['bill_length_mm'] > 38)]
+      3 penguins_filtered.head()
 
-   body_mass_g     sex  year  
-0       3750.0    male  2007  
-1       3800.0  female  2007  
-5       3650.0    male  2007  
-6       3625.0  female  2007  
-7       4675.0    male  2007
+NameError: name 'penguins' is not defined
 </pre>
 
 Pandas also has a helper function called `.isin()` that is similar to the `in` operator in base python. It allows you to filter a dataframe based on whether a column value is in a list of values.
@@ -154,33 +118,12 @@ Pandas also has a helper function called `.isin()` that is similar to the `in` o
 penguins[penguins['species'].isin(['Adelie', 'Gentoo'])]
 ```
 
-<pre class="output-block">    species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0    Adelie  Torgersen            39.1           18.7              181.0   
-1    Adelie  Torgersen            39.5           17.4              186.0   
-2    Adelie  Torgersen            40.3           18.0              195.0   
-3    Adelie  Torgersen             NaN            NaN                NaN   
-4    Adelie  Torgersen            36.7           19.3              193.0   
-..      ...        ...             ...            ...                ...   
-271  Gentoo     Biscoe             NaN            NaN                NaN   
-272  Gentoo     Biscoe            46.8           14.3              215.0   
-273  Gentoo     Biscoe            50.4           15.7              222.0   
-274  Gentoo     Biscoe            45.2           14.8              212.0   
-275  Gentoo     Biscoe            49.9           16.1              213.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[5], line 1
+----> 1 penguins[penguins['species'].isin(['Adelie', 'Gentoo'])]
 
-     body_mass_g     sex  year  
-0         3750.0    male  2007  
-1         3800.0  female  2007  
-2         3250.0  female  2007  
-3            NaN     NaN  2007  
-4         3450.0  female  2007  
-..           ...     ...   ...  
-271          NaN     NaN  2009  
-272       4850.0  female  2009  
-273       5750.0    male  2009  
-274       5200.0  female  2009  
-275       5400.0    male  2009  
-
-[276 rows x 8 columns]
+NameError: name 'penguins' is not defined
 </pre>
 
 > Exercise: filter the dataframe to only keep the birds observed in the `year` 2007 and with a `bill_length_mm` greater than 38mm
@@ -192,33 +135,13 @@ penguins[penguins['species'].isin(['Adelie', 'Gentoo'])]
 penguins[(penguins["year"] == 2007) & (penguins["bill_length_mm"] > 38)]
 ```
 
-<pre class="output-block">       species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0       Adelie  Torgersen            39.1           18.7              181.0   
-1       Adelie  Torgersen            39.5           17.4              186.0   
-2       Adelie  Torgersen            40.3           18.0              195.0   
-5       Adelie  Torgersen            39.3           20.6              190.0   
-6       Adelie  Torgersen            38.9           17.8              181.0   
-..         ...        ...             ...            ...                ...   
-297  Chinstrap      Dream            48.5           17.5              191.0   
-298  Chinstrap      Dream            43.2           16.6              187.0   
-299  Chinstrap      Dream            50.6           19.4              193.0   
-300  Chinstrap      Dream            46.7           17.9              195.0   
-301  Chinstrap      Dream            52.0           19.0              197.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[6], line 3
+      1 # Your code here
+----> 3 penguins[(penguins["year"] == 2007) & (penguins["bill_length_mm"] > 38)]
 
-     body_mass_g     sex  year  
-0         3750.0    male  2007  
-1         3800.0  female  2007  
-2         3250.0  female  2007  
-5         3650.0    male  2007  
-6         3625.0  female  2007  
-..           ...     ...   ...  
-297       3400.0    male  2007  
-298       2900.0  female  2007  
-299       3800.0    male  2007  
-300       3300.0  female  2007  
-301       4150.0    male  2007  
-
-[89 rows x 8 columns]
+NameError: name 'penguins' is not defined
 </pre>
 
 We can also filter based on strings, not just numbers! For this, you will want to use a string matching function from python, such as `.str.contains()` (which also a partial match), `.str.startswith()` (checks to see if a value starts with a given string), or others.
@@ -230,33 +153,13 @@ penguins_filtered = penguins[penguins['species'].str.contains('Adel', case=False
 penguins_filtered
 ```
 
-<pre class="output-block">    species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0    Adelie  Torgersen            39.1           18.7              181.0   
-1    Adelie  Torgersen            39.5           17.4              186.0   
-2    Adelie  Torgersen            40.3           18.0              195.0   
-3    Adelie  Torgersen             NaN            NaN                NaN   
-4    Adelie  Torgersen            36.7           19.3              193.0   
-..      ...        ...             ...            ...                ...   
-147  Adelie      Dream            36.6           18.4              184.0   
-148  Adelie      Dream            36.0           17.8              195.0   
-149  Adelie      Dream            37.8           18.1              193.0   
-150  Adelie      Dream            36.0           17.1              187.0   
-151  Adelie      Dream            41.5           18.5              201.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[7], line 1
+----> 1 penguins_filtered = penguins[penguins['species'].str.contains('Adel', case=False)]
+      3 penguins_filtered
 
-     body_mass_g     sex  year  
-0         3750.0    male  2007  
-1         3800.0  female  2007  
-2         3250.0  female  2007  
-3            NaN     NaN  2007  
-4         3450.0  female  2007  
-..           ...     ...   ...  
-147       3475.0  female  2009  
-148       3450.0  female  2009  
-149       3750.0    male  2009  
-150       3700.0  female  2009  
-151       4000.0    male  2009  
-
-[152 rows x 8 columns]
+NameError: name 'penguins' is not defined
 </pre>
 
 In the above example, this code looks for the string 'Adel' (case-insensitive, as we specify `case=False`) and only takes rows that contain the string somewhere in the `species` column.
@@ -274,11 +177,14 @@ ser2 = pd.Series([1, 2, np.nan, 4])
 ser1 + ser2
 ```
 
-<pre class="output-block">0    NaN
-1    NaN
-2    NaN
-3    7.0
-dtype: float64
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[8], line 1
+----> 1 ser1 = pd.Series([np.nan, np.nan, 2, 3])
+      2 ser2 = pd.Series([1, 2, np.nan, 4])
+      3 ser1 + ser2
+
+NameError: name 'pd' is not defined
 </pre>
 
 When using descriptive statistics and computational methods like `.sum()`, `.mean()`, pandas will ignore missing values and treat them like zero. 
@@ -290,8 +196,13 @@ print(ser1.sum())
 print(ser1.mean())
 ```
 
-<pre class="output-block">5.0
-2.5
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[9], line 1
+----> 1 print(ser1.sum())
+      3 print(ser1.mean())
+
+NameError: name 'ser1' is not defined
 </pre>
 
 This behavior can be changed by using the `skipna` argument, which is `True` by default. If you set `skipna=False`, pandas will treat missing values as `NaN` and will not ignore them, resulting in the whole operation returning `NaN`.
@@ -301,7 +212,12 @@ This behavior can be changed by using the `skipna` argument, which is `True` by 
 print(ser1.mean(skipna=False))
 ```
 
-<pre class="output-block">nan
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[10], line 1
+----> 1 print(ser1.mean(skipna=False))
+
+NameError: name 'ser1' is not defined
 </pre>
 
 
@@ -314,21 +230,13 @@ penguins_nona = penguins.dropna()
 penguins_nona.info()
 ```
 
-<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
-Index: 333 entries, 0 to 343
-Data columns (total 8 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   species            333 non-null    object 
- 1   island             333 non-null    object 
- 2   bill_length_mm     333 non-null    float64
- 3   bill_depth_mm      333 non-null    float64
- 4   flipper_length_mm  333 non-null    float64
- 5   body_mass_g        333 non-null    float64
- 6   sex                333 non-null    object 
- 7   year               333 non-null    int64  
-dtypes: float64(4), int64(1), object(3)
-memory usage: 23.4+ KB
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[11], line 1
+----> 1 penguins_nona = penguins.dropna()
+      3 penguins_nona.info()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 
@@ -338,21 +246,13 @@ penguins_nona_bill_len = penguins.dropna(subset=["bill_length_mm"])
 penguins_nona_bill_len.info()
 ```
 
-<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
-Index: 342 entries, 0 to 343
-Data columns (total 8 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   species            342 non-null    object 
- 1   island             342 non-null    object 
- 2   bill_length_mm     342 non-null    float64
- 3   bill_depth_mm      342 non-null    float64
- 4   flipper_length_mm  342 non-null    float64
- 5   body_mass_g        342 non-null    float64
- 6   sex                333 non-null    object 
- 7   year               342 non-null    int64  
-dtypes: float64(4), int64(1), object(3)
-memory usage: 24.0+ KB
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[12], line 1
+----> 1 penguins_nona_bill_len = penguins.dropna(subset=["bill_length_mm"])
+      3 penguins_nona_bill_len.info()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 Alternatively, you may want to fill in missing values with a specific value. You can do this using the `.fillna()` method.
@@ -372,29 +272,14 @@ penguins["body_mass_z"] = (penguins["body_mass_g"] - penguins["body_mass_g"].mea
 penguins.head(10)
 ```
 
-<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0  Adelie  Torgersen            39.1           18.7              181.0   
-1  Adelie  Torgersen            39.5           17.4              186.0   
-2  Adelie  Torgersen            40.3           18.0              195.0   
-3  Adelie  Torgersen             NaN            NaN                NaN   
-4  Adelie  Torgersen            36.7           19.3              193.0   
-5  Adelie  Torgersen            39.3           20.6              190.0   
-6  Adelie  Torgersen            38.9           17.8              181.0   
-7  Adelie  Torgersen            39.2           19.6              195.0   
-8  Adelie  Torgersen            34.1           18.1              193.0   
-9  Adelie  Torgersen            42.0           20.2              190.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[13], line 3
+      1 # Z-transform the body mass column
+----> 3 penguins["body_mass_z"] = (penguins["body_mass_g"] - penguins["body_mass_g"].mean()) / penguins["body_mass_g"].std()
+      5 penguins.head(10)
 
-   body_mass_g     sex  year  body_mass_z  
-0       3750.0    male  2007    -0.563317  
-1       3800.0  female  2007    -0.500969  
-2       3250.0  female  2007    -1.186793  
-3          NaN     NaN  2007          NaN  
-4       3450.0  female  2007    -0.937403  
-5       3650.0    male  2007    -0.688012  
-6       3625.0  female  2007    -0.719186  
-7       4675.0    male  2007     0.590115  
-8       3475.0     NaN  2007    -0.906229  
-9       4250.0     NaN  2007     0.060160
+NameError: name 'penguins' is not defined
 </pre>
 
 >**Exercise:** We can use multiple columns in the calculation of the new column. Create a column that contains the volume of the penguin's beak by assuming it is a cylinder, with `bill_length_mm` as the height and `bill_depth_mm` as the diameter. 
@@ -412,19 +297,14 @@ penguins["bill_volume"] = (penguins["bill_depth_mm"]/2)**2 * np.pi * penguins["b
 penguins.head()
 ```
 
-<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0  Adelie  Torgersen            39.1           18.7              181.0   
-1  Adelie  Torgersen            39.5           17.4              186.0   
-2  Adelie  Torgersen            40.3           18.0              195.0   
-3  Adelie  Torgersen             NaN            NaN                NaN   
-4  Adelie  Torgersen            36.7           19.3              193.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[14], line 3
+      1 # Your code here
+----> 3 penguins["bill_volume"] = (penguins["bill_depth_mm"]/2)**2 * np.pi * penguins["bill_length_mm"]
+      5 penguins.head()
 
-   body_mass_g     sex  year  body_mass_z   bill_volume  
-0       3750.0    male  2007    -0.563317  10738.654055  
-1       3800.0  female  2007    -0.500969   9392.592344  
-2       3250.0  female  2007    -1.186793  10255.100899  
-3          NaN     NaN  2007          NaN           NaN  
-4       3450.0  female  2007    -0.937403  10736.693701
+NameError: name 'penguins' is not defined
 </pre>
 
 ### Summarizing your data
@@ -436,31 +316,12 @@ Another common task in data analysis is to calculate summary statistics of your 
 penguins.describe(include='all')
 ```
 
-<pre class="output-block">       species  island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-count      344     344      342.000000     342.000000         342.000000   
-unique       3       3             NaN            NaN                NaN   
-top     Adelie  Biscoe             NaN            NaN                NaN   
-freq       152     168             NaN            NaN                NaN   
-mean       NaN     NaN       43.921930      17.151170         200.915205   
-std        NaN     NaN        5.459584       1.974793          14.061714   
-min        NaN     NaN       32.100000      13.100000         172.000000   
-25%        NaN     NaN       39.225000      15.600000         190.000000   
-50%        NaN     NaN       44.450000      17.300000         197.000000   
-75%        NaN     NaN       48.500000      18.700000         213.000000   
-max        NaN     NaN       59.600000      21.500000         231.000000   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[15], line 1
+----> 1 penguins.describe(include='all')
 
-        body_mass_g   sex         year   body_mass_z   bill_volume  
-count    342.000000   333   344.000000  3.420000e+02    342.000000  
-unique          NaN     2          NaN           NaN           NaN  
-top             NaN  male          NaN           NaN           NaN  
-freq            NaN   168          NaN           NaN           NaN  
-mean    4201.754386   NaN  2008.029070  1.246566e-16  10216.041172  
-std      801.954536   NaN     0.818356  1.000000e+00   2468.270185  
-min     2700.000000   NaN  2007.000000 -1.872618e+00   5782.155471  
-25%     3550.000000   NaN  2007.000000 -8.127074e-01   8433.676950  
-50%     4050.000000   NaN  2008.000000 -1.892307e-01   9954.426135  
-75%     4750.000000   NaN  2009.000000  6.836368e-01  11537.641963  
-max     6300.000000   NaN  2009.000000  2.616415e+00  18416.870649
+NameError: name 'penguins' is not defined
 </pre>
 
 
@@ -468,11 +329,12 @@ max     6300.000000   NaN  2009.000000  2.616415e+00  18416.870649
 penguins.describe(include='object')
 ```
 
-<pre class="output-block">       species  island   sex
-count      344     344   333
-unique       3       3     2
-top     Adelie  Biscoe  male
-freq       152     168   168
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[16], line 1
+----> 1 penguins.describe(include='object')
+
+NameError: name 'penguins' is not defined
 </pre>
 
 ### Grouping and transforming your data
@@ -491,7 +353,13 @@ penguin_groups = penguins.groupby('species')
 print(penguin_groups)
 ```
 
-<pre class="output-block"><pandas.core.groupby.generic.DataFrameGroupBy object at 0x00000230B3808AA0>
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[17], line 1
+----> 1 penguin_groups = penguins.groupby('species')
+      2 print(penguin_groups)
+
+NameError: name 'penguins' is not defined
 </pre>
 
 We can see that on its own this is not especially useful, as grouping the DataFrame does not produce a new DataFrame (just this weird output message telling us that this is a `DataFrameGroupBy` object). In order to output a DataFrame, we need to pass the grouped DataFrame to some function that aggregates or transforms the data in each group.
@@ -504,11 +372,13 @@ We group our data, select the column we want to aggregate (in this case, `flippe
 penguins.groupby('species')['flipper_length_mm'].mean()
 ```
 
-<pre class="output-block">species
-Adelie       189.953642
-Chinstrap    195.823529
-Gentoo       217.186992
-Name: flipper_length_mm, dtype: float64
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[18], line 2
+      1 #Note the square brackets around the column name
+----> 2 penguins.groupby('species')['flipper_length_mm'].mean()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 When we apply the `.mean()` method to the grouped dataframe, it returns a `Series` object with the mean flipper length of each species. The exact details of whether pandas returns a `groupby` object as a Series or a DataFrame gets a little technical; for our purposes, just know that you can make sure the returned object is converted to a DataFrame (which is usually most convenient) by using the `.reset_index` function:
@@ -518,10 +388,12 @@ When we apply the `.mean()` method to the grouped dataframe, it returns a `Serie
 penguins.groupby('species')['flipper_length_mm'].mean().reset_index()
 ```
 
-<pre class="output-block">     species  flipper_length_mm
-0     Adelie         189.953642
-1  Chinstrap         195.823529
-2     Gentoo         217.186992
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[19], line 1
+----> 1 penguins.groupby('species')['flipper_length_mm'].mean().reset_index()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 We can group by multiple columns by passing a *list of column names* to the `.groupby()` method (and using `reset_index()` as before to have it output as a DataFrame): 
@@ -531,13 +403,12 @@ We can group by multiple columns by passing a *list of column names* to the `.gr
 penguins.groupby(['species', 'sex'])['flipper_length_mm'].mean().reset_index()
 ```
 
-<pre class="output-block">     species     sex  flipper_length_mm
-0     Adelie  female         187.794521
-1     Adelie    male         192.410959
-2  Chinstrap  female         191.735294
-3  Chinstrap    male         199.911765
-4     Gentoo  female         212.706897
-5     Gentoo    male         221.540984
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[20], line 1
+----> 1 penguins.groupby(['species', 'sex'])['flipper_length_mm'].mean().reset_index()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 So far we have just been applying the `.mean` function to our groups, but we can use other functions as well! One very useful function to know when grouping is `.size()`, which will return the number of rows in each group.
@@ -547,14 +418,12 @@ So far we have just been applying the `.mean` function to our groups, but we can
 penguins.groupby(['species', 'sex']).size()
 ```
 
-<pre class="output-block">species    sex   
-Adelie     female    73
-           male      73
-Chinstrap  female    34
-           male      34
-Gentoo     female    58
-           male      61
-dtype: int64
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[21], line 1
+----> 1 penguins.groupby(['species', 'sex']).size()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 >**Exercise:** Use grouping to answer the following question about the penguins dataset: Which island has the most Adelie penguins?
@@ -568,13 +437,13 @@ dtype: int64
 penguins.groupby(['species', 'island']).size()
 ```
 
-<pre class="output-block">species    island   
-Adelie     Biscoe        44
-           Dream         56
-           Torgersen     52
-Chinstrap  Dream         68
-Gentoo     Biscoe       124
-dtype: int64
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[22], line 3
+      1 # Your code here
+----> 3 penguins.groupby(['species', 'island']).size()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 > Now try your previous code with the order of the columns to group by switched. What changes?
@@ -584,13 +453,12 @@ dtype: int64
 penguins.groupby(['island', 'species']).size()
 ```
 
-<pre class="output-block">island     species  
-Biscoe     Adelie        44
-           Gentoo       124
-Dream      Adelie        56
-           Chinstrap     68
-Torgersen  Adelie        52
-dtype: int64
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[23], line 1
+----> 1 penguins.groupby(['island', 'species']).size()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 This shows us that grouping occurs **hierarchically**, meaning pandas groups data in the order that you specify in! In our case the result is the same (i.e. the counts are equal no matter which column you group on first), but one way is more readily readable for our question than the other. 
@@ -621,13 +489,13 @@ penguins["body_mass_kg"] = penguins["body_mass_g"] / 1000
 penguins.groupby(['species', 'sex'])["body_mass_kg"].mean().reset_index()
 ```
 
-<pre class="output-block">     species     sex  body_mass_kg
-0     Adelie  female      3.368836
-1     Adelie    male      4.043493
-2  Chinstrap  female      3.527206
-3  Chinstrap    male      3.938971
-4     Gentoo  female      4.679741
-5     Gentoo    male      5.484836
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[24], line 1
+----> 1 penguins["body_mass_kg"] = penguins["body_mass_g"] / 1000
+      3 penguins.groupby(['species', 'sex'])["body_mass_kg"].mean().reset_index()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 > **Exercise**: using the `.max()` function, find the largest bird on each island.
@@ -637,11 +505,12 @@ penguins.groupby(['species', 'sex'])["body_mass_kg"].mean().reset_index()
 penguins.groupby('island')['body_mass_g'].max()
 ```
 
-<pre class="output-block">island
-Biscoe       6300.0
-Dream        4800.0
-Torgersen    4700.0
-Name: body_mass_g, dtype: float64
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[25], line 1
+----> 1 penguins.groupby('island')['body_mass_g'].max()
+
+NameError: name 'penguins' is not defined
 </pre>
 
 ## Seaborn
@@ -670,19 +539,13 @@ penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytu
 penguins.head()
 ```
 
-<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
-0  Adelie  Torgersen            39.1           18.7              181.0   
-1  Adelie  Torgersen            39.5           17.4              186.0   
-2  Adelie  Torgersen            40.3           18.0              195.0   
-3  Adelie  Torgersen             NaN            NaN                NaN   
-4  Adelie  Torgersen            36.7           19.3              193.0   
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[26], line 1
+----> 1 penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv')
+      2 penguins.head()
 
-   body_mass_g     sex  year  
-0       3750.0    male  2007  
-1       3800.0  female  2007  
-2       3250.0  female  2007  
-3          NaN     NaN  2007  
-4       3450.0  female  2007
+NameError: name 'pd' is not defined
 </pre>
 
 
@@ -774,13 +637,24 @@ NameError: name 'sns' is not defined
 storms_file = 'indiana_storms_full.csv'
 ```
 
-<pre class="output-block">SYSTEM_WGETRC = c:/progra~1/wget/etc/wgetrc
-syswgetrc = C:\bin\programs\gnuwin32/etc/wgetrc
---2025-07-31 12:19:32--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
-Resolving raw.githubusercontent.com... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com|185.199.108.133|:443... connected.
-OpenSSL: error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol
-Unable to establish SSL connection.
+<pre class="output-block">--2025-07-31 16:39:57--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response...
+</pre>
+
+<pre class="output-block">200 OK
+Length: 952491 (930K) [text/plain]
+Saving to: ‘indiana_storms_full.csv’
+
+
+indiana_storms_full   0%[                    ]       0  --.-KB/s
+</pre>
+
+<pre class="output-block">
+indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.02s   
+
+2025-07-31 16:39:57 (39.4 MB/s) - ‘indiana_storms_full.csv’ saved [952491/952491]
 </pre>
 
 
@@ -790,66 +664,12 @@ storms_df.head()
 ```
 
 <pre class="output-block">---------------------------------------------------------------------------
-FileNotFoundError                         Traceback (most recent call last)
+NameError                                 Traceback (most recent call last)
 Cell In[33], line 1
 ----> 1 storms_df = pd.read_csv(storms_file)
       2 storms_df.head()
 
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:1026, in read_csv(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)
-   1013 kwds_defaults = _refine_defaults_read(
-   1014     dialect,
-   1015     delimiter,
-   (...)   1022     dtype_backend=dtype_backend,
-   1023 )
-   1024 kwds.update(kwds_defaults)
--> 1026 return _read(filepath_or_buffer, kwds)
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:620, in _read(filepath_or_buffer, kwds)
-    617 _validate_names(kwds.get("names", None))
-    619 # Create the parser.
---> 620 parser = TextFileReader(filepath_or_buffer, **kwds)
-    622 if chunksize or iterator:
-    623     return parser
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:1620, in TextFileReader.__init__(self, f, engine, **kwds)
-   1617     self.options["has_index_names"] = kwds["has_index_names"]
-   1619 self.handles: IOHandles | None = None
--> 1620 self._engine = self._make_engine(f, self.engine)
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\parsers\readers.py:1880, in TextFileReader._make_engine(self, f, engine)
-   1878     if "b" not in mode:
-   1879         mode += "b"
--> 1880 self.handles = get_handle(
-   1881     f,
-   1882     mode,
-   1883     encoding=self.options.get("encoding", None),
-   1884     compression=self.options.get("compression", None),
-   1885     memory_map=self.options.get("memory_map", False),
-   1886     is_text=is_text,
-   1887     errors=self.options.get("encoding_errors", "strict"),
-   1888     storage_options=self.options.get("storage_options", None),
-   1889 )
-   1890 assert self.handles is not None
-   1891 f = self.handles.handle
-
-File C:\bin\miniforge3\Lib\site-packages\pandas\io\common.py:873, in get_handle(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)
-    868 elif isinstance(handle, str):
-    869     # Check whether the filename is to be opened in binary mode.
-    870     # Binary mode does not support 'encoding' and 'newline'.
-    871     if ioargs.encoding and "b" not in ioargs.mode:
-    872         # Encoding
---> 873         handle = open(
-    874             handle,
-    875             ioargs.mode,
-    876             encoding=ioargs.encoding,
-    877             errors=errors,
-    878             newline="",
-    879         )
-    880     else:
-    881         # Binary mode
-    882         handle = open(handle, ioargs.mode)
-
-FileNotFoundError: [Errno 2] No such file or directory: 'indiana_storms_full.csv'
+NameError: name 'pd' is not defined
 </pre>
 
 ---
