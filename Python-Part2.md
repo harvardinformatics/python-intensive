@@ -29,7 +29,7 @@ This workshop exists as a **Jupyter notebook**. You can participate in this work
 
 ---
 
-<details>
+<details markdown>
 <summary>Click to show instructions for loading the notebook locally</summary>
 
 
