@@ -4,7 +4,7 @@
 
 This workshop is in the form of [Jupyter](https://jupyter.org/) notebooks (`.ipynb`). When running the workshop, students run the notebook on [Google colab](https://colab.research.google.com/), ensuring easy setup and equivalent environments for all students. We also convert and host these notebooks on our website. In order to have hidden and expandable "Solution" code blocks for exercises in both contexts, there are a few things we need to do while editing the notebooks. These should require minimal effort on our part.
 
-### When editing a notebook
+### When editing a notebook (`Python-PartN.ipynb`)
 
 > ⚠️ **Important:** **You only ever need to edit the regular notebooks (`Python-PartN.ipynb`)! Do not edit `*-student.ipynb` files or `*.md` files directly! Your edits will be overwritten.** See below for explanations of these files.
 
