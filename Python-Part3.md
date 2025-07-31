@@ -1,16 +1,16 @@
 ---
-title: "[Workshop] Python intensive, day 3"
+title: "[Workshop] Python intensive, part 3"
 description: "More on writing your own functions, debugging strategies, and exception handling in Python."
 authors:
     - Lei Ma
     - Tim Sackton
 ---
 
-# Python intensive, day 3
+# Python intensive, part 3
 
-## Review of Days 1 + 2
+## Review of Parts 1 + 2
 
-Welcome to day 3 of our python intensive course. This is the last day of the "introduction to computer science" part of the course, after which we will move on to the "introduction to data science" part. Let's review what we have learned so far:
+Welcome to Part 3 of our python intensive course. This is the last part of the "introduction to programming" part of the course, after which we will move on to the "introduction to data science" part. Let's review what we have learned so far:
 
 1. A computer program is a sequence of instructions that is read from top to bottom and executed by the computer. You need to give it extremely precise instructions. It's helpful to use **pseudocode** to plan our the logic of your program before you apply the **syntax** of your programming language.
 2. **Variables** are assigned to data using the `=` operator.
@@ -22,13 +22,13 @@ Welcome to day 3 of our python intensive course. This is the last day of the "in
 8. **Lists** are a basic data structure that store multiple values. They are indexed by their position in the list.
 9. While learning about lists, we learned about methods, which are functions that are attached to objects and can modify that object **in place** or give you information about that object.
 10. **Dictionaries** are another type of basic data structure that store key-value pairs. They are indexed by their keys.
-11. How to write **functions** of your own and either print the results or return the values.
+
 
 ### Jokes
 
-To re-iterate some of the concepts we talked about at the beginning of yesterday's workshop, let's start with a joke about computer programmers.
+To re-iterate some of the concepts we talked about in the previous parts of the workshop, let's start with a joke about computer programmers.
 
-Sam asks their computer programmer spouse to go get some groceries. Sam tells him, "Please go to the store to get some groceries. Buy a loaf of bread. If they have eggs, get a dozen." The spouse comes back with 13 loaves of bread. This joke is funny if you understand how computer programs evaluate commands.
+Sam asks their computer programmer spouse to go get some groceries. Sam tells him, "Please go to the store to get some groceries. Buy a loaf of bread. If they have eggs, get a dozen." The spouse comes back with 13 loaves of bread.
 
 Below is some pseudocode that represents what the computer programmer did.
 
@@ -93,45 +93,15 @@ In programming terms, this is referred to as **importing a library**. The **libr
 
 For instance, there is no built-in function in Python to calculate the log of a number:
 
-### Jokes
-
-To re-iterate some of the concepts we talked about at the beginning of yesterday's workshop, let's start with a joke about computer programmers.
-
-Sam asks their computer programmer spouse to go get some groceries. Sam tells him, "Please go to the store to get some groceries. Buy a loaf of bread. If they have eggs, get a dozen." The spouse comes back with 13 loaves of bread. This joke is funny if you understand how computer programs evaluate commands.
-
-Below is some pseudocode that represents what the computer programmer did.
-
-```
-go to the store
-
-loaf_of_bread = 1
-if eggs:
-    loaf_of_bread += 12
-```
-
-This joke illustrates that what may make sense in natural language does not immediately translate to computer language. And therefore we have to be really specific, giving every instruction even, when we're programming.
-
 
 ```python
 print(log(100))
 ```
 
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-
+<pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-
-
-&lt;ipython-input-1-85d71efb1520&gt; in &lt;cell line: 1&gt;()
-
-
-----&gt; 1 print(log(100))
-
-
-
-
+Cell In[1], line 1
+----> 1 print(log(100))
 
 NameError: name 'log' is not defined
 </pre>
@@ -144,8 +114,7 @@ import math
 print(math.log(100))
 ```
 
-<pre class="output-block">
-4.605170185988092
+<pre class="output-block">4.605170185988092
 </pre>
 
 Note that by default it does natural log.
@@ -160,8 +129,7 @@ from math import log
 print(log(100))
 ```
 
-<pre class="output-block">
-4.605170185988092
+<pre class="output-block">4.605170185988092
 </pre>
 
 One could also declare an **alias** for the library if you want to still import the whole library but not have to type the the complete name of it every time:
@@ -172,8 +140,7 @@ import math as m
 print(m.log(100))
 ```
 
-<pre class="output-block">
-4.605170185988092
+<pre class="output-block">4.605170185988092
 </pre>
 
 This means `m` exists as an object in your program (just as if you'd assigned it with `=`). But of course, this means you can't use `m` as an object name anywhere else in the program:
@@ -187,35 +154,19 @@ m = "hello world!"
 print(m.log(100))
 ```
 
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-
+<pre class="output-block">---------------------------------------------------------------------------
 AttributeError                            Traceback (most recent call last)
-
-
-&lt;ipython-input-7-b08afa73f34c&gt; in &lt;cell line: 5&gt;()
-
-
+Cell In[5], line 5
+      1 import math as m
       3 m = "hello world!"
-
-
-      4 
-
-
-----&gt; 5 print(m.log(100))
-
-
-
-
+----> 5 print(m.log(100))
 
 AttributeError: 'str' object has no attribute 'log'
 </pre>
 
 There are many, many libraries out there. Some are pre-installed with Python (like `math`), but others you may find and have to install for yourself. Hopefully the authors have easy and clear instructions for installation...
 
-In later days, we'll work with some libraries meant for data analysis, `numpy` and `pandas`.
+In later days, we'll work with some libraries meant for data analysis and visualization, `pandas` and `seaborn`.
 
 ## Writing functions
 
@@ -236,7 +187,7 @@ Functions are meant to do one thing, just like a sentence is meant to express a 
 
 ### Function syntax
 
-When writing a function, you must start the line with the `def` keyword, which stands for *define*. Then you can give the function a name. The name can be anything, as long as the name abides by the standard object naming conventions (see Day 1). Then you type parentheses `()` followed by a colon `:`:
+When writing a function, you must start the line with the `def` keyword, which stands for *define*. Then you can give the function a name. The name can be anything, as long as the name abides by the standard object naming conventions (see Part 1). Then you type parentheses `()` followed by a colon `:`:
 
 ```
 def my_function():
@@ -259,8 +210,7 @@ Nothing! Because though we've defined the function, we haven't yet **called** it
 my_function()
 ```
 
-<pre class="output-block">
-hello world!
+<pre class="output-block">hello world!
 </pre>
 
 Great! Now anytime we want to print "hello world!" all we have to do is type `my_function()`!
@@ -273,31 +223,55 @@ Well, ok so that's not very useful. Let's make a more interesting function.
 ```python
 import random # This is a built-in Python library for random-number generation tasks (such as randomly selecting an element from a list)
 
-# Your code here: move the code into a function called magic_8_ball()
-def magic_8_ball():
-    # List of possible responses
-    responses = [
-        "Yes", "No", "Maybe", "Ask again later", "Definitely",
-        "I have no idea", "Very doubtful", "Without a doubt", "Outlook not so good"
-    ]
+# List of possible responses
+responses = [
+    "Yes", "No", "Maybe", "Ask again later", "Definitely",
+    "I have no idea", "Very doubtful", "Without a doubt", "Outlook not so good"
+]
 
-    # Select a random response
-    answer = random.choice(responses)
+# Select a random response
+answer = random.choice(responses)
 
-    # Print the response
-    print("The Magic 8-Ball says:", answer)
+# Print the response
+print("The Magic 8-Ball says:", answer)
 
-# Call the function to see the Magic 8-Ball in action
-magic_8_ball()
-magic_8_ball()
-magic_8_ball()
+# When your function is ready, call it a few times by uncommenting these lines:
+# magic_8_ball()
+# magic_8_ball()
+# magic_8_ball()
 ```
 
-<pre class="output-block">
-The Magic 8-Ball says: Very doubtful
-The Magic 8-Ball says: No
-The Magic 8-Ball says: Outlook not so good
+<pre class="output-block">The Magic 8-Ball says: Very doubtful
 </pre>
+
+??? success "Solution"
+    ```python
+    
+    import random # This is a built-in Python library for random-number generation tasks (such as randomly selecting an element from a list)
+    
+    def magic_8_ball():
+        # List of possible responses
+        responses = [
+            "Yes", "No", "Maybe", "Ask again later", "Definitely",
+            "I have no idea", "Very doubtful", "Without a doubt", "Outlook not so good"
+        ]
+    
+        # Select a random response
+        answer = random.choice(responses)
+    
+        # Print the response
+        print("The Magic 8-Ball says:", answer)
+    
+    # Call the function to see the Magic 8-Ball in action
+    magic_8_ball()
+    magic_8_ball()
+    magic_8_ball()
+    ```
+
+    <pre class="output-block">The Magic 8-Ball says: Without a doubt
+    The Magic 8-Ball says: I have no idea
+    The Magic 8-Ball says: I have no idea
+    </pre>
 
 ### Handling arguments
 
@@ -305,13 +279,13 @@ Of course, just like the built-in functions, our functions are a lot more versat
 
 We know how to provide arguments by placing them in the parentheses during the function call (e.g. with `abs(-5)`, `-5` is the argument).
 
-When writing a function, we must also defined which arguments are accepted within the parentheses of our function definition:
+When writing a function, we must also define which arguments are accepted within the parentheses of our function definition:
 
 ```
 def my_function(arg1, arg2, ...)
 ```
 
-You can name the arguments anything you'd like, as long as the names conform to the object naming conventions we've gone over (see Day 1). And in this example, the `...` indicates that you can define more arguments for your function if they are needed. Of course, as we saw above with the hello world! and `magic_8_ball()` functions, a function doesn't have to have arguments at all.
+You can name the arguments anything you'd like, as long as the names conform to the object naming conventions we've gone over (see Part 1). And in this example, the `...` indicates that you can define more arguments for your function if they are needed. Of course, as we saw above with the hello world! and `magic_8_ball()` functions, a function doesn't have to have arguments at all.
 
 Here is an example of a simple function with one argument, a number:
 
@@ -326,8 +300,7 @@ my_other_num = 4
 square(my_other_num)
 ```
 
-<pre class="output-block">
-4
+<pre class="output-block">4
 16
 </pre>
 
@@ -340,22 +313,10 @@ Just like with built-in functions, if we don't provide the expected number of ar
 square(2, 4)
 ```
 
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-
+<pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-
-
-&lt;ipython-input-8-6622a44528c4&gt; in &lt;cell line: 1&gt;()
-
-
-----&gt; 1 square(2, 4)
-
-
-
-
+Cell In[11], line 1
+----> 1 square(2, 4)
 
 TypeError: square() takes 1 positional argument but 2 were given
 </pre>
@@ -368,7 +329,8 @@ import random # This is a built-in Python library for random-number generation t
 
 # Your code here: edit the magic_8_ball function to accept a question string as an argument
 # and to print out the question in addition to the answer.
-def magic_8_ball(question):
+
+def magic_8_ball():
     # List of possible responses
     responses = [
         "Yes", "No", "Maybe", "Ask again later", "Definitely",
@@ -379,15 +341,36 @@ def magic_8_ball(question):
     answer = random.choice(responses)
 
     # Print the response
-    print(question, ":", answer)
+    print("The Magic 8-Ball says:", answer)
 
 # Call the function to see the Magic 8-Ball in action
-magic_8_ball("Will it snow tomorrow?")
+# magic_8_ball("Will it snow tomorrow?")
 ```
 
-<pre class="output-block">
-Will it snow tomorrow? : Outlook not so good
-</pre>
+??? success "Solution"
+    ```python
+    
+    import random # This is a built-in Python library for random-number generation tasks (such as randomly selecting an element from a list)
+    
+    def magic_8_ball(question):
+        # List of possible responses
+        responses = [
+            "Yes", "No", "Maybe", "Ask again later", "Definitely",
+            "I have no idea", "Very doubtful", "Without a doubt", "Outlook not so good"
+        ]
+    
+        # Select a random response
+        answer = random.choice(responses)
+    
+        # Print the response
+        print(question, ":", answer)
+    
+    # Call the function to see the Magic 8-Ball in action
+    magic_8_ball("Will it snow tomorrow?")
+    ```
+
+    <pre class="output-block">Will it snow tomorrow? : Outlook not so good
+    </pre>
 
 #### Default arguments
 
@@ -402,8 +385,7 @@ square()
 square(3)
 ```
 
-<pre class="output-block">
-4
+<pre class="output-block">4
 9
 </pre>
 
@@ -421,8 +403,7 @@ print("---")
 square(2, True)
 ```
 
-<pre class="output-block">
-4
+<pre class="output-block">4
 ---
 4
 8
@@ -433,18 +414,27 @@ square(2, True)
 
 ```python
 # Your code here
-def power(base, exponent=2):
-  print(base ** exponent)
 
 # Provide test cases for your function below
-power(2)
-power(2, 3)
 ```
 
-<pre class="output-block">
-4
-8
-</pre>
+??? success "Solution"
+    ```python
+    
+    def power(base, exponent=2):
+      print(base ** exponent)
+    
+    # Provide test cases for your function below
+    power(2)
+    power(2, 3)
+    ```
+
+    <pre class="output-block">4
+    </pre>
+
+    <pre class="output-block">
+    8
+    </pre>
 
 Note that arguments with default values must appear at the end of the list of arguments in your function definition:
 
@@ -457,6 +447,12 @@ def add_2_nums(num1, also_multiply=False, num2):
 
 add_2_nums(2, 3)
 ```
+
+<pre class="output-block">  Cell In[18], line 1
+    def add_2_nums(num1, also_multiply=False, num2):
+                                              ^
+SyntaxError: parameter without a default follows parameter with a default
+</pre>
 
 This prevents the above from running, which would result in an error (because `num2` would be undefined).
 
@@ -477,8 +473,7 @@ print("---")
 square(my_num, True)
 ```
 
-<pre class="output-block">
-4
+<pre class="output-block">4
 ---
 4
 8
@@ -503,8 +498,7 @@ print("---")
 square(also_cube = True, num = 3)
 ```
 
-<pre class="output-block">
-4
+<pre class="output-block">4
 ---
 4
 8
@@ -524,11 +518,9 @@ def greet(person="Bob", greeting="Hello", punctuation="!"):
 
 message = greet(person="Alice", punctuation="?")
 
-
 ```
 
-<pre class="output-block">
-Hello Alice ?
+<pre class="output-block">Hello Alice ?
 </pre>
 
 Here, we only provided values for `person` and `puncutation`, skipping over `greeting` in our function call, which uses it's default value. The combined use of default values for our arguments in the function and calling the function with named arguments makes our function call clearer and less error-prone.
@@ -537,56 +529,59 @@ Here, we only provided values for `person` and `puncutation`, skipping over `gre
 
 > **Exercise**: Write a function that takes a **list of numbers** as an argument and prints out the tally (number of numbers), and the min, max, sum, and average of the numbers in the list. Call this function `num_summary()`. Run it on the lists provided below.
 >
-> *Hint: While you could code these simple tasks yourself with a `for` loop and some `if` statements, remember there are functions that do these tasks for us that you can call in your own function. See the [List functions](#list-functions) section.*
+> *Hint: While you could code these simple tasks yourself with a `for` loop and some `if` statements, remember there are functions that do these tasks for us that you can call in your own function. See the List functions section from Part 2.*
 
 
 ```python
 # Your code here: a num_summary() function
-
-def num_summary(nums):
-  num_nums = len(nums)
-  max_num = max(nums)
-  min_num = min(nums)
-  sum_nums = sum(nums)
-
-  avg_num = sum_nums / num_nums
-
-  print("There are", num_nums, "numbers in the list.")
-  print("The largest number is:", max_num)
-  print("The smallest number is:", min_num)
-  print("The sum of all the numbers is:", sum_nums)
-  print("The average of the numbers is:", avg_num)
-
-# These are the test cases to run the num_summary() function on
-nums1 = [23, 85, 56, 34, 78, 22]
-nums2 = [17, 48, 92, 55, 83, 24, 63, 7, 31, 89]
-nums3 = [59, 44, 66, 12, 5, 95, 23, 37]
-
-for num_list in [nums1, nums2, nums3]:
-  num_summary(num_list)
-  print("---")
 ```
 
-<pre class="output-block">
-There are 6 numbers in the list.
-The largest number is: 85
-The smallest number is: 22
-The sum of all the numbers is: 298
-The average of the numbers is: 49.666666666666664
----
-There are 10 numbers in the list.
-The largest number is: 92
-The smallest number is: 7
-The sum of all the numbers is: 509
-The average of the numbers is: 50.9
----
-There are 8 numbers in the list.
-The largest number is: 95
-The smallest number is: 5
-The sum of all the numbers is: 341
-The average of the numbers is: 42.625
----
-</pre>
+??? success "Solution"
+    ```python
+    
+    def num_summary(nums):
+      num_nums = len(nums)
+      max_num = max(nums)
+      min_num = min(nums)
+      sum_nums = sum(nums)
+    
+      avg_num = sum_nums / num_nums
+    
+      print("There are", num_nums, "numbers in the list.")
+      print("The largest number is:", max_num)
+      print("The smallest number is:", min_num)
+      print("The sum of all the numbers is:", sum_nums)
+      print("The average of the numbers is:", avg_num)
+    
+    # These are the test cases to run the num_summary() function on
+    nums1 = [23, 85, 56, 34, 78, 22]
+    nums2 = [17, 48, 92, 55, 83, 24, 63, 7, 31, 89]
+    nums3 = [59, 44, 66, 12, 5, 95, 23, 37]
+    
+    for num_list in [nums1, nums2, nums3]:
+      num_summary(num_list)
+      print("---")
+    ```
+
+    <pre class="output-block">There are 6 numbers in the list.
+    The largest number is: 85
+    The smallest number is: 22
+    The sum of all the numbers is: 298
+    The average of the numbers is: 49.666666666666664
+    ---
+    There are 10 numbers in the list.
+    The largest number is: 92
+    The smallest number is: 7
+    The sum of all the numbers is: 509
+    The average of the numbers is: 50.9
+    ---
+    There are 8 numbers in the list.
+    The largest number is: 95
+    The smallest number is: 5
+    The sum of all the numbers is: 341
+    The average of the numbers is: 42.625
+    ---
+    </pre>
 
 ### `return`ing data
 
@@ -605,8 +600,7 @@ my_num_squared = square(my_num)
 print(my_num_squared)
 ```
 
-<pre class="output-block">
-4
+<pre class="output-block">4
 </pre>
 
 Now, we're free to use the output of our function elsewhere in the program! Or we can just print it again.
@@ -623,8 +617,7 @@ fruit_dictionary = list_to_dict(pair_list)
 print(fruit_dictionary)
 ```
 
-<pre class="output-block">
-{'apple': 2, 'banana': 5, 'orange': 3}
+<pre class="output-block">{'apple': 2, 'banana': 5, 'orange': 3}
 </pre>
 
 For instance, this function, which takes a **list of tuples** and converts them into a **dictionary**. This dictionary is returned and printed to the screen.
@@ -634,14 +627,6 @@ For instance, this function, which takes a **list of tuples** and converts them 
 
 ```python
 # Your code here
-
-def in_list(value, a_list):
-  if value in a_list:
-    print(value, "is already in the list!")
-  else:
-    print("Adding", value, "to the list!")
-    a_list.append(value)
-  return a_list
 
 # Test your code on these lists
 my_list = [1, 2, 3, 4, 5]
@@ -654,18 +639,57 @@ print("---")
 
 my_list = in_list(30, my_list)
 print("After second call:", my_list)
-
 ```
 
-<pre class="output-block">
-Original: [1, 2, 3, 4, 5]
+<pre class="output-block">Original: [1, 2, 3, 4, 5]
 ---
-3 is already in the list!
-After first call: [1, 2, 3, 4, 5]
----
-Adding 30 to the list!
-After second call: [1, 2, 3, 4, 5, 30]
 </pre>
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[26], line 8
+      5 print("Original:", my_list)
+      6 print("---")
+----> 8 my_list = in_list(3, my_list)
+      9 print("After first call:", my_list)
+     10 print("---")
+
+NameError: name 'in_list' is not defined
+</pre>
+
+??? success "Solution"
+    ```python
+    # Your code here
+    
+    def in_list(value, a_list):
+      if value in a_list:
+        print(value, "is already in the list!")
+      else:
+        print("Adding", value, "to the list!")
+        a_list.append(value)
+      return a_list
+    
+    # Test your code on these lists
+    my_list = [1, 2, 3, 4, 5]
+    print("Original:", my_list)
+    print("---")
+    
+    my_list = in_list(3, my_list)
+    print("After first call:", my_list)
+    print("---")
+    
+    my_list = in_list(30, my_list)
+    print("After second call:", my_list)
+    ```
+
+    <pre class="output-block">Original: [1, 2, 3, 4, 5]
+    ---
+    3 is already in the list!
+    After first call: [1, 2, 3, 4, 5]
+    ---
+    Adding 30 to the list!
+    After second call: [1, 2, 3, 4, 5, 30]
+    </pre>
 
 #### Unpacking returned values
 
@@ -683,8 +707,7 @@ my_result = square_and_cube(3)
 print(my_result)
 ```
 
-<pre class="output-block">
-(9, 27)
+<pre class="output-block">(9, 27)
 </pre>
 
 However, you can also explicitly assign each returned value to its own object as it is returned by separating your variable names by commas `,`:
@@ -702,8 +725,7 @@ print(result_squared)
 print(result_cubed)
 ```
 
-<pre class="output-block">
-9
+<pre class="output-block">9
 27
 </pre>
 
@@ -721,8 +743,7 @@ print(num2)
 print(num3)
 ```
 
-<pre class="output-block">
-1
+<pre class="output-block">1
 2
 3
 </pre>
@@ -732,6 +753,7 @@ print(num3)
 
 ```python
 # Modify your function here
+
 def num_summary(nums):
   num_nums = len(nums)
   max_num = max(nums)
@@ -740,26 +762,55 @@ def num_summary(nums):
 
   avg_num = sum_nums / num_nums
 
-  return [num_nums, max_num, min_num, sum_nums, avg_num]
+  print("There are", num_nums, "numbers in the list.")
+  print("The largest number is:", max_num)
+  print("The smallest number is:", min_num)
+  print("The sum of all the numbers is:", sum_nums)
+  print("The average of the numbers is:", avg_num)
 
 # Run your modified function on these lists 
 nums1 = [23, 85, 56, 34, 78, 22]
 nums2 = [17, 48, 92, 55, 83, 24, 63, 7, 31, 89]
 nums3 = [59, 44, 66, 12, 5, 95, 23, 37]
 
-# Your code here
-avgs = []
-for num_list in [nums1, nums2, nums3]:
-  cur_result = num_summary(num_list)
-  avgs.append(cur_result[4])
+# Add your function calls here
 
 # Print only the highest of the averages
-print("The highest average number is:", max(avgs))
+print("The highest average number is:", )
 ```
 
-<pre class="output-block">
-The highest average number is: 50.9
+<pre class="output-block">The highest average number is:
 </pre>
+
+??? success "Solution"
+    ```python
+    
+    def num_summary(nums):
+      num_nums = len(nums)
+      max_num = max(nums)
+      min_num = min(nums)
+      sum_nums = sum(nums)
+    
+      avg_num = sum_nums / num_nums
+    
+      return [num_nums, max_num, min_num, sum_nums, avg_num]
+    
+    # Run your modified function on these lists 
+    nums1 = [23, 85, 56, 34, 78, 22]
+    nums2 = [17, 48, 92, 55, 83, 24, 63, 7, 31, 89]
+    nums3 = [59, 44, 66, 12, 5, 95, 23, 37]
+    
+    avgs = []
+    for num_list in [nums1, nums2, nums3]:
+      cur_result = num_summary(num_list)
+      avgs.append(cur_result[4])
+    
+    # Print only the highest of the averages
+    print("The highest average number is:", max(avgs))
+    ```
+
+    <pre class="output-block">The highest average number is: 50.9
+    </pre>
 
 #### `None`
 
@@ -772,11 +823,9 @@ def greet():
 
 result = greet()
 print(result)
-
 ```
 
-<pre class="output-block">
-hello world!
+<pre class="output-block">hello world!
 None
 </pre>
 
@@ -789,13 +838,12 @@ print(data)
 print(bool(data))
 
 if data:
-  process_data(data)
+  process_data(data) # made up function for this example
 else:
   print("No data has been provided")
 ```
 
-<pre class="output-block">
-None
+<pre class="output-block">None
 False
 No data has been provided
 </pre>
@@ -844,8 +892,7 @@ print(f"twice my number is: {my_num * 2}. Hooray!")
 print(f"my original number, {my_num}, did not change")
 ```
 
-<pre class="output-block">
-my number is: 1004210.52049. Hooray!
+<pre class="output-block">my number is: 1004210.52049. Hooray!
 twice my number is: 2008421.04098. Hooray!
 my original number, 1004210.52049, did not change
 </pre>
@@ -874,8 +921,7 @@ print(f"my number is: {my_num:,.2f}")
 print(my_num)
 ```
 
-<pre class="output-block">
-my number is: 1004210.52
+<pre class="output-block">my number is: 1004210.52
 my number is: 1004211
 my number is: 1,004,210.52049
 my number is: 1,004,210.52
@@ -884,9 +930,94 @@ my number is: 1,004,210.52
 
 ## Functions to Programs
 
->**Exercise:** Copy and paste your `display_walk` function from above into the cell below. Add a docstring to the function that describes what it does, what inputs it takes, and what it returns. Then, call `help(display_walk)` and see what happens!
->
-> If short on time, you can also use LLMs to write your docstring. Usually they do pretty well.
+Now that we know a bit about writing functions, we'll learn how to write code that uses multiple functions to perform certain tasks. We will create a simulation of a random walk. Given the inputs of a step size and boundary size, it will simulate a walk from the middle of a defined space (represented by `-`) until the object runs into a wall. Here's what it might look like to use this function: 
+
+```python
+random_walk(step_size = 1, walk_size = 10)
+```
+
+output:
+
+```jupyter
+Starting random walk with boundary size: 10 and step size: 1
+-----O----
+----O-----
+---O------
+--O-------
+-O--------
+--O-------
+-O--------
+--O-------
+-O--------
+--O-------
+-O--------
+O---------
+-O--------
+O---------
+X---------
+Reached boundary!
+```
+
+Besides learning the syntax and logic of coding itself, there are a lot of skills that go into programming that you may need while we're doing this. We've compiled a supplementary notebook about [Healthy Habits for Python coding](https://informatics.fas.harvard.edu/workshops/python-intensive/python-healthy-habits/) and we hope you'll read that to help you figure out how to proceed when you get stuck.
+
+One of the best things to do while coding up more complex problems is to break them down into sub-problems. Let's do that here with our random walk program. Let's focus on just displaying an individual step of the walk. And let's make this a **pair programming exercise**: pair up with one (or more) people to complete this exericse.
+
+> **Exercise:** Write a function called `display_walk` that takes a walk size and position argument and prints a string of dashes with an 'O' at the position. For example, `display_walk(size = 10, position = 3)` should print `---O------`. If the position is outside the walk size, it should print an 'X' at the end. For example, `display_walk(size = 10, position = 12)` should print `----------X`.
+> 
+> 1. Work together to write out pseudocode for this function. Make sure to check in on any potential logic errors. 
+> 2. One person should write the code while the other person dictates out the pseudocode. 
+> **Important** One line in your pseudocode could correspond to one line of code, but that may or may not be the case
+> 3. For each line of code, **PAUSE** and both of you should check to make sure it matches the pseudocode.
+> 
+> You are allowed to use LLMs or the internet to look up how to do specific parts of your code, but try not to look up the entire solution. 
+
+
+```python
+# Your code here
+```
+
+??? success "Solution"
+    ```python
+    
+    def display_walk(size, position):
+        if 0 <= position < size:
+        # Create a string with 'O' at the specified position
+            walk = '-' * position + 'O' + '-' * (size - position - 1)
+        elif position < 0:
+            # Position is out of bounds, place 'X' at the end
+            walk = "X" + '-' * (size - 1)
+        else: # position >= size
+            # Position is out of bounds, place 'X' at the beginning
+            walk = '-' * (size - 1) + "X"
+        print(walk)
+    ```
+
+
+```python
+# Test your function with these inputs
+display_walk(10, -1)
+display_walk(10, 0)
+display_walk(10, 5)
+display_walk(10, 9)
+display_walk(10, 11)
+
+# Expected output
+# X---------
+# O---------
+# -----O----
+# ---------O
+# ---------X
+```
+
+<pre class="output-block">X---------
+O---------
+-----O----
+---------O
+---------X
+</pre>
+
+Another important aspect of writing longer (or any) programs is code documentation and annotation. We cover this in our [healthy habits notebook](https://informatics.fas.harvard.edu/workshops/python-intensive/python-healthy-habits/), but you can expand the block below to see a brief example using the `display_walk` function. Here we've both annotated the individual lines of code with comments (denoted by `#`) and added a **docstring** to the function with `"""`. The docstring is what is read by Python's `help()` function, so now we can call `help()` on our own function! You can use LLMs to write your docstring. Usually they do pretty well.
+
 
 
 ```python
@@ -914,8 +1045,7 @@ def display_walk(size, position):
 help(display_walk)
 ```
 
-<pre class="output-block">
-Help on function display_walk in module __main__:
+<pre class="output-block">Help on function display_walk in module __main__:
 
 display_walk(size, position)
     Parameters: size (int) - a positive integer representing the size of the walk
@@ -958,107 +1088,121 @@ import random
 print(random.choice(["heads", "tails"]))
 ```
 
-<pre class="output-block">
-heads
+<pre class="output-block">heads
 </pre>
 
 Write your code below. If you get stuck, check out your concept map, work with a neighbor, or review the topics we learned today. And of course, remember to use your debugging skills!
 
 !!! Note
-    If you are reading the completed solution to this exercise, you will notice extra code that **raise exceptions** in **try ... except** blocks. To learn more about how to use exceptions, check out our companion notebook "Python Healthy Habits" which covers some more advanced function writing. 
+    If you are reading the completed solution to this exercise, you will notice extra code that **raise exceptions** in **try ... except** blocks. To learn more about how to use exceptions, check out our companion notebook [Python Healthy Habits](https://informatics.fas.harvard.edu/workshops/python-intensive/python-healthy-habits/) which covers some more advanced function writing. 
 
 
 ```python
-import random
-
-def get_user_inputs(step_size, walk_size):
-    """
-    Validate the user inputs for step size and walk size.
-    If the inputs are valid, return them.
-    """
-    if not isinstance(step_size, int) or not isinstance(walk_size, int):
-        raise ValueError("Both step_size and walk_size should be integers.")
-
-    if step_size <= 0 or walk_size <= 0:
-        raise ValueError("Both step_size and walk_size should be positive integers.")
-
-    return step_size, walk_size
-
-def display_walk(position, walk_size, boundary_symbol='X', walker_symbol='O', open_space='-'):
-    """
-    Display the current position of the walker on the walk line.
-    Input:
-    - position: the current position of the walker
-    - walk_size: the size of the walk line
-    - boundary_symbol: the symbol to represent reaching the boundary
-    - walker_symbol: the symbol to represent the walker
-    - open_space: the symbol to represent an open space
-    Return: None (but print the walk line)
-    """
-    # walk line represented by a list of string symbols
-    walk_line = [open_space] * walk_size
-    # if statement to check if the position is within the walk line
-    if 0 <= position < walk_size:
-        walk_line[position] = walker_symbol
-    # if the position is outside the walk line, put boundary symbol at the edge
-    else:
-        symbol_position = 0 if position < 0 else walk_size - 1
-        walk_line[symbol_position] = boundary_symbol
-    # joins the symbols to create a string and prints it
-    print("".join(walk_line))
-
-def random_walk(step_size, walk_size):
-    """
-    Simulate a random walk on a line with a given step size and walk size.
-    Input:
-    - step_size: the size of each step in the walk
-    - walk_size: the size of the walk line
-    Return: None (but print the walk line at each step and when the boundary is reached)
-    """
-    position = walk_size // 2  # Start from the middle of the walk line
-    print(f"Starting random walk with boundary size: {walk_size} and step size: {step_size}")
-
-    # loop walk until boundary is reached
-    while 0 <= position < walk_size:
-        # display current position
-        display_walk(position, walk_size)
-        # generate random direction
-        direction = random.choice([-1, 1])
-        # update current position
-        position += direction * step_size
-
-    # calls the display walk function at the end one more time
-    display_walk(position, walk_size)
-    print("Reached boundary!")
-
-# runs random walk. but calls get_user_inputs to validate inputs first
-def run_random_walk(step_size, walk_size):
-    try:
-        step_size, walk_size = get_user_inputs(step_size, walk_size)
-        random_walk(step_size, walk_size)
-    except ValueError as e:
-        print(f"Input error: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+# Your code here
 ```
+
+??? success "Solution"
+    ```python
+    
+    import random
+    
+    def get_user_inputs(step_size, walk_size):
+        """
+        Validate the user inputs for step size and walk size.
+        If the inputs are valid, return them.
+        """
+        if not isinstance(step_size, int) or not isinstance(walk_size, int):
+            raise ValueError("Both step_size and walk_size should be integers.")
+    
+        if step_size <= 0 or walk_size <= 0:
+            raise ValueError("Both step_size and walk_size should be positive integers.")
+    
+        return step_size, walk_size
+    
+    def display_walk(position, walk_size, boundary_symbol='X', walker_symbol='O', open_space='-'):
+        """
+        Display the current position of the walker on the walk line.
+        Input:
+        - position: the current position of the walker
+        - walk_size: the size of the walk line
+        - boundary_symbol: the symbol to represent reaching the boundary
+        - walker_symbol: the symbol to represent the walker
+        - open_space: the symbol to represent an open space
+        Return: None (but print the walk line)
+        """
+        # walk line represented by a list of string symbols
+        walk_line = [open_space] * walk_size
+        # if statement to check if the position is within the walk line
+        if 0 <= position < walk_size:
+            walk_line[position] = walker_symbol
+        # if the position is outside the walk line, put boundary symbol at the edge
+        else:
+            symbol_position = 0 if position < 0 else walk_size - 1
+            walk_line[symbol_position] = boundary_symbol
+        # joins the symbols to create a string and prints it
+        print("".join(walk_line))
+    
+    def random_walk(step_size, walk_size):
+        """
+        Simulate a random walk on a line with a given step size and walk size.
+        Input:
+        - step_size: the size of each step in the walk
+        - walk_size: the size of the walk line
+        Return: None (but print the walk line at each step and when the boundary is reached)
+        """
+        position = walk_size // 2  # Start from the middle of the walk line
+        print(f"Starting random walk with boundary size: {walk_size} and step size: {step_size}")
+    
+        # loop walk until boundary is reached
+        while 0 <= position < walk_size:
+            # display current position
+            display_walk(position, walk_size)
+            # generate random direction
+            direction = random.choice([-1, 1])
+            # update current position
+            position += direction * step_size
+    
+        # calls the display walk function at the end one more time
+        display_walk(position, walk_size)
+        print("Reached boundary!")
+    
+    # runs random walk. but calls get_user_inputs to validate inputs first
+    def run_random_walk(step_size, walk_size):
+        try:
+            step_size, walk_size = get_user_inputs(step_size, walk_size)
+            random_walk(step_size, walk_size)
+        except ValueError as e:
+            print(f"Input error: {e}")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+    ```
 
 
 ```python
 run_random_walk(2, 10)
+
+## Sample output:
+# Starting random walk with boundary size: 10 and step size: 2
+# -----O----
+# -------O--
+# -----O----
+# -------O--
+# ---------O
+# -------O--
+# -----O----
+# -------O--
+# ---------O
+# ---------X
+# Reached boundary!
 ```
 
-<pre class="output-block">
-Starting random walk with boundary size: 10 and step size: 2
+<pre class="output-block">Starting random walk with boundary size: 10 and step size: 2
 -----O----
 -------O--
 -----O----
--------O--
----------O
--------O--
------O----
--------O--
----------O
----------X
+---O------
+-O--------
+X---------
 Reached boundary!
 </pre>
 
@@ -1140,5 +1284,16 @@ Reached boundary!
     padding-left: 40px;
     font-size: 15px;
   }
+
+    /* Hide all 2nd-level navs */
+    .md-nav--secondary .md-nav__item .md-nav {
+        display: none !important;
+    }
+
+    /* Show when parent has .expanded class */
+    .md-nav--secondary .md-nav__item.expanded > .md-nav {
+        display: block !important;
+    }
+  
 
 </style>

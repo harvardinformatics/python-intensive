@@ -1,10 +1,12 @@
 ---
-title: "[Workshop] Python intensive, day 4"
+title: "[Workshop] Python intensive, part 4"
 description: "Introduction to file handling and the numpy library for numerical computing in Python, including arrays and basic operations."
 authors:
     - Lei Ma
     - Adam Freedman
 ---
+
+# Python intensive, part 4
 
 ## What is python and why do we need it/why are you taking this workshop?
 
@@ -36,6 +38,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In[1], line 6
+      4 import numpy as np
+      5 import pandas as pd
+----> 6 import matplotlib.pyplot as plt
+
+ModuleNotFoundError: No module named 'matplotlib'
+</pre>
+
 And run the following to demonstrate how the code blocks run and display code:
 
 
@@ -43,6 +55,9 @@ And run the following to demonstrate how the code blocks run and display code:
 # Run this cell to print a message to the screen
 print("this is my code cell")
 ```
+
+<pre class="output-block">this is my code cell
+</pre>
 
 Any **variables** that you assign in one cell will be available in other cells. But they will not be saved between sessions. If you close the notebook and re-open it, you will need to re-run the previous cells to get your variables back. Therefore, it's important to be aware of the state of your notebook and the order in which your cells were run.
 
@@ -55,6 +70,9 @@ my_string = "this is my code cell"
 ```python
 print(my_string)
 ```
+
+<pre class="output-block">this is my code cell
+</pre>
 
 Jupyter notebooks can be exported to pdf or html, so that other people can view both the code and its output. It's a good format for handing in homeworks, for example, since you can show your work. In this notebook, there will be exercises with placeholders for the code that you will have to fill in. For these exercises, we encourage you to work with each other, use google, LLMs, and whatever other resources if you are stuck. It's not an exam, but just a way to get practice of the concepts. Afterwards, we will post the completed notebook on our website so you can have examples of solutions.
 
@@ -83,6 +101,9 @@ my_string = "hello"
 my_string.upper()
 ```
 
+<pre class="output-block">'HELLO'
+</pre>
+
 
 In the above code, `my_string` is a string object, and we are calling the `upper()` method on it. The method is called by using the `.` operator. Methods are functions that can only be used on objects of certain classes. You will often see methods strung together, like below:
 
@@ -92,6 +113,9 @@ my_string = "hello"
 # This first makes the first letter uppercase, then swaps the cases of each letter
 my_string.capitalize().swapcase()
 ```
+
+<pre class="output-block">'hELLO'
+</pre>
 
 ### Object Attributes
 
@@ -105,6 +129,9 @@ my_array = np.array([1, 2, 3, 4, 5])
 # this gets the size (total number of elements) of the array
 my_array.size
 ```
+
+<pre class="output-block">5
+</pre>
 
 ## Base Python Data Structures
 
@@ -224,6 +251,9 @@ import math
 print(math.log(100))
 ```
 
+<pre class="output-block">4.605170185988092
+</pre>
+
 We need to type `math.` so Python knows where to look for the `log()` function.
 
 We can also use an **alias** if we don't want to type `math.` every time we use a function from the library:
@@ -233,6 +263,9 @@ We can also use an **alias** if we don't want to type `math.` every time we use 
 import math as m
 print(m.log(100))
 ```
+
+<pre class="output-block">4.605170185988092
+</pre>
 
 ## Reading and writing data in base python
 
@@ -288,6 +321,15 @@ First, run this block to download the file to the Jupyter notebook environment..
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
 ```
 
+<pre class="output-block">SYSTEM_WGETRC = c:/progra~1/wget/etc/wgetrc
+syswgetrc = C:\bin\programs\gnuwin32/etc/wgetrc
+--2025-07-31 12:19:25--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
+Resolving raw.githubusercontent.com... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com|185.199.108.133|:443... connected.
+OpenSSL: error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol
+Unable to establish SSL connection.
+</pre>
+
 Then, in the code below we first read the file line by line, then strip the whitespace and split the line by a comma. Then, we will create a dictionary where the key is the taxon id and the value is the common name of the bird.
 
 
@@ -304,6 +346,27 @@ with open(filename, 'r') as file:
 
 print(bird_names)
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+Cell In[11], line 5
+      1 filename = 'bird_names.csv'
+      3 bird_names = dict()
+----> 5 with open(filename, 'r') as file:
+      6     for line in file:
+      7         line = line.strip().split(',')
+
+File C:\bin\miniforge3\Lib\site-packages\IPython\core\interactiveshell.py:327, in _modified_open(file, *args, **kwargs)
+    320 if file in {0, 1, 2}:
+    321     raise ValueError(
+    322         f"IPython won't let you open fd={file} by default "
+    323         "as it is likely to crash IPython. If you know what you are doing, "
+    324         "you can use builtins' open."
+    325     )
+--> 327 return io_open(file, *args, **kwargs)
+
+FileNotFoundError: [Errno 2] No such file or directory: 'bird_names.csv'
+</pre>
 
 >*Discussion:* Explain each line
 
@@ -350,6 +413,27 @@ with open(filename, 'r') as file:
 print(bird_names)
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+Cell In[12], line 6
+      3 # Your code here
+      4 bird_names = dict()
+----> 6 with open(filename, 'r') as file:
+      7     for line in file:
+      8         line = line.strip().split(',')
+
+File C:\bin\miniforge3\Lib\site-packages\IPython\core\interactiveshell.py:327, in _modified_open(file, *args, **kwargs)
+    320 if file in {0, 1, 2}:
+    321     raise ValueError(
+    322         f"IPython won't let you open fd={file} by default "
+    323         "as it is likely to crash IPython. If you know what you are doing, "
+    324         "you can use builtins' open."
+    325     )
+--> 327 return io_open(file, *args, **kwargs)
+
+FileNotFoundError: [Errno 2] No such file or directory: 'bird_names.csv'
+</pre>
+
 >**Exercise**: Why did we use a dictionary to store the data in the previous exercise? Think about what features of a dictionary make it a good choice or what features of lists or arrays make them a bad choice.
 
 Below is an excerpt from a file of iNaturalist observations of birds in Cambridge, MA from the year 2023. We will loop through the file and count the number of observations of each species. We will also use the previously created dictionary to get the species names.
@@ -369,6 +453,15 @@ Run the code block below to download the file to the Jupyter notebook environmen
 # This line downloads the file locally to the same folder as your notebook
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
 ```
+
+<pre class="output-block">SYSTEM_WGETRC = c:/progra~1/wget/etc/wgetrc
+syswgetrc = C:\bin\programs\gnuwin32/etc/wgetrc
+--2025-07-31 12:19:25--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
+Resolving raw.githubusercontent.com... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com|185.199.108.133|:443... connected.
+OpenSSL: error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol
+Unable to establish SSL connection.
+</pre>
 
 >**Exercise:** Work with a neighbor or two to do the following exercise:
 > Loop through the file and count the number of observations of each species. After all the observations have been counted, print all the species names and the number of observations. You will need to use the dictionary you created in the previous exercise to get the species names. It's up to you what kind of data structure (if any) you want to use to store the counts.
@@ -400,8 +493,30 @@ with open(filename, 'r') as birdfile: #keep
         # increment the count by 1
         bird_observations[name] += 1
 print(bird_observations)
-
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+Cell In[14], line 6
+      2 filename = 'bird_observations.csv' #keep
+      4 bird_observations = dict()
+----> 6 with open(filename, 'r') as birdfile: #keep
+      7     # skip the header
+      8     next(birdfile) #keep
+      9     for line in birdfile: #keep
+     10         # clean up the line and split into list
+
+File C:\bin\miniforge3\Lib\site-packages\IPython\core\interactiveshell.py:327, in _modified_open(file, *args, **kwargs)
+    320 if file in {0, 1, 2}:
+    321     raise ValueError(
+    322         f"IPython won't let you open fd={file} by default "
+    323         "as it is likely to crash IPython. If you know what you are doing, "
+    324         "you can use builtins' open."
+    325     )
+--> 327 return io_open(file, *args, **kwargs)
+
+FileNotFoundError: [Errno 2] No such file or directory: 'bird_observations.csv'
+</pre>
 
 If you routinely find yourself reading delimited files, you might want to use the `csv` library. The `csv` library also has the ability to parse Excel files or read and write to/from dictionaries directly. For more information, here's the [doc page :octicons-link-external-24:](https://docs.python.org/3/library/csv.html){:target="_blank"}. Here's what the above code would look like using the `csv` module:
 
@@ -427,6 +542,28 @@ with open(filename, 'r') as birdfile:
 print(bird_observations)
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+Cell In[15], line 7
+      3 filename = 'bird_observations.csv'
+      5 bird_observations = dict()
+----> 7 with open(filename, 'r') as birdfile:
+      8     # this line takes the place of us having to strip and split the lines
+      9     reader = csv.reader(birdfile, delimiter=',')
+     10     # skip the header
+
+File C:\bin\miniforge3\Lib\site-packages\IPython\core\interactiveshell.py:327, in _modified_open(file, *args, **kwargs)
+    320 if file in {0, 1, 2}:
+    321     raise ValueError(
+    322         f"IPython won't let you open fd={file} by default "
+    323         "as it is likely to crash IPython. If you know what you are doing, "
+    324         "you can use builtins' open."
+    325     )
+--> 327 return io_open(file, *args, **kwargs)
+
+FileNotFoundError: [Errno 2] No such file or directory: 'bird_observations.csv'
+</pre>
+
 ### Writing data by line
 
 Writing data to a file is similar to reading data from a file. You can open a file in write mode and then write to it line by line using the `print()` method, but this time passing in the variable we've stored the opened file in (in our case the variable is unimaginatively named `file`). Here's an example of writing a list of strings to a file:
@@ -444,6 +581,13 @@ with open('my_text.txt', 'r') as file:
     for line in file:
         print(line)
 ```
+
+<pre class="output-block">this is a test
+
+this is another test
+
+this is the final test
+</pre>
 
 >**BONUS Exercise:** Use the `csv` module to write the species counts to a new file. The file should have two columns: the species name and the number of observations. The file should be comma-delimited. How this is written may depend on how you stored the species counts.
 
@@ -477,12 +621,44 @@ penguins = pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytu
 penguins.head()
 ```
 
+<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
+0  Adelie  Torgersen            39.1           18.7              181.0   
+1  Adelie  Torgersen            39.5           17.4              186.0   
+2  Adelie  Torgersen            40.3           18.0              195.0   
+3  Adelie  Torgersen             NaN            NaN                NaN   
+4  Adelie  Torgersen            36.7           19.3              193.0   
+
+   body_mass_g     sex  year  
+0       3750.0    male  2007  
+1       3800.0  female  2007  
+2       3250.0  female  2007  
+3          NaN     NaN  2007  
+4       3450.0  female  2007
+</pre>
+
 When importing data into a DataFrame, pandas automatically detects what data type each column should be. For example, if the column contains only numbers, it will be imported as an floating point or integer data type. If the column contains strings or a mixture of strings and numbers, it will be imported as an "object" data type. Below are the different data types for the penguins column. 
 
 
 ```python
 penguins.info()
 ```
+
+<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+RangeIndex: 344 entries, 0 to 343
+Data columns (total 8 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   species            344 non-null    object 
+ 1   island             344 non-null    object 
+ 2   bill_length_mm     342 non-null    float64
+ 3   bill_depth_mm      342 non-null    float64
+ 4   flipper_length_mm  342 non-null    float64
+ 5   body_mass_g        342 non-null    float64
+ 6   sex                333 non-null    object 
+ 7   year               344 non-null    int64  
+dtypes: float64(4), int64(1), object(3)
+memory usage: 21.6+ KB
+</pre>
 
 ### Looping through a dataframe
 As a note, if we want to go through a dataframe line-by-line (i.e. row by row), because both the rows and columns are indexed it requires slightly more syntax than looping through other data structures (e.g. a dictionary or list). Specifically we need to use the `.iterrows()` method to make the data frame iterable. The `.iterrows()` method outputs each row as a `Series` object with a row index and the column:   
@@ -492,6 +668,352 @@ As a note, if we want to go through a dataframe line-by-line (i.e. row by row), 
 for index, row in penguins.iterrows():
     print(f"Row index: {index}, {row['species']}, {row['island']}")
 ```
+
+<pre class="output-block">Row index: 0, Adelie, Torgersen
+Row index: 1, Adelie, Torgersen
+Row index: 2, Adelie, Torgersen
+Row index: 3, Adelie, Torgersen
+Row index: 4, Adelie, Torgersen
+Row index: 5, Adelie, Torgersen
+Row index: 6, Adelie, Torgersen
+Row index: 7, Adelie, Torgersen
+Row index: 8, Adelie, Torgersen
+Row index: 9, Adelie, Torgersen
+Row index: 10, Adelie, Torgersen
+Row index: 11, Adelie, Torgersen
+Row index: 12, Adelie, Torgersen
+Row index: 13, Adelie, Torgersen
+Row index: 14, Adelie, Torgersen
+Row index: 15, Adelie, Torgersen
+Row index: 16, Adelie, Torgersen
+Row index: 17, Adelie, Torgersen
+Row index: 18, Adelie, Torgersen
+Row index: 19, Adelie, Torgersen
+Row index: 20, Adelie, Biscoe
+Row index: 21, Adelie, Biscoe
+Row index: 22, Adelie, Biscoe
+Row index: 23, Adelie, Biscoe
+Row index: 24, Adelie, Biscoe
+Row index: 25, Adelie, Biscoe
+Row index: 26, Adelie, Biscoe
+Row index: 27, Adelie, Biscoe
+Row index: 28, Adelie, Biscoe
+Row index: 29, Adelie, Biscoe
+Row index: 30, Adelie, Dream
+Row index: 31, Adelie, Dream
+Row index: 32, Adelie, Dream
+Row index: 33, Adelie, Dream
+Row index: 34, Adelie, Dream
+Row index: 35, Adelie, Dream
+Row index: 36, Adelie, Dream
+Row index: 37, Adelie, Dream
+Row index: 38, Adelie, Dream
+Row index: 39, Adelie, Dream
+Row index: 40, Adelie, Dream
+Row index: 41, Adelie, Dream
+Row index: 42, Adelie, Dream
+Row index: 43, Adelie, Dream
+Row index: 44, Adelie, Dream
+Row index: 45, Adelie, Dream
+Row index: 46, Adelie, Dream
+Row index: 47, Adelie, Dream
+Row index: 48, Adelie, Dream
+Row index: 49, Adelie, Dream
+Row index: 50, Adelie, Biscoe
+Row index: 51, Adelie, Biscoe
+Row index: 52, Adelie, Biscoe
+Row index: 53, Adelie, Biscoe
+Row index: 54, Adelie, Biscoe
+Row index: 55, Adelie, Biscoe
+Row index: 56, Adelie, Biscoe
+Row index: 57, Adelie, Biscoe
+Row index: 58, Adelie, Biscoe
+Row index: 59, Adelie, Biscoe
+Row index: 60, Adelie, Biscoe
+Row index: 61, Adelie, Biscoe
+Row index: 62, Adelie, Biscoe
+Row index: 63, Adelie, Biscoe
+Row index: 64, Adelie, Biscoe
+Row index: 65, Adelie, Biscoe
+Row index: 66, Adelie, Biscoe
+Row index: 67, Adelie, Biscoe
+Row index: 68, Adelie, Torgersen
+Row index: 69, Adelie, Torgersen
+Row index: 70, Adelie, Torgersen
+Row index: 71, Adelie, Torgersen
+Row index: 72, Adelie, Torgersen
+Row index: 73, Adelie, Torgersen
+Row index: 74, Adelie, Torgersen
+Row index: 75, Adelie, Torgersen
+Row index: 76, Adelie, Torgersen
+Row index: 77, Adelie, Torgersen
+Row index: 78, Adelie, Torgersen
+Row index: 79, Adelie, Torgersen
+Row index: 80, Adelie, Torgersen
+Row index: 81, Adelie, Torgersen
+Row index: 82, Adelie, Torgersen
+Row index: 83, Adelie, Torgersen
+Row index: 84, Adelie, Dream
+Row index: 85, Adelie, Dream
+Row index: 86, Adelie, Dream
+Row index: 87, Adelie, Dream
+Row index: 88, Adelie, Dream
+Row index: 89, Adelie, Dream
+Row index: 90, Adelie, Dream
+Row index: 91, Adelie, Dream
+Row index: 92, Adelie, Dream
+Row index: 93, Adelie, Dream
+Row index: 94, Adelie, Dream
+Row index: 95, Adelie, Dream
+Row index: 96, Adelie, Dream
+Row index: 97, Adelie, Dream
+Row index: 98, Adelie, Dream
+Row index: 99, Adelie, Dream
+Row index: 100, Adelie, Biscoe
+Row index: 101, Adelie, Biscoe
+Row index: 102, Adelie, Biscoe
+Row index: 103, Adelie, Biscoe
+Row index: 104, Adelie, Biscoe
+Row index: 105, Adelie, Biscoe
+Row index: 106, Adelie, Biscoe
+Row index: 107, Adelie, Biscoe
+Row index: 108, Adelie, Biscoe
+Row index: 109, Adelie, Biscoe
+Row index: 110, Adelie, Biscoe
+Row index: 111, Adelie, Biscoe
+Row index: 112, Adelie, Biscoe
+Row index: 113, Adelie, Biscoe
+Row index: 114, Adelie, Biscoe
+Row index: 115, Adelie, Biscoe
+Row index: 116, Adelie, Torgersen
+Row index: 117, Adelie, Torgersen
+Row index: 118, Adelie, Torgersen
+Row index: 119, Adelie, Torgersen
+Row index: 120, Adelie, Torgersen
+Row index: 121, Adelie, Torgersen
+Row index: 122, Adelie, Torgersen
+Row index: 123, Adelie, Torgersen
+Row index: 124, Adelie, Torgersen
+Row index: 125, Adelie, Torgersen
+Row index: 126, Adelie, Torgersen
+Row index: 127, Adelie, Torgersen
+Row index: 128, Adelie, Torgersen
+Row index: 129, Adelie, Torgersen
+Row index: 130, Adelie, Torgersen
+Row index: 131, Adelie, Torgersen
+Row index: 132, Adelie, Dream
+Row index: 133, Adelie, Dream
+Row index: 134, Adelie, Dream
+Row index: 135, Adelie, Dream
+Row index: 136, Adelie, Dream
+Row index: 137, Adelie, Dream
+Row index: 138, Adelie, Dream
+Row index: 139, Adelie, Dream
+Row index: 140, Adelie, Dream
+Row index: 141, Adelie, Dream
+Row index: 142, Adelie, Dream
+Row index: 143, Adelie, Dream
+Row index: 144, Adelie, Dream
+Row index: 145, Adelie, Dream
+Row index: 146, Adelie, Dream
+Row index: 147, Adelie, Dream
+Row index: 148, Adelie, Dream
+Row index: 149, Adelie, Dream
+Row index: 150, Adelie, Dream
+Row index: 151, Adelie, Dream
+Row index: 152, Gentoo, Biscoe
+Row index: 153, Gentoo, Biscoe
+Row index: 154, Gentoo, Biscoe
+Row index: 155, Gentoo, Biscoe
+Row index: 156, Gentoo, Biscoe
+Row index: 157, Gentoo, Biscoe
+Row index: 158, Gentoo, Biscoe
+Row index: 159, Gentoo, Biscoe
+Row index: 160, Gentoo, Biscoe
+Row index: 161, Gentoo, Biscoe
+Row index: 162, Gentoo, Biscoe
+Row index: 163, Gentoo, Biscoe
+Row index: 164, Gentoo, Biscoe
+Row index: 165, Gentoo, Biscoe
+Row index: 166, Gentoo, Biscoe
+Row index: 167, Gentoo, Biscoe
+Row index: 168, Gentoo, Biscoe
+Row index: 169, Gentoo, Biscoe
+Row index: 170, Gentoo, Biscoe
+Row index: 171, Gentoo, Biscoe
+Row index: 172, Gentoo, Biscoe
+Row index: 173, Gentoo, Biscoe
+Row index: 174, Gentoo, Biscoe
+Row index: 175, Gentoo, Biscoe
+Row index: 176, Gentoo, Biscoe
+Row index: 177, Gentoo, Biscoe
+Row index: 178, Gentoo, Biscoe
+Row index: 179, Gentoo, Biscoe
+Row index: 180, Gentoo, Biscoe
+Row index: 181, Gentoo, Biscoe
+Row index: 182, Gentoo, Biscoe
+Row index: 183, Gentoo, Biscoe
+Row index: 184, Gentoo, Biscoe
+Row index: 185, Gentoo, Biscoe
+Row index: 186, Gentoo, Biscoe
+Row index: 187, Gentoo, Biscoe
+Row index: 188, Gentoo, Biscoe
+Row index: 189, Gentoo, Biscoe
+Row index: 190, Gentoo, Biscoe
+Row index: 191, Gentoo, Biscoe
+Row index: 192, Gentoo, Biscoe
+Row index: 193, Gentoo, Biscoe
+Row index: 194, Gentoo, Biscoe
+Row index: 195, Gentoo, Biscoe
+Row index: 196, Gentoo, Biscoe
+Row index: 197, Gentoo, Biscoe
+Row index: 198, Gentoo, Biscoe
+Row index: 199, Gentoo, Biscoe
+Row index: 200, Gentoo, Biscoe
+Row index: 201, Gentoo, Biscoe
+Row index: 202, Gentoo, Biscoe
+Row index: 203, Gentoo, Biscoe
+Row index: 204, Gentoo, Biscoe
+Row index: 205, Gentoo, Biscoe
+Row index: 206, Gentoo, Biscoe
+Row index: 207, Gentoo, Biscoe
+Row index: 208, Gentoo, Biscoe
+Row index: 209, Gentoo, Biscoe
+Row index: 210, Gentoo, Biscoe
+Row index: 211, Gentoo, Biscoe
+Row index: 212, Gentoo, Biscoe
+Row index: 213, Gentoo, Biscoe
+Row index: 214, Gentoo, Biscoe
+Row index: 215, Gentoo, Biscoe
+Row index: 216, Gentoo, Biscoe
+Row index: 217, Gentoo, Biscoe
+Row index: 218, Gentoo, Biscoe
+Row index: 219, Gentoo, Biscoe
+Row index: 220, Gentoo, Biscoe
+Row index: 221, Gentoo, Biscoe
+Row index: 222, Gentoo, Biscoe
+Row index: 223, Gentoo, Biscoe
+Row index: 224, Gentoo, Biscoe
+Row index: 225, Gentoo, Biscoe
+Row index: 226, Gentoo, Biscoe
+Row index: 227, Gentoo, Biscoe
+Row index: 228, Gentoo, Biscoe
+Row index: 229, Gentoo, Biscoe
+Row index: 230, Gentoo, Biscoe
+Row index: 231, Gentoo, Biscoe
+Row index: 232, Gentoo, Biscoe
+Row index: 233, Gentoo, Biscoe
+Row index: 234, Gentoo, Biscoe
+Row index: 235, Gentoo, Biscoe
+Row index: 236, Gentoo, Biscoe
+Row index: 237, Gentoo, Biscoe
+Row index: 238, Gentoo, Biscoe
+Row index: 239, Gentoo, Biscoe
+Row index: 240, Gentoo, Biscoe
+Row index: 241, Gentoo, Biscoe
+Row index: 242, Gentoo, Biscoe
+Row index: 243, Gentoo, Biscoe
+Row index: 244, Gentoo, Biscoe
+Row index: 245, Gentoo, Biscoe
+Row index: 246, Gentoo, Biscoe
+Row index: 247, Gentoo, Biscoe
+Row index: 248, Gentoo, Biscoe
+Row index: 249, Gentoo, Biscoe
+Row index: 250, Gentoo, Biscoe
+Row index: 251, Gentoo, Biscoe
+Row index: 252, Gentoo, Biscoe
+Row index: 253, Gentoo, Biscoe
+Row index: 254, Gentoo, Biscoe
+Row index: 255, Gentoo, Biscoe
+Row index: 256, Gentoo, Biscoe
+Row index: 257, Gentoo, Biscoe
+Row index: 258, Gentoo, Biscoe
+Row index: 259, Gentoo, Biscoe
+Row index: 260, Gentoo, Biscoe
+Row index: 261, Gentoo, Biscoe
+Row index: 262, Gentoo, Biscoe
+Row index: 263, Gentoo, Biscoe
+Row index: 264, Gentoo, Biscoe
+Row index: 265, Gentoo, Biscoe
+Row index: 266, Gentoo, Biscoe
+Row index: 267, Gentoo, Biscoe
+Row index: 268, Gentoo, Biscoe
+Row index: 269, Gentoo, Biscoe
+Row index: 270, Gentoo, Biscoe
+Row index: 271, Gentoo, Biscoe
+Row index: 272, Gentoo, Biscoe
+Row index: 273, Gentoo, Biscoe
+Row index: 274, Gentoo, Biscoe
+Row index: 275, Gentoo, Biscoe
+Row index: 276, Chinstrap, Dream
+Row index: 277, Chinstrap, Dream
+Row index: 278, Chinstrap, Dream
+Row index: 279, Chinstrap, Dream
+Row index: 280, Chinstrap, Dream
+Row index: 281, Chinstrap, Dream
+Row index: 282, Chinstrap, Dream
+Row index: 283, Chinstrap, Dream
+Row index: 284, Chinstrap, Dream
+Row index: 285, Chinstrap, Dream
+Row index: 286, Chinstrap, Dream
+Row index: 287, Chinstrap, Dream
+Row index: 288, Chinstrap, Dream
+Row index: 289, Chinstrap, Dream
+Row index: 290, Chinstrap, Dream
+Row index: 291, Chinstrap, Dream
+Row index: 292, Chinstrap, Dream
+Row index: 293, Chinstrap, Dream
+Row index: 294, Chinstrap, Dream
+Row index: 295, Chinstrap, Dream
+Row index: 296, Chinstrap, Dream
+Row index: 297, Chinstrap, Dream
+Row index: 298, Chinstrap, Dream
+Row index: 299, Chinstrap, Dream
+Row index: 300, Chinstrap, Dream
+Row index: 301, Chinstrap, Dream
+Row index: 302, Chinstrap, Dream
+Row index: 303, Chinstrap, Dream
+Row index: 304, Chinstrap, Dream
+Row index: 305, Chinstrap, Dream
+Row index: 306, Chinstrap, Dream
+Row index: 307, Chinstrap, Dream
+Row index: 308, Chinstrap, Dream
+Row index: 309, Chinstrap, Dream
+Row index: 310, Chinstrap, Dream
+Row index: 311, Chinstrap, Dream
+Row index: 312, Chinstrap, Dream
+Row index: 313, Chinstrap, Dream
+Row index: 314, Chinstrap, Dream
+Row index: 315, Chinstrap, Dream
+Row index: 316, Chinstrap, Dream
+Row index: 317, Chinstrap, Dream
+Row index: 318, Chinstrap, Dream
+Row index: 319, Chinstrap, Dream
+Row index: 320, Chinstrap, Dream
+Row index: 321, Chinstrap, Dream
+Row index: 322, Chinstrap, Dream
+Row index: 323, Chinstrap, Dream
+Row index: 324, Chinstrap, Dream
+Row index: 325, Chinstrap, Dream
+Row index: 326, Chinstrap, Dream
+Row index: 327, Chinstrap, Dream
+Row index: 328, Chinstrap, Dream
+Row index: 329, Chinstrap, Dream
+Row index: 330, Chinstrap, Dream
+Row index: 331, Chinstrap, Dream
+Row index: 332, Chinstrap, Dream
+Row index: 333, Chinstrap, Dream
+Row index: 334, Chinstrap, Dream
+Row index: 335, Chinstrap, Dream
+Row index: 336, Chinstrap, Dream
+Row index: 337, Chinstrap, Dream
+Row index: 338, Chinstrap, Dream
+Row index: 339, Chinstrap, Dream
+Row index: 340, Chinstrap, Dream
+Row index: 341, Chinstrap, Dream
+Row index: 342, Chinstrap, Dream
+Row index: 343, Chinstrap, Dream
+</pre>
 
 This can be slow for very large dataframes, but is useful if you need to perform actions on individual rows.
 
@@ -509,6 +1031,21 @@ In the Palmer penguins dataset, each row represents an individual penguin, and e
 penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv')
 penguins.head()
 ```
+
+<pre class="output-block">  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
+0  Adelie  Torgersen            39.1           18.7              181.0   
+1  Adelie  Torgersen            39.5           17.4              186.0   
+2  Adelie  Torgersen            40.3           18.0              195.0   
+3  Adelie  Torgersen             NaN            NaN                NaN   
+4  Adelie  Torgersen            36.7           19.3              193.0   
+
+   body_mass_g     sex  year  
+0       3750.0    male  2007  
+1       3800.0  female  2007  
+2       3250.0  female  2007  
+3          NaN     NaN  2007  
+4       3450.0  female  2007
+</pre>
 
 Here is an example of a transformation that we will be able to do with `pandas` that would be difficult to do manually or with `numpy`. We can summarize the data by calculating the average body mass (in kg) of each penguin species, broken up by sex. Using a few lines of code we can go from our raw data to a table that looks like this:
 
@@ -542,8 +1079,14 @@ When we print the Series, it will display as a column with the index on the left
 s0 = pd.Series([10, 20, 30, 40])
 
 print(s0)
-
 ```
+
+<pre class="output-block">0    10
+1    20
+2    30
+3    40
+dtype: int64
+</pre>
 
 
 ```python
@@ -551,8 +1094,14 @@ print(s0)
 s1 = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'])
 
 print(s1)
-
 ```
+
+<pre class="output-block">a    10
+b    20
+c    30
+d    40
+dtype: int64
+</pre>
 
 Another way to create a Series is to convert a (non-nested) dictionary into a Series. The keys of the dictionary will become the index labels while the values will become the data. 
 
@@ -565,6 +1114,12 @@ s2 = pd.Series(my_dictionary)
 print(s2)
 ```
 
+<pre class="output-block">first     10
+second    20
+third     30
+dtype: int64
+</pre>
+
 We can then access specific elements in the Series by referring to its index label enclosed in quotes and brackets. This is very similar to how a dictionary works!
 
 
@@ -575,6 +1130,11 @@ print(s1["a"])
 
 print(s2["second"])
 ```
+
+<pre class="output-block">10
+10
+20
+</pre>
 
 ### Multi-indexed Series
 
@@ -589,8 +1149,16 @@ my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
 s3 = pd.Series(my_values, index=my_index)
 
 print(s3)
-
 ```
+
+<pre class="output-block">California  2001    1.5
+            2002    1.7
+New York    2001    3.6
+            2002    4.2
+Texas       2001    3.2
+            2002    4.5
+dtype: float64
+</pre>
 
 Retrieving an item from this data structure is similar to a nested dictionary, using successive `[]` notation. Or, you can passs it a tuple. You must pass the index labels in the order they were created (left to right)
 
@@ -607,8 +1175,22 @@ print(s3[("California", 2001)])
 print("---")
 # you can also use slicing to select multiple elements
 print(s3["California":"New York"])
-
 ```
+
+<pre class="output-block">2001    1.5
+2002    1.7
+dtype: float64
+---
+1.5
+---
+1.5
+---
+California  2001    1.5
+            2002    1.7
+New York    2001    3.6
+            2002    4.2
+dtype: float64
+</pre>
 
 In our work, we typically don't use multi-indexed Series. However, they are often the output of pandas functions, so it's good to know how to work with them. If you don't like the idea of multi-indexed Series, you can always convert them to a DataFrame using the `reset_index()` method.
 
@@ -616,6 +1198,15 @@ In our work, we typically don't use multi-indexed Series. However, they are ofte
 ```python
 s3.reset_index()
 ```
+
+<pre class="output-block">      level_0  level_1    0
+0  California     2001  1.5
+1  California     2002  1.7
+2    New York     2001  3.6
+3    New York     2002  4.2
+4       Texas     2001  3.2
+5       Texas     2002  4.5
+</pre>
 
 ## Pandas DataFrame
 
@@ -641,6 +1232,13 @@ sumo = pd.DataFrame(tournamentStats)
 print(sumo)
 ```
 
+<pre class="output-block">     wrestler  wins         rank
+0  Terunofuji    13     yokozuna
+1         Ura     6  maegashira2
+2      Shodai    10     komusubi
+3   Takanosho    12  maegashira6
+</pre>
+
 Pandas dataframes have many **attributes**, including `shape`, `columns`, `index`, `dtypes`. These are useful for understanding the structure of the dataframe.
 
 
@@ -657,12 +1255,36 @@ print("---")
 print(sumo.dtypes)
 ```
 
+<pre class="output-block">(4, 3)
+---
+Index(['wrestler', 'wins', 'rank'], dtype='object')
+---
+RangeIndex(start=0, stop=4, step=1)
+---
+wrestler    object
+wins         int64
+rank        object
+dtype: object
+</pre>
+
 Pandas DataFrames also have the handy `info()` function that summarizes the contents of the dataframe, including counts of the non-null values of each column and the data type of each column.
 
 
 ```python
 sumo.info()
 ```
+
+<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+RangeIndex: 4 entries, 0 to 3
+Data columns (total 3 columns):
+ #   Column    Non-Null Count  Dtype 
+---  ------    --------------  ----- 
+ 0   wrestler  4 non-null      object
+ 1   wins      4 non-null      int64 
+ 2   rank      4 non-null      object
+dtypes: int64(1), object(2)
+memory usage: 228.0+ bytes
+</pre>
 
 ## Selecting data in a Pandas dataframe
 
@@ -678,6 +1300,9 @@ We can always check the names of the columns in a Pandas dataframe byt using the
 sumo.columns
 ```
 
+<pre class="output-block">Index(['wrestler', 'wins', 'rank'], dtype='object')
+</pre>
+
 If we want to refer to a specific column, we can specify its index (enclosed in double quotes) inside of square brackets `[]` like so:
 
 
@@ -686,6 +1311,13 @@ If we want to refer to a specific column, we can specify its index (enclosed in 
 sumo["wrestler"]
 ```
 
+<pre class="output-block">0    Terunofuji
+1           Ura
+2        Shodai
+3     Takanosho
+Name: wrestler, dtype: object
+</pre>
+
 If we want to refer to *multiple* columns, we need to pass the columns as a **list** by enclosing the column indices in square brackets, so you will end up with *double brackets*:
 
 
@@ -693,6 +1325,13 @@ If we want to refer to *multiple* columns, we need to pass the columns as a **li
 #Multiple columns (note the double []!):
 sumo[["wrestler", "rank"]]
 ```
+
+<pre class="output-block">     wrestler         rank
+0  Terunofuji     yokozuna
+1         Ura  maegashira2
+2      Shodai     komusubi
+3   Takanosho  maegashira6
+</pre>
 
 ### Selecting rows:
 
@@ -703,12 +1342,21 @@ The syntax for selecting specific rows is slightly different. Let's first check 
 print(sumo.index)
 ```
 
+<pre class="output-block">RangeIndex(start=0, stop=4, step=1)
+</pre>
+
 Here we can see that while the column index labels were strings, the row index labels are *numerical values*, in this case `0` thru `3`. If we wanted to pull out the first row, we need to specify its index label (`0`) in combination with the `.loc` method (which is required for rows): 
 
 
 ```python
 sumo.loc[0]
 ```
+
+<pre class="output-block">wrestler    Terunofuji
+wins                13
+rank          yokozuna
+Name: 0, dtype: object
+</pre>
 
 If we want to select multiple rows, like with columns we need to pass it as a list using the double brackets. If we want to specify a **range** of rows (i.e. from this row to that row), we **don't** use double brackets and instead use `:`:
 
@@ -717,11 +1365,22 @@ If we want to select multiple rows, like with columns we need to pass it as a li
 print(sumo.loc[[0,1]])
 ```
 
+<pre class="output-block">     wrestler  wins         rank
+0  Terunofuji    13     yokozuna
+1         Ura     6  maegashira2
+</pre>
+
 
 ```python
 
 print(sumo.loc[0:2])
 ```
+
+<pre class="output-block">     wrestler  wins         rank
+0  Terunofuji    13     yokozuna
+1         Ura     6  maegashira2
+2      Shodai    10     komusubi
+</pre>
 
 Note that in this case the row index labels are numbers, but do not have to be numerical, and can have string labels similar to columns. Let's show how we could change the row index labels by taking the column with the wrestler's rank and setting it as the index label (note that the labels should be unique!):
 
@@ -732,10 +1391,23 @@ sumo = sumo.set_index("rank")
 print(sumo)
 ```
 
+<pre class="output-block">               wrestler  wins
+rank                         
+yokozuna     Terunofuji    13
+maegashira2         Ura     6
+komusubi         Shodai    10
+maegashira6   Takanosho    12
+</pre>
+
 
 ```python
 sumo.loc["yokozuna"]
 ```
+
+<pre class="output-block">wrestler    Terunofuji
+wins                13
+Name: yokozuna, dtype: object
+</pre>
 
 We also need to use `.loc` if we are referring to a specific row AND column, e.g.:
 
@@ -743,6 +1415,9 @@ We also need to use `.loc` if we are referring to a specific row AND column, e.g
 ```python
 print(sumo.loc["komusubi", "wrestler"])
 ```
+
+<pre class="output-block">Shodai
+</pre>
 
 If we want to purely use numerical indexing, we can use the `.iloc()` method. If you use `.iloc()`, you can index a DataFrame just as you would a numpy array. 
 
@@ -752,6 +1427,12 @@ If we want to purely use numerical indexing, we can use the `.iloc()` method. If
 
 sumo.iloc[0:2, 0:2]
 ```
+
+<pre class="output-block">               wrestler  wins
+rank                         
+yokozuna     Terunofuji    13
+maegashira2         Ura     6
+</pre>
 
 There are many ways to select subsets of a dataframe. The rows and columns of a dataframe can be referred to either by their integer position or by their indexed name. Typically, for columns, you'll use the indexed name and can just do `[]` with the name of the column. For rows, if you want to use the integer position, you will use `.iloc[]`. If you want to use the index name, you will use `.loc[]`. 
 
@@ -774,6 +1455,23 @@ For reference, here's a handy table on the best ways to index into a dataframe:
 penguins.info()
 ```
 
+<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+RangeIndex: 344 entries, 0 to 343
+Data columns (total 8 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   species            344 non-null    object 
+ 1   island             344 non-null    object 
+ 2   bill_length_mm     342 non-null    float64
+ 3   bill_depth_mm      342 non-null    float64
+ 4   flipper_length_mm  342 non-null    float64
+ 5   body_mass_g        342 non-null    float64
+ 6   sex                333 non-null    object 
+ 7   year               344 non-null    int64  
+dtypes: float64(4), int64(1), object(3)
+memory usage: 21.6+ KB
+</pre>
+
 
 ```python
 # Your code here
@@ -786,6 +1484,40 @@ print(penguins.iloc[0:5,0:5])
 print("---")
 print(penguins.loc[0:10, ['species', 'island', 'sex']])
 ```
+
+<pre class="output-block">0         Adelie
+1         Adelie
+2         Adelie
+3         Adelie
+4         Adelie
+         ...    
+339    Chinstrap
+340    Chinstrap
+341    Chinstrap
+342    Chinstrap
+343    Chinstrap
+Name: species, Length: 344, dtype: object
+---
+  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm
+0  Adelie  Torgersen            39.1           18.7              181.0
+1  Adelie  Torgersen            39.5           17.4              186.0
+2  Adelie  Torgersen            40.3           18.0              195.0
+3  Adelie  Torgersen             NaN            NaN                NaN
+4  Adelie  Torgersen            36.7           19.3              193.0
+---
+   species     island     sex
+0   Adelie  Torgersen    male
+1   Adelie  Torgersen  female
+2   Adelie  Torgersen  female
+3   Adelie  Torgersen     NaN
+4   Adelie  Torgersen  female
+5   Adelie  Torgersen    male
+6   Adelie  Torgersen  female
+7   Adelie  Torgersen    male
+8   Adelie  Torgersen     NaN
+9   Adelie  Torgersen     NaN
+10  Adelie  Torgersen     NaN
+</pre>
 
 ---
 
@@ -865,5 +1597,16 @@ print(penguins.loc[0:10, ['species', 'island', 'sex']])
     padding-left: 40px;
     font-size: 15px;
   }
+
+    /* Hide all 2nd-level navs */
+    .md-nav--secondary .md-nav__item .md-nav {
+        display: none !important;
+    }
+
+    /* Show when parent has .expanded class */
+    .md-nav--secondary .md-nav__item.expanded > .md-nav {
+        display: block !important;
+    }
+  
 
 </style>

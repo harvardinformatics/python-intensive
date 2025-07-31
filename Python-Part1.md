@@ -1,16 +1,16 @@
 ---
-title: "[Workshop] Python intensive, day 1"
+title: "[Workshop] Python intensive, part 1"
 description: "Introduction to programming concepts such as functions, data types, operators, logic, and control flow."
 authors:
     - Gregg Thomas
     - Tim Sackton
 ---
 
-# Python intensive, day 1
+# Python intensive, part 1
 
 ## Introduction
 
-Welcome to the first day of the Harvard Informatics Python intensive workshop. This is a six day workshop intended to give a quick, yet thorough, introduction to programming concepts, the Python programming language, and how to use Python to facilitate data analysis.
+Welcome to the first part of the Harvard Informatics Python intensive workshop. This is a six day workshop intended to give a quick, yet thorough, introduction to programming concepts, the Python programming language, and how to use Python to facilitate data analysis.
 
 Programmatic analysis of data allows scientist to have full control over how their data is parsed, assessed, and presented, unlike using third party programs (like Excel) which may make unwanted assumptions about how you want to read your data. The upside of this is that one could conceivably perform any analysis imaginable on their data, assuming they have enough coding skills. The downside is that one must know how to program. But that is the goal of this workshop: to give you the understanding of programming concepts and underlying skills such that you can see a problem or question in your work and then be able to understand how you would code the solution.
 
@@ -34,11 +34,7 @@ This workshop exists as a **Jupyter notebook**. You can participate in this work
 
 ---
 
-<<<<<<< HEAD
 <details markdown>
-=======
-<details>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 <summary>Click to show instructions for loading the notebook locally</summary>
 
 **See above for the recommended way to participate in this workshop. Only follow these instructions if Google Colab isn't working**
@@ -80,8 +76,8 @@ Run the code cell below as a demo.
 print("this is my code cell")
 ```
 
-    this is my code cell
-    
+<pre class="output-block">this is my code cell
+</pre>
 
 Any **variables** that you assign in one cell will be available in other cells. But they will not be saved between sessions. If you close the notebook and re-open it, you will need to re-run the previous cells to get your variables back. Therefore, it's important to be aware of the state of your notebook and the order in which your cells were run.
 
@@ -95,14 +91,8 @@ my_string = "this is my code cell"
 print(my_string)
 ```
 
-<<<<<<< HEAD
-    this is my code cell
-    
-=======
-<pre class="output-block">
-this is my code cell
+<pre class="output-block">this is my code cell
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Jupyter notebooks can be exported to pdf or html, so that other people can view both the code and its output. It's a good format for handing in homeworks, for example, since you can show your work. In this notebook, there will be exercises with placeholders for the code that you will have to fill in. For these exercises, we encourage you to work with each other, use google, LLMs, and whatever other resources if you are stuck. It's not an exam, but just a way to practice the concepts. Afterwards, we will post the completed notebook on our website so you can have examples of solutions.
 
@@ -340,18 +330,12 @@ This means that both times we call the Walk_anywhere() function, we can specify 
 
 (Double click here to type your solution)
 
-<<<<<<< HEAD
 
 <details markdown>
 <summary>Solution</summary>
 
 ```
 Walk_anywhere(distance=1 meter and angle=180°)
-=======
-```python
-# Your pseudocode here
-Walk_anywhere(distance=1 meter and angle=180°) ### SL
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 </details>
@@ -402,18 +386,8 @@ Let's look at a very basic function. What happens when you run the single line o
 abs(-5)
 ```
 
-
-
-
-<<<<<<< HEAD
-    5
-
-
-=======
-<pre class="output-block">
-5
+<pre class="output-block">5
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 The `abs()` function takes as input a single **integer** and **returns** its absolute value. In this case, the absolute value of -5 is 5. Under the hood, there is some block of code that Python has installed on your computer that is looked-up and run every time it sees that you've typed and run `abs()`. I don't know what this code looks like (though I could guess for such a simple function), and I don't even know where it is on the computer. But that's what's so great about functions: they simplify tasks that are repeated often, saving us programmers time and effort.
 
@@ -430,31 +404,13 @@ What happens if you run this code block:
 abs()
 ```
 
-
-<<<<<<< HEAD
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    Cell In[6], line 1
-    ----> 1 abs()
-    
-
-    TypeError: abs() takes exactly one argument (0 given)
-
-=======
-<pre class="output-block">
----------------------------------------------------------------------------
-
+<pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-
-Cell In[7], line 1
-----&gt; 1 abs()
-
+Cell In[6], line 1
+----> 1 abs()
 
 TypeError: abs() takes exactly one argument (0 given)
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 You get an **error** (a very common occurrence when coding). Remember, almost all functions require additional information in the form of **arguments**. In the case of `abs()` it requires a single argument, a number. Without it, the underlying code doesn't work, so it stops the program and tells us before it even tries.
 
@@ -465,31 +421,13 @@ How about this:
 abs(-5, 7, -12)
 ```
 
-
-<<<<<<< HEAD
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    Cell In[7], line 1
-    ----> 1 abs(-5, 7, -12)
-    
-
-    TypeError: abs() takes exactly one argument (3 given)
-
-=======
-<pre class="output-block">
----------------------------------------------------------------------------
-
+<pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-
-Cell In[8], line 1
-----&gt; 1 abs(-5, 7, -12)
-
+Cell In[7], line 1
+----> 1 abs(-5, 7, -12)
 
 TypeError: abs() takes exactly one argument (3 given)
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Still no good. In this case, the function takes EXACTLY one number and runs some code using it. This may not always be the case, and different functions are going to require different inputs.
 
@@ -506,21 +444,11 @@ Try this:
 help(abs)
 ```
 
-<<<<<<< HEAD
-    Help on built-in function abs in module builtins:
-    
-    abs(x, /)
-        Return the absolute value of the argument.
-    
-    
-=======
-<pre class="output-block">
-Help on built-in function abs in module builtins:
+<pre class="output-block">Help on built-in function abs in module builtins:
 
 abs(x, /)
     Return the absolute value of the argument.
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 This tells us what `abs()` does and tells us that it requires one argument, `x`. (The `/` indicates that the argument is positional, but you can ignore that for now.)
 
@@ -574,31 +502,13 @@ For example, we know what `abs(-5)` will do. What about the following? Run the c
 abs("-5")
 ```
 
-
-<<<<<<< HEAD
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    Cell In[9], line 1
-    ----> 1 abs("-5")
-    
-
-    TypeError: bad operand type for abs(): 'str'
-
-=======
-<pre class="output-block">
----------------------------------------------------------------------------
-
+<pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-
-Cell In[10], line 1
-----&gt; 1 abs("-5")
-
+Cell In[9], line 1
+----> 1 abs("-5")
 
 TypeError: bad operand type for abs(): 'str'
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 It is more-or-less telling us that we gave it a string when this function only works for integers.
 
@@ -625,11 +535,6 @@ And we've entered this data into our Python script and **stored it as a variable
 my_string = "Teach a robot to bake cookies."
 
 # Your code here: Find a function to put here that counts the number of characters in my_string
-<<<<<<< HEAD
-=======
-len(my_string) ### SL
-
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
 ??? success "Solution"
@@ -638,23 +543,14 @@ len(my_string) ### SL
     len(my_string)
     ```
 
-    
-    <pre class="output-block">
-    30</pre>
-    
+    <pre class="output-block">30
+    </pre>
 
-
-
-
-<pre class="output-block">
-30
-</pre>
 
 ```python
 my_integer = 124
 
 # Your code here: Use the same function to count the number of digits in my_integer
-<<<<<<< HEAD
 ```
 
 ??? success "Solution"
@@ -663,34 +559,15 @@ my_integer = 124
     len(my_integer)
     ```
 
-    
     <pre class="output-block">---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[13], line 2
-          1 my_integer = 124
-    ----> 2 len(my_integer)
+    Cell In[13], line 3
+          1 #@title Solution {display-mode: "form"}
+          2 my_integer = 124
+    ----> 3 len(my_integer)
     
-    TypeError: object of type 'int' has no len()</pre>
-    
-=======
-len(my_integer) ### SL
-```
-
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-TypeError                                 Traceback (most recent call last)
-
-Cell In[12], line 4
-      1 my_integer = 124
-      3 # Your code here: Use the same function to count the number of digits in my_integer
-----&gt; 4 len(my_integer) ### SL
-
-
-TypeError: object of type 'int' has no len()
-</pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+    TypeError: object of type 'int' has no len()
+    </pre>
 
 #### print()
 
@@ -702,7 +579,6 @@ Another important function in Python is `print()`. This function takes any numbe
 
 ```python
 # Your code here: Display my_string and my_integer on a single line
-<<<<<<< HEAD
 ```
 
 ??? success "Solution"
@@ -710,18 +586,8 @@ Another important function in Python is `print()`. This function takes any numbe
     print(my_string, my_integer)
     ```
 
-    
-    <pre class="output-block">
-    Teach a robot to bake cookies. 124</pre>
-    
-=======
-print(my_string, my_integer) ### SL
-```
-
-<pre class="output-block">
-Teach a robot to bake cookies. 124
-</pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+    <pre class="output-block">Teach a robot to bake cookies. 124
+    </pre>
 
 You'll notice that this worked even though we gave it mixed data types (a string and an integer).
 
@@ -742,8 +608,8 @@ abs_result = abs(my_integer)
 print("The absolute value of", my_integer, "is", abs_result)
 ```
 
-    The absolute value of -5 is 5
-    
+<pre class="output-block">The absolute value of -5 is 5
+</pre>
 
 This chunk demonstrates a few things:
 
@@ -756,7 +622,6 @@ This chunk demonstrates a few things:
 
 ```python
 # Your code here: Store a string, calculate its length, and print both
-<<<<<<< HEAD
 ```
 
 ??? success "Solution"
@@ -766,22 +631,8 @@ This chunk demonstrates a few things:
     print("The message: '", my_string, "' is", my_string_length, "characters long.")
     ```
 
-    
-    <pre class="output-block">
-    The message: ' Teach a robot to bake cookies. ' is 30 characters long.</pre>
-    
-=======
-### SL START
-my_string = "Teach a robot to bake cookies."
-my_string_length = len(my_string)
-print("The message: '", my_string, "' is", my_string_length, "characters long.")
-### SL END
-```
-
-<pre class="output-block">
-The message: ' Teach a robot to bake cookies. ' is 30 characters long.
-</pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+    <pre class="output-block">The message: ' Teach a robot to bake cookies. ' is 30 characters long.
+    </pre>
 
 ### Indirection
 
@@ -795,16 +646,9 @@ x = 5
 abs(x) # Here, we've indirectly referenced the literal of 5 by using the variable x.
 ```
 
-<<<<<<< HEAD
+<pre class="output-block">5
+</pre>
 
-
-
-    5
-
-
-
-=======
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 This example seems pretty easy to understand, but this concept will be very important as we move forward. In fact, efficient and automated programs couldn't be written at all without indirection: indirection allows us to manipulate data within programs and accept different data when running the same program multiple times.
 
 As such, we may also occasionally do some "code golf" or "code bowling" exercises to show the trade-offs between too much and too little indirection. For example, we could easily "code golf" this block:
@@ -820,14 +664,8 @@ e = 1
 print(a + b + c + d + e)
 ```
 
-<<<<<<< HEAD
-    19
-    
-=======
-<pre class="output-block">
-19
+<pre class="output-block">19
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 To just be:
 
@@ -836,14 +674,8 @@ To just be:
 print(3 + 5 + 8 + 2 + 1)
 ```
 
-<<<<<<< HEAD
-    19
-    
-=======
-<pre class="output-block">
-19
+<pre class="output-block">19
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Which is very succinct (1 line vs. 6 lines) and clear, but we lose the ability to manipulate the data easily elsewhere in our program, *e.g.*:
 
@@ -860,14 +692,8 @@ a = a + 6
 print(a + b + c + d + e)
 ```
 
-<<<<<<< HEAD
-    25
-    
-=======
-<pre class="output-block">
-25
+<pre class="output-block">25
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 ### Variable naming rules
 
@@ -891,13 +717,11 @@ my_data2 = 6 # also good!
 2_data = 7 # no good!
 ```
 
-
-      Cell In[24], line 3
-        2_data = 7 # no good!
-         ^
-    SyntaxError: invalid decimal literal
-    
-
+<pre class="output-block">  Cell In[24], line 3
+    2_data = 7 # no good!
+     ^
+SyntaxError: invalid decimal literal
+</pre>
 
 2.   **Keywords**, like `if`, `while`, `in`, cannot be used as variable names because they are used for other operations. The following shows a list of keywords that cannot be used as variable names:
 
@@ -907,8 +731,8 @@ import keyword
 print(keyword.kwlist)
 ```
 
-    ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
-    
+<pre class="output-block">['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+</pre>
 
 3.   Variables are case sensitive, so the variables `count`, `Count`, and `COUNT` are all unique and can be used simultaneously, though this would not be a best practice since it makes the code harder to read.
 
@@ -922,8 +746,67 @@ COUNT = 7
 print(count, Count, COUNT)
 ```
 
-    5 6 7
-    
+<pre class="output-block">5 6 7
+</pre>
+
+### Whitespace in Python, part 1
+
+Whitespace refers to any part of a string that is not a visible character, such as a space, tab, or new line. In some cases, Python actually uses whitespace to interpret code, which we'll learn about later. But in most cases, it is very forgiving:
+
+
+```python
+x               =                   5
+
+
+
+
+
+
+
+
+print(        x       
+      
+      )
+```
+
+<pre class="output-block">5
+</pre>
+
+Obviously, typing code like this is completely unreadable, but adding whitespace in certain spots can actually make things a bit easier to parse by eye:
+
+
+```python
+my_string = "Teach a robot to bake cookies."
+my_string_length = len(my_string)
+
+print("The message: '", 
+      my_string, 
+      "' is", 
+      my_string_length, 
+      "characters long."
+    )
+```
+
+<pre class="output-block">The message: ' Teach a robot to bake cookies. ' is 30 characters long.
+</pre>
+
+The most important general rule (other than indented code blocks, which we'll learn about later), is that any individual command should be isolated to one line, but parts of that command contained within characters can be broken into multiple lines. As above, in the call to the `print()` function where we place the arguments of the function on separate lines and indent them.
+
+However, lines of code that are not calls to functions or defining things separated by commas (generally) must be kept to one line:
+
+
+```python
+x =
+5
+```
+
+<pre class="output-block">  Cell In[29], line 1
+    x =
+       ^
+SyntaxError: invalid syntax
+</pre>
+
+Best advice: keep individual instructions to a single line, and only consider adding whitespace for legibility for difficult to read function calls or data structure definitions (more later).
 
 ## Operators as functions
 
@@ -952,14 +835,8 @@ my_initial_data = my_data_point
 print(my_initial_data)
 ```
 
-<<<<<<< HEAD
-    12
-    
-=======
-<pre class="output-block">
-12
+<pre class="output-block">12
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 So in a way, operators can be seen as syntactic shortcuts. Instead of having to type something like:
 
@@ -995,11 +872,11 @@ print(x * y)
 print(x / y)
 ```
 
-    6
-    2
-    8
-    2.0
-    
+<pre class="output-block">6
+2
+8
+2.0
+</pre>
 
 Here, we've used a bit of indirection by giving the `print()` function a single argument: the result of the arithmetic operation, which it then displays.
 
@@ -1013,8 +890,8 @@ y = 2
 print(x / y)
 ```
 
-    1.5
-    
+<pre class="output-block">1.5
+</pre>
 
 A couple other arithmetic operators are:
 
@@ -1034,18 +911,10 @@ print(x % y)
 print(x // y)
 ```
 
-<<<<<<< HEAD
-    9
-    1
-    1
-    
-=======
-<pre class="output-block">
-9
+<pre class="output-block">9
 1
 1
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Remember, when performing 3 / 2 with remainders, the remainder is 1, so `%` returns 1.
 
@@ -1064,22 +933,12 @@ print(3 ** 2 - 1)
 print(3 ** (2 - 1))
 ```
 
-<<<<<<< HEAD
-    7
-    9
-    ---
-    8
-    3
-    
-=======
-<pre class="output-block">
-7
+<pre class="output-block">7
 9
 ---
 8
 3
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 ### String operators, or why its important to know your data types
 
@@ -1097,8 +956,8 @@ y = "world"
 print(x + y)
 ```
 
-    helloworld
-    
+<pre class="output-block">helloworld
+</pre>
 
 This can be very useful when formatting strings, either for processing or for output.
 
@@ -1114,14 +973,8 @@ sum_of_important_data = important_data_point1 + important_data_point2
 print("I'm now showing my professor my important results:", sum_of_important_data)
 ```
 
-<<<<<<< HEAD
-    I'm now showing my professor my important results: 98
-    
-=======
-<pre class="output-block">
-I'm now showing my professor my important results: 98
+<pre class="output-block">I'm now showing my professor my important results: 98
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Here, no error is displayed telling you you are concatenating two strings rather than adding together two integers. That's because both things are vaild to do with Python syntax: Python has no way of knowing that you wanted to add these numbers rather than concatenate them - that's up to you to tell it! Remember, every little step of a computer program has to be given, otherwise you will get errors (relatively easy to debug) or **logic errors**, which occur when the program runs, but gives unexpected results, and are generally harder to debug.
 
@@ -1130,22 +983,16 @@ Here, no error is displayed telling you you are concatenating two strings rather
 
 ```python
 # Edit and correct the code here
-<<<<<<< HEAD
 important_data_point1 = "9"
 important_data_point2 = "8"
-=======
-important_data_point1 = 9 ### SL 9 : "9"
-important_data_point2 = 8 ### SL 8 : "8"
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 sum_of_important_data = important_data_point1 + important_data_point2
 
 print("I'm now showing my professor my important results:", sum_of_important_data)
 ```
 
-<<<<<<< HEAD
-    I'm now showing my professor my important results: 98
-    
+<pre class="output-block">I'm now showing my professor my important results: 98
+</pre>
 
 ??? success "Solution"
     ```python
@@ -1157,15 +1004,8 @@ print("I'm now showing my professor my important results:", sum_of_important_dat
     print("I'm now showing my professor my important results:", sum_of_important_data)
     ```
 
-    
-    <pre class="output-block">
-    I'm now showing my professor my important results: 17</pre>
-    
-=======
-<pre class="output-block">
-I'm now showing my professor my important results: 17
-</pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+    <pre class="output-block">I'm now showing my professor my important results: 17
+    </pre>
 
 Luckily, if we ever try to `+` a string and an integer together, it stops us with an error:
 
@@ -1174,31 +1014,13 @@ Luckily, if we ever try to `+` a string and an integer together, it stops us wit
 x = "9" + 8
 ```
 
-
-<<<<<<< HEAD
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    Cell In[36], line 1
-    ----> 1 x = "9" + 8
-    
-
-    TypeError: can only concatenate str (not "int") to str
-
-=======
-<pre class="output-block">
----------------------------------------------------------------------------
-
+<pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-
-Cell In[24], line 1
-----&gt; 1 x = "9" + 8
-
+Cell In[39], line 1
+----> 1 x = "9" + 8
 
 TypeError: can only concatenate str (not "int") to str
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 #### Repeat strings with `*`
 
@@ -1218,14 +1040,8 @@ repeat_num = 4
 print(my_string * repeat_num)
 ```
 
-<<<<<<< HEAD
-    hahahaha
-    
-=======
-<pre class="output-block">
-hahahaha
+<pre class="output-block">hahahaha
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 ## Booleans and logical operators
 
@@ -1247,48 +1063,21 @@ print(true)
 print("--- print true check ---")
 ```
 
-<<<<<<< HEAD
-    True
-    --- print True check ---
-    
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    Cell In[38], line 3
-          1 print(True)
-          2 print("--- print True check ---")
-    ----> 3 print(true)
-          4 print("--- print true check ---")
-    
-
-    NameError: name 'true' is not defined
-
-
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 --- print True check ---
+</pre>
 
-
-
----------------------------------------------------------------------------
-
+<pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-
-Cell In[26], line 3
+Cell In[41], line 3
       1 print(True)
       2 print("--- print True check ---")
-----&gt; 3 print(true)
+----> 3 print(true)
       4 print("--- print true check ---")
-
 
 NameError: name 'true' is not defined
 </pre>
 
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 Here, the boolean `True` is displayed along with the message telling us it has been displayed. However, since the keyword `true` doesn't exist in Python, the error is telling us that it thinks `true` should be a variable that the programmer has put in the program, but it can't find where it is defined.
 
 There are other ways to represent Booleans in Python as well. For instance the **integers** `1` and `0` represent `True` and `False`, respectively.
@@ -1315,21 +1104,21 @@ print(bool(''))
 print(bool("0"))
 ```
 
-    bool() of a boolean:
-    True
-    ---
-    bool() of integers:
-    True
-    False
-    True
-    True
-    ---
-    bool() of strings
-    True
-    False
-    False
-    True
-    
+<pre class="output-block">bool() of a boolean:
+True
+---
+bool() of integers:
+True
+False
+True
+True
+---
+bool() of strings
+True
+False
+False
+True
+</pre>
 
 
 
@@ -1346,10 +1135,8 @@ print(bool("False"))
     print(bool("False"))
     ```
 
-    
-    <pre class="output-block">
-    True</pre>
-    
+    <pre class="output-block">True
+    </pre>
 
 ### Logical operators: **and** and **or**
 
@@ -1366,18 +1153,10 @@ print(True and False)
 print(False and False)
 ```
 
-<<<<<<< HEAD
-    True
-    False
-    False
-    
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 False
 False
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 For **or**, only one of the two booleans must be `True` for the whole expression to be True:
 
@@ -1388,18 +1167,10 @@ print(True or False)
 print(False or False)
 ```
 
-<<<<<<< HEAD
-    True
-    True
-    False
-    
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 True
 False
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Any easy way to see how `and` and `or` work is with truth tables. In a truth table, we fill out all possible values for the variables in the expression and then evaluate each component of the expression. Here, the first two columns are for the variables being compared, A and B, and each row is a combination of values for those variables. The last columns show the result of the logical expression given those values of A and B.
 
@@ -1424,7 +1195,6 @@ Remember, almost every object in a program can be evaluated as a Boolean.
 
 ```python
 # Your code here: Two integers with and that returns True
-<<<<<<< HEAD
 
 
 # Your code here: Two integers with or that returns False
@@ -1451,33 +1221,11 @@ Remember, almost every object in a program can be evaluated as a Boolean.
     print(bool(0) and bool(""))
     ```
 
-    
-    <pre class="output-block">
-    True
+    <pre class="output-block">True
     False
     True
-    False</pre>
-    
-=======
-print(1 and bool(573657)) ### SL
-
-# Your code here: Two integers with or that returns False
-print(bool(0) or bool(0)) ### SL
-
-# Your code here: Integer and string with and that returns True
-print(bool(235) and bool("hello")) ### SL
-
-# Your code here: Integer and string with and that returns False
-print(bool(0) and bool("")) ### SL
-```
-
-<pre class="output-block">
-True
-False
-True
-False
-</pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+    False
+    </pre>
 
 #### Complex logical statements and order of operations
 
@@ -1488,14 +1236,8 @@ Using `and` and `or`, we can evaluate multiple boolean values.
 print(True or True and False)
 ```
 
-<<<<<<< HEAD
-    True
-    
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 This statement returns `True`. Logical statements have their own order of operations, with **`and` taking precedence over `or`**. Given that, let's break the statement down.
 
@@ -1509,14 +1251,8 @@ The order of operations can be made more explicit with parentheses.
 print(True or (True and False))
 ```
 
-<<<<<<< HEAD
-    True
-    
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 This is the exact same logical expression as the one above, but we've added the parentheses to make things a little bit easier for us to parse. In logical expressions, **parentheses also affect the order of operations** as they do in mathematical expressions: they take precedence over anything else. In that way, we can change the result of this expression by moving the parentheses.
 
@@ -1525,14 +1261,8 @@ This is the exact same logical expression as the one above, but we've added the 
 print((True or True) and False)
 ```
 
-<<<<<<< HEAD
-    False
-    
-=======
-<pre class="output-block">
-False
+<pre class="output-block">False
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Here, the parentheses tell Python to evaluate whatever is inside them first. Now the statement breaks down as:
 
@@ -1604,14 +1334,12 @@ Let's practice reading some more complex logical expressions.
     print(False or False or False or False or True or False)
     ```
 
-    
-    <pre class="output-block">
-    False
+    <pre class="output-block">False
     False
     True
     False
-    True</pre>
-    
+    True
+    </pre>
 
 ### Negation operator: `not`
 
@@ -1624,18 +1352,10 @@ print(not False)
 print(not False or False or False or False or True or False)
 ```
 
-<<<<<<< HEAD
-    False
-    True
-    True
-    
-=======
-<pre class="output-block">
-False
+<pre class="output-block">False
 True
 True
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Note that `not` works on individual parts of a logical expression, not the entire thing. So, `False or True` returns `True` and `not False or True` also returns `True`. This is because the `not` is only negating the first `False`, essentially making the statement `True or True`. To negate chunks of an expression, use parentheses. `not (False or True)` will indeed return `False`, since the expression itself is `True` and we are negating the whole thing.
 
@@ -1646,11 +1366,10 @@ print(not False or True)
 print(not (False or True))
 ```
 
-<<<<<<< HEAD
-    True
-    True
-    False
-    
+<pre class="output-block">True
+True
+False
+</pre>
 
 > **Exercise:** Fill out the following truth table. We will go from left to right. Double click on the table to edit.
 
@@ -1671,22 +1390,6 @@ F   | T   |    F    |   F   |      F      |           F            |            
 F   | F   |    F    |   T   |      F      |           F            |             F            |
 
 </details>
-=======
-<pre class="output-block">
-True
-True
-False
-</pre>
-
-> **Exercise:** Fill out the following truth table. We will go from left to right. Double click on the table to edit.
-
-A | B | A and B | not B | A and not B | A and B or A and not B | A and (B or A) and not B |
---- | --- | ------- | ----- | ----------- | ---------------------- | ------------- |
-T | T |    T    |   F   |      F      |           T            |        F ### SL     T    |   F   |      F      |           T            |        F : | | | |
-T | F |    F    |   T   |      T      |           T            |        T ### SL     F    |   T   |      T      |           T            |        T : | | | |
-F | T |    F    |   F   |      F      |           F            |        F ### SL     F    |   F   |      F      |           F            |        F : | | | |
-F | F |    F    |   T   |      F      |           F            |        F ### SL     F    |   T   |      F      |           F            |        F : | | | |
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 What do you notice about the second to last column of the truth table representing the full expression?
 
@@ -1713,20 +1416,11 @@ print(9 >= 9)
 print(8 != 9)
 ```
 
-<<<<<<< HEAD
-    False
-    False
-    True
-    True
-    
-=======
-<pre class="output-block">
-False
+<pre class="output-block">False
 False
 True
 True
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 ### `=` vs. `==`
 
@@ -1756,26 +1450,15 @@ print(my_int == 4)
 print(my_int)
 ```
 
-<<<<<<< HEAD
-    True
-    False
-    ---
-    False
-    True
-    4
-    
-
-
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 False
 ---
 False
 True
 4
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+
+
 
 > **Exercise**: In the code block below, do the following:
 > 1.   Assign any integer value to a variable called my_int1
@@ -1790,14 +1473,10 @@ my_int2 = 5 ### SL
 
 # Your code here: Print out whether the integers stored in your variables are equal to each other
 print(my_int1 == my_int2) ### SL
-<<<<<<< HEAD
-=======
-
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 ```
 
-    True
-    
+<pre class="output-block">True
+</pre>
 
 ### Comparison operators and strings
 
@@ -1815,20 +1494,10 @@ print("robot" == "cookies")
 print("robot" != "cookies")
 ```
 
-<<<<<<< HEAD
-    True
-
-    
-    False
-    True
-    
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 False
 True
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Importantly, case matters for these comparisons:
 
@@ -1837,14 +1506,8 @@ Importantly, case matters for these comparisons:
 print("Hello" == "hello")
 ```
 
-<<<<<<< HEAD
-    False
-    
-=======
-<pre class="output-block">
-False
+<pre class="output-block">False
 </pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 Like we said above, the other operators (e.g. `>`, `<=`, etc.) do indeed work on strings, but that use-case is not common for most programmers.
 
@@ -1861,36 +1524,24 @@ print("lo" in "hello")
 print("cookies" in "robot")
 ```
 
-<<<<<<< HEAD
-    True
-    False
-    
-
-Checking for exact sub-strings with `in` is the most basic of pattern matching, which is extremely useful in programming.
-
-> **Exercise**: *CODE BOWLING*: Re-write the two lines of code using variables to indirectly refer to each of the four strings in the print statment.
-=======
-<pre class="output-block">
-True
+<pre class="output-block">True
 False
 </pre>
 
 Checking for exact sub-strings with `in` is the most basic of pattern matching, which is extremely useful in programming.
 
-> **EXERCISE**: CODE BOWLING: Re-write the two lines of code using variables to indirectly refer to each of the four strings in the print statment.
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+> **Exercise**: *CODE BOWLING*: Re-write the two lines of code using variables to indirectly refer to each of the four strings in the print statment.
 
 
 ```python
 # Edit this code to use variables instead of literal strings
 print("lo" in "hello")
 print("cookies" in "robot")
-<<<<<<< HEAD
 ```
 
-    True
-    False
-    
+<pre class="output-block">True
+False
+</pre>
 
 ??? success "Solution"
     ```python
@@ -1903,34 +1554,12 @@ print("cookies" in "robot")
     print(string3 in string4)
     ```
 
-    
+    <pre class="output-block">True
+    </pre>
+
     <pre class="output-block">
-    True
-    False</pre>
-    
-=======
-
-##
-
-### SL START
-string1 = "lo"
-string2 = "hello"
-print(string1 in string2)
-
-string3 = "cookies"
-string4 = "robot"
-print(string3 in string4)
-### SL END
-
-```
-
-<pre class="output-block">
-True
-False
-True
-False
-</pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+    False
+    </pre>
 
 ## Metaprogramming skills and debugging
 
@@ -1938,13 +1567,9 @@ Recall that there are a host of meta-skills that we won't have time to discuss f
 
 ### Pair programming
 
-<<<<<<< HEAD
 One meta-skill we want to touch on today though is **pair programming**. Pair programming is a technique where two programmers work together on the same code. One person is the "driver" who writes the code, while the other person is the "navigator" who reviews the code as it is written. This can be a very effective way to catch errors early and to learn from each other. Let's practice by "code golfing" the following block of code. 
 
 > **Exercise**: *CODE GOLF*. Pair up with someone, and then try to make this code run with as few lines as possible, while achieving the same result.
-=======
-One meta-skill we want to touch on today though is **pair programming**. Pair programming is a technique where two programmers work together on the same code. One person is the "driver" who writes the code, while the other person is the "navigator" who reviews the code as it is written. This can be a very effective way to catch errors early and to learn from each other. Let's practice by "code golfing" the following block of code. Pair up with someone, and then try to make this code run with as few lines as possible, while achieving the same result.
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
 
 
 ```python
@@ -1959,11 +1584,10 @@ length_third_str = len(third_str)
 
 total_length = length_first_str + length_second_str + length_third_str
 print("The total length of the strings is:", total_length)
-<<<<<<< HEAD
 ```
 
-    The total length of the strings is: 18
-    
+<pre class="output-block">The total length of the strings is: 18
+</pre>
 
 ??? success "Solution"
     ```python
@@ -1975,32 +1599,16 @@ print("The total length of the strings is:", total_length)
     print("The total length of the strings is:", total_length)
     ```
 
-    
-    <pre class="output-block">
-    The total length of the strings is: 18</pre>
-    
+    <pre class="output-block">The total length of the strings is: 18
+    </pre>
 
 ??? success "Solution"
     ```python
     print("The total length of the strings is:", len("robot") + len("baking") + len("cookies"))
     ```
 
-    
-    <pre class="output-block">
-    The total length of the strings is: 18</pre>
-    
-=======
-
-##
-
-print("The total length of the strings is:", len("robot") + len("baking") + len("cookies")) ### SL
-```
-
-<pre class="output-block">
-The total length of the strings is: 18
-The total length of the strings is: 18
-</pre>
->>>>>>> 0f0b0ac1b987837723b0f36fa1194b8f0cc8062f
+    <pre class="output-block">The total length of the strings is: 18
+    </pre>
 
 ## Review
 
@@ -2013,7 +1621,7 @@ So far, we've learned a few main things:
 
 These concepts form the basis of programming in any language (though the syntax will vary), however one cannot make more than very simple programs using these types of instructions alone.
 
-In order to write complex programs that take these basic concepts and allow them to be executed based on the **conditions** of the data within a program, and to automate the **repetition** of certain instructions, we need to learn the syntax that allows us to control the flow of the program. That is where we will begin on Day 2!
+In order to write complex programs that take these basic concepts and allow them to be executed based on the **conditions** of the data within a program, and to automate the **repetition** of certain instructions, we need to learn the syntax that allows us to control the flow of the program. That is where we will begin in Part 2 of the workshop!
 
 ### Operators table
 
@@ -2036,7 +1644,7 @@ Operator | Strings | Integers/floats | Boolean |
 `==`     | Compares 2 strings and returns `True` if they are identical, `False` otherwise | Compares two numbers and returns `True` if they are identical, `False` otherwise | Compares two booleans and returns `True` if they are identical, `False` otherwise |
 `!=` | Returns `True` if two strings are **not** identical, `False` otherwise | Returns `True` if two numbers are **not** identical, `False` otherwise | Returns `True` if two booleans are **not** identical, `False` otherwise |
 
-## End day 1
+## End Part 1
 
 Thanks! Let us know if you have any questions.
 
@@ -2118,5 +1726,16 @@ Thanks! Let us know if you have any questions.
     padding-left: 40px;
     font-size: 15px;
   }
+
+    /* Hide all 2nd-level navs */
+    .md-nav--secondary .md-nav__item .md-nav {
+        display: none !important;
+    }
+
+    /* Show when parent has .expanded class */
+    .md-nav--secondary .md-nav__item.expanded > .md-nav {
+        display: block !important;
+    }
+  
 
 </style>
