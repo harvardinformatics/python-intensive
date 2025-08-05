@@ -1,10 +1,12 @@
 ---
-title: "[Workshop] Python intensive, day 4"
+title: "[Workshop] Python intensive, part 4"
 description: "Introduction to file handling and the numpy library for numerical computing in Python, including arrays and basic operations."
 authors:
     - Lei Ma
     - Adam Freedman
 ---
+
+# Python intensive, part 4
 
 ## What is python and why do we need it/why are you taking this workshop?
 
@@ -36,6 +38,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In[1], line 4
+      1 # Run this cell to import the libraries we'll be using
+      2 # If you don't have the kernel loaded or installed, it will not work
+----> 4 import numpy as np
+      5 import pandas as pd
+      6 import matplotlib.pyplot as plt
+
+ModuleNotFoundError: No module named 'numpy'
+</pre>
+
 And run the following to demonstrate how the code blocks run and display code:
 
 
@@ -43,6 +57,9 @@ And run the following to demonstrate how the code blocks run and display code:
 # Run this cell to print a message to the screen
 print("this is my code cell")
 ```
+
+<pre class="output-block">this is my code cell
+</pre>
 
 Any **variables** that you assign in one cell will be available in other cells. But they will not be saved between sessions. If you close the notebook and re-open it, you will need to re-run the previous cells to get your variables back. Therefore, it's important to be aware of the state of your notebook and the order in which your cells were run.
 
@@ -55,6 +72,9 @@ my_string = "this is my code cell"
 ```python
 print(my_string)
 ```
+
+<pre class="output-block">this is my code cell
+</pre>
 
 Jupyter notebooks can be exported to pdf or html, so that other people can view both the code and its output. It's a good format for handing in homeworks, for example, since you can show your work. In this notebook, there will be exercises with placeholders for the code that you will have to fill in. For these exercises, we encourage you to work with each other, use google, LLMs, and whatever other resources if you are stuck. It's not an exam, but just a way to get practice of the concepts. Afterwards, we will post the completed notebook on our website so you can have examples of solutions.
 
@@ -83,6 +103,9 @@ my_string = "hello"
 my_string.upper()
 ```
 
+<pre class="output-block">'HELLO'
+</pre>
+
 
 In the above code, `my_string` is a string object, and we are calling the `upper()` method on it. The method is called by using the `.` operator. Methods are functions that can only be used on objects of certain classes. You will often see methods strung together, like below:
 
@@ -92,6 +115,9 @@ my_string = "hello"
 # This first makes the first letter uppercase, then swaps the cases of each letter
 my_string.capitalize().swapcase()
 ```
+
+<pre class="output-block">'hELLO'
+</pre>
 
 ### Object Attributes
 
@@ -105,6 +131,17 @@ my_array = np.array([1, 2, 3, 4, 5])
 # this gets the size (total number of elements) of the array
 my_array.size
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[7], line 2
+      1 # this makes a np array (we'll learn more about these shortly!)
+----> 2 my_array = np.array([1, 2, 3, 4, 5])
+      4 # this gets the size (total number of elements) of the array
+      5 my_array.size
+
+NameError: name 'np' is not defined
+</pre>
 
 ## Base Python Data Structures
 
@@ -224,6 +261,9 @@ import math
 print(math.log(100))
 ```
 
+<pre class="output-block">4.605170185988092
+</pre>
+
 We need to type `math.` so Python knows where to look for the `log()` function.
 
 We can also use an **alias** if we don't want to type `math.` every time we use a function from the library:
@@ -233,6 +273,9 @@ We can also use an **alias** if we don't want to type `math.` every time we use 
 import math as m
 print(m.log(100))
 ```
+
+<pre class="output-block">4.605170185988092
+</pre>
 
 ## Reading and writing data in base python
 
@@ -288,6 +331,23 @@ First, run this block to download the file to the Jupyter notebook environment..
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
 ```
 
+<pre class="output-block">--2025-07-31 16:39:54--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response...
+</pre>
+
+<pre class="output-block">200 OK
+Length: 4383 (4.3K) [text/plain]
+Saving to: ‘bird_names.csv’
+
+
+bird_names.csv        0%[                    ]       0  --.-KB/s               
+bird_names.csv      100%[===================>]   4.28K  --.-KB/s    in 0s      
+
+2025-07-31 16:39:54 (77.8 MB/s) - ‘bird_names.csv’ saved [4383/4383]
+</pre>
+
 Then, in the code below we first read the file line by line, then strip the whitespace and split the line by a comma. Then, we will create a dictionary where the key is the taxon id and the value is the common name of the bird.
 
 
@@ -304,6 +364,9 @@ with open(filename, 'r') as file:
 
 print(bird_names)
 ```
+
+<pre class="output-block">{'6924': 'American Black Duck', '473': 'American Coot', '145310': 'American Goldfinch', '4665': 'American Kestrel', '12727': 'American Robin', '474210': 'American Tree Sparrow', '3936': 'American Woodcock', '16010': 'Ash-throated Flycatcher', '5305': 'Bald Eagle', '9346': 'Baltimore Oriole', '19893': 'Barred Owl', '2548': 'Belted Kingfisher', '144815': 'Black-capped Chickadee', '4981': 'Black-crowned Night Heron', '199916': 'Black-throated Blue Warbler', '8229': 'Blue Jay', '7458': 'Brown Creeper', '10373': 'Brown-headed Cowbird', '6993': 'Bufflehead', '7089': 'Canada Goose', '7513': 'Carolina Wren', '7428': 'Cedar Waxwing', '6571': 'Chimney Swift', '9135': 'Chipping Sparrow', '9602': 'Common Grackle', '4626': 'Common Loon', '7004': 'Common Merganser', '8010': 'Common Raven', '9721': 'Common Yellowthroat', '5112': "Cooper's Hawk", '10094': 'Dark-eyed Junco', '10676': 'Dickcissel', '120479': 'Domestic Greylag Goose', '236935': 'Domestic Mallard', '1454382': 'Double-crested Cormorant', '792988': 'Downy Woodpecker', '16782': 'Eastern Kingbird', '17008': 'Eastern Phoebe', '494355': 'Eastern Red-tailed Hawk', '515821': 'Eastern Song Sparrow', '319123': 'Eastern Wild Turkey', '14850': 'European Starling', '544795': 'European house sparrow', '122767': 'Feral Pigeon', '9156': 'Fox Sparrow', '117100': 'Golden-crowned Kinglet', '14995': 'Gray Catbird', '4368': 'Great Black-backed Gull', '4956': 'Great Blue Heron', '16028': 'Great Crested Flycatcher', '20044': 'Great Horned Owl', '7047': 'Greater Scaup', '5020': 'Green Heron', '6937': 'Green-winged Teal', '514057': 'Greylag × Canada Goose', '792990': 'Hairy Woodpecker', '12890': 'Hermit Thrush', '204533': 'Herring Gull', '7109': 'Hooded Merganser', '4209': 'Horned Grebe', '199840': 'House Finch', '13858': 'House Sparrow', '7562': 'House Wren', '4793': 'Killdeer', '10479': 'Lark Sparrow', '7054': 'Lesser Scaup', '6930': 'Mallard', '326092': 'Mallard × Muscovy Duck', '4672': 'Merlin', '3454': 'Mourning Dove', '6921': 'Mute Swan', '9083': 'Northern Cardinal', '18236': 'Northern Flicker', '14886': 'Northern Mockingbird', '555736': 'Northern Yellow-shafted Flicker', '979757': 'Orange-crowned Warbler', '116999': 'Osprey', '62550': 'Ovenbird', '4647': 'Peregrine Falcon', '17364': 'Philadelphia Vireo', '4246': 'Pied-billed Grebe', '18205': 'Red-bellied Woodpecker', '6996': 'Red-breasted Merganser', '14823': 'Red-breasted Nuthatch', '5212': 'Red-tailed Hawk', '9744': 'Red-winged Blackbird', '7056': 'Redhead', '4364': 'Ring-billed Gull', '7044': 'Ring-necked Duck', '3017': 'Rock Pigeon', '1289388': 'Ruby-crowned Kinglet', '6432': 'Ruby-throated Hummingbird', '850859': 'Ruddy Duck', '9100': 'Song Sparrow', '72458': 'Spotted Sandpiper', '11935': 'Tree Swallow', '13632': 'Tufted Titmouse', '17394': 'Warbling Vireo', '14801': 'White-breasted Nuthatch', '9176': 'White-crowned Sparrow', '9184': 'White-throated Sparrow', '906': 'Wild Turkey', '7107': 'Wood Duck', '145238': 'Yellow Warbler', '18463': 'Yellow-bellied Sapsucker'}
+</pre>
 
 >*Discussion:* Explain each line
 
@@ -350,6 +413,9 @@ with open(filename, 'r') as file:
 print(bird_names)
 ```
 
+<pre class="output-block">{'6924': {'scientific_name': 'Anas rubripes', 'common_name': 'American Black Duck'}, '473': {'scientific_name': 'Fulica americana', 'common_name': 'American Coot'}, '145310': {'scientific_name': 'Spinus tristis', 'common_name': 'American Goldfinch'}, '4665': {'scientific_name': 'Falco sparverius', 'common_name': 'American Kestrel'}, '12727': {'scientific_name': 'Turdus migratorius', 'common_name': 'American Robin'}, '474210': {'scientific_name': 'Spizelloides arborea', 'common_name': 'American Tree Sparrow'}, '3936': {'scientific_name': 'Scolopax minor', 'common_name': 'American Woodcock'}, '16010': {'scientific_name': 'Myiarchus cinerascens', 'common_name': 'Ash-throated Flycatcher'}, '5305': {'scientific_name': 'Haliaeetus leucocephalus', 'common_name': 'Bald Eagle'}, '9346': {'scientific_name': 'Icterus galbula', 'common_name': 'Baltimore Oriole'}, '19893': {'scientific_name': 'Strix varia', 'common_name': 'Barred Owl'}, '2548': {'scientific_name': 'Megaceryle alcyon', 'common_name': 'Belted Kingfisher'}, '144815': {'scientific_name': 'Poecile atricapillus', 'common_name': 'Black-capped Chickadee'}, '4981': {'scientific_name': 'Nycticorax nycticorax', 'common_name': 'Black-crowned Night Heron'}, '199916': {'scientific_name': 'Setophaga caerulescens', 'common_name': 'Black-throated Blue Warbler'}, '8229': {'scientific_name': 'Cyanocitta cristata', 'common_name': 'Blue Jay'}, '7458': {'scientific_name': 'Certhia americana', 'common_name': 'Brown Creeper'}, '10373': {'scientific_name': 'Molothrus ater', 'common_name': 'Brown-headed Cowbird'}, '6993': {'scientific_name': 'Bucephala albeola', 'common_name': 'Bufflehead'}, '7089': {'scientific_name': 'Branta canadensis', 'common_name': 'Canada Goose'}, '7513': {'scientific_name': 'Thryothorus ludovicianus', 'common_name': 'Carolina Wren'}, '7428': {'scientific_name': 'Bombycilla cedrorum', 'common_name': 'Cedar Waxwing'}, '6571': {'scientific_name': 'Chaetura pelagica', 'common_name': 'Chimney Swift'}, '9135': {'scientific_name': 'Spizella passerina', 'common_name': 'Chipping Sparrow'}, '9602': {'scientific_name': 'Quiscalus quiscula', 'common_name': 'Common Grackle'}, '4626': {'scientific_name': 'Gavia immer', 'common_name': 'Common Loon'}, '7004': {'scientific_name': 'Mergus merganser', 'common_name': 'Common Merganser'}, '8010': {'scientific_name': 'Corvus corax', 'common_name': 'Common Raven'}, '9721': {'scientific_name': 'Geothlypis trichas', 'common_name': 'Common Yellowthroat'}, '5112': {'scientific_name': 'Accipiter cooperii', 'common_name': "Cooper's Hawk"}, '10094': {'scientific_name': 'Junco hyemalis', 'common_name': 'Dark-eyed Junco'}, '10676': {'scientific_name': 'Spiza americana', 'common_name': 'Dickcissel'}, '120479': {'scientific_name': 'Anser anser domesticus', 'common_name': 'Domestic Greylag Goose'}, '236935': {'scientific_name': 'Anas platyrhynchos domesticus', 'common_name': 'Domestic Mallard'}, '1454382': {'scientific_name': 'Nannopterum auritum', 'common_name': 'Double-crested Cormorant'}, '792988': {'scientific_name': 'Dryobates pubescens', 'common_name': 'Downy Woodpecker'}, '16782': {'scientific_name': 'Tyrannus tyrannus', 'common_name': 'Eastern Kingbird'}, '17008': {'scientific_name': 'Sayornis phoebe', 'common_name': 'Eastern Phoebe'}, '494355': {'scientific_name': 'Buteo jamaicensis borealis', 'common_name': 'Eastern Red-tailed Hawk'}, '515821': {'scientific_name': 'Melospiza melodia melodia', 'common_name': 'Eastern Song Sparrow'}, '319123': {'scientific_name': 'Meleagris gallopavo silvestris', 'common_name': 'Eastern Wild Turkey'}, '14850': {'scientific_name': 'Sturnus vulgaris', 'common_name': 'European Starling'}, '544795': {'scientific_name': 'Passer domesticus domesticus', 'common_name': 'European house sparrow'}, '122767': {'scientific_name': 'Columba livia domestica', 'common_name': 'Feral Pigeon'}, '9156': {'scientific_name': 'Passerella iliaca', 'common_name': 'Fox Sparrow'}, '117100': {'scientific_name': 'Regulus satrapa', 'common_name': 'Golden-crowned Kinglet'}, '14995': {'scientific_name': 'Dumetella carolinensis', 'common_name': 'Gray Catbird'}, '4368': {'scientific_name': 'Larus marinus', 'common_name': 'Great Black-backed Gull'}, '4956': {'scientific_name': 'Ardea herodias', 'common_name': 'Great Blue Heron'}, '16028': {'scientific_name': 'Myiarchus crinitus', 'common_name': 'Great Crested Flycatcher'}, '20044': {'scientific_name': 'Bubo virginianus', 'common_name': 'Great Horned Owl'}, '7047': {'scientific_name': 'Aythya marila', 'common_name': 'Greater Scaup'}, '5020': {'scientific_name': 'Butorides virescens', 'common_name': 'Green Heron'}, '6937': {'scientific_name': 'Anas crecca', 'common_name': 'Green-winged Teal'}, '514057': {'scientific_name': 'Anser anser × Branta canadensis', 'common_name': 'Greylag × Canada Goose'}, '792990': {'scientific_name': 'Dryobates villosus', 'common_name': 'Hairy Woodpecker'}, '12890': {'scientific_name': 'Catharus guttatus', 'common_name': 'Hermit Thrush'}, '204533': {'scientific_name': 'Larus argentatus', 'common_name': 'Herring Gull'}, '7109': {'scientific_name': 'Lophodytes cucullatus', 'common_name': 'Hooded Merganser'}, '4209': {'scientific_name': 'Podiceps auritus', 'common_name': 'Horned Grebe'}, '199840': {'scientific_name': 'Haemorhous mexicanus', 'common_name': 'House Finch'}, '13858': {'scientific_name': 'Passer domesticus', 'common_name': 'House Sparrow'}, '7562': {'scientific_name': 'Troglodytes aedon', 'common_name': 'House Wren'}, '4793': {'scientific_name': 'Charadrius vociferus', 'common_name': 'Killdeer'}, '10479': {'scientific_name': 'Chondestes grammacus', 'common_name': 'Lark Sparrow'}, '7054': {'scientific_name': 'Aythya affinis', 'common_name': 'Lesser Scaup'}, '6930': {'scientific_name': 'Anas platyrhynchos', 'common_name': 'Mallard'}, '326092': {'scientific_name': 'Anas platyrhynchos × cairina moschata', 'common_name': 'Mallard × Muscovy Duck'}, '4672': {'scientific_name': 'Falco columbarius', 'common_name': 'Merlin'}, '3454': {'scientific_name': 'Zenaida macroura', 'common_name': 'Mourning Dove'}, '6921': {'scientific_name': 'Cygnus olor', 'common_name': 'Mute Swan'}, '9083': {'scientific_name': 'Cardinalis cardinalis', 'common_name': 'Northern Cardinal'}, '18236': {'scientific_name': 'Colaptes auratus', 'common_name': 'Northern Flicker'}, '14886': {'scientific_name': 'Mimus polyglottos', 'common_name': 'Northern Mockingbird'}, '555736': {'scientific_name': 'Colaptes auratus luteus', 'common_name': 'Northern Yellow-shafted Flicker'}, '979757': {'scientific_name': 'Leiothlypis celata', 'common_name': 'Orange-crowned Warbler'}, '116999': {'scientific_name': 'Pandion haliaetus', 'common_name': 'Osprey'}, '62550': {'scientific_name': 'Seiurus aurocapilla', 'common_name': 'Ovenbird'}, '4647': {'scientific_name': 'Falco peregrinus', 'common_name': 'Peregrine Falcon'}, '17364': {'scientific_name': 'Vireo philadelphicus', 'common_name': 'Philadelphia Vireo'}, '4246': {'scientific_name': 'Podilymbus podiceps', 'common_name': 'Pied-billed Grebe'}, '18205': {'scientific_name': 'Melanerpes carolinus', 'common_name': 'Red-bellied Woodpecker'}, '6996': {'scientific_name': 'Mergus serrator', 'common_name': 'Red-breasted Merganser'}, '14823': {'scientific_name': 'Sitta canadensis', 'common_name': 'Red-breasted Nuthatch'}, '5212': {'scientific_name': 'Buteo jamaicensis', 'common_name': 'Red-tailed Hawk'}, '9744': {'scientific_name': 'Agelaius phoeniceus', 'common_name': 'Red-winged Blackbird'}, '7056': {'scientific_name': 'Aythya americana', 'common_name': 'Redhead'}, '4364': {'scientific_name': 'Larus delawarensis', 'common_name': 'Ring-billed Gull'}, '7044': {'scientific_name': 'Aythya collaris', 'common_name': 'Ring-necked Duck'}, '3017': {'scientific_name': 'Columba livia', 'common_name': 'Rock Pigeon'}, '1289388': {'scientific_name': 'Corthylio calendula', 'common_name': 'Ruby-crowned Kinglet'}, '6432': {'scientific_name': 'Archilochus colubris', 'common_name': 'Ruby-throated Hummingbird'}, '850859': {'scientific_name': 'Oxyura jamaicensis', 'common_name': 'Ruddy Duck'}, '9100': {'scientific_name': 'Melospiza melodia', 'common_name': 'Song Sparrow'}, '72458': {'scientific_name': 'Actitis macularius', 'common_name': 'Spotted Sandpiper'}, '11935': {'scientific_name': 'Tachycineta bicolor', 'common_name': 'Tree Swallow'}, '13632': {'scientific_name': 'Baeolophus bicolor', 'common_name': 'Tufted Titmouse'}, '17394': {'scientific_name': 'Vireo gilvus', 'common_name': 'Warbling Vireo'}, '14801': {'scientific_name': 'Sitta carolinensis', 'common_name': 'White-breasted Nuthatch'}, '9176': {'scientific_name': 'Zonotrichia leucophrys', 'common_name': 'White-crowned Sparrow'}, '9184': {'scientific_name': 'Zonotrichia albicollis', 'common_name': 'White-throated Sparrow'}, '906': {'scientific_name': 'Meleagris gallopavo', 'common_name': 'Wild Turkey'}, '7107': {'scientific_name': 'Aix sponsa', 'common_name': 'Wood Duck'}, '145238': {'scientific_name': 'Setophaga petechia', 'common_name': 'Yellow Warbler'}, '18463': {'scientific_name': 'Sphyrapicus varius', 'common_name': 'Yellow-bellied Sapsucker'}}
+</pre>
+
 >**Exercise**: Why did we use a dictionary to store the data in the previous exercise? Think about what features of a dictionary make it a good choice or what features of lists or arrays make them a bad choice.
 
 Below is an excerpt from a file of iNaturalist observations of birds in Cambridge, MA from the year 2023. We will loop through the file and count the number of observations of each species. We will also use the previously created dictionary to get the species names.
@@ -369,6 +435,26 @@ Run the code block below to download the file to the Jupyter notebook environmen
 # This line downloads the file locally to the same folder as your notebook
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
 ```
+
+<pre class="output-block">--2025-07-31 16:39:54--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response...
+</pre>
+
+<pre class="output-block">200 OK
+Length: 50448 (49K) [text/plain]
+Saving to: ‘bird_observations.csv’
+
+
+bird_observations.c   0%[                    ]       0  --.-KB/s
+</pre>
+
+<pre class="output-block">
+bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.005s  
+
+2025-07-31 16:39:54 (9.48 MB/s) - ‘bird_observations.csv’ saved [50448/50448]
+</pre>
 
 >**Exercise:** Work with a neighbor or two to do the following exercise:
 > Loop through the file and count the number of observations of each species. After all the observations have been counted, print all the species names and the number of observations. You will need to use the dictionary you created in the previous exercise to get the species names. It's up to you what kind of data structure (if any) you want to use to store the counts.
@@ -400,8 +486,10 @@ with open(filename, 'r') as birdfile: #keep
         # increment the count by 1
         bird_observations[name] += 1
 print(bird_observations)
-
 ```
+
+<pre class="output-block">{'Northern Mockingbird': 23, 'Common Merganser': 4, 'Bufflehead': 9, 'House Sparrow': 69, 'European Starling': 51, 'Northern Cardinal': 28, 'Mourning Dove': 31, 'Blue Jay': 39, 'American Black Duck': 2, 'Domestic Mallard': 14, 'Mute Swan': 33, 'Green-winged Teal': 8, 'American Robin': 92, 'Mallard': 49, 'Great Blue Heron': 26, 'Red-tailed Hawk': 36, 'Canada Goose': 112, 'Downy Woodpecker': 24, 'Ring-necked Duck': 22, 'Wild Turkey': 82, 'Common Loon': 9, 'Horned Grebe': 4, 'Redhead': 8, 'Feral Pigeon': 31, 'Golden-crowned Kinglet': 7, 'Red-bellied Woodpecker': 15, 'Hooded Merganser': 18, 'Belted Kingfisher': 3, 'Red-winged Blackbird': 35, 'Black-capped Chickadee': 14, 'Ruddy Duck': 2, 'Bald Eagle': 2, 'Dark-eyed Junco': 9, 'Carolina Wren': 7, 'House Finch': 19, 'White-throated Sparrow': 5, 'Song Sparrow': 24, 'Yellow-bellied Sapsucker': 3, 'White-breasted Nuthatch': 10, 'Eastern Red-tailed Hawk': 5, 'Tufted Titmouse': 8, "Cooper's Hawk": 17, 'Domestic Greylag Goose': 14, 'Rock Pigeon': 9, 'American Coot': 1, 'Greylag × Canada Goose': 1, 'Eastern Wild Turkey': 1, 'Brown Creeper': 7, 'Hairy Woodpecker': 2, 'Northern Flicker': 6, 'Greater Scaup': 1, 'Red-breasted Merganser': 2, 'American Woodcock': 7, 'Red-breasted Nuthatch': 1, 'Great Horned Owl': 23, 'Peregrine Falcon': 5, 'American Goldfinch': 18, 'Barred Owl': 2, 'Black-crowned Night Heron': 2, 'Tree Swallow': 11, 'Common Grackle': 14, 'Hermit Thrush': 4, 'Northern Yellow-shafted Flicker': 1, 'Chipping Sparrow': 3, 'Killdeer': 2, 'Gray Catbird': 20, 'Double-crested Cormorant': 17, 'Yellow Warbler': 3, 'Warbling Vireo': 2, 'Baltimore Oriole': 7, 'Common Yellowthroat': 2, 'White-crowned Sparrow': 2, 'Black-throated Blue Warbler': 1, 'Ovenbird': 1, 'Brown-headed Cowbird': 4, 'House Wren': 1, 'Cedar Waxwing': 4, 'European house sparrow': 1, 'Herring Gull': 4, 'Eastern Kingbird': 7, 'Great Black-backed Gull': 1, 'Green Heron': 10, 'Great Crested Flycatcher': 1, 'Wood Duck': 6, 'American Kestrel': 1, 'Osprey': 1, 'Ruby-throated Hummingbird': 3, 'Spotted Sandpiper': 2, 'Chimney Swift': 1, 'Eastern Phoebe': 1, 'Lark Sparrow': 2, 'Ring-billed Gull': 1, 'Dickcissel': 1, 'Merlin': 1, 'Ash-throated Flycatcher': 6, 'Pied-billed Grebe': 5, 'Lesser Scaup': 2, 'Orange-crowned Warbler': 2, 'Eastern Song Sparrow': 1, 'Philadelphia Vireo': 1, 'Ruby-crowned Kinglet': 2, 'Mallard × Muscovy Duck': 1, 'Fox Sparrow': 1, 'American Tree Sparrow': 1, 'Common Raven': 1}
+</pre>
 
 If you routinely find yourself reading delimited files, you might want to use the `csv` library. The `csv` library also has the ability to parse Excel files or read and write to/from dictionaries directly. For more information, here's the [doc page :octicons-link-external-24:](https://docs.python.org/3/library/csv.html){:target="_blank"}. Here's what the above code would look like using the `csv` module:
 
@@ -427,6 +515,9 @@ with open(filename, 'r') as birdfile:
 print(bird_observations)
 ```
 
+<pre class="output-block">{'Northern Mockingbird': 23, 'Common Merganser': 4, 'Bufflehead': 9, 'House Sparrow': 69, 'European Starling': 51, 'Northern Cardinal': 28, 'Mourning Dove': 31, 'Blue Jay': 39, 'American Black Duck': 2, 'Domestic Mallard': 14, 'Mute Swan': 33, 'Green-winged Teal': 8, 'American Robin': 92, 'Mallard': 49, 'Great Blue Heron': 26, 'Red-tailed Hawk': 36, 'Canada Goose': 112, 'Downy Woodpecker': 24, 'Ring-necked Duck': 22, 'Wild Turkey': 82, 'Common Loon': 9, 'Horned Grebe': 4, 'Redhead': 8, 'Feral Pigeon': 31, 'Golden-crowned Kinglet': 7, 'Red-bellied Woodpecker': 15, 'Hooded Merganser': 18, 'Belted Kingfisher': 3, 'Red-winged Blackbird': 35, 'Black-capped Chickadee': 14, 'Ruddy Duck': 2, 'Bald Eagle': 2, 'Dark-eyed Junco': 9, 'Carolina Wren': 7, 'House Finch': 19, 'White-throated Sparrow': 5, 'Song Sparrow': 24, 'Yellow-bellied Sapsucker': 3, 'White-breasted Nuthatch': 10, 'Eastern Red-tailed Hawk': 5, 'Tufted Titmouse': 8, "Cooper's Hawk": 17, 'Domestic Greylag Goose': 14, 'Rock Pigeon': 9, 'American Coot': 1, 'Greylag × Canada Goose': 1, 'Eastern Wild Turkey': 1, 'Brown Creeper': 7, 'Hairy Woodpecker': 2, 'Northern Flicker': 6, 'Greater Scaup': 1, 'Red-breasted Merganser': 2, 'American Woodcock': 7, 'Red-breasted Nuthatch': 1, 'Great Horned Owl': 23, 'Peregrine Falcon': 5, 'American Goldfinch': 18, 'Barred Owl': 2, 'Black-crowned Night Heron': 2, 'Tree Swallow': 11, 'Common Grackle': 14, 'Hermit Thrush': 4, 'Northern Yellow-shafted Flicker': 1, 'Chipping Sparrow': 3, 'Killdeer': 2, 'Gray Catbird': 20, 'Double-crested Cormorant': 17, 'Yellow Warbler': 3, 'Warbling Vireo': 2, 'Baltimore Oriole': 7, 'Common Yellowthroat': 2, 'White-crowned Sparrow': 2, 'Black-throated Blue Warbler': 1, 'Ovenbird': 1, 'Brown-headed Cowbird': 4, 'House Wren': 1, 'Cedar Waxwing': 4, 'European house sparrow': 1, 'Herring Gull': 4, 'Eastern Kingbird': 7, 'Great Black-backed Gull': 1, 'Green Heron': 10, 'Great Crested Flycatcher': 1, 'Wood Duck': 6, 'American Kestrel': 1, 'Osprey': 1, 'Ruby-throated Hummingbird': 3, 'Spotted Sandpiper': 2, 'Chimney Swift': 1, 'Eastern Phoebe': 1, 'Lark Sparrow': 2, 'Ring-billed Gull': 1, 'Dickcissel': 1, 'Merlin': 1, 'Ash-throated Flycatcher': 6, 'Pied-billed Grebe': 5, 'Lesser Scaup': 2, 'Orange-crowned Warbler': 2, 'Eastern Song Sparrow': 1, 'Philadelphia Vireo': 1, 'Ruby-crowned Kinglet': 2, 'Mallard × Muscovy Duck': 1, 'Fox Sparrow': 1, 'American Tree Sparrow': 1, 'Common Raven': 1}
+</pre>
+
 ### Writing data by line
 
 Writing data to a file is similar to reading data from a file. You can open a file in write mode and then write to it line by line using the `print()` method, but this time passing in the variable we've stored the opened file in (in our case the variable is unimaginatively named `file`). Here's an example of writing a list of strings to a file:
@@ -444,6 +535,13 @@ with open('my_text.txt', 'r') as file:
     for line in file:
         print(line)
 ```
+
+<pre class="output-block">this is a test
+
+this is another test
+
+this is the final test
+</pre>
 
 >**BONUS Exercise:** Use the `csv` module to write the species counts to a new file. The file should have two columns: the species name and the number of observations. The file should be comma-delimited. How this is written may depend on how you stored the species counts.
 
@@ -477,12 +575,30 @@ penguins = pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytu
 penguins.head()
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[18], line 1
+----> 1 penguins = pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv", sep=',')
+      3 # The head() function from pandas prints only the first N lines of a dataframe (default: 10)
+      4 penguins.head()
+
+NameError: name 'pd' is not defined
+</pre>
+
 When importing data into a DataFrame, pandas automatically detects what data type each column should be. For example, if the column contains only numbers, it will be imported as an floating point or integer data type. If the column contains strings or a mixture of strings and numbers, it will be imported as an "object" data type. Below are the different data types for the penguins column. 
 
 
 ```python
 penguins.info()
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[19], line 1
+----> 1 penguins.info()
+
+NameError: name 'penguins' is not defined
+</pre>
 
 ### Looping through a dataframe
 As a note, if we want to go through a dataframe line-by-line (i.e. row by row), because both the rows and columns are indexed it requires slightly more syntax than looping through other data structures (e.g. a dictionary or list). Specifically we need to use the `.iterrows()` method to make the data frame iterable. The `.iterrows()` method outputs each row as a `Series` object with a row index and the column:   
@@ -492,6 +608,15 @@ As a note, if we want to go through a dataframe line-by-line (i.e. row by row), 
 for index, row in penguins.iterrows():
     print(f"Row index: {index}, {row['species']}, {row['island']}")
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[20], line 1
+----> 1 for index, row in penguins.iterrows():
+      2     print(f"Row index: {index}, {row['species']}, {row['island']}")
+
+NameError: name 'penguins' is not defined
+</pre>
 
 This can be slow for very large dataframes, but is useful if you need to perform actions on individual rows.
 
@@ -509,6 +634,15 @@ In the Palmer penguins dataset, each row represents an individual penguin, and e
 penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv')
 penguins.head()
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[21], line 1
+----> 1 penguins = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv')
+      2 penguins.head()
+
+NameError: name 'pd' is not defined
+</pre>
 
 Here is an example of a transformation that we will be able to do with `pandas` that would be difficult to do manually or with `numpy`. We can summarize the data by calculating the average body mass (in kg) of each penguin species, broken up by sex. Using a few lines of code we can go from our raw data to a table that looks like this:
 
@@ -542,8 +676,17 @@ When we print the Series, it will display as a column with the index on the left
 s0 = pd.Series([10, 20, 30, 40])
 
 print(s0)
-
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[22], line 2
+      1 #Using the pd.Series method:
+----> 2 s0 = pd.Series([10, 20, 30, 40])
+      4 print(s0)
+
+NameError: name 'pd' is not defined
+</pre>
 
 
 ```python
@@ -551,8 +694,17 @@ print(s0)
 s1 = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'])
 
 print(s1)
-
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[23], line 2
+      1 #Using the pd.Series method:
+----> 2 s1 = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'])
+      4 print(s1)
+
+NameError: name 'pd' is not defined
+</pre>
 
 Another way to create a Series is to convert a (non-nested) dictionary into a Series. The keys of the dictionary will become the index labels while the values will become the data. 
 
@@ -565,6 +717,17 @@ s2 = pd.Series(my_dictionary)
 print(s2)
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[24], line 3
+      1 # Converting from dictionary to series
+      2 my_dictionary = {'first': 10, 'second': 20, 'third': 30}
+----> 3 s2 = pd.Series(my_dictionary)
+      5 print(s2)
+
+NameError: name 'pd' is not defined
+</pre>
+
 We can then access specific elements in the Series by referring to its index label enclosed in quotes and brackets. This is very similar to how a dictionary works!
 
 
@@ -575,6 +738,16 @@ print(s1["a"])
 
 print(s2["second"])
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[25], line 1
+----> 1 print(s0[0])
+      3 print(s1["a"])
+      5 print(s2["second"])
+
+NameError: name 's0' is not defined
+</pre>
 
 ### Multi-indexed Series
 
@@ -589,8 +762,19 @@ my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
 s3 = pd.Series(my_values, index=my_index)
 
 print(s3)
-
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[26], line 5
+      1 my_index = [["California", "California", "New York", "New York", "Texas", "Texas"], 
+      2             [2001, 2002, 2001, 2002, 2001, 2002]]
+      3 my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
+----> 5 s3 = pd.Series(my_values, index=my_index)
+      7 print(s3)
+
+NameError: name 'pd' is not defined
+</pre>
 
 Retrieving an item from this data structure is similar to a nested dictionary, using successive `[]` notation. Or, you can passs it a tuple. You must pass the index labels in the order they were created (left to right)
 
@@ -607,8 +791,17 @@ print(s3[("California", 2001)])
 print("---")
 # you can also use slicing to select multiple elements
 print(s3["California":"New York"])
-
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[27], line 1
+----> 1 print(s3["California"])
+      3 print("---")
+      4 print(s3["California"][2001])
+
+NameError: name 's3' is not defined
+</pre>
 
 In our work, we typically don't use multi-indexed Series. However, they are often the output of pandas functions, so it's good to know how to work with them. If you don't like the idea of multi-indexed Series, you can always convert them to a DataFrame using the `reset_index()` method.
 
@@ -616,6 +809,14 @@ In our work, we typically don't use multi-indexed Series. However, they are ofte
 ```python
 s3.reset_index()
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[28], line 1
+----> 1 s3.reset_index()
+
+NameError: name 's3' is not defined
+</pre>
 
 ## Pandas DataFrame
 
@@ -641,6 +842,21 @@ sumo = pd.DataFrame(tournamentStats)
 print(sumo)
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[29], line 8
+      1 tournamentStats = {
+      2     "wrestler": ["Terunofuji", "Ura", "Shodai", "Takanosho"],
+      3     "wins": [13, 6, 10, 12],
+      4     "rank": ["yokozuna", "maegashira2", "komusubi", "maegashira6"]
+      5 }
+      7 #Converting to a pandas DataFrame
+----> 8 sumo = pd.DataFrame(tournamentStats)
+     10 print(sumo)
+
+NameError: name 'pd' is not defined
+</pre>
+
 Pandas dataframes have many **attributes**, including `shape`, `columns`, `index`, `dtypes`. These are useful for understanding the structure of the dataframe.
 
 
@@ -657,12 +873,30 @@ print("---")
 print(sumo.dtypes)
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[30], line 1
+----> 1 print(sumo.shape)
+      3 print("---")
+      4 print(sumo.columns)
+
+NameError: name 'sumo' is not defined
+</pre>
+
 Pandas DataFrames also have the handy `info()` function that summarizes the contents of the dataframe, including counts of the non-null values of each column and the data type of each column.
 
 
 ```python
 sumo.info()
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[31], line 1
+----> 1 sumo.info()
+
+NameError: name 'sumo' is not defined
+</pre>
 
 ## Selecting data in a Pandas dataframe
 
@@ -678,6 +912,14 @@ We can always check the names of the columns in a Pandas dataframe byt using the
 sumo.columns
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[32], line 1
+----> 1 sumo.columns
+
+NameError: name 'sumo' is not defined
+</pre>
+
 If we want to refer to a specific column, we can specify its index (enclosed in double quotes) inside of square brackets `[]` like so:
 
 
@@ -686,6 +928,15 @@ If we want to refer to a specific column, we can specify its index (enclosed in 
 sumo["wrestler"]
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[33], line 2
+      1 #Single column:
+----> 2 sumo["wrestler"]
+
+NameError: name 'sumo' is not defined
+</pre>
+
 If we want to refer to *multiple* columns, we need to pass the columns as a **list** by enclosing the column indices in square brackets, so you will end up with *double brackets*:
 
 
@@ -693,6 +944,15 @@ If we want to refer to *multiple* columns, we need to pass the columns as a **li
 #Multiple columns (note the double []!):
 sumo[["wrestler", "rank"]]
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[34], line 2
+      1 #Multiple columns (note the double []!):
+----> 2 sumo[["wrestler", "rank"]]
+
+NameError: name 'sumo' is not defined
+</pre>
 
 ### Selecting rows:
 
@@ -703,12 +963,28 @@ The syntax for selecting specific rows is slightly different. Let's first check 
 print(sumo.index)
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[35], line 1
+----> 1 print(sumo.index)
+
+NameError: name 'sumo' is not defined
+</pre>
+
 Here we can see that while the column index labels were strings, the row index labels are *numerical values*, in this case `0` thru `3`. If we wanted to pull out the first row, we need to specify its index label (`0`) in combination with the `.loc` method (which is required for rows): 
 
 
 ```python
 sumo.loc[0]
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[36], line 1
+----> 1 sumo.loc[0]
+
+NameError: name 'sumo' is not defined
+</pre>
 
 If we want to select multiple rows, like with columns we need to pass it as a list using the double brackets. If we want to specify a **range** of rows (i.e. from this row to that row), we **don't** use double brackets and instead use `:`:
 
@@ -717,11 +993,27 @@ If we want to select multiple rows, like with columns we need to pass it as a li
 print(sumo.loc[[0,1]])
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[37], line 1
+----> 1 print(sumo.loc[[0,1]])
+
+NameError: name 'sumo' is not defined
+</pre>
+
 
 ```python
 
 print(sumo.loc[0:2])
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[38], line 1
+----> 1 print(sumo.loc[0:2])
+
+NameError: name 'sumo' is not defined
+</pre>
 
 Note that in this case the row index labels are numbers, but do not have to be numerical, and can have string labels similar to columns. Let's show how we could change the row index labels by taking the column with the wrestler's rank and setting it as the index label (note that the labels should be unique!):
 
@@ -732,10 +1024,27 @@ sumo = sumo.set_index("rank")
 print(sumo)
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[39], line 1
+----> 1 sumo = sumo.set_index("rank")
+      3 print(sumo)
+
+NameError: name 'sumo' is not defined
+</pre>
+
 
 ```python
 sumo.loc["yokozuna"]
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[40], line 1
+----> 1 sumo.loc["yokozuna"]
+
+NameError: name 'sumo' is not defined
+</pre>
 
 We also need to use `.loc` if we are referring to a specific row AND column, e.g.:
 
@@ -743,6 +1052,14 @@ We also need to use `.loc` if we are referring to a specific row AND column, e.g
 ```python
 print(sumo.loc["komusubi", "wrestler"])
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[41], line 1
+----> 1 print(sumo.loc["komusubi", "wrestler"])
+
+NameError: name 'sumo' is not defined
+</pre>
 
 If we want to purely use numerical indexing, we can use the `.iloc()` method. If you use `.iloc()`, you can index a DataFrame just as you would a numpy array. 
 
@@ -752,6 +1069,15 @@ If we want to purely use numerical indexing, we can use the `.iloc()` method. If
 
 sumo.iloc[0:2, 0:2]
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[42], line 3
+      1 # Select the first two rows and the first two columns
+----> 3 sumo.iloc[0:2, 0:2]
+
+NameError: name 'sumo' is not defined
+</pre>
 
 There are many ways to select subsets of a dataframe. The rows and columns of a dataframe can be referred to either by their integer position or by their indexed name. Typically, for columns, you'll use the indexed name and can just do `[]` with the name of the column. For rows, if you want to use the integer position, you will use `.iloc[]`. If you want to use the index name, you will use `.loc[]`. 
 
@@ -774,6 +1100,14 @@ For reference, here's a handy table on the best ways to index into a dataframe:
 penguins.info()
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[43], line 1
+----> 1 penguins.info()
+
+NameError: name 'penguins' is not defined
+</pre>
+
 
 ```python
 # Your code here
@@ -786,6 +1120,17 @@ print(penguins.iloc[0:5,0:5])
 print("---")
 print(penguins.loc[0:10, ['species', 'island', 'sex']])
 ```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[44], line 3
+      1 # Your code here
+----> 3 print(penguins['species'])
+      5 print("---")
+      6 print(penguins.iloc[0:5,0:5])
+
+NameError: name 'penguins' is not defined
+</pre>
 
 ---
 
@@ -865,5 +1210,16 @@ print(penguins.loc[0:10, ['species', 'island', 'sex']])
     padding-left: 40px;
     font-size: 15px;
   }
+
+    /* Hide all 2nd-level navs */
+    .md-nav--secondary .md-nav__item .md-nav {
+        display: none !important;
+    }
+
+    /* Show when parent has .expanded class */
+    .md-nav--secondary .md-nav__item.expanded > .md-nav {
+        display: block !important;
+    }
+  
 
 </style>
