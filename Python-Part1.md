@@ -54,7 +54,6 @@ If for some reason Google Colab isn't working, or you prefer to run this locally
 3. You can now run the jupyter notebook by typing `jupyter notebook` in the terminal. This will open a browser window with the jupyter notebook interface. You can navigate to the folder where you saved this notebook and open it.
 
 4. Alternatively, install [VSCode :octicons-link-external-24:](https://code.visualstudio.com/){:target="_blank"} and the Python extension. Then open this notebook in VSCode and run it with the kernel that belongs to the pyworkshop environment. [How to guide here :octicons-link-external-24:](https://code.visualstudio.com/docs/datascience/jupyter-notebooks){:target="_blank"}
-
 </details>
 
 ---
@@ -96,6 +95,12 @@ print(my_string)
 </pre>
 
 Jupyter notebooks can be exported to pdf or html, so that other people can view both the code and its output. It's a good format for handing in homeworks, for example, since you can show your work. In this notebook, there will be exercises with placeholders for the code that you will have to fill in. For these exercises, we encourage you to work with each other, use google, LLMs, and whatever other resources if you are stuck. It's not an exam, but just a way to practice the concepts. Afterwards, we will post the completed notebook on our website so you can have examples of solutions.
+
+**Caveat on using jupyter notebooks for production code:**
+
+We are using jupyter notebooks for this workshop because they are a great way to combine instructional text and runnable code blocks, so you can follow along and then immediately do exercises by writing code without switching windows. While this is a great way to learn python, it is not the best way to write large programs. Notebooks are best use for exploratory data analysis, where you want to quickly try out small snippets of code or plot data. For production code, it is better to write *standalone python scripts* (i.e. files with the `.py` extension) and run them like computer programs. This is because notebooks are not as good at handling larger codebases, and they can be harder to maintain and debug. However, the skills you learn in this workshop will be transferable to writing standalone scripts. 
+
+If at the end of this workshop you are interested in learning more about how to write python scripts, please let us know and we may be able to offer a follow-up workshop on that topic.
 
 ## What is a computer program?
 
@@ -652,7 +657,7 @@ abs(x) # Here, we've indirectly referenced the literal of 5 by using the variabl
 
 This example seems pretty easy to understand, but this concept will be very important as we move forward. In fact, efficient and automated programs couldn't be written at all without indirection: indirection allows us to manipulate data within programs and accept different data when running the same program multiple times.
 
-As such, we may also occasionally do some "code golf" or "code bowling" exercises to show the trade-offs between too much and too little indirection. For example, we could easily "code golf" this block:
+As such, we may also occasionally do some "code golf" or "code bowling" exercises to show the trade-offs between too much and too little indirection. Code golf is a type of programming challenge where you compress a solution to a small number of lines or characters. Code bowling is the opposite: expanding a solution to be more verbose and potentially more readable. For example, we could easily "code golf" this block:
 
 
 ```python
@@ -1469,11 +1474,11 @@ True
 
 ```python
 # Your code here: Assign any two integers to variables my_int1 and my_int2
-my_int1 = 5 ### SL
-my_int2 = 5 ### SL
+my_int1 = 5
+my_int2 = 5
 
 # Your code here: Print out whether the integers stored in your variables are equal to each other
-print(my_int1 == my_int2) ### SL
+print(my_int1 == my_int2)
 ```
 
 <pre class="output-block">True

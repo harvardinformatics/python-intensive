@@ -637,9 +637,9 @@ NameError: name 'sns' is not defined
 storms_file = 'indiana_storms_full.csv'
 ```
 
-<pre class="output-block">--2025-07-31 16:39:57--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.109.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+<pre class="output-block">--2025-08-05 16:37:12--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
 HTTP request sent, awaiting response...
 </pre>
 
@@ -648,13 +648,10 @@ Length: 952491 (930K) [text/plain]
 Saving to: ‘indiana_storms_full.csv’
 
 
-indiana_storms_full   0%[                    ]       0  --.-KB/s
-</pre>
+indiana_storms_full   0%[                    ]       0  --.-KB/s               
+indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.007s  
 
-<pre class="output-block">
-indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.02s   
-
-2025-07-31 16:39:57 (39.4 MB/s) - ‘indiana_storms_full.csv’ saved [952491/952491]
+2025-08-05 16:37:12 (125 MB/s) - ‘indiana_storms_full.csv’ saved [952491/952491]
 </pre>
 
 

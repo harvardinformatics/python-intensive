@@ -21,21 +21,21 @@ For our final section, we are going to do some exploratory analysis of a real wo
 storms_file = 'indiana_storms_full.csv'
 ```
 
-<pre class="output-block">--2025-07-31 16:39:59--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
-HTTP request sent, awaiting response...
-</pre>
-
-<pre class="output-block">200 OK
+<pre class="output-block">--2025-08-05 16:37:13--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
 Length: 952491 (930K) [text/plain]
 Saving to: ‘indiana_storms_full.csv.1’
 
 
-          indiana_s   0%[                    ]       0  --.-KB/s               
-indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.02s   
+          indiana_s   0%[                    ]       0  --.-KB/s
+</pre>
 
-2025-07-31 16:39:59 (39.6 MB/s) - ‘indiana_storms_full.csv.1’ saved [952491/952491]
+<pre class="output-block">
+indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.01s   
+
+2025-08-05 16:37:13 (86.4 MB/s) - ‘indiana_storms_full.csv.1’ saved [952491/952491]
 </pre>
 
 
@@ -592,7 +592,7 @@ Downloading lxml-6.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.w
 </pre>
 
 <pre class="output-block">
-[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.2/5.2 MB[0m [31m39.1 MB/s[0m eta [36m0:00:00[0m
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.2/5.2 MB[0m [31m124.7 MB/s[0m eta [36m0:00:00[0m
 [?25h
 </pre>
 

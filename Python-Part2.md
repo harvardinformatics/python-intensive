@@ -29,7 +29,7 @@ This workshop exists as a **Jupyter notebook**. You can participate in this work
 
 ---
 
-<details markdown>
+<details>
 <summary>Click to show instructions for loading the notebook locally</summary>
 
 
@@ -156,7 +156,6 @@ We of course would also have to update the `distance` and `angle` arguments in o
 <details><summary>Solution</summary>
 
 ```
-### SL START
 Look to the right:
     If there is a wall:
         Try to Move Forward
@@ -165,7 +164,6 @@ Look to the right:
     Else:
         Turn right
         Move Forward
-### SL END
 ```
 
 </details>
@@ -686,11 +684,11 @@ SyntaxError: invalid syntax
     my_substr2 = "water tribe"
     
     # Your code here: Fill in the conditional statements
-    if my_substr1 in my_string and my_substr2 in my_string: # An if statement if both sub-strings are found ### SL my_substr1 in my_string and my_substr2 in my_string : 
+    if my_substr1 in my_string and my_substr2 in my_string: # An if statement if both sub-strings are found
       print("Both substrings found:", my_substr1, ",", my_substr2)
-    elif my_substr1 in my_string and not my_substr2 in my_string: # An elif statement if only sub-string 1 is found ### SL my_substr1 in my_string and not my_substr2 in my_string : 
+    elif my_substr1 in my_string and not my_substr2 in my_string: # An elif statement if only sub-string 1 is found
       print("Substring 1 found:", my_substr1)
-    elif not my_substr1 in my_string and my_substr2 in my_string: # An elif statement if only sub-string 2 is found ### SL  not my_substr1 in my_string and my_substr2 in my_string : 
+    elif not my_substr1 in my_string and my_substr2 in my_string: # An elif statement if only sub-string 2 is found
       print("Substring 2 found:", my_substr2)
     else: # Else handles if neither sub-strings are found
       print("Neither substring found.")
@@ -1134,7 +1132,7 @@ print("Done.")
     while generation <= 10:
       print("Population size in generation", generation, "is:", pop_size)
       pop_size *= 2
-      generation += 1;
+      generation += 1
     ```
 
     <pre class="output-block">Population size in generation 1 is: 1
@@ -1463,12 +1461,21 @@ Done.
 
 Let's break down the last one. We start at index 6, which is the 7th character `w`. We proceed at an increment of -2, meaning we move left. We step over `_`, retrieve `o`, step over the second `l`, retrieve the first `l`, and step over the `e`. `e` is the character at the first index so we stop.
 
-> **Exercise**: Reverse the string you used from your previous exercise using slicing only. This is tricky, *but should only take one line of code to do using slicing* (and then possibly another line to print the result). Remember the shortcuts for the beginning and end of strings and the negative steps to go backwards when slicing.
+> **Exercise**: *CODE GOLF*. Using what we've learned about slicing, reduce the below code to 2 lines. This is tricky, *but should only take one line of code to do using slicing* (and then possibly another line to print the result). Remember the shortcuts for the beginning and end of strings and the negative steps to go backwards when slicing.
 
 
 ```python
 # Your code here: reverse a string with slicing only
+my_string = "stressed"
+my_rev_string = ""
+
+for char in my_string:
+  my_rev_string = char + my_rev_string
+print(my_rev_string)
 ```
+
+<pre class="output-block">desserts
+</pre>
 
 ??? success "Solution"
     ```python
@@ -1688,12 +1695,11 @@ SyntaxError: invalid syntax
     # Your code here
     
     # Initialize these variables with sensible values
-    list_tally = 0 ### SL 0 : 
-    list_sum = 0 ### SL 0 : 
-    list_max = 0 ### SL 0 : 
-    list_min = 9999 ### SL 9999 : 
+    list_tally = 0
+    list_sum = 0
+    list_max = 0
+    list_min = 9999
     
-    ### SL START
     for num in my_list:
       # Add code for the for loop here
       list_tally += 1
@@ -1706,7 +1712,6 @@ SyntaxError: invalid syntax
         list_min = num
     
     list_avg = list_sum / list_tally
-    ### SL END
     
     print("There are", list_tally, "numbers in the list.")
     print("The largest number is:", list_max)
@@ -2169,6 +2174,8 @@ In this case, the method works **in place**. That means that it modifies the obj
 
 There are also methods that **return** objects. Unfortunately, there is no obvious way to tell which methods work in place and which return objects.
 
+Functions can operate **in place**, **return** objects, or both. 
+
 Interestingly, there is also a function to sort a list, called `sorted()`, which we can use to easily highlight the difference between an in place method and a function:
 
 
@@ -2305,8 +2312,7 @@ print(my_index)
 4
 </pre>
 
-3.   `.pop([i])` : Removes and returns the element at index `i` from the list. Note that the argument `i` is given in square brackets. This means that it is optional. If no index is given, `.pop` removes and returns the last element in the list.
-
+3.   `.pop([i])` : Removes and returns the element at index `i` from the list. Note that the argument `i` is given in square brackets. This means that it is optional. If no index is given, `.pop` removes and returns the last element in the list. This function both modifies the list **in place** and **returns** an object.
 
 
 
