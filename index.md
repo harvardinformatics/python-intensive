@@ -33,7 +33,7 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
 * Exception Handling
 * Working with dates and times
 
-[Open the notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/python-healthy-habits.ipynb)
+[Open the Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/python-healthy-habits.ipynb){ target="_blank" .md-button }
 
 ### Part 1: Programming basics and intro to logic
 
@@ -43,9 +43,9 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
 * Logical operations
 * Metaprogramming skills
 
-[Open the jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part1.ipynb){ .md-button } - [View completed jupyter notebook :material-arrow-right:](Python-Part1.md){ .md-button }
+[Open the Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part1.ipynb){ target="_blank" .md-button } - [View completed Jupyter notebook :material-arrow-right:](Python-Part1.md){ .md-button }
 
-### Part 2: Control flow and Iterables (a data structure)
+### Part 2: Control flow and iterable data structures
 
 * Control flow
     * If statements
@@ -54,8 +54,8 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
     * Lists
     * Dictionaries
 
-[Open the jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part2.ipynb){ .md-button }
- - [View completed jupyter notebook :material-arrow-right:](Python-Part2.md){ .md-button }
+[Open the Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part2.ipynb){ target="_blank" .md-button }
+ - [View completed Jupyter notebook :material-arrow-right:](Python-Part2.md){ .md-button }
 
 ### Part 3: Writing functions and putting all together
 
@@ -63,17 +63,17 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
 * Functions to programs
 * Writing a random walk program
 
-[Open the jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part3.ipynb){ .md-button }
- - [View completed jupyter notebook :material-arrow-right:](Python-Part3.md){ .md-button }
+[Open the Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part3.ipynb){ target="_blank" .md-button }
+ - [View completed Jupyter notebook :material-arrow-right:](Python-Part3.md){ .md-button }
 
-### Day 4: Introduction to python as a data science language
+### Day 4: Introduction to Python as a data science language
 
 * Python refresher
 * Reading and writing files
 * Introduction to [pandas :octicons-link-external-24:](https://pandas.pydata.org/)
 
-[Open the jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part4.ipynb){ .md-button }
- - [View completed jupyter notebook :material-arrow-right:](Python-Part4.md){ .md-button }
+[Open the Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part4.ipynb){ target="_blank" .md-button }
+ - [View completed Jupyter notebook :material-arrow-right:](Python-Part4.md){ .md-button }
 
 ### Day 5: More pandas dataframes and plotting
 
@@ -82,14 +82,14 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
 * Plotting data with [Seaborn :octicons-link-external-24:](https://seaborn.pydata.org/)
 * Data cleaning exercise
 
-[Open the jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part5.ipynb){ .md-button } - [View completed jupyter notebook :material-arrow-right:](Python-Part5.md){ .md-button }
+[Open the Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part5.ipynb){ target="_blank" .md-button } - [View completed Jupyter notebook :material-arrow-right:](Python-Part5.md){ .md-button }
 
 ### Day 6: Analyzing a real dataset: Indiana storms
 
 * Introduction to the Indiana storms dataset
 * Exercises to practice the skills learned in the previous days
 
-[Open the jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part6.ipynb){ .md-button }
- - [View completed jupyter notebook :material-arrow-right:](Python-Part6.md){ .md-button }
+[Open the Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part6.ipynb){ target="_blank" .md-button }
+ - [View completed Jupyter notebook :material-arrow-right:](Python-Part6.md){ .md-button }
 
  ---
