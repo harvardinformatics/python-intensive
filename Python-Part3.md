@@ -241,7 +241,7 @@ print("The Magic 8-Ball says:", answer)
 # magic_8_ball()
 ```
 
-<pre class="output-block">The Magic 8-Ball says: Yes
+<pre class="output-block">The Magic 8-Ball says: Outlook not so good
 </pre>
 
 ??? success "Solution"
@@ -268,9 +268,9 @@ print("The Magic 8-Ball says:", answer)
     magic_8_ball()
     ```
 
-    <pre class="output-block">The Magic 8-Ball says: No
-    The Magic 8-Ball says: Definitely
-    The Magic 8-Ball says: Maybe
+    <pre class="output-block">The Magic 8-Ball says: I have no idea
+    The Magic 8-Ball says: I have no idea
+    The Magic 8-Ball says: Without a doubt
     </pre>
 
 ### Handling arguments
@@ -369,7 +369,7 @@ def magic_8_ball():
     magic_8_ball("Will it snow tomorrow?")
     ```
 
-    <pre class="output-block">Will it snow tomorrow? : Very doubtful
+    <pre class="output-block">Will it snow tomorrow? : I have no idea
     </pre>
 
 #### Default arguments
@@ -1204,11 +1204,13 @@ run_random_walk(2, 10)
 -------O--
 -----O----
 -------O--
------O----
----O------
+---------O
+-------O--
 -----O----
 -------O--
 ---------O
+-------O--
+-----O----
 -------O--
 ---------O
 ---------X
