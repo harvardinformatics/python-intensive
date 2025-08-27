@@ -2168,10 +2168,7 @@ my_list.sort(reverse=True)
 print("reverse sorted:", my_list)
 ```
 
-<pre class="output-block">unsorted:
-</pre>
-
-<pre class="output-block">&nbsp;[5, 8, 3, 6, 1]
+<pre class="output-block">unsorted: [5, 8, 3, 6, 1]
 sorted: [1, 3, 5, 6, 8]
 reverse sorted: [8, 6, 5, 3, 1]
 </pre>
@@ -2824,9 +2821,6 @@ else:
 ```
 
 <pre class="output-block">Found sample1
-</pre>
-
-<pre class="output-block">
 Did not find 0.93
 Found 0.93 in sample1
 </pre>
@@ -2924,10 +2918,7 @@ print('key1' in my_keys)
 print(7 in my_values)
 ```
 
-<pre class="output-block">key1
-</pre>
-
-<pre class="output-block">&nbsp;: 1
+<pre class="output-block">key1 : 1
 key2 : 3
 key3 : 6
 1
@@ -3180,9 +3171,6 @@ print(my_tuple2[::-1])
 ```
 
 <pre class="output-block">(1, 2, 3, 4, 5)
-</pre>
-
-<pre class="output-block">
 2
 ...
 world

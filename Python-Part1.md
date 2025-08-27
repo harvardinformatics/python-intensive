@@ -947,10 +947,7 @@ sum_of_important_data = important_data_point1 + important_data_point2
 print("I'm now showing my professor my important results:", sum_of_important_data)
 ```
 
-<pre class="output-block">I'm now showing my professor my important results:
-</pre>
-
-<pre class="output-block">&nbsp;98
+<pre class="output-block">I'm now showing my professor my important results: 98
 </pre>
 
 Here, no error is displayed telling you you are concatenating two strings rather than adding together two integers. That's because both things are vaild to do with Python syntax: Python has no way of knowing that you wanted to add these numbers rather than concatenate them - that's up to you to tell it! Remember, every little step of a computer program has to be given, otherwise you will get errors (relatively easy to debug) or **logic errors**, which occur when the program runs, but gives unexpected results, and are generally harder to debug.
@@ -1586,10 +1583,7 @@ print("The total length of the strings is:", total_length)
     print("The total length of the strings is:", total_length)
     ```
 
-    <pre class="output-block">The total length of the strings is:
-    </pre>
-
-    <pre class="output-block">&nbsp;18
+    <pre class="output-block">The total length of the strings is: 18
     </pre>
 
 ??? success "Solution"

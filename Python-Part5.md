@@ -720,7 +720,7 @@ penguin_groups = penguins.groupby('species')
 print(penguin_groups)
 ```
 
-<pre class="output-block"><pandas.core.groupby.generic.DataFrameGroupBy object at 0x0000019CA2244650>
+<pre class="output-block"><pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f6a21d32190>
 </pre>
 
 We can see that on its own this is not especially useful, as grouping the DataFrame does not produce a new DataFrame (just this weird output message telling us that this is a `DataFrameGroupBy` object). In order to output a DataFrame, we need to pass the grouped DataFrame to some function that aggregates or transforms the data in each group.

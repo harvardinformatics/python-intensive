@@ -241,7 +241,7 @@ print("The Magic 8-Ball says:", answer)
 # magic_8_ball()
 ```
 
-<pre class="output-block">The Magic 8-Ball says: No
+<pre class="output-block">The Magic 8-Ball says: Without a doubt
 </pre>
 
 ??? success "Solution"
@@ -268,9 +268,9 @@ print("The Magic 8-Ball says:", answer)
     magic_8_ball()
     ```
 
-    <pre class="output-block">The Magic 8-Ball says: Definitely
-    The Magic 8-Ball says: Definitely
-    The Magic 8-Ball says: Outlook not so good
+    <pre class="output-block">The Magic 8-Ball says: Very doubtful
+    The Magic 8-Ball says: Yes
+    The Magic 8-Ball says: Maybe
     </pre>
 
 ### Handling arguments
@@ -369,7 +369,7 @@ def magic_8_ball():
     magic_8_ball("Will it snow tomorrow?")
     ```
 
-    <pre class="output-block">Will it snow tomorrow? : Maybe
+    <pre class="output-block">Will it snow tomorrow? : Ask again later
     </pre>
 
 #### Default arguments
@@ -448,7 +448,7 @@ add_2_nums(2, 3)
 <pre class="output-block">&nbsp;&nbsp;Cell In[18], line 1
 &nbsp;&nbsp;&nbsp;&nbsp;def add_2_nums(num1, also_multiply=False, num2):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
-SyntaxError: parameter without a default follows parameter with a default
+SyntaxError: non-default argument follows default argument
 </pre>
 
 This prevents the above from running, which would result in an error (because `num2` would be undefined).
@@ -1180,8 +1180,14 @@ run_random_walk(2, 10)
 
 <pre class="output-block">Starting random walk with boundary size: 10 and step size: 2
 -----O----
----O------
--O--------
+-------O--
+-----O----
+-------O--
+-----O----
+-------O--
+---------O
+-------O--
+-----O----
 ---O------
 -O--------
 X---------

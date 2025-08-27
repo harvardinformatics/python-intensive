@@ -147,16 +147,16 @@ Cell In[1], line 16, in user_input()
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17     y = int(input("Enter the second number: "))
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18     return x, y
 
-File C:\bin\miniforge3\Lib\site-packages\ipykernel\kernelbase.py:1281, in Kernel.raw_input(self, prompt)
-&nbsp;&nbsp;&nbsp;1279 if not self._allow_stdin:
-&nbsp;&nbsp;&nbsp;1280     msg = "raw_input was called, but this frontend does not support input requests."
--> 1281     raise StdinNotImplementedError(msg)
-&nbsp;&nbsp;&nbsp;1282 return self._input_request(
-&nbsp;&nbsp;&nbsp;1283     str(prompt),
-&nbsp;&nbsp;&nbsp;1284     self._parent_ident["shell"],
-&nbsp;&nbsp;&nbsp;1285     self.get_parent("shell"),
-&nbsp;&nbsp;&nbsp;1286     password=False,
-&nbsp;&nbsp;&nbsp;1287 )
+File /opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1274, in Kernel.raw_input(self, prompt)
+&nbsp;&nbsp;&nbsp;1272 if not self._allow_stdin:
+&nbsp;&nbsp;&nbsp;1273     msg = "raw_input was called, but this frontend does not support input requests."
+-> 1274     raise StdinNotImplementedError(msg)
+&nbsp;&nbsp;&nbsp;1275 return self._input_request(
+&nbsp;&nbsp;&nbsp;1276     str(prompt),
+&nbsp;&nbsp;&nbsp;1277     self._parent_ident["shell"],
+&nbsp;&nbsp;&nbsp;1278     self.get_parent("shell"),
+&nbsp;&nbsp;&nbsp;1279     password=False,
+&nbsp;&nbsp;&nbsp;1280 )
 
 StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
 </pre>
@@ -498,16 +498,16 @@ Cell In[15], line 13, in guessing_game()
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14     # try to convert the input to an integer
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15     try:
 
-File C:\bin\miniforge3\Lib\site-packages\ipykernel\kernelbase.py:1281, in Kernel.raw_input(self, prompt)
-&nbsp;&nbsp;&nbsp;1279 if not self._allow_stdin:
-&nbsp;&nbsp;&nbsp;1280     msg = "raw_input was called, but this frontend does not support input requests."
--> 1281     raise StdinNotImplementedError(msg)
-&nbsp;&nbsp;&nbsp;1282 return self._input_request(
-&nbsp;&nbsp;&nbsp;1283     str(prompt),
-&nbsp;&nbsp;&nbsp;1284     self._parent_ident["shell"],
-&nbsp;&nbsp;&nbsp;1285     self.get_parent("shell"),
-&nbsp;&nbsp;&nbsp;1286     password=False,
-&nbsp;&nbsp;&nbsp;1287 )
+File /opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1274, in Kernel.raw_input(self, prompt)
+&nbsp;&nbsp;&nbsp;1272 if not self._allow_stdin:
+&nbsp;&nbsp;&nbsp;1273     msg = "raw_input was called, but this frontend does not support input requests."
+-> 1274     raise StdinNotImplementedError(msg)
+&nbsp;&nbsp;&nbsp;1275 return self._input_request(
+&nbsp;&nbsp;&nbsp;1276     str(prompt),
+&nbsp;&nbsp;&nbsp;1277     self._parent_ident["shell"],
+&nbsp;&nbsp;&nbsp;1278     self.get_parent("shell"),
+&nbsp;&nbsp;&nbsp;1279     password=False,
+&nbsp;&nbsp;&nbsp;1280 )
 
 StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
 </pre>
