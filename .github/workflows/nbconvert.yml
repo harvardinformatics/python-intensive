@@ -23,7 +23,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install jupyter nbconvert
+        run: pip install jupyter nbconvert pandas seaborn sklearn
 
       - name: Run notebook-to-Markdown conversion
         run: python .github/scripts/jupyter_convert.py
