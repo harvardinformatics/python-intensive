@@ -128,6 +128,39 @@ x, y = user_input()
 print(add(x, y))
 ```
 
+<pre class="output-block">---------------------------------------------------------------------------
+StdinNotImplementedError                  Traceback (most recent call last)
+Cell In[1], line 35
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32     return x + y
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;34 # main code
+---> 35 x, y = user_input()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36 print(add(x, y))
+
+Cell In[1], line 16, in user_input()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 def user_input():
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9     """
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10     This function asks the user for two numbers.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11
+&nbsp;&nbsp;&nbsp;(...)     14     int: The second number the user inputs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15     """
+---> 16     x = int(input("Enter the first number: "))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17     y = int(input("Enter the second number: "))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18     return x, y
+
+File C:\bin\miniforge3\Lib\site-packages\ipykernel\kernelbase.py:1281, in Kernel.raw_input(self, prompt)
+&nbsp;&nbsp;&nbsp;1279 if not self._allow_stdin:
+&nbsp;&nbsp;&nbsp;1280     msg = "raw_input was called, but this frontend does not support input requests."
+-> 1281     raise StdinNotImplementedError(msg)
+&nbsp;&nbsp;&nbsp;1282 return self._input_request(
+&nbsp;&nbsp;&nbsp;1283     str(prompt),
+&nbsp;&nbsp;&nbsp;1284     self._parent_ident["shell"],
+&nbsp;&nbsp;&nbsp;1285     self.get_parent("shell"),
+&nbsp;&nbsp;&nbsp;1286     password=False,
+&nbsp;&nbsp;&nbsp;1287 )
+
+StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+</pre>
+
 ## More advanced control flow
 
 Computer programs work by reading a text document line by line from top to bottom and executing the code on each line in sequence. However, we've previously learned how to control the execution of certain blocks of code based on the state of the program using **conditional statements**, **loops**, and **functions**.
@@ -153,142 +186,65 @@ def log2fc(x, y):
 log2fc(0,0)
 ```
 
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-
+<pre class="output-block">---------------------------------------------------------------------------
 ZeroDivisionError                         Traceback (most recent call last)
+Cell In[3], line 1
+----> 1 log2fc(0,0)
 
-
-Cell In[4], line 1
-
-
-----&gt; 1 log2fc(0,0)
-
-
-
-
-
-Cell In[3], line 4, in log2fc(x, y)
-
-
-      3 def log2fc(x, y):
-
-
-----&gt; 4     return math.log2(x/y)
-
-
-
-
+Cell In[2], line 4, in log2fc(x, y)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 def log2fc(x, y):
+----> 4     return math.log2(x/y)
 
 ZeroDivisionError: division by zero
 </pre>
+
 
 ```python
 log2fc(10,0)
 ```
 
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-
+<pre class="output-block">---------------------------------------------------------------------------
 ZeroDivisionError                         Traceback (most recent call last)
+Cell In[4], line 1
+----> 1 log2fc(10,0)
 
-
-Cell In[5], line 1
-
-
-----&gt; 1 log2fc(10,0)
-
-
-
-
-
-Cell In[3], line 4, in log2fc(x, y)
-
-
-      3 def log2fc(x, y):
-
-
-----&gt; 4     return math.log2(x/y)
-
-
-
-
+Cell In[2], line 4, in log2fc(x, y)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 def log2fc(x, y):
+----> 4     return math.log2(x/y)
 
 ZeroDivisionError: division by zero
 </pre>
+
 
 ```python
 log2fc(0,10)
 ```
 
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-
+<pre class="output-block">---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
+Cell In[5], line 1
+----> 1 log2fc(0,10)
 
-
-Cell In[6], line 1
-
-
-----&gt; 1 log2fc(0,10)
-
-
-
-
-
-Cell In[3], line 4, in log2fc(x, y)
-
-
-      3 def log2fc(x, y):
-
-
-----&gt; 4     return math.log2(x/y)
-
-
-
-
+Cell In[2], line 4, in log2fc(x, y)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 def log2fc(x, y):
+----> 4     return math.log2(x/y)
 
 ValueError: math domain error
 </pre>
+
 
 ```python
 log2fc("a", "b")
 ```
 
-
-<pre class="output-block">
----------------------------------------------------------------------------
-
-
+<pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
+Cell In[6], line 1
+----> 1 log2fc("a", "b")
 
-
-Cell In[7], line 1
-
-
-----&gt; 1 log2fc("a", "b")
-
-
-
-
-
-Cell In[3], line 4, in log2fc(x, y)
-
-
-      3 def log2fc(x, y):
-
-
-----&gt; 4     return math.log2(x/y)
-
-
-
-
+Cell In[2], line 4, in log2fc(x, y)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 def log2fc(x, y):
+----> 4     return math.log2(x/y)
 
 TypeError: unsupported operand type(s) for /: 'str' and 'str'
 </pre>
@@ -331,8 +287,7 @@ def log2fc(x, y):
 log2fc("1", "2")
 ```
 
-<pre class="output-block">
-Error: x and y must be numbers
+<pre class="output-block">Error: x and y must be numbers
 </pre>
 
 >**Exercise:** Annotate the below function with comments `# like this` to explain what each try and except block is doing.
@@ -377,11 +332,9 @@ print(log2fc(0,11))
 print('---')
 print("an error is printed when x or y are not numbers")
 print(log2fc("10",0))
-
 ```
 
-<pre class="output-block">
-a warning is printed when y is 0
+<pre class="output-block">a warning is printed when y is 0
 Warning: y was 0, correcting to 1e-10
 33.219280948873624
 ---
@@ -394,7 +347,7 @@ Error: x and y must be numbers
 None
 </pre>
 
->**Exercise**: Work with a neighbor to write the user input portion of our random walk function. The function should take a `step_size` and `walk_size` and check that both inputs are valid. If both inputs are valid, it should return both the `step_size` and `walk_size`.
+>**Exercise**: Work with a neighbor to write the user input portion of our random walk function (from day 3). The function should take a `step_size` and `walk_size` and check that both inputs are valid. If both inputs are valid, it should return both the `step_size` and `walk_size`.
 > 1. **Discuss** what conditions might need to be checked in the context of a random walk
 > 2. **Plan** which order to check these conditions makes the most sense.
 > 3. **Write** a function that checks that `step_size` and `walk_size` are compatible with a random walk scenario
@@ -426,8 +379,7 @@ print(get_user_inputs(10, 10))
 # what errors should we test for?
 ```
 
-<pre class="output-block">
-(3, 10)
+<pre class="output-block">(3, 10)
 (10, 10)
 </pre>
 
@@ -449,11 +401,9 @@ while True: # this would run forever if it weren't for the break statement
         break
     else:
         print(f"{num} is not divisible by 7")
-
 ```
 
-<pre class="output-block">
-23 is not divisible by 7
+<pre class="output-block">23 is not divisible by 7
 24 is not divisible by 7
 25 is not divisible by 7
 26 is not divisible by 7
@@ -472,8 +422,7 @@ for i in range(1, 12):
     print(i)
 ```
 
-<pre class="output-block">
-1
+<pre class="output-block">1
 2
 4
 5
@@ -522,7 +471,6 @@ def guessing_game():
                 print("Your guess is too low.")
             else:
                 print("Your guess is too high.")
-
 ```
 
 
@@ -531,10 +479,37 @@ def guessing_game():
 guessing_game()
 ```
 
-<pre class="output-block">
-I'm thinking of a number between 1 and 10.
-Your guess is too high.
-Good job! The number was 1.
+<pre class="output-block">I'm thinking of a number between 1 and 10.
+</pre>
+
+<pre class="output-block">---------------------------------------------------------------------------
+StdinNotImplementedError                  Traceback (most recent call last)
+Cell In[16], line 2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 # check your code
+----> 2 guessing_game()
+
+Cell In[15], line 13, in guessing_game()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 # this begins the while loop
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9 # note that the loop has no end condition. It relies on the break statement!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 while True:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11     # ask the user to guess the number
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12     # note that input() always returns a string
+---> 13     guess = input("Take a guess: ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14     # try to convert the input to an integer
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15     try:
+
+File C:\bin\miniforge3\Lib\site-packages\ipykernel\kernelbase.py:1281, in Kernel.raw_input(self, prompt)
+&nbsp;&nbsp;&nbsp;1279 if not self._allow_stdin:
+&nbsp;&nbsp;&nbsp;1280     msg = "raw_input was called, but this frontend does not support input requests."
+-> 1281     raise StdinNotImplementedError(msg)
+&nbsp;&nbsp;&nbsp;1282 return self._input_request(
+&nbsp;&nbsp;&nbsp;1283     str(prompt),
+&nbsp;&nbsp;&nbsp;1284     self._parent_ident["shell"],
+&nbsp;&nbsp;&nbsp;1285     self.get_parent("shell"),
+&nbsp;&nbsp;&nbsp;1286     password=False,
+&nbsp;&nbsp;&nbsp;1287 )
+
+StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
 </pre>
 
 ## Working with dates and times
@@ -561,6 +536,92 @@ Even if you aren't doing time series analysis, you will find it useful to import
 * You can control how the date is displayed when you print it out or export your data by using string format codes specific for datetime objects. [docs :octicons-link-external-24:](https://docs.python.org/3/library/datetime.html#format-codes){:target="_blank"} 
 
 Here's an example of pandas in action with datetime objects: [link :octicons-link-external-24:](https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html){:target="_blank"}
+
+# Pass by reference vs. pass by copy
+
+Now that we've encountered python objects (strings, numbers, booleans), and a few different data structures (lists, dictionaries, pandas Series and DataFrames), it's important to understand how they are stored in memory. In Python, there are two ways that objects can be passed around: **by reference** and **by copy**. 
+
+When an object is passed by reference, it means that the variable is simply a pointer to the object in memory. If you modify the object, the changes will be reflected in all variables that point to that object. 
+
+When an object is passed by copy, it means that a new object is created in memory and the variable points to that new object. If you modify the object, the changes will not be reflected in the original object. This is the case for strings and tuples.
+
+In general, base python data structures like lists and dictionaries are passed by reference, while pandas objects like Series and DataFrames are passed by copy. Run the code blocks below to see some demonstrations of how reference vs copy can impact your data. 
+
+
+```python
+a = ["my", "list", "of", "words"]
+b = a
+b[0] = "your"
+print(a)
+```
+
+<pre class="output-block">['your', 'list', 'of', 'words']
+</pre>
+
+In the above code, we create a list `a` and then assign it to `b`. When we modify `b`, we see that `a` is also modified, because both variables point to the same object in memory.
+
+
+```python
+a = ["my", "list", "of", "words"]
+b = a[0]
+b = "your"
+print(a)
+```
+
+<pre class="output-block">['my', 'list', 'of', 'words']
+</pre>
+
+In the above code, we create a list `a`, and then assign a slice of `a` to `b`. When we modify `b`, we see that `a` is not modified, because creating a slice of a list creates a **shallow copy** of the list. Once the slice is modified, it is a new object in memory that does not affect the original list.
+
+
+```python
+a_series = pd.Series(["my", "list", "of", "words"])
+b_series = a_series[:]
+
+# Modify b_series
+b_series[0] = "your"
+
+print("a_series:\n", a_series)
+print("b_series:\n", b_series)
+```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[19], line 1
+----> 1 a_series = pd.Series(["my", "list", "of", "words"])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 b_series = a_series[:]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 # Modify b_series
+
+NameError: name 'pd' is not defined
+</pre>
+
+In the above code, we do the same thing as before - create a slice of a list and assign it to a new variable. This behaves the same as a list and both `a_series` and `b_series` are modified. 
+
+
+```python
+with pd.option_context("mode.copy_on_write", True):
+
+    a_series = pd.Series(["my", "list", "of", "words"])
+    b_series = a_series[:]
+
+    # Modify b_series
+    b_series[0] = "your"
+
+    print("a_series:\n", a_series)
+    print("b_series:\n", b_series)
+```
+
+<pre class="output-block">---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[20], line 1
+----> 1 with pd.option_context("mode.copy_on_write", True):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3     a_series = pd.Series(["my", "list", "of", "words"])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4     b_series = a_series[:]
+
+NameError: name 'pd' is not defined
+</pre>
+
+In the above code, we wrap the entire code block in a `with` statement to ensure that the code is processed with the pandas **Copy-on-Write** behavior. This means that when we modify `b_series`, it does not affect `a_series`, because a new copy of the Series is created in memory. This copy-on-write behavior is specific to pandas and can be toggled on in your scripts and notebooks. It will become standard in a future version of pandas, but for now it is an optional feature.
 
 ---
 
@@ -634,11 +695,21 @@ Here's an example of pandas in action with datetime objects: [link :octicons-lin
     color: rgba(0,0,0,0.87) !important; 
   }
 
-  /* Code block styles */
+   /* Code block styles */ 
+ 
+   .language-python {
+     padding-left: 40px;
+     font-size: 15px;
+   } 
 
-  .language-python {
-    padding-left: 40px;
-    font-size: 15px;
+  /* Hide all 2nd-level navs */
+  .md-nav--secondary .md-nav__item .md-nav {
+      display: none !important;
+  } 
+  
+  /* Show when parent has .expanded class */
+  .md-nav--secondary .md-nav__item.expanded > .md-nav {
+      display: block !important;
   }
-
+  
 </style>

@@ -421,7 +421,7 @@ help(abs)
 <pre class="output-block">Help on built-in function abs in module builtins:
 
 abs(x, /)
-    Return the absolute value of the argument.
+&nbsp;&nbsp;&nbsp;&nbsp;Return the absolute value of the argument.
 </pre>
 
 This tells us what `abs()` does and tells us that it requires one argument, `x`. (The `/` indicates that the argument is positional, but you can ignore that for now.)
@@ -536,8 +536,8 @@ my_integer = 124
     <pre class="output-block">---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     Cell In[13], line 3
-          1 #@title Solution {display-mode: "form"}
-          2 my_integer = 124
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 #@title Solution {display-mode: "form"}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 my_integer = 124
     ----> 3 len(my_integer)
     
     TypeError: object of type 'int' has no len()
@@ -691,9 +691,9 @@ my_data2 = 6 # also good!
 2_data = 7 # no good!
 ```
 
-<pre class="output-block">  Cell In[24], line 3
-    2_data = 7 # no good!
-     ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[24], line 3
+&nbsp;&nbsp;&nbsp;&nbsp;2_data = 7 # no good!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: invalid decimal literal
 </pre>
 
@@ -774,9 +774,9 @@ x =
 5
 ```
 
-<pre class="output-block">  Cell In[29], line 1
-    x =
-       ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[29], line 1
+&nbsp;&nbsp;&nbsp;&nbsp;x =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: invalid syntax
 </pre>
 
@@ -902,14 +902,14 @@ Arithmetic in Python follows the order of operations rules. Maybe you learned th
 ```python
 print(1 + 2 * 3)
 print((1 + 2) * 3)
-print("---")
+print("...")
 print(3 ** 2 - 1)
 print(3 ** (2 - 1))
 ```
 
 <pre class="output-block">7
 9
----
+...
 8
 3
 </pre>
@@ -947,7 +947,10 @@ sum_of_important_data = important_data_point1 + important_data_point2
 print("I'm now showing my professor my important results:", sum_of_important_data)
 ```
 
-<pre class="output-block">I'm now showing my professor my important results: 98
+<pre class="output-block">I'm now showing my professor my important results:
+</pre>
+
+<pre class="output-block">&nbsp;98
 </pre>
 
 Here, no error is displayed telling you you are concatenating two strings rather than adding together two integers. That's because both things are vaild to do with Python syntax: Python has no way of knowing that you wanted to add these numbers rather than concatenate them - that's up to you to tell it! Remember, every little step of a computer program has to be given, otherwise you will get errors (relatively easy to debug) or **logic errors**, which occur when the program runs, but gives unexpected results, and are generally harder to debug.
@@ -1044,10 +1047,10 @@ print("--- print true check ---")
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
 Cell In[41], line 3
-      1 print(True)
-      2 print("--- print True check ---")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 print(True)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 print("--- print True check ---")
 ----> 3 print(true)
-      4 print("--- print true check ---")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 print("--- print true check ---")
 
 NameError: name 'true' is not defined
 </pre>
@@ -1062,14 +1065,14 @@ In fact, any integer _other than 0_ will return `True` if evaluated as a boolean
 ```python
 print("bool() of a boolean:")
 print(bool(True))
-print("---")
+print("...")
 
 print("bool() of integers:")
 print(bool(1))
 print(bool(0))
 print(bool(587348))
 print(bool(-1))
-print("---")
+print("...")
 
 print("bool() of strings")
 print(bool("Hello"))
@@ -1080,13 +1083,13 @@ print(bool("0"))
 
 <pre class="output-block">bool() of a boolean:
 True
----
+...
 bool() of integers:
 True
 False
 True
 True
----
+...
 bool() of strings
 True
 False
@@ -1356,12 +1359,25 @@ F   | F   |         |       |             |                        |            
 
 <details markdown><summary>Solution</summary>
 
-A   | B   | A and B | not B | A and not B | A and B or A and not B | A and (B or A) and not B |
---- | --- | ------- | ----- | ----------- | ---------------------- | ------------------------ |
-T   | T   |    T    |   F   |      F      |           T            |             F            |
-T   | F   |    F    |   T   |      T      |           T            |             T            |
-F   | T   |    F    |   F   |      F      |           F            |             F            |
-F   | F   |    F    |   T   |      F      |           F            |             F            |
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A and B</th>
+      <th>not B</th>
+      <th>A and not B</th>
+      <th>A and B or A and not B</th>
+      <th>A and (B or A) and not B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+    <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+    <tr><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+    <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+  </tbody>
+</table>
 
 </details>
 
@@ -1415,7 +1431,7 @@ my_int = 5
 print(my_int == 5)
 print(my_int == 4)
 
-print("---")
+print("...")
 
 my_int = 4
 print(my_int == 5)
@@ -1426,7 +1442,7 @@ print(my_int)
 
 <pre class="output-block">True
 False
----
+...
 False
 True
 4
@@ -1570,7 +1586,10 @@ print("The total length of the strings is:", total_length)
     print("The total length of the strings is:", total_length)
     ```
 
-    <pre class="output-block">The total length of the strings is: 18
+    <pre class="output-block">The total length of the strings is:
+    </pre>
+
+    <pre class="output-block">&nbsp;18
     </pre>
 
 ??? success "Solution"
@@ -1691,22 +1710,21 @@ Thanks! Let us know if you have any questions.
     color: rgba(0,0,0,0.87) !important; 
   }
 
-  /* Code block styles */
+   /* Code block styles */ 
+ 
+   .language-python {
+     padding-left: 40px;
+     font-size: 15px;
+   } 
 
-  .language-python {
-    padding-left: 40px;
-    font-size: 15px;
-  }
-
-    /* Hide all 2nd-level navs */
-    .md-nav--secondary .md-nav__item .md-nav {
-        display: none !important;
-    }
-
-    /* Show when parent has .expanded class */
-    .md-nav--secondary .md-nav__item.expanded > .md-nav {
-        display: block !important;
-    }
+  /* Hide all 2nd-level navs */
+  .md-nav--secondary .md-nav__item .md-nav {
+      display: none !important;
+  } 
   
-
+  /* Show when parent has .expanded class */
+  .md-nav--secondary .md-nav__item.expanded > .md-nav {
+      display: block !important;
+  }
+  
 </style>

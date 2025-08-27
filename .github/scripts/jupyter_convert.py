@@ -13,6 +13,7 @@ if sys.platform == "win32":
 
 import os
 import re 
+import base64
 
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
@@ -20,9 +21,54 @@ from nbconvert.preprocessors import Preprocessor
 from nbconvert import MarkdownExporter
 from nbconvert.preprocessors import ClearOutputPreprocessor
 
+############################################################
+## Custom preprocessor and associated functions for 
+## skipping execution of tagged cells
+class SkipExecuteTaggedCellsPreprocessor(Preprocessor):
+    def __init__(self, tag="no-execute", **kwargs):
+        super().__init__(**kwargs)
+        self.tag = tag
+
+    def preprocess_cell(self, cell, resources, index):
+        if cell.cell_type == "code" and self.tag in cell.metadata.get("tags", []):
+            # Save original source to metadata
+            cell.metadata["__original_source"] = cell.source
+            # Replace with ' ' so it doesn't error when executed
+            cell.source = " "
+            cell.outputs = []
+            cell.execution_count = None
+        return cell, resources
+
+def restore_skipped_cells(nb, tag="no-execute"):
+    for cell in nb.cells:
+        if cell.cell_type == "code" and tag in cell.metadata.get("tags", []):
+            orig = cell.metadata.pop("__original_source", None)
+            if orig is not None:
+                cell.source = orig
+
 ############################################################        
 ## Custom preprocessor and associated functions for 
 ## handling code cells
+
+def leadingWhitespaceToNbsp(text, tabsize=4):
+    """
+    Replace leading tabs with tabsize &nbsp; and leading spaces with &nbsp;, for each line.
+    """
+    nbsp = '&nbsp;'
+    def repl(m):
+        lead = m.group()
+        # First replace tabs
+        lead = lead.replace('\t', nbsp * tabsize)
+        # Then replace spaces
+        lead = lead.replace(' ', nbsp)
+        return lead
+    # Replace leading space/tab chars on each line
+    return re.sub(r'^[ \t]+', repl, text, flags=re.MULTILINE)
+
+def stripTrailingSpaces(text):
+    return '\n'.join(line.rstrip() for line in text.splitlines())
+
+####################
 
 def indentBlock(block, prefix):
     lines = block.splitlines()
@@ -37,22 +83,88 @@ def stripANSI(text):
 ####################
 
 def makeOutputBlocks(outputs, indent=None):
-    """Return a list of output blocks, possibly indented."""
+    """
+    Process a list of Jupyter cell outputs and return them as Markdown blocks.
+
+    - If any output in the cell contains an image (PNG or SVG), 
+      ALL text/plain outputs from that cell are suppressed.
+      (This prevents output like <Axes: ...> above figures.)
+    - Handles indented image outputs for multi-level display.
+    - Formats stream and error outputs with <pre class="output-block">...</pre>.
+    - Designed for nbconvert-style code cell output processing.
+    """
+
     out_blocks = []
+
+    # === 1. Check if there are any image outputs in the list of outputs ===
+    any_images = any(
+        output.output_type in {"execute_result", "display_data"} and (
+            ("image/png" in output.get("data", {})) or
+            ("image/svg+xml" in output.get("data", {}))
+        )
+        for output in outputs
+    )
+
+    # === 2. Iterate through each output ===
     for output in outputs:
-        text = ''
-        if output.output_type == "stream":
+        # -- Handle rich outputs (execute_result, display_data) --
+        if output.output_type in {"execute_result", "display_data"}:
+            data = output.get("data", {})
+
+            # -- If 'image/png' present, emit as Markdown image and skip text/plain --
+            if "image/png" in data:
+                img_data = data["image/png"]
+                if isinstance(img_data, list):
+                    img_data = ''.join(img_data)
+                img_md = f'![](data:image/png;base64,{img_data.strip()})'
+                if indent:
+                    img_md = indentBlock(img_md, indent)
+                out_blocks.append(img_md)
+                continue  # Don't emit text/plain for this output
+
+            # -- If 'image/svg+xml' present, emit SVG directly and skip text/plain --
+            if "image/svg+xml" in data:
+                img_data = data["image/svg+xml"]
+                if isinstance(img_data, list):
+                    img_data = ''.join(img_data)
+                if indent:
+                    img_data = indentBlock(img_data, indent)
+                out_blocks.append(img_data)
+                continue  # Don't emit text/plain for this output
+
+            # -- Only emit text/plain if no images in any output of this cell --
+            if not any_images and "text/plain" in data:
+                text = data["text/plain"]
+                text = leadingWhitespaceToNbsp(text)
+                text = stripTrailingSpaces(text)
+                block = f'<pre class="output-block">{text.rstrip()}\n</pre>'
+                if indent:
+                    block = indentBlock(block, indent)
+                out_blocks.append(block)
+
+        # -- Handle stdout/stderr/text stream outputs --
+        elif output.output_type == "stream":
             text = output.get("text", "")
-        elif output.output_type in {"execute_result", "display_data"}:
-            text = output.get("data", {}).get("text/plain", "")
+            if text.strip():  # skip if only whitespace
+                text = leadingWhitespaceToNbsp(text)
+                text = stripTrailingSpaces(text)
+                block = f'<pre class="output-block">{text.rstrip()}\n</pre>'
+                if indent:
+                    block = indentBlock(block, indent)
+                out_blocks.append(block)
+
+        # -- Handle exceptions (errors) --
         elif output.output_type == "error":
             text = "\n".join(output.get("traceback", []))
-            text = stripANSI(text)
-        if text.strip():
-            block = f'<pre class="output-block">{text.rstrip()}\n</pre>'
-            if indent:
-                block = indentBlock(block, indent)
-            out_blocks.append(block)
+            text = stripANSI(text)  # remove any ANSI codes for safety
+            text = leadingWhitespaceToNbsp(text)
+            text = stripTrailingSpaces(text)
+            if text.strip():
+                block = f'<pre class="output-block">{text.rstrip()}\n</pre>'
+                if indent:
+                    block = indentBlock(block, indent)
+                out_blocks.append(block)
+
     return out_blocks
 
 ####################
@@ -68,9 +180,17 @@ class CodeCellPreprocessor(Preprocessor):
 
             if cell.cell_type == "code":
                 lines = cell.source.splitlines()
-                cell.source = "\n".join(line for line in lines if not line.strip().startswith('#@title'))
 
-                if "solution" in cell.metadata.get("tags", []):
+                solution_cell = False
+                if (
+                    "solution" in cell.metadata.get("tags", []) or
+                    lines[0].strip().startswith("#@title Solution")
+                ):
+                    solution_cell = True
+
+                cell.source = "\n".join(line for line in lines if not line.strip().startswith('#@title Solution'))
+
+                if solution_cell:
                     # --- SOLUTION CELL ---
                     code_block = "```python\n" + cell.source.rstrip() + "\n```"
                     output_blocks = makeOutputBlocks(cell.get("outputs", []), indent="    ")
@@ -203,24 +323,23 @@ style = """
     color: rgba(0,0,0,0.87) !important; 
   }
 
-  /* Code block styles */
+   /* Code block styles */ 
+ 
+   .language-python {
+     padding-left: 40px;
+     font-size: 15px;
+   } 
 
-  .language-python {
-    padding-left: 40px;
-    font-size: 15px;
-  }
-
-    /* Hide all 2nd-level navs */
-    .md-nav--secondary .md-nav__item .md-nav {
-        display: none !important;
-    }
-
-    /* Show when parent has .expanded class */
-    .md-nav--secondary .md-nav__item.expanded > .md-nav {
-        display: block !important;
-    }
+  /* Hide all 2nd-level navs */
+  .md-nav--secondary .md-nav__item .md-nav {
+      display: none !important;
+  } 
   
-
+  /* Show when parent has .expanded class */
+  .md-nav--secondary .md-nav__item.expanded > .md-nav {
+      display: block !important;
+  }
+  
 </style>
 """
 
@@ -259,7 +378,7 @@ jupyter_files = {
             "in Python, including arrays and basic operations."
         ),
         "authors": ["Lei Ma", "Adam Freedman"],
-        "alts": [
+        "old-alts": [
             "A pie chart titled 'Programming Language Popularity': Python 26.9%, Ruby 26.2%, "
             "C++ 30.6%, and Java 16.2%."
         ]
@@ -276,8 +395,21 @@ jupyter_files = {
             "while the bill depth is the distance from the top of the bill to the bottom. "
             " Note: In the raw data, bill dimensions are recorded as 'culmen length' and 'culmen depth'. The culmen is the dorsal ridge atop the bill.",
 
+            "A density plot with one line representing male penguins and another line representing females. "
+            "The x-axis is unlabled and ranges from -3 to 4 and the y-axis is labeled Density and ranges from 0 to 0.5. "
+            "Both lines are bi-modal with the female having a peak around -1 and a smaller peak around 1."
+            "The male line is shifted to the right with peaks at just under 0 and 2.",            
+
+            "A density plot with one line representing male penguins and another line representing females. "
+            "The x-axis is unlabled and ranges from -4 to 4 and the y-axis is labeled Density and ranges from 0 to 0.5. "
+            "Both lines are bi-modal and essentially overlapping with peaks around -1 and a smaller peak around 1.5.",
+
+            "A density plot with six lines representing males and females from 3 penguin species. "
+            "The x-axis is unlabled and ranges from -4 to 4 and the y-axis is labeled Density and ranges from 0 to 0.4. "
+            "All lines are essentially overlapping with a single peak at 0.",
+
             "The different seaborn plot categories and the types of plots within them: relplots are scatter plots and line plots; "
-            "distplots are histograms, KDE plots, ecdf plots, and rug plots; catplots are bar plots, box plots, violin plots, strip plots, swarm plots, and point plots",
+            "distplots are histograms, KDE plots, ecdf plots, and rug plots; catplots are bar plots, box plots, violin plots, strip plots, swarm plots, and point plots",            
 
             "A histogram showing 'flipper length' in millimeters on the x-axis ranging from 170-230 and 'Count' on the y-axis ranging from 0 to 80. "
             "There is a sharp peak around 190mm, a drop-off at 205mm, and then a smaller peak around 215mm.",
@@ -299,7 +431,24 @@ jupyter_files = {
             "Adelie have the smallest bill length and body mass, centered around 40mm and 4000g, respectively. "
             "Chinstrap have longer bill lengths centered around 450mm, but a similar range of body mass to the Adelie, centered around 3800g. "
             "The Gentoo have a bill length between the other two species, centered around 47mm but higher body mass, centered around 5000g. "
-            "In all species, females have both shorter bills and lower body masses."
+            "In all species, females have both shorter bills and lower body masses.",
+
+            "A scatter plot from a PCA analysis of three penguin species, Adeli, Gentoo, and Chinstrap. "
+            "The x-axis is labeled 'PC1' and ranges from -3 to 4. The y-axis is labeled 'PC2' and ranges from -2 to 2. "
+            "The Adelie and Chinstrap points cluster from -2 to -1 on PC1 and -2 to 2 on PC2. "
+            "The Gentoo points separate from the other two on PC1 and cluster from 1 to 4 on PC1 and -2 to 1 on PC2. ",
+
+            "A scatter plot from a PCA analysis of three penguin species, Adeli, Gentoo, and Chinstrap. "
+            "The x-axis is labeled 'PC2' and ranges from -3 to 4. The y-axis is labeled 'PC3' and ranges from -2 to 2. "
+            "Points are scattered across the with the exception of the sector where both PCs are negative. "
+            "While Chinstrap points cluster at the high end of both PC1 and PC2, the distinction is not vivid.",
+
+            "A styleized scatter plot from a PCA analysis of three penguin species, Adeli, Gentoo, and Chinstrap. "
+            "The plot is titled PCA of Penguin Dataset and there are gridlines at every axis label. "
+            "Four red arrows point out from the origin representing the variables: bill_depth_mm (pointing up and left), bill_length_mm (pointin up and right), body_mass_g (pointing right and slightly up), and flipper_length_mm (pointing right)"
+            "The x-axis is labeled 'Principal Component 1' and ranges from -3 to 4. The y-axis is labeled 'Principal Component 2' and ranges from -2 to 2. "
+            "The Adelie and Chinstrap points cluster from -2 to -1 on PC1 and -2 to 2 on PC2. "
+            "The Gentoo points separate from the other two on PC1 and cluster from 1 to 4 on PC1 and -2 to 1 on PC2. "            
         ]
     },
     "Python-Part6.ipynb": {
@@ -343,17 +492,18 @@ jupyter_files = {
 ############################################################
 ## MAIN SCRIPT
 
-skip = ["python-healthy-habits.ipynb"]
+skip = []
+SKIP_TAG = "no-execute"
 
 for jupyter_file in jupyter_files:
+
+    # For debugging
+    # if jupyter_file != "Python-Part6.ipynb":
+    #     continue;
 
     if jupyter_file in skip:
         print(f"[HOOK] Skipping {jupyter_file}")
         continue
-
-    # For debugging
-    # if jupyter_file != "Python-Day1.ipynb":
-    #     continue;
 
     # Set output file name
     md_path = os.path.splitext(jupyter_file)[0] + ".md"
@@ -363,9 +513,23 @@ for jupyter_file in jupyter_files:
     with open(jupyter_file, encoding="utf-8") as f:
         nb = nbformat.read(f, as_version=4)
 
-    # Execute notebook in place
+    # 1. SKIP CODE in 'no-execute' cells for execution
+    prep = SkipExecuteTaggedCellsPreprocessor(tag="no-execute")
+    nb, _ = prep.preprocess(nb, {})
+
+    # 2. EXECUTE notebook (now, those cells are basically ignored/skipped)
     ep = ExecutePreprocessor(timeout=600, kernel_name='python3', allow_errors=True, exclude_tags=['no-execute'])
     ep.preprocess(nb, {'metadata': {'path': os.path.dirname(jupyter_file) or '.'}})
+
+    # 3. RESTORE hidden code so students see the full exercise cell content
+    restore_skipped_cells(nb, tag="no-execute")
+
+    # --- INSERT PRINT CODE HERE ---
+    # for cell in nb.cells:
+    #     if cell.cell_type == 'code' and 'sns.histplot' in cell.source:
+    #         import json
+    #         print(json.dumps(cell, indent=2))
+    # --- continue with markdown export ---
 
     # Export to Markdown
     exporter = MarkdownExporter()
@@ -373,7 +537,7 @@ for jupyter_file in jupyter_files:
     # Register the custom preprocessor to handle code cells
     exporter.register_preprocessor(CodeCellPreprocessor, enabled=True)
 
-    # Convert the notebook to Markdown
+    # 4. Export to Markdown etc (using CodeCellPreprocessor)
     body, _ = exporter.from_notebook_node(nb)
 
     # Write the markdown content to the file
