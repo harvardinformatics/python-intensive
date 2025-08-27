@@ -21,21 +21,24 @@ For our final section, we are going to do some exploratory analysis of a real wo
 storms_file = 'indiana_storms_full.csv'
 ```
 
-<pre class="output-block">--2025-08-05 16:37:13--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.109.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
+<pre class="output-block">--2025-08-27 14:01:47--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.111.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response...
+</pre>
+
+<pre class="output-block">200 OK
 Length: 952491 (930K) [text/plain]
-Saving to: ‘indiana_storms_full.csv.1’
+Saving to: ‘indiana_storms_full.csv’
 
 
-          indiana_s   0%[                    ]       0  --.-KB/s
+indiana_storms_full   0%[                    ]       0  --.-KB/s
 </pre>
 
 <pre class="output-block">
-indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.01s   
+indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.02s   
 
-2025-08-05 16:37:13 (86.4 MB/s) - ‘indiana_storms_full.csv.1’ saved [952491/952491]
+2025-08-27 14:01:47 (38.8 MB/s) - ‘indiana_storms_full.csv’ saved [952491/952491]
 </pre>
 
 
@@ -102,32 +105,7 @@ Cell In[5], line 1
 NameError: name 'storms_df' is not defined
 </pre>
 
-Only some storm events have a begin and end location, but at least there aren't any that only have a begin and not and end. Data looks good! The next thing we need to do is to convert the "BEGIN_DATE_TIME" and "END_DATE_TIME" columns to datetime objects. This will make it easier to work with these columns later on.
-
-### Working with dates and times
-
->**Question:** How many hours are there between 9:00 AM and 10:00 AM on a given date? 
-
-**Answer:** Any number between 0 and 13, depending on the time zones of the two locations.
-
-Time, as we all know, is a human construct that is on its face numerical, but is also more complex than simple numbers. Consider all that we do with dates and times: we want to compare time, do arithmetic to find time intervals, aggregate by year, month, day, day of the week, etc. Time consists of many different units and cannot be simply added or coded. Consider that there are a variable number of days in a month, and some months have different number of days on certain years (leap days). Then, we might want to measure durations of time, or keep track of time stamps specific to a location and date. These require computers to think of time in different ways. 
-
-Pandas has an implementation of datetime objects called `pd.datetime`. Consider this akin to the `str` object for strings, or the `int` object for integers. This object has a lot of built-in functionality that makes it easy to work with dates and times. But before we learn how to convert data to this object type, let's go over a few basic tips for how to record your time data. 
-
-* If you just want to record the date, use the format `YYYY-MM-DD`. When you convert to a `pd.datetime` object, it will automatically set the time to midnight with no time zone information. This is called a "naive" datetime object.
-* If you need to record a timestamp - e.g. the time and date something happened - use the format `YYYY-MM-DD HH:MM:SS+0500`. This is the ISO 8601 standard format for datetime objects. The `+0500` is the time zone offset from GMT. When pandas parses this string, it will create what is called an "aware" datetime object. ***Good data practice is to always record your times in this format and to always include the time zone offset*** unless you are absolutely sure that A. Everything happens in the same time zone and you'll never have to compare to another dataset, and B. None of your data will be affected by daylight savings time.
-* If you need to record a time series, you want to record the time a `YYYY-MM-DD HH:MM:SS` (ISO 8601 again) but import the data as **time deltas**, aka `pd.Timedelta`. This is a special type of datetime object that represents the difference between two times. This is useful if the duration, and not the specific time of day, matters the most.
-
-Pandas is an essential library for time series analysis that many other libraries build upon. See the docs for more information on how pandas handles date [time objects :octicons-link-external-24:](https://pandas.pydata.org/docs/user_guide/timeseries.html){:target="_blank"} and [time deltas :octicons-link-external-24:](https://pandas.pydata.org/docs/user_guide/timedeltas.html){:target="_blank"}. 
-
-Even if you aren't doing time series analysis, you will find it useful to import any column of dates or times as a datetime object, as it will provide you with a lot of useful functionality. For example:
-
-* Pandas can automatically parse human readable dates and times written in various formats into a standardized `datetime` object. [docs :octicons-link-external-24:](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html){:target="_blank"}
-* You can extract various components of the date/time for analysis or printing purposes. See the list of attributes and method of the `pd.Timestamp` class [here :octicons-link-external-24:](https://pandas.pydata.org/docs/reference/api/pandas.Timestamp.html){:target="_blank"}, which include `day_of_week`, `day_of_year`, `weekofyear`, `.day_name()`, etc. 
-* You can perform calculations on dates and times, such as converting between time zones, finding the difference (**delta**) between two times, resampling the frequency of a time series, or finding the time that is a certain duration away from a given time. 
-* You can control how the date is displayed when you print it out or export your data by using string format codes specific for datetime objects. [docs :octicons-link-external-24:](https://docs.python.org/3/library/datetime.html#format-codes){:target="_blank"} 
-
-Here's an example of pandas in action with datetime objects: [link :octicons-link-external-24:](https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html){:target="_blank"}
+Only some storm events have a begin and end location, but at least there aren't any that only have a begin and not and end. Data looks good! The next thing we need to do is to convert the "BEGIN_DATE_TIME" and "END_DATE_TIME" columns to datetime objects. Additionally, these data are spread out over two time zones and we want to convert it to a single time zone for clarity. This will make it easier to work with these columns later on. For more information on the proper way to manage dates and times in Python, see the section in our Python Healthy Habits document "Working with dates and times". 
 
 
 ```python
@@ -149,6 +127,22 @@ Cell In[6], line 4
 
 NameError: name 'pd' is not defined
 </pre>
+
+Here's a breakdown of the code I used to convert the "BEGIN_DATE_TIME" and "END_DATE_TIME" columns to datetime objects:
+
+```python
+storms_df['BEGIN_DATE_TIME'] = pd.to_datetime(storms_df["BEGIN_DATE_TIME"]+"-0"+storms_df["CZ_TIMEZONE"].str.extract(r'([0-9]+)')[0]+"00", format="mixed", utc=True).dt.tz_convert("-05:00")
+```
+
+| Code                                                              | Explanation |
+| ----------------------------------------------------------------- | ----------- |
+| `pd.to_datetime()`                                                | This function converts a string or a list of strings to a datetime object. However, I first need to convert the string into something that is can parse.|
+| `storms_df["BEGIN_DATE_TIME"]`                                    | This column is alredy in a format that pandas can parse, but it is missing the time zone information.|
+| `+"-0"+storms_df["CZ_TIMEZONE"].str.extract(r'([0-9]+)')[0]+"00"` | This adds the time zone offset to the string by concatenating `-0` and the regex match for the time zone offset. Plus, it adds `00` to the end to represent the minutes.|
+| `format="mixed"`                                                  | This tells pandas to try to parse the string in a mixed format, which means it will attempt to infer the format of the date and time.|
+| `utc=True`                                                        | This tells pandas to treat the datetime object as UTC time, which is a standard time zone that is not affected by daylight savings time.|
+| `.dt.tz_convert("-05:00")`                                        | This converts the datetime object to the specified time zone, which is Eastern Standard Time (EST) in this case.|
+
 
 Here's what the times look like now:
 
@@ -233,18 +227,20 @@ NameError: name 'storms_df' is not defined
 
 
 ```python
-# display the number of events (rows) for each day of the week
 # Your code here
+```
+
+
+```python
 
 storms_df['BEGIN_DATE_TIME'].dt.day_name().value_counts()
 ```
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[12], line 4
-      1 # display the number of events (rows) for each day of the week
-      2 # Your code here
-----> 4 storms_df['BEGIN_DATE_TIME'].dt.day_name().value_counts()
+Cell In[13], line 3
+      1 #@title Solution {display-mode: "form"}
+----> 3 storms_df['BEGIN_DATE_TIME'].dt.day_name().value_counts()
 
 NameError: name 'storms_df' is not defined
 </pre>
@@ -253,13 +249,20 @@ NameError: name 'storms_df' is not defined
 
 
 ```python
+# Your code here
+```
+
+
+```python
+
 storms_df[~storms_df["BEGIN_LOCATION"].isna()]["EVENT_TYPE"].value_counts()
 ```
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[13], line 1
-----> 1 storms_df[~storms_df["BEGIN_LOCATION"].isna()]["EVENT_TYPE"].value_counts()
+Cell In[15], line 3
+      1 #@title Solution {display-mode: "form"}
+----> 3 storms_df[~storms_df["BEGIN_LOCATION"].isna()]["EVENT_TYPE"].value_counts()
 
 NameError: name 'storms_df' is not defined
 </pre>
@@ -271,8 +274,12 @@ NameError: name 'storms_df' is not defined
 
 ```python
 # Your code here
-# Find duration of events
+```
 
+
+```python
+
+# Find duration of events
 storms_df['EVENT_DURATION'] = storms_df["END_DATE_TIME"] - storms_df["BEGIN_DATE_TIME"]
 
 # filter for events that last more than one day and count them
@@ -281,9 +288,10 @@ storms_df[storms_df['EVENT_DURATION'] > pd.Timedelta(days=1)]["EVENT_TYPE"].valu
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[14], line 4
-      1 # Your code here
-      2 # Find duration of events
+Cell In[17], line 4
+      1 #@title Solution {display-mode: "form"}
+      2 
+      3 # Find duration of events
 ----> 4 storms_df['EVENT_DURATION'] = storms_df["END_DATE_TIME"] - storms_df["BEGIN_DATE_TIME"]
       6 # filter for events that last more than one day and count them
       7 storms_df[storms_df['EVENT_DURATION'] > pd.Timedelta(days=1)]["EVENT_TYPE"].value_counts()
@@ -296,6 +304,10 @@ NameError: name 'storms_df' is not defined
 
 ```python
 # Your code here
+```
+
+
+```python
 
 county_list = storms_df["CZ_NAME"].unique().tolist()
 print(county_list)
@@ -307,8 +319,8 @@ print(f"There are {len(event_list)} event types in the dataset")
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[15], line 3
-      1 # Your code here
+Cell In[19], line 3
+      1 #@title Solution {display-mode: "form"}
 ----> 3 county_list = storms_df["CZ_NAME"].unique().tolist()
       4 print(county_list)
       5 print(f"There are {len(county_list)} counties in the dataset")
@@ -323,9 +335,6 @@ NameError: name 'storms_df' is not defined
 
 ```python
 # Your code here
-
-def get_event_county(storms, county, event):
-    return storms[(storms["EVENT_TYPE"] == event) & (storms["CZ_NAME"] == county)]
 ```
 
 
@@ -337,13 +346,20 @@ get_event_county(storms_df, "ELKHART", "Thunderstorm Wind")
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[17], line 3
+Cell In[21], line 3
       1 # test your code
       2 # should return a dataframe with 7 rows
 ----> 3 get_event_county(storms_df, "ELKHART", "Thunderstorm Wind")
 
-NameError: name 'storms_df' is not defined
+NameError: name 'get_event_county' is not defined
 </pre>
+
+
+```python
+
+def get_event_county(storms, county, event):
+    return storms[(storms["EVENT_TYPE"] == event) & (storms["CZ_NAME"] == county)]
+```
 
 Now that we have imported our data, cleaned it up and begun to explore it, let's split off into groups! We have a few paths we can take:
 
@@ -359,15 +375,7 @@ Now that we have imported our data, cleaned it up and begun to explore it, let's
 
 
 ```python
-# your code here
-
-def storm_by_county(storms, county, storm_type=None):
-    if storm_type:
-        matches = storms[(storms['CZ_NAME'].isin(county)) & (storms['EVENT_TYPE'].isin(storm_type))]
-    else:
-        matches = storms[(storms['CZ_NAME'].isin(county))]
-    
-    return matches
+# Your code here
 ```
 
 
@@ -379,12 +387,12 @@ storm_by_county(storms_df, ["OHIO"])
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[19], line 3
+Cell In[24], line 3
       1 # test your function
       2 # should return 8 rows of data
 ----> 3 storm_by_county(storms_df, ["OHIO"])
 
-NameError: name 'storms_df' is not defined
+NameError: name 'storm_by_county' is not defined
 </pre>
 
 
@@ -397,13 +405,25 @@ storm_by_county(storms_df, ["ELKHART", "ST. JOSEPH"], ["Thunderstorm Wind"])
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[20], line 4
+Cell In[25], line 4
       1 # test your function
       2 # should return 11 rows of data
 ----> 4 storm_by_county(storms_df, ["ELKHART", "ST. JOSEPH"], ["Thunderstorm Wind"])
 
-NameError: name 'storms_df' is not defined
+NameError: name 'storm_by_county' is not defined
 </pre>
+
+
+```python
+
+def storm_by_county(storms, county, storm_type=None):
+    if storm_type:
+        matches = storms[(storms['CZ_NAME'].isin(county)) & (storms['EVENT_TYPE'].isin(storm_type))]
+    else:
+        matches = storms[(storms['CZ_NAME'].isin(county))]
+    
+    return matches
+```
 
 2. Create a function called `display_storms` that takes a storms object, iterates through each row, and prints out each event as a sentence, including the event type, the county, and the date and time of the event. This exercise helps with iterating over data. An example output would be: "A thunderstorm occurred in Marion County on 2015-06-15 13:45:00". (as a bonus, you can try and format the date and time to be more human-readable)
 
@@ -411,11 +431,7 @@ NameError: name 'storms_df' is not defined
 
 
 ```python
-# your code here
-
-def display_storms(storms):
-    for index, event in storms.iterrows():
-        print("A", event["EVENT_TYPE"], "occurred on", event["BEGIN_DATE_TIME"], "in", event["CZ_NAME"], "county.")
+# Your code here
 ```
 
 3. Test your function by:
@@ -449,7 +465,7 @@ display_storms(storm_by_county(storms_df, county_list, storm_type=["Tornado"]))
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[22], line 5
+Cell In[28], line 5
       1 ## Test your storm_by_county function
       2 
       3 # 3.1: Display all storm events in TIPPECANOE county.
@@ -458,8 +474,16 @@ Cell In[22], line 5
       7 # 3.2: Display all Flood and Flash Flood events in the following counties: MARION, MONROE, SPENCER, VERMILLION
       8 print("--- 3.2 ---")
 
-NameError: name 'storms_df' is not defined
+NameError: name 'display_storms' is not defined
 </pre>
+
+
+```python
+
+def display_storms(storms):
+    for index, event in storms.iterrows():
+        print("A", event["EVENT_TYPE"], "occurred on", event["BEGIN_DATE_TIME"], "in", event["CZ_NAME"], "county.")
+```
 
 4. Make a histogram that displays the count of the events which contain "flood" in the following counties: ["MARION", "MONROE", "SPENCER", "VERMILLION", "TIPPECANOE"]. The x axis will be the different "flood" event types, and the color of the bar will be the county. The y axis will be the count of the events.
 
@@ -469,6 +493,12 @@ When you make a histogram using `sns.histplot()`, you can use the `multiple='dod
 
 
 ```python
+# Your code here
+```
+
+
+```python
+
 # import seaborn
 import seaborn as sns
 
@@ -490,11 +520,13 @@ sns.histplot(storms_subset, x="EVENT_TYPE", hue="CZ_NAME", multiple="dodge", shr
 
 <pre class="output-block">---------------------------------------------------------------------------
 ModuleNotFoundError                       Traceback (most recent call last)
-Cell In[23], line 2
-      1 # import seaborn
-----> 2 import seaborn as sns
-      4 # str.contains method
-      5 storm_list = storms_df["EVENT_TYPE"][storms_df["EVENT_TYPE"].str.contains("flood", case=False)].unique().tolist()
+Cell In[31], line 4
+      1 #@title Solution {display-mode: "form"}
+      2 
+      3 # import seaborn
+----> 4 import seaborn as sns
+      6 # str.contains method
+      7 storm_list = storms_df["EVENT_TYPE"][storms_df["EVENT_TYPE"].str.contains("flood", case=False)].unique().tolist()
 
 ModuleNotFoundError: No module named 'seaborn'
 </pre>
@@ -503,14 +535,7 @@ ModuleNotFoundError: No module named 'seaborn'
 
 
 ```python
-## your code here
-
-# def storm_by_county(INSERT ARGUMENTS):
-
-def summarise_storms(storms, county, storm_type=None):
-  df = storm_by_county(storms, county, storm_type).groupby(["CZ_NAME","EVENT_TYPE"]).size().reset_index()
-  
-  return df
+# Your code here
 ```
 
 5. Test your function by:
@@ -535,7 +560,7 @@ print(summarise_storms(storms_df, ["ELKHART", "LA PORTE", "BOONE"], ["Thundersto
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[25], line 5
+Cell In[33], line 5
       1 ## Test your modified storm_by_county function
       2 
       3 # 5.1 Display the number of all events in PIKE county
@@ -544,14 +569,27 @@ Cell In[25], line 5
       7 # 5.2 Display the number of Thunderstorm Wind events in the following counties: ELKHART, LA PORTE, BOONE
       8 print("--- 5.2 ---")
 
-NameError: name 'storms_df' is not defined
+NameError: name 'summarise_storms' is not defined
 </pre>
+
+
+```python
+
+def summarise_storms(storms, county, storm_type=None):
+  df = storm_by_county(storms, county, storm_type).groupby(["CZ_NAME","EVENT_TYPE"]).size().reset_index()
+  
+  return df
+```
 
 6. Use your function to summarize the total counts of each weather event in each county.
 
 
 ```python
-# your code here
+# Your code here
+```
+
+
+```python
 
 all_weather = storms_df["EVENT_TYPE"].unique().tolist()
 all_counties = storms_df["CZ_NAME"].unique().tolist()
@@ -561,8 +599,8 @@ summarise_storms(storms_df, all_counties, all_weather)
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[26], line 3
-      1 # your code here
+Cell In[36], line 3
+      1 #@title Solution {display-mode: "form"}
 ----> 3 all_weather = storms_df["EVENT_TYPE"].unique().tolist()
       4 all_counties = storms_df["CZ_NAME"].unique().tolist()
       6 summarise_storms(storms_df, all_counties, all_weather)
@@ -586,28 +624,25 @@ county_info = county_info[1]
 <pre class="output-block">Collecting lxml
 </pre>
 
-<pre class="output-block">  Downloading lxml-6.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
-Downloading lxml-6.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+<pre class="output-block">  Downloading lxml-6.0.1-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Downloading lxml-6.0.1-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
 [?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/5.2 MB[0m [31m?[0m eta [36m-:--:--[0m
 </pre>
 
 <pre class="output-block">
-[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.2/5.2 MB[0m [31m124.7 MB/s[0m eta [36m0:00:00[0m
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.2/5.2 MB[0m [31m38.3 MB/s[0m  [33m0:00:00[0m
 [?25h
 </pre>
 
 <pre class="output-block">Installing collected packages: lxml
 </pre>
 
-<pre class="output-block">Successfully installed lxml-6.0.0
-
-[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m A new release of pip is available: [0m[31;49m25.1.1[0m[39;49m -> [0m[32;49m25.2[0m
-[1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m To update, run: [0m[32;49mpip install --upgrade pip[0m
+<pre class="output-block">Successfully installed lxml-6.0.1
 </pre>
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[27], line 2
+Cell In[37], line 2
       1 get_ipython().system('pip install lxml')
 ----> 2 county_info = pd.read_html("https://en.wikipedia.org/wiki/List_of_counties_in_Indiana")
       3 county_info = county_info[1]
@@ -624,7 +659,7 @@ county_info[["County", "Area[3][12]"]]
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[28], line 1
+Cell In[38], line 1
 ----> 1 county_info[["County", "Area[3][12]"]]
 
 NameError: name 'county_info' is not defined
@@ -632,6 +667,12 @@ NameError: name 'county_info' is not defined
 
 
 ```python
+# Your code here
+```
+
+
+```python
+
 # cleaning county_info
 county_info["County"] = county_info["County"].str.replace(" County", "").str.upper()
 county_info["Area_sq_mi"] = pd.to_numeric(county_info["Area[3][12]"].str.extract(r'([0-9,]+)')[0])
@@ -642,17 +683,20 @@ storms_merged = pd.merge(storms_df, county_info, left_on="CZ_NAME", right_on="Co
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[29], line 2
-      1 # cleaning county_info
-----> 2 county_info["County"] = county_info["County"].str.replace(" County", "").str.upper()
-      3 county_info["Area_sq_mi"] = pd.to_numeric(county_info["Area[3][12]"].str.extract(r'([0-9,]+)')[0])
-      5 # merge the two dataframes
+Cell In[40], line 4
+      1 #@title Solution: data cleaning {display-mode: "form"}
+      2 
+      3 # cleaning county_info
+----> 4 county_info["County"] = county_info["County"].str.replace(" County", "").str.upper()
+      5 county_info["Area_sq_mi"] = pd.to_numeric(county_info["Area[3][12]"].str.extract(r'([0-9,]+)')[0])
+      7 # merge the two dataframes
 
 NameError: name 'county_info' is not defined
 </pre>
 
 
 ```python
+
 # grouping by county and area
 df = storms_merged.groupby(["CZ_NAME", "Area_sq_mi"])["EVENT_TYPE"].count().reset_index()
 print(df.head())
@@ -666,11 +710,13 @@ df.sort_values("normalized", ascending=False)
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[30], line 2
-      1 # grouping by county and area
-----> 2 df = storms_merged.groupby(["CZ_NAME", "Area_sq_mi"])["EVENT_TYPE"].count().reset_index()
-      3 print(df.head())
-      5 # normalizing number of events by area
+Cell In[41], line 4
+      1 #@title Solution: example {display-mode: "form"}
+      2 
+      3 # grouping by county and area
+----> 4 df = storms_merged.groupby(["CZ_NAME", "Area_sq_mi"])["EVENT_TYPE"].count().reset_index()
+      5 print(df.head())
+      7 # normalizing number of events by area
 
 NameError: name 'storms_merged' is not defined
 </pre>
@@ -679,6 +725,12 @@ NameError: name 'storms_merged' is not defined
 
 
 ```python
+# Your code here
+```
+
+
+```python
+
 # decide which weather events probably have cool clouds
 cool_clouds = ["Thunderstorm wind", "Tornado", "Lightning", "Heavy Rain"]
 
@@ -691,12 +743,12 @@ df_clouds.groupby(df_clouds["BEGIN_DATE_TIME"].dt.month)["EVENT_TYPE"].count().r
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[31], line 5
-      2 cool_clouds = ["Thunderstorm wind", "Tornado", "Lightning", "Heavy Rain"]
-      4 # filter for cool clouds
-----> 5 df_clouds = storms_df[storms_df["EVENT_TYPE"].isin(cool_clouds)]
-      7 # group by month and number of events
-      8 df_clouds.groupby(df_clouds["BEGIN_DATE_TIME"].dt.month)["EVENT_TYPE"].count().reset_index()
+Cell In[43], line 7
+      4 cool_clouds = ["Thunderstorm wind", "Tornado", "Lightning", "Heavy Rain"]
+      6 # filter for cool clouds
+----> 7 df_clouds = storms_df[storms_df["EVENT_TYPE"].isin(cool_clouds)]
+      9 # group by month and number of events
+     10 df_clouds.groupby(df_clouds["BEGIN_DATE_TIME"].dt.month)["EVENT_TYPE"].count().reset_index()
 
 NameError: name 'storms_df' is not defined
 </pre>
@@ -705,6 +757,12 @@ NameError: name 'storms_df' is not defined
 
 
 ```python
+# Your code here
+```
+
+
+```python
+
 # get event duration. We've already done this, but the code is reproduced before
 
 storms_df["EVENT_DURATION"] = storms_df["END_DATE_TIME"] - storms_df["BEGIN_DATE_TIME"]
@@ -717,34 +775,25 @@ storms_filtered = storms_df.groupby("EVENT_TYPE").filter(lambda x: len(x) > 10)
 
 print(storms_filtered.groupby("EVENT_TYPE")["EVENT_DURATION"].mean())
 
+storms_filtered.groupby("EVENT_TYPE")["EVENT_DURATION"].describe()
 ```
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[32], line 3
-      1 # get event duration. We've already done this, but the code is reproduced before
-----> 3 storms_df["EVENT_DURATION"] = storms_df["END_DATE_TIME"] - storms_df["BEGIN_DATE_TIME"]
-      5 # filter out events which only occurred <10 times in the year
-      7 storms_filtered = storms_df.groupby("EVENT_TYPE").filter(lambda x: len(x) > 10)
+Cell In[45], line 5
+      1 #@title Solution: data parsing {display-mode: "form"}
+      2 
+      3 # get event duration. We've already done this, but the code is reproduced before
+----> 5 storms_df["EVENT_DURATION"] = storms_df["END_DATE_TIME"] - storms_df["BEGIN_DATE_TIME"]
+      7 # filter out events which only occurred <10 times in the year
+      9 storms_filtered = storms_df.groupby("EVENT_TYPE").filter(lambda x: len(x) > 10)
 
 NameError: name 'storms_df' is not defined
 </pre>
 
 
 ```python
-storms_filtered.groupby("EVENT_TYPE")["EVENT_DURATION"].describe()
-```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[33], line 1
-----> 1 storms_filtered.groupby("EVENT_TYPE")["EVENT_DURATION"].describe()
-
-NameError: name 'storms_filtered' is not defined
-</pre>
-
-
-```python
 # plot the distribution of event durations as a stripplot with points using seaborn
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -764,17 +813,20 @@ plt.show()
 
 <pre class="output-block">---------------------------------------------------------------------------
 ModuleNotFoundError                       Traceback (most recent call last)
-Cell In[34], line 2
-      1 # plot the distribution of event durations as a stripplot with points using seaborn
-----> 2 import matplotlib.pyplot as plt
-      3 import seaborn as sns
-      4 import matplotlib.dates as mdates
+Cell In[46], line 4
+      1 #@title Solution: plotting {display-mode: "form"}
+      2 
+      3 # plot the distribution of event durations as a stripplot with points using seaborn
+----> 4 import matplotlib.pyplot as plt
+      5 import seaborn as sns
+      6 import matplotlib.dates as mdates
 
 ModuleNotFoundError: No module named 'matplotlib'
 </pre>
 
 
 ```python
+
 # plot the distribution of event durations as a stripplot with points using seaborn
 # separately plotting EVENT_TYPE = flood
 
@@ -792,12 +844,14 @@ plt.show()
 
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
-Cell In[35], line 4
-      1 # plot the distribution of event durations as a stripplot with points using seaborn
-      2 # separately plotting EVENT_TYPE = flood
-----> 4 fig, ax = plt.subplots()
-      6 storms_flood_only = storms_filtered[storms_filtered["EVENT_TYPE"].str.contains("Flood")]
-      8 # convert EVENT_DURATION to number of hours
+Cell In[47], line 6
+      1 #@title Solution: plotting pt 2 {display-mode: "form"}
+      2 
+      3 # plot the distribution of event durations as a stripplot with points using seaborn
+      4 # separately plotting EVENT_TYPE = flood
+----> 6 fig, ax = plt.subplots()
+      8 storms_flood_only = storms_filtered[storms_filtered["EVENT_TYPE"].str.contains("Flood")]
+     10 # convert EVENT_DURATION to number of hours
 
 NameError: name 'plt' is not defined
 </pre>

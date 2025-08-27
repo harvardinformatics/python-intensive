@@ -26,38 +26,6 @@ We also have a table of common programming terms with their definitions in this 
 
 Please let us know if there is anything you think we should add to this table.
 
-### Installation
-
-This workshop exists as a **Jupyter notebook**. You can participate in this workshop by using this notebook interactively simply by uploading it to Google Colab. Go to https://colab.research.google.com/ and upload this notebook. That's it! This is the recommended way for participating in this workshop. Skip the below instructions if you will be using Google Colab.
-
-<br>
-
----
-
-<details markdown>
-<summary>Click to show instructions for loading the notebook locally</summary>
-
-**See above for the recommended way to participate in this workshop. Only follow these instructions if Google Colab isn't working**
-
-If for some reason Google Colab isn't working, or you prefer to run this locally, you will need to install Python, Anaconda, and the necessary libraries. You will have to follow these steps to do so. Note that some steps are only meant for specific operating systems.
-
-0. If you are on Windows, [install WSL :octicons-link-external-24:](https://learn.microsoft.com/en-us/windows/wsl/install){:target="_blank"}. Once WSL is installed, you'll have a Linux terminal available to you in Windows. You can open this terminal by typing "wsl" in the search bar and clicking the app that appears. You'll also find your Linux distribution as a mounted drive in your file explorer.
-
-1. Install mamba, a package manager using the command line - Terminal for Mac or WSL for Windows.
-
-    1.1. For Mac, if you already have brew installed, install mamba using `brew install miniforge` and initialize it using `conda init zsh`. Then restart your terminal. If you don't have homebrew (i.e. the brew command doesn't exist), install brew first using `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-    
-    1.2. For Windows, download the Linux (x86_64) installer from the miniforge repository [here :octicons-link-external-24:](https://github.com/conda-forge/miniforge){:target="_blank"} and install with `bash Miniforge3-Linux-x86_64.sh`.
-
-2. Create a new environment using mamba with `mamba create -n pyworkshop numpy pandas matplotlib seaborn jupyter` and activate it with `conda activate pyworkshop`.
-
-3. You can now run the jupyter notebook by typing `jupyter notebook` in the terminal. This will open a browser window with the jupyter notebook interface. You can navigate to the folder where you saved this notebook and open it.
-
-4. Alternatively, install [VSCode :octicons-link-external-24:](https://code.visualstudio.com/){:target="_blank"} and the Python extension. Then open this notebook in VSCode and run it with the kernel that belongs to the pyworkshop environment. [How to guide here :octicons-link-external-24:](https://code.visualstudio.com/docs/datascience/jupyter-notebooks){:target="_blank"}
-</details>
-
----
-
 ### Jupyter basics
 
 Jupyter notebooks are text files that can be rendered as formatted text **and** run code given the proper setup (see Installation).
