@@ -1,0 +1,44 @@
+name: Jupyter nbconvert to Markdown
+
+on:
+  push:
+    paths:
+      - 'Python-Day*.ipynb' 
+      - '.github/scripts/jupyter_convert.py'
+      - '!Python-Day*-Student.ipynb' 
+  workflow_dispatch:
+
+jobs:
+  convert-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # get all history for proper git operations
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install jupyter nbconvert
+
+      - name: Run notebook-to-Markdown conversion
+        run: python .github/scripts/jupyter_convert.py
+
+      - name: Configure git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Commit and push any changes to .md files
+        run: |
+          git add *.md 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-jupyter-to-md conversion [skip ci]"
+            git push origin HEAD:$GITHUB_REF_NAME
+          fi
