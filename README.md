@@ -11,8 +11,18 @@ This workshop is in the form of [Jupyter](https://jupyter.org/) notebooks (`.ipy
 #### Coding exercises
 
 1. All coding exercises must have two associated code blocks: a student block, in the state the students should see the exercise before starting, and a **solution block**, with the final, working example coded.
-2. **Solution blocks** MUST begin with the following comment: `#@title Solution {display-mode: "form"}`. This allows the block to be hidden in Google colab.
-3. **Solution blocks** MUST be *tagged* as `solution`. This allows for these blocks to be processed when converting formats for the website. Tags can easily be added to a Jupyter notebook in VSCode by selecting the code block, clicking `...` in the menu that appears in the upper left corner of the codeblock, and selecting "Add Cell Tag". A dialogue window will pop-up on the top of the VSCode window where you can enter the tag. Type "solution" and hit enter. The tag should now appear at the bottom of the code block.
+2. **Solution blocks** MUST begin with the following comment: `#@title Solution {display-mode: "form"}`. This allows the block to be hidden in Google colab and by our website.
+
+##### Tagging exercise blocks that would throw an error
+
+Because:
+
+1. We purposefully have some code blocks that will throw errors when run, for demonstrative purposes, and
+2. We leave some code in student exercise blocks as a scaffold that would throw an error and leave unwanted output in our website markdowns when executed,
+
+**exercise blocks with scaffold code that would show an error MUST be *tagged* as `no-execute`**. This lets the markdown converter know not to execute them (and output their error text) during conversion.
+
+Tags can easily be added to a Jupyter notebook cell in VSCode by selecting the code block, clicking `...` in the menu that appears in the upper left corner of the codeblock, and selecting "Add Cell Tag". A dialogue window will pop-up on the top of the VSCode window where you can enter the tag. Type "no-execute" and hit enter. The tag should now appear at the bottom of the code block.
 
 #### Non-coding exercises
 
