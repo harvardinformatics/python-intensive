@@ -26,38 +26,6 @@ We also have a table of common programming terms with their definitions in this 
 
 Please let us know if there is anything you think we should add to this table.
 
-### Installation
-
-This workshop exists as a **Jupyter notebook**. You can participate in this workshop by using this notebook interactively simply by uploading it to Google Colab. Go to https://colab.research.google.com/ and upload this notebook. That's it! This is the recommended way for participating in this workshop. Skip the below instructions if you will be using Google Colab.
-
-<br>
-
----
-
-<details markdown>
-<summary>Click to show instructions for loading the notebook locally</summary>
-
-**See above for the recommended way to participate in this workshop. Only follow these instructions if Google Colab isn't working**
-
-If for some reason Google Colab isn't working, or you prefer to run this locally, you will need to install Python, Anaconda, and the necessary libraries. You will have to follow these steps to do so. Note that some steps are only meant for specific operating systems.
-
-0. If you are on Windows, [install WSL :octicons-link-external-24:](https://learn.microsoft.com/en-us/windows/wsl/install){:target="_blank"}. Once WSL is installed, you'll have a Linux terminal available to you in Windows. You can open this terminal by typing "wsl" in the search bar and clicking the app that appears. You'll also find your Linux distribution as a mounted drive in your file explorer.
-
-1. Install mamba, a package manager using the command line - Terminal for Mac or WSL for Windows.
-
-    1.1. For Mac, if you already have brew installed, install mamba using `brew install miniforge` and initialize it using `conda init zsh`. Then restart your terminal. If you don't have homebrew (i.e. the brew command doesn't exist), install brew first using `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-    
-    1.2. For Windows, download the Linux (x86_64) installer from the miniforge repository [here :octicons-link-external-24:](https://github.com/conda-forge/miniforge){:target="_blank"} and install with `bash Miniforge3-Linux-x86_64.sh`.
-
-2. Create a new environment using mamba with `mamba create -n pyworkshop numpy pandas matplotlib seaborn jupyter` and activate it with `conda activate pyworkshop`.
-
-3. You can now run the jupyter notebook by typing `jupyter notebook` in the terminal. This will open a browser window with the jupyter notebook interface. You can navigate to the folder where you saved this notebook and open it.
-
-4. Alternatively, install [VSCode :octicons-link-external-24:](https://code.visualstudio.com/){:target="_blank"} and the Python extension. Then open this notebook in VSCode and run it with the kernel that belongs to the pyworkshop environment. [How to guide here :octicons-link-external-24:](https://code.visualstudio.com/docs/datascience/jupyter-notebooks){:target="_blank"}
-</details>
-
----
-
 ### Jupyter basics
 
 Jupyter notebooks are text files that can be rendered as formatted text **and** run code given the proper setup (see Installation).
@@ -453,7 +421,7 @@ help(abs)
 <pre class="output-block">Help on built-in function abs in module builtins:
 
 abs(x, /)
-    Return the absolute value of the argument.
+&nbsp;&nbsp;&nbsp;&nbsp;Return the absolute value of the argument.
 </pre>
 
 This tells us what `abs()` does and tells us that it requires one argument, `x`. (The `/` indicates that the argument is positional, but you can ignore that for now.)
@@ -568,8 +536,8 @@ my_integer = 124
     <pre class="output-block">---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     Cell In[13], line 3
-          1 #@title Solution {display-mode: "form"}
-          2 my_integer = 124
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 #@title Solution {display-mode: "form"}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 my_integer = 124
     ----> 3 len(my_integer)
     
     TypeError: object of type 'int' has no len()
@@ -723,9 +691,9 @@ my_data2 = 6 # also good!
 2_data = 7 # no good!
 ```
 
-<pre class="output-block">  Cell In[24], line 3
-    2_data = 7 # no good!
-     ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[24], line 3
+&nbsp;&nbsp;&nbsp;&nbsp;2_data = 7 # no good!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: invalid decimal literal
 </pre>
 
@@ -806,9 +774,9 @@ x =
 5
 ```
 
-<pre class="output-block">  Cell In[29], line 1
-    x =
-       ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[29], line 1
+&nbsp;&nbsp;&nbsp;&nbsp;x =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: invalid syntax
 </pre>
 
@@ -934,14 +902,14 @@ Arithmetic in Python follows the order of operations rules. Maybe you learned th
 ```python
 print(1 + 2 * 3)
 print((1 + 2) * 3)
-print("---")
+print("...")
 print(3 ** 2 - 1)
 print(3 ** (2 - 1))
 ```
 
 <pre class="output-block">7
 9
----
+...
 8
 3
 </pre>
@@ -1076,10 +1044,10 @@ print("--- print true check ---")
 <pre class="output-block">---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
 Cell In[41], line 3
-      1 print(True)
-      2 print("--- print True check ---")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 print(True)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 print("--- print True check ---")
 ----> 3 print(true)
-      4 print("--- print true check ---")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 print("--- print true check ---")
 
 NameError: name 'true' is not defined
 </pre>
@@ -1094,14 +1062,14 @@ In fact, any integer _other than 0_ will return `True` if evaluated as a boolean
 ```python
 print("bool() of a boolean:")
 print(bool(True))
-print("---")
+print("...")
 
 print("bool() of integers:")
 print(bool(1))
 print(bool(0))
 print(bool(587348))
 print(bool(-1))
-print("---")
+print("...")
 
 print("bool() of strings")
 print(bool("Hello"))
@@ -1112,13 +1080,13 @@ print(bool("0"))
 
 <pre class="output-block">bool() of a boolean:
 True
----
+...
 bool() of integers:
 True
 False
 True
 True
----
+...
 bool() of strings
 True
 False
@@ -1388,12 +1356,25 @@ F   | F   |         |       |             |                        |            
 
 <details markdown><summary>Solution</summary>
 
-A   | B   | A and B | not B | A and not B | A and B or A and not B | A and (B or A) and not B |
---- | --- | ------- | ----- | ----------- | ---------------------- | ------------------------ |
-T   | T   |    T    |   F   |      F      |           T            |             F            |
-T   | F   |    F    |   T   |      T      |           T            |             T            |
-F   | T   |    F    |   F   |      F      |           F            |             F            |
-F   | F   |    F    |   T   |      F      |           F            |             F            |
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A and B</th>
+      <th>not B</th>
+      <th>A and not B</th>
+      <th>A and B or A and not B</th>
+      <th>A and (B or A) and not B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+    <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+    <tr><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+    <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+  </tbody>
+</table>
 
 </details>
 
@@ -1447,7 +1428,7 @@ my_int = 5
 print(my_int == 5)
 print(my_int == 4)
 
-print("---")
+print("...")
 
 my_int = 4
 print(my_int == 5)
@@ -1458,7 +1439,7 @@ print(my_int)
 
 <pre class="output-block">True
 False
----
+...
 False
 True
 4
@@ -1723,22 +1704,21 @@ Thanks! Let us know if you have any questions.
     color: rgba(0,0,0,0.87) !important; 
   }
 
-  /* Code block styles */
+   /* Code block styles */ 
+ 
+   .language-python {
+     padding-left: 40px;
+     font-size: 15px;
+   } 
 
-  .language-python {
-    padding-left: 40px;
-    font-size: 15px;
-  }
-
-    /* Hide all 2nd-level navs */
-    .md-nav--secondary .md-nav__item .md-nav {
-        display: none !important;
-    }
-
-    /* Show when parent has .expanded class */
-    .md-nav--secondary .md-nav__item.expanded > .md-nav {
-        display: block !important;
-    }
+  /* Hide all 2nd-level navs */
+  .md-nav--secondary .md-nav__item .md-nav {
+      display: none !important;
+  } 
   
-
+  /* Show when parent has .expanded class */
+  .md-nav--secondary .md-nav__item.expanded > .md-nav {
+      display: block !important;
+  }
+  
 </style>
