@@ -42,17 +42,8 @@ For this workshop, we'll be asking you to follow along by running code cells and
 # If you don't have the kernel loaded or installed, it will not work
 
 import pandas as pd
+import os
 ```
-
-<pre class="output-block">---------------------------------------------------------------------------
-ModuleNotFoundError                       Traceback (most recent call last)
-Cell In[1], line 4
-      1 # Run this cell to import the libraries we'll be using
-      2 # If you don't have the kernel loaded or installed, it will not work
-----> 4 import pandas as pd
-
-ModuleNotFoundError: No module named 'pandas'
-</pre>
 
 And run the following to demonstrate how the code blocks run and display code:
 
@@ -138,15 +129,7 @@ my_array = pd.Series(["a", "b", "c", "d", "e"])
 my_array.size
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[7], line 2
-      1 # this makes a pandas Series (we'll learn more about these shortly!)
-----> 2 my_array = pd.Series(["a", "b", "c", "d", "e"])
-      4 # this gets the size of the Series
-      5 my_array.size
-
-NameError: name 'pd' is not defined
+<pre class="output-block">5
 </pre>
 
 ### Base Python Data Structures
@@ -186,28 +169,28 @@ my_list = [1,2,3,4,5,6,5,4,3,2,1]
 # your code here
 ```
 
-
-```python
-
-my_list = [1,2,3,4,5,6,5,4,3,2,1]
-
-# Using built-in methods
-max_value = max(my_list)
-max_index = my_list.index(max_value)
-print("The peak is", max_value, "at index", max_index)
-
-# By iterating through the list
-max_index = 0
-max_value = my_list[max_index]
-while max_value < my_list[max_index + 1]:
-    max_index += 1
+??? success "Solution"
+    ```python
+    
+    my_list = [1,2,3,4,5,6,5,4,3,2,1]
+    
+    # Using built-in methods
+    max_value = max(my_list)
+    max_index = my_list.index(max_value)
+    print("The peak is", max_value, "at index", max_index)
+    
+    # By iterating through the list
+    max_index = 0
     max_value = my_list[max_index]
-print("The peak is", max_value, "at index", max_index)
-```
+    while max_value < my_list[max_index + 1]:
+        max_index += 1
+        max_value = my_list[max_index]
+    print("The peak is", max_value, "at index", max_index)
+    ```
 
-<pre class="output-block">The peak is 6 at index 5
-The peak is 6 at index 5
-</pre>
+    <pre class="output-block">The peak is 6 at index 5
+    The peak is 6 at index 5
+    </pre>
 
 #### Dictionaries
 
@@ -278,56 +261,55 @@ pets = {
 # 3. Print the age of Mittens the cat
 ```
 
-
-```python
-
-pets = {
-    "Buddy": {
-        "name": "Buddy",
-        "breed": "Bulldog",
-        "age": 4,
-        "vaccinated": True,
-        "favorite_foods": ["chicken", "peanut butter"],
-    },
-    "Mittens": {
-        "name": "Mittens",
-        "breed": "Persian cat",
-        "age": 2,
-        "vaccinated": False,
-        "favorite_foods": ["tuna", "chicken"],
-        "owner": {
-            "name": "Alice",
-            "contact": "555-0123"
+??? success "Solution"
+    ```python
+    
+    pets = {
+        "Buddy": {
+            "name": "Buddy",
+            "breed": "Bulldog",
+            "age": 4,
+            "vaccinated": True,
+            "favorite_foods": ["chicken", "peanut butter"],
+        },
+        "Mittens": {
+            "name": "Mittens",
+            "breed": "Persian cat",
+            "age": 2,
+            "vaccinated": False,
+            "favorite_foods": ["tuna", "chicken"],
+            "owner": {
+                "name": "Alice",
+                "contact": "555-0123"
+            }
+        },
+        "Polly": {
+            "name": "Polly",
+            "breed": "Parrot",
+            "age": 10,
+            "vaccinated": True,
+            "words_learned": ["hello", "bye", "Polly wants a cracker"],
         }
-    },
-    "Polly": {
-        "name": "Polly",
-        "breed": "Parrot",
-        "age": 10,
-        "vaccinated": True,
-        "words_learned": ["hello", "bye", "Polly wants a cracker"],
     }
-}
+    
+    # 1. Print out the entries for each pet.
+    for key in pets:
+        print(pets[key])
+    
+    # 2. Add ["seeds", "fruit"] to the favorite foods of Polly the parrot
+    pets["Polly"]["favorite_foods"] = ["seeds", "fruit"]
+    print(pets["Polly"]["favorite_foods"])
+    
+    # 3. Print the age of Mittens the cat
+    print(pets["Mittens"]["age"])
+    ```
 
-
-# 1. Print out the entries for each pet.
-for key in pets:
-    print(pets[key])
-
-# 2. Add ["seeds", "fruit"] to the favorite foods of Polly the parrot
-pets["Polly"]["favorite_foods"] = ["seeds", "fruit"]
-print(pets["Polly"]["favorite_foods"])
-
-# 3. Print the age of Mittens the cat
-print(pets["Mittens"]["age"])
-```
-
-<pre class="output-block">{'name': 'Buddy', 'breed': 'Bulldog', 'age': 4, 'vaccinated': True, 'favorite_foods': ['chicken', 'peanut butter']}
-{'name': 'Mittens', 'breed': 'Persian cat', 'age': 2, 'vaccinated': False, 'favorite_foods': ['tuna', 'chicken'], 'owner': {'name': 'Alice', 'contact': '555-0123'}}
-{'name': 'Polly', 'breed': 'Parrot', 'age': 10, 'vaccinated': True, 'words_learned': ['hello', 'bye', 'Polly wants a cracker']}
-['seeds', 'fruit']
-2
-</pre>
+    <pre class="output-block">{'name': 'Buddy', 'breed': 'Bulldog', 'age': 4, 'vaccinated': True, 'favorite_foods': ['chicken', 'peanut butter']}
+    {'name': 'Mittens', 'breed': 'Persian cat', 'age': 2, 'vaccinated': False, 'favorite_foods': ['tuna', 'chicken'], 'owner': {'name': 'Alice', 'contact': '555-0123'}}
+    {'name': 'Polly', 'breed': 'Parrot', 'age': 10, 'vaccinated': True, 'words_learned': ['hello', 'bye', 'Polly wants a cracker']}
+    ['seeds', 'fruit']
+    2
+    </pre>
 
 ### Importing libraries
 
@@ -413,9 +395,9 @@ First, run this block to download the file to the Jupyter notebook environment..
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
 ```
 
-<pre class="output-block">--2025-08-27 14:01:42--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443...
+<pre class="output-block">--2025-08-28 02:34:35--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443...
 </pre>
 
 <pre class="output-block">connected.
@@ -427,10 +409,10 @@ Length: 4383 (4.3K) [text/plain]
 Saving to: ‘bird_names.csv’
 
 
-bird_names.csv        0%[                    ]       0  --.-KB/s               
-bird_names.csv      100%[===================>]   4.28K  --.-KB/s    in 0s      
+bird_names.csv        0%[                    ]       0  --.-KB/s
+bird_names.csv      100%[===================>]   4.28K  --.-KB/s    in 0s
 
-2025-08-27 14:01:42 (58.6 MB/s) - ‘bird_names.csv’ saved [4383/4383]
+2025-08-28 02:34:35 (44.8 MB/s) - ‘bird_names.csv’ saved [4383/4383]
 </pre>
 
 In the code below we first read the file line by line, then strip the whitespace and split the line by a comma. Then, we will create a dictionary where the key is the taxon id and the value is the common name of the bird.
@@ -438,6 +420,8 @@ In the code below we first read the file line by line, then strip the whitespace
 
 ```python
 filename = 'bird_names.csv'
+if not os.path.exists(filename):
+    filename = 'data/bird_names.csv'
 
 bird_names = dict()
 
@@ -486,27 +470,31 @@ Special characters in files are often used as delimiters or to indicate the end 
 
 ```python
 filename = 'bird_names.csv'
+if not os.path.exists(filename):
+    filename = 'data/bird_names.csv'
 
 # Your code here
 ```
 
+??? success "Solution"
+    ```python
+    
+    filename = 'bird_names.csv'
+    if not os.path.exists(filename):
+        filename = 'data/bird_names.csv'
+    
+    bird_names = dict()
+    
+    with open(filename, 'r') as file:
+        for line in file:
+            line = line.strip().split(',')
+            bird_names[line[2]] = {'scientific_name': line[0], 'common_name': line[1]}
+    
+    print(bird_names)
+    ```
 
-```python
-
-filename = 'bird_names.csv'
-
-bird_names = dict()
-
-with open(filename, 'r') as file:
-    for line in file:
-        line = line.strip().split(',')
-        bird_names[line[2]] = {'scientific_name': line[0], 'common_name': line[1]}
-
-print(bird_names)
-```
-
-<pre class="output-block">{'6924': {'scientific_name': 'Anas rubripes', 'common_name': 'American Black Duck'}, '473': {'scientific_name': 'Fulica americana', 'common_name': 'American Coot'}, '145310': {'scientific_name': 'Spinus tristis', 'common_name': 'American Goldfinch'}, '4665': {'scientific_name': 'Falco sparverius', 'common_name': 'American Kestrel'}, '12727': {'scientific_name': 'Turdus migratorius', 'common_name': 'American Robin'}, '474210': {'scientific_name': 'Spizelloides arborea', 'common_name': 'American Tree Sparrow'}, '3936': {'scientific_name': 'Scolopax minor', 'common_name': 'American Woodcock'}, '16010': {'scientific_name': 'Myiarchus cinerascens', 'common_name': 'Ash-throated Flycatcher'}, '5305': {'scientific_name': 'Haliaeetus leucocephalus', 'common_name': 'Bald Eagle'}, '9346': {'scientific_name': 'Icterus galbula', 'common_name': 'Baltimore Oriole'}, '19893': {'scientific_name': 'Strix varia', 'common_name': 'Barred Owl'}, '2548': {'scientific_name': 'Megaceryle alcyon', 'common_name': 'Belted Kingfisher'}, '144815': {'scientific_name': 'Poecile atricapillus', 'common_name': 'Black-capped Chickadee'}, '4981': {'scientific_name': 'Nycticorax nycticorax', 'common_name': 'Black-crowned Night Heron'}, '199916': {'scientific_name': 'Setophaga caerulescens', 'common_name': 'Black-throated Blue Warbler'}, '8229': {'scientific_name': 'Cyanocitta cristata', 'common_name': 'Blue Jay'}, '7458': {'scientific_name': 'Certhia americana', 'common_name': 'Brown Creeper'}, '10373': {'scientific_name': 'Molothrus ater', 'common_name': 'Brown-headed Cowbird'}, '6993': {'scientific_name': 'Bucephala albeola', 'common_name': 'Bufflehead'}, '7089': {'scientific_name': 'Branta canadensis', 'common_name': 'Canada Goose'}, '7513': {'scientific_name': 'Thryothorus ludovicianus', 'common_name': 'Carolina Wren'}, '7428': {'scientific_name': 'Bombycilla cedrorum', 'common_name': 'Cedar Waxwing'}, '6571': {'scientific_name': 'Chaetura pelagica', 'common_name': 'Chimney Swift'}, '9135': {'scientific_name': 'Spizella passerina', 'common_name': 'Chipping Sparrow'}, '9602': {'scientific_name': 'Quiscalus quiscula', 'common_name': 'Common Grackle'}, '4626': {'scientific_name': 'Gavia immer', 'common_name': 'Common Loon'}, '7004': {'scientific_name': 'Mergus merganser', 'common_name': 'Common Merganser'}, '8010': {'scientific_name': 'Corvus corax', 'common_name': 'Common Raven'}, '9721': {'scientific_name': 'Geothlypis trichas', 'common_name': 'Common Yellowthroat'}, '5112': {'scientific_name': 'Accipiter cooperii', 'common_name': "Cooper's Hawk"}, '10094': {'scientific_name': 'Junco hyemalis', 'common_name': 'Dark-eyed Junco'}, '10676': {'scientific_name': 'Spiza americana', 'common_name': 'Dickcissel'}, '120479': {'scientific_name': 'Anser anser domesticus', 'common_name': 'Domestic Greylag Goose'}, '236935': {'scientific_name': 'Anas platyrhynchos domesticus', 'common_name': 'Domestic Mallard'}, '1454382': {'scientific_name': 'Nannopterum auritum', 'common_name': 'Double-crested Cormorant'}, '792988': {'scientific_name': 'Dryobates pubescens', 'common_name': 'Downy Woodpecker'}, '16782': {'scientific_name': 'Tyrannus tyrannus', 'common_name': 'Eastern Kingbird'}, '17008': {'scientific_name': 'Sayornis phoebe', 'common_name': 'Eastern Phoebe'}, '494355': {'scientific_name': 'Buteo jamaicensis borealis', 'common_name': 'Eastern Red-tailed Hawk'}, '515821': {'scientific_name': 'Melospiza melodia melodia', 'common_name': 'Eastern Song Sparrow'}, '319123': {'scientific_name': 'Meleagris gallopavo silvestris', 'common_name': 'Eastern Wild Turkey'}, '14850': {'scientific_name': 'Sturnus vulgaris', 'common_name': 'European Starling'}, '544795': {'scientific_name': 'Passer domesticus domesticus', 'common_name': 'European house sparrow'}, '122767': {'scientific_name': 'Columba livia domestica', 'common_name': 'Feral Pigeon'}, '9156': {'scientific_name': 'Passerella iliaca', 'common_name': 'Fox Sparrow'}, '117100': {'scientific_name': 'Regulus satrapa', 'common_name': 'Golden-crowned Kinglet'}, '14995': {'scientific_name': 'Dumetella carolinensis', 'common_name': 'Gray Catbird'}, '4368': {'scientific_name': 'Larus marinus', 'common_name': 'Great Black-backed Gull'}, '4956': {'scientific_name': 'Ardea herodias', 'common_name': 'Great Blue Heron'}, '16028': {'scientific_name': 'Myiarchus crinitus', 'common_name': 'Great Crested Flycatcher'}, '20044': {'scientific_name': 'Bubo virginianus', 'common_name': 'Great Horned Owl'}, '7047': {'scientific_name': 'Aythya marila', 'common_name': 'Greater Scaup'}, '5020': {'scientific_name': 'Butorides virescens', 'common_name': 'Green Heron'}, '6937': {'scientific_name': 'Anas crecca', 'common_name': 'Green-winged Teal'}, '514057': {'scientific_name': 'Anser anser × Branta canadensis', 'common_name': 'Greylag × Canada Goose'}, '792990': {'scientific_name': 'Dryobates villosus', 'common_name': 'Hairy Woodpecker'}, '12890': {'scientific_name': 'Catharus guttatus', 'common_name': 'Hermit Thrush'}, '204533': {'scientific_name': 'Larus argentatus', 'common_name': 'Herring Gull'}, '7109': {'scientific_name': 'Lophodytes cucullatus', 'common_name': 'Hooded Merganser'}, '4209': {'scientific_name': 'Podiceps auritus', 'common_name': 'Horned Grebe'}, '199840': {'scientific_name': 'Haemorhous mexicanus', 'common_name': 'House Finch'}, '13858': {'scientific_name': 'Passer domesticus', 'common_name': 'House Sparrow'}, '7562': {'scientific_name': 'Troglodytes aedon', 'common_name': 'House Wren'}, '4793': {'scientific_name': 'Charadrius vociferus', 'common_name': 'Killdeer'}, '10479': {'scientific_name': 'Chondestes grammacus', 'common_name': 'Lark Sparrow'}, '7054': {'scientific_name': 'Aythya affinis', 'common_name': 'Lesser Scaup'}, '6930': {'scientific_name': 'Anas platyrhynchos', 'common_name': 'Mallard'}, '326092': {'scientific_name': 'Anas platyrhynchos × cairina moschata', 'common_name': 'Mallard × Muscovy Duck'}, '4672': {'scientific_name': 'Falco columbarius', 'common_name': 'Merlin'}, '3454': {'scientific_name': 'Zenaida macroura', 'common_name': 'Mourning Dove'}, '6921': {'scientific_name': 'Cygnus olor', 'common_name': 'Mute Swan'}, '9083': {'scientific_name': 'Cardinalis cardinalis', 'common_name': 'Northern Cardinal'}, '18236': {'scientific_name': 'Colaptes auratus', 'common_name': 'Northern Flicker'}, '14886': {'scientific_name': 'Mimus polyglottos', 'common_name': 'Northern Mockingbird'}, '555736': {'scientific_name': 'Colaptes auratus luteus', 'common_name': 'Northern Yellow-shafted Flicker'}, '979757': {'scientific_name': 'Leiothlypis celata', 'common_name': 'Orange-crowned Warbler'}, '116999': {'scientific_name': 'Pandion haliaetus', 'common_name': 'Osprey'}, '62550': {'scientific_name': 'Seiurus aurocapilla', 'common_name': 'Ovenbird'}, '4647': {'scientific_name': 'Falco peregrinus', 'common_name': 'Peregrine Falcon'}, '17364': {'scientific_name': 'Vireo philadelphicus', 'common_name': 'Philadelphia Vireo'}, '4246': {'scientific_name': 'Podilymbus podiceps', 'common_name': 'Pied-billed Grebe'}, '18205': {'scientific_name': 'Melanerpes carolinus', 'common_name': 'Red-bellied Woodpecker'}, '6996': {'scientific_name': 'Mergus serrator', 'common_name': 'Red-breasted Merganser'}, '14823': {'scientific_name': 'Sitta canadensis', 'common_name': 'Red-breasted Nuthatch'}, '5212': {'scientific_name': 'Buteo jamaicensis', 'common_name': 'Red-tailed Hawk'}, '9744': {'scientific_name': 'Agelaius phoeniceus', 'common_name': 'Red-winged Blackbird'}, '7056': {'scientific_name': 'Aythya americana', 'common_name': 'Redhead'}, '4364': {'scientific_name': 'Larus delawarensis', 'common_name': 'Ring-billed Gull'}, '7044': {'scientific_name': 'Aythya collaris', 'common_name': 'Ring-necked Duck'}, '3017': {'scientific_name': 'Columba livia', 'common_name': 'Rock Pigeon'}, '1289388': {'scientific_name': 'Corthylio calendula', 'common_name': 'Ruby-crowned Kinglet'}, '6432': {'scientific_name': 'Archilochus colubris', 'common_name': 'Ruby-throated Hummingbird'}, '850859': {'scientific_name': 'Oxyura jamaicensis', 'common_name': 'Ruddy Duck'}, '9100': {'scientific_name': 'Melospiza melodia', 'common_name': 'Song Sparrow'}, '72458': {'scientific_name': 'Actitis macularius', 'common_name': 'Spotted Sandpiper'}, '11935': {'scientific_name': 'Tachycineta bicolor', 'common_name': 'Tree Swallow'}, '13632': {'scientific_name': 'Baeolophus bicolor', 'common_name': 'Tufted Titmouse'}, '17394': {'scientific_name': 'Vireo gilvus', 'common_name': 'Warbling Vireo'}, '14801': {'scientific_name': 'Sitta carolinensis', 'common_name': 'White-breasted Nuthatch'}, '9176': {'scientific_name': 'Zonotrichia leucophrys', 'common_name': 'White-crowned Sparrow'}, '9184': {'scientific_name': 'Zonotrichia albicollis', 'common_name': 'White-throated Sparrow'}, '906': {'scientific_name': 'Meleagris gallopavo', 'common_name': 'Wild Turkey'}, '7107': {'scientific_name': 'Aix sponsa', 'common_name': 'Wood Duck'}, '145238': {'scientific_name': 'Setophaga petechia', 'common_name': 'Yellow Warbler'}, '18463': {'scientific_name': 'Sphyrapicus varius', 'common_name': 'Yellow-bellied Sapsucker'}}
-</pre>
+    <pre class="output-block">{'6924': {'scientific_name': 'Anas rubripes', 'common_name': 'American Black Duck'}, '473': {'scientific_name': 'Fulica americana', 'common_name': 'American Coot'}, '145310': {'scientific_name': 'Spinus tristis', 'common_name': 'American Goldfinch'}, '4665': {'scientific_name': 'Falco sparverius', 'common_name': 'American Kestrel'}, '12727': {'scientific_name': 'Turdus migratorius', 'common_name': 'American Robin'}, '474210': {'scientific_name': 'Spizelloides arborea', 'common_name': 'American Tree Sparrow'}, '3936': {'scientific_name': 'Scolopax minor', 'common_name': 'American Woodcock'}, '16010': {'scientific_name': 'Myiarchus cinerascens', 'common_name': 'Ash-throated Flycatcher'}, '5305': {'scientific_name': 'Haliaeetus leucocephalus', 'common_name': 'Bald Eagle'}, '9346': {'scientific_name': 'Icterus galbula', 'common_name': 'Baltimore Oriole'}, '19893': {'scientific_name': 'Strix varia', 'common_name': 'Barred Owl'}, '2548': {'scientific_name': 'Megaceryle alcyon', 'common_name': 'Belted Kingfisher'}, '144815': {'scientific_name': 'Poecile atricapillus', 'common_name': 'Black-capped Chickadee'}, '4981': {'scientific_name': 'Nycticorax nycticorax', 'common_name': 'Black-crowned Night Heron'}, '199916': {'scientific_name': 'Setophaga caerulescens', 'common_name': 'Black-throated Blue Warbler'}, '8229': {'scientific_name': 'Cyanocitta cristata', 'common_name': 'Blue Jay'}, '7458': {'scientific_name': 'Certhia americana', 'common_name': 'Brown Creeper'}, '10373': {'scientific_name': 'Molothrus ater', 'common_name': 'Brown-headed Cowbird'}, '6993': {'scientific_name': 'Bucephala albeola', 'common_name': 'Bufflehead'}, '7089': {'scientific_name': 'Branta canadensis', 'common_name': 'Canada Goose'}, '7513': {'scientific_name': 'Thryothorus ludovicianus', 'common_name': 'Carolina Wren'}, '7428': {'scientific_name': 'Bombycilla cedrorum', 'common_name': 'Cedar Waxwing'}, '6571': {'scientific_name': 'Chaetura pelagica', 'common_name': 'Chimney Swift'}, '9135': {'scientific_name': 'Spizella passerina', 'common_name': 'Chipping Sparrow'}, '9602': {'scientific_name': 'Quiscalus quiscula', 'common_name': 'Common Grackle'}, '4626': {'scientific_name': 'Gavia immer', 'common_name': 'Common Loon'}, '7004': {'scientific_name': 'Mergus merganser', 'common_name': 'Common Merganser'}, '8010': {'scientific_name': 'Corvus corax', 'common_name': 'Common Raven'}, '9721': {'scientific_name': 'Geothlypis trichas', 'common_name': 'Common Yellowthroat'}, '5112': {'scientific_name': 'Accipiter cooperii', 'common_name': "Cooper's Hawk"}, '10094': {'scientific_name': 'Junco hyemalis', 'common_name': 'Dark-eyed Junco'}, '10676': {'scientific_name': 'Spiza americana', 'common_name': 'Dickcissel'}, '120479': {'scientific_name': 'Anser anser domesticus', 'common_name': 'Domestic Greylag Goose'}, '236935': {'scientific_name': 'Anas platyrhynchos domesticus', 'common_name': 'Domestic Mallard'}, '1454382': {'scientific_name': 'Nannopterum auritum', 'common_name': 'Double-crested Cormorant'}, '792988': {'scientific_name': 'Dryobates pubescens', 'common_name': 'Downy Woodpecker'}, '16782': {'scientific_name': 'Tyrannus tyrannus', 'common_name': 'Eastern Kingbird'}, '17008': {'scientific_name': 'Sayornis phoebe', 'common_name': 'Eastern Phoebe'}, '494355': {'scientific_name': 'Buteo jamaicensis borealis', 'common_name': 'Eastern Red-tailed Hawk'}, '515821': {'scientific_name': 'Melospiza melodia melodia', 'common_name': 'Eastern Song Sparrow'}, '319123': {'scientific_name': 'Meleagris gallopavo silvestris', 'common_name': 'Eastern Wild Turkey'}, '14850': {'scientific_name': 'Sturnus vulgaris', 'common_name': 'European Starling'}, '544795': {'scientific_name': 'Passer domesticus domesticus', 'common_name': 'European house sparrow'}, '122767': {'scientific_name': 'Columba livia domestica', 'common_name': 'Feral Pigeon'}, '9156': {'scientific_name': 'Passerella iliaca', 'common_name': 'Fox Sparrow'}, '117100': {'scientific_name': 'Regulus satrapa', 'common_name': 'Golden-crowned Kinglet'}, '14995': {'scientific_name': 'Dumetella carolinensis', 'common_name': 'Gray Catbird'}, '4368': {'scientific_name': 'Larus marinus', 'common_name': 'Great Black-backed Gull'}, '4956': {'scientific_name': 'Ardea herodias', 'common_name': 'Great Blue Heron'}, '16028': {'scientific_name': 'Myiarchus crinitus', 'common_name': 'Great Crested Flycatcher'}, '20044': {'scientific_name': 'Bubo virginianus', 'common_name': 'Great Horned Owl'}, '7047': {'scientific_name': 'Aythya marila', 'common_name': 'Greater Scaup'}, '5020': {'scientific_name': 'Butorides virescens', 'common_name': 'Green Heron'}, '6937': {'scientific_name': 'Anas crecca', 'common_name': 'Green-winged Teal'}, '514057': {'scientific_name': 'Anser anser × Branta canadensis', 'common_name': 'Greylag × Canada Goose'}, '792990': {'scientific_name': 'Dryobates villosus', 'common_name': 'Hairy Woodpecker'}, '12890': {'scientific_name': 'Catharus guttatus', 'common_name': 'Hermit Thrush'}, '204533': {'scientific_name': 'Larus argentatus', 'common_name': 'Herring Gull'}, '7109': {'scientific_name': 'Lophodytes cucullatus', 'common_name': 'Hooded Merganser'}, '4209': {'scientific_name': 'Podiceps auritus', 'common_name': 'Horned Grebe'}, '199840': {'scientific_name': 'Haemorhous mexicanus', 'common_name': 'House Finch'}, '13858': {'scientific_name': 'Passer domesticus', 'common_name': 'House Sparrow'}, '7562': {'scientific_name': 'Troglodytes aedon', 'common_name': 'House Wren'}, '4793': {'scientific_name': 'Charadrius vociferus', 'common_name': 'Killdeer'}, '10479': {'scientific_name': 'Chondestes grammacus', 'common_name': 'Lark Sparrow'}, '7054': {'scientific_name': 'Aythya affinis', 'common_name': 'Lesser Scaup'}, '6930': {'scientific_name': 'Anas platyrhynchos', 'common_name': 'Mallard'}, '326092': {'scientific_name': 'Anas platyrhynchos × cairina moschata', 'common_name': 'Mallard × Muscovy Duck'}, '4672': {'scientific_name': 'Falco columbarius', 'common_name': 'Merlin'}, '3454': {'scientific_name': 'Zenaida macroura', 'common_name': 'Mourning Dove'}, '6921': {'scientific_name': 'Cygnus olor', 'common_name': 'Mute Swan'}, '9083': {'scientific_name': 'Cardinalis cardinalis', 'common_name': 'Northern Cardinal'}, '18236': {'scientific_name': 'Colaptes auratus', 'common_name': 'Northern Flicker'}, '14886': {'scientific_name': 'Mimus polyglottos', 'common_name': 'Northern Mockingbird'}, '555736': {'scientific_name': 'Colaptes auratus luteus', 'common_name': 'Northern Yellow-shafted Flicker'}, '979757': {'scientific_name': 'Leiothlypis celata', 'common_name': 'Orange-crowned Warbler'}, '116999': {'scientific_name': 'Pandion haliaetus', 'common_name': 'Osprey'}, '62550': {'scientific_name': 'Seiurus aurocapilla', 'common_name': 'Ovenbird'}, '4647': {'scientific_name': 'Falco peregrinus', 'common_name': 'Peregrine Falcon'}, '17364': {'scientific_name': 'Vireo philadelphicus', 'common_name': 'Philadelphia Vireo'}, '4246': {'scientific_name': 'Podilymbus podiceps', 'common_name': 'Pied-billed Grebe'}, '18205': {'scientific_name': 'Melanerpes carolinus', 'common_name': 'Red-bellied Woodpecker'}, '6996': {'scientific_name': 'Mergus serrator', 'common_name': 'Red-breasted Merganser'}, '14823': {'scientific_name': 'Sitta canadensis', 'common_name': 'Red-breasted Nuthatch'}, '5212': {'scientific_name': 'Buteo jamaicensis', 'common_name': 'Red-tailed Hawk'}, '9744': {'scientific_name': 'Agelaius phoeniceus', 'common_name': 'Red-winged Blackbird'}, '7056': {'scientific_name': 'Aythya americana', 'common_name': 'Redhead'}, '4364': {'scientific_name': 'Larus delawarensis', 'common_name': 'Ring-billed Gull'}, '7044': {'scientific_name': 'Aythya collaris', 'common_name': 'Ring-necked Duck'}, '3017': {'scientific_name': 'Columba livia', 'common_name': 'Rock Pigeon'}, '1289388': {'scientific_name': 'Corthylio calendula', 'common_name': 'Ruby-crowned Kinglet'}, '6432': {'scientific_name': 'Archilochus colubris', 'common_name': 'Ruby-throated Hummingbird'}, '850859': {'scientific_name': 'Oxyura jamaicensis', 'common_name': 'Ruddy Duck'}, '9100': {'scientific_name': 'Melospiza melodia', 'common_name': 'Song Sparrow'}, '72458': {'scientific_name': 'Actitis macularius', 'common_name': 'Spotted Sandpiper'}, '11935': {'scientific_name': 'Tachycineta bicolor', 'common_name': 'Tree Swallow'}, '13632': {'scientific_name': 'Baeolophus bicolor', 'common_name': 'Tufted Titmouse'}, '17394': {'scientific_name': 'Vireo gilvus', 'common_name': 'Warbling Vireo'}, '14801': {'scientific_name': 'Sitta carolinensis', 'common_name': 'White-breasted Nuthatch'}, '9176': {'scientific_name': 'Zonotrichia leucophrys', 'common_name': 'White-crowned Sparrow'}, '9184': {'scientific_name': 'Zonotrichia albicollis', 'common_name': 'White-throated Sparrow'}, '906': {'scientific_name': 'Meleagris gallopavo', 'common_name': 'Wild Turkey'}, '7107': {'scientific_name': 'Aix sponsa', 'common_name': 'Wood Duck'}, '145238': {'scientific_name': 'Setophaga petechia', 'common_name': 'Yellow Warbler'}, '18463': {'scientific_name': 'Sphyrapicus varius', 'common_name': 'Yellow-bellied Sapsucker'}}
+    </pre>
 
 >**Exercise**: Why did we use a dictionary to store the data in the previous exercise? Think about what features of a dictionary make it a good choice or what features of lists make them a bad choice.
 
@@ -528,9 +516,9 @@ Run the code block below to download the file to the Jupyter notebook environmen
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
 ```
 
-<pre class="output-block">--2025-08-27 14:01:42--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.108.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+<pre class="output-block">--2025-08-28 02:34:35--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
 HTTP request sent, awaiting response...
 </pre>
 
@@ -540,12 +528,9 @@ Saving to: ‘bird_observations.csv’
 
 
 bird_observations.c   0%[                    ]       0  --.-KB/s
-</pre>
+bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.001s
 
-<pre class="output-block">
-bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.005s  
-
-2025-08-27 14:01:43 (9.58 MB/s) - ‘bird_observations.csv’ saved [50448/50448]
+2025-08-28 02:34:36 (36.9 MB/s) - ‘bird_observations.csv’ saved [50448/50448]
 </pre>
 
 >**Exercise:** Work with a neighbor or two to do the following exercise:
@@ -558,50 +543,55 @@ bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.005s
 
 ```python
 # Your code here
-filename = 'bird_observations.csv' #keep
-
-bird_observations = dict() #keep
-
-with open(filename, 'r') as birdfile: #keep
-    # skip the header
-    next(birdfile) #keep
-    for line in birdfile: #keep
-        # your code here
-print(bird_observations) # keep
-```
-
-<pre class="output-block">  Cell In[19], line 11
-    print(bird_observations) # keep
-                                   ^
-IndentationError: expected an indented block after 'for' statement on line 9
-</pre>
-
-
-```python
-filename = 'bird_observations.csv' #keep
+filename = 'bird_observations.csv'
+if not os.path.exists(filename):
+    filename = 'data/bird_observations.csv'
 
 bird_observations = dict()
 
-with open(filename, 'r') as birdfile: #keep
+with open(filename, 'r') as birdfile:
     # skip the header
-    next(birdfile) #keep
-    for line in birdfile: #keep
-        # clean up the line and split into list
-        observation = line.strip().split(',')
-        # get the bird id
-        id = observation[2]
-        # get the bird name by looking up in the bird_names dictionary
-        name = bird_names[id]['common_name']
-        # if this is the first time we're seeing the bird, add it to our observations dict
-        if name not in bird_observations:
-            bird_observations[name] = 0
-        # increment the count by 1
-        bird_observations[name] += 1
+    next(birdfile)
+    for line in birdfile:
+        # your code here
 print(bird_observations)
 ```
 
-<pre class="output-block">{'Northern Mockingbird': 23, 'Common Merganser': 4, 'Bufflehead': 9, 'House Sparrow': 69, 'European Starling': 51, 'Northern Cardinal': 28, 'Mourning Dove': 31, 'Blue Jay': 39, 'American Black Duck': 2, 'Domestic Mallard': 14, 'Mute Swan': 33, 'Green-winged Teal': 8, 'American Robin': 92, 'Mallard': 49, 'Great Blue Heron': 26, 'Red-tailed Hawk': 36, 'Canada Goose': 112, 'Downy Woodpecker': 24, 'Ring-necked Duck': 22, 'Wild Turkey': 82, 'Common Loon': 9, 'Horned Grebe': 4, 'Redhead': 8, 'Feral Pigeon': 31, 'Golden-crowned Kinglet': 7, 'Red-bellied Woodpecker': 15, 'Hooded Merganser': 18, 'Belted Kingfisher': 3, 'Red-winged Blackbird': 35, 'Black-capped Chickadee': 14, 'Ruddy Duck': 2, 'Bald Eagle': 2, 'Dark-eyed Junco': 9, 'Carolina Wren': 7, 'House Finch': 19, 'White-throated Sparrow': 5, 'Song Sparrow': 24, 'Yellow-bellied Sapsucker': 3, 'White-breasted Nuthatch': 10, 'Eastern Red-tailed Hawk': 5, 'Tufted Titmouse': 8, "Cooper's Hawk": 17, 'Domestic Greylag Goose': 14, 'Rock Pigeon': 9, 'American Coot': 1, 'Greylag × Canada Goose': 1, 'Eastern Wild Turkey': 1, 'Brown Creeper': 7, 'Hairy Woodpecker': 2, 'Northern Flicker': 6, 'Greater Scaup': 1, 'Red-breasted Merganser': 2, 'American Woodcock': 7, 'Red-breasted Nuthatch': 1, 'Great Horned Owl': 23, 'Peregrine Falcon': 5, 'American Goldfinch': 18, 'Barred Owl': 2, 'Black-crowned Night Heron': 2, 'Tree Swallow': 11, 'Common Grackle': 14, 'Hermit Thrush': 4, 'Northern Yellow-shafted Flicker': 1, 'Chipping Sparrow': 3, 'Killdeer': 2, 'Gray Catbird': 20, 'Double-crested Cormorant': 17, 'Yellow Warbler': 3, 'Warbling Vireo': 2, 'Baltimore Oriole': 7, 'Common Yellowthroat': 2, 'White-crowned Sparrow': 2, 'Black-throated Blue Warbler': 1, 'Ovenbird': 1, 'Brown-headed Cowbird': 4, 'House Wren': 1, 'Cedar Waxwing': 4, 'European house sparrow': 1, 'Herring Gull': 4, 'Eastern Kingbird': 7, 'Great Black-backed Gull': 1, 'Green Heron': 10, 'Great Crested Flycatcher': 1, 'Wood Duck': 6, 'American Kestrel': 1, 'Osprey': 1, 'Ruby-throated Hummingbird': 3, 'Spotted Sandpiper': 2, 'Chimney Swift': 1, 'Eastern Phoebe': 1, 'Lark Sparrow': 2, 'Ring-billed Gull': 1, 'Dickcissel': 1, 'Merlin': 1, 'Ash-throated Flycatcher': 6, 'Pied-billed Grebe': 5, 'Lesser Scaup': 2, 'Orange-crowned Warbler': 2, 'Eastern Song Sparrow': 1, 'Philadelphia Vireo': 1, 'Ruby-crowned Kinglet': 2, 'Mallard × Muscovy Duck': 1, 'Fox Sparrow': 1, 'American Tree Sparrow': 1, 'Common Raven': 1}
+<pre class="output-block">&nbsp;&nbsp;Cell In[19], line 13
+&nbsp;&nbsp;&nbsp;&nbsp;print(bird_observations)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
+IndentationError: expected an indented block after 'for' statement on line 11
 </pre>
+
+??? success "Solution"
+    ```python
+    
+    filename = 'bird_observations.csv'
+    if not os.path.exists(filename):
+        filename = 'data/bird_observations.csv'
+    
+    bird_observations = dict()
+    
+    with open(filename, 'r') as birdfile:
+        # skip the header
+        next(birdfile)
+        for line in birdfile:
+            # clean up the line and split into list
+            observation = line.strip().split(',')
+            # get the bird id
+            id = observation[2]
+            # get the bird name by looking up in the bird_names dictionary
+            name = bird_names[id]['common_name']
+            # if this is the first time we're seeing the bird, add it to our observations dict
+            if name not in bird_observations:
+                bird_observations[name] = 0
+            # increment the count by 1
+            bird_observations[name] += 1
+    print(bird_observations)
+    ```
+
+    <pre class="output-block">{'Northern Mockingbird': 23, 'Common Merganser': 4, 'Bufflehead': 9, 'House Sparrow': 69, 'European Starling': 51, 'Northern Cardinal': 28, 'Mourning Dove': 31, 'Blue Jay': 39, 'American Black Duck': 2, 'Domestic Mallard': 14, 'Mute Swan': 33, 'Green-winged Teal': 8, 'American Robin': 92, 'Mallard': 49, 'Great Blue Heron': 26, 'Red-tailed Hawk': 36, 'Canada Goose': 112, 'Downy Woodpecker': 24, 'Ring-necked Duck': 22, 'Wild Turkey': 82, 'Common Loon': 9, 'Horned Grebe': 4, 'Redhead': 8, 'Feral Pigeon': 31, 'Golden-crowned Kinglet': 7, 'Red-bellied Woodpecker': 15, 'Hooded Merganser': 18, 'Belted Kingfisher': 3, 'Red-winged Blackbird': 35, 'Black-capped Chickadee': 14, 'Ruddy Duck': 2, 'Bald Eagle': 2, 'Dark-eyed Junco': 9, 'Carolina Wren': 7, 'House Finch': 19, 'White-throated Sparrow': 5, 'Song Sparrow': 24, 'Yellow-bellied Sapsucker': 3, 'White-breasted Nuthatch': 10, 'Eastern Red-tailed Hawk': 5, 'Tufted Titmouse': 8, "Cooper's Hawk": 17, 'Domestic Greylag Goose': 14, 'Rock Pigeon': 9, 'American Coot': 1, 'Greylag × Canada Goose': 1, 'Eastern Wild Turkey': 1, 'Brown Creeper': 7, 'Hairy Woodpecker': 2, 'Northern Flicker': 6, 'Greater Scaup': 1, 'Red-breasted Merganser': 2, 'American Woodcock': 7, 'Red-breasted Nuthatch': 1, 'Great Horned Owl': 23, 'Peregrine Falcon': 5, 'American Goldfinch': 18, 'Barred Owl': 2, 'Black-crowned Night Heron': 2, 'Tree Swallow': 11, 'Common Grackle': 14, 'Hermit Thrush': 4, 'Northern Yellow-shafted Flicker': 1, 'Chipping Sparrow': 3, 'Killdeer': 2, 'Gray Catbird': 20, 'Double-crested Cormorant': 17, 'Yellow Warbler': 3, 'Warbling Vireo': 2, 'Baltimore Oriole': 7, 'Common Yellowthroat': 2, 'White-crowned Sparrow': 2, 'Black-throated Blue Warbler': 1, 'Ovenbird': 1, 'Brown-headed Cowbird': 4, 'House Wren': 1, 'Cedar Waxwing': 4, 'European house sparrow': 1, 'Herring Gull': 4, 'Eastern Kingbird': 7, 'Great Black-backed Gull': 1, 'Green Heron': 10, 'Great Crested Flycatcher': 1, 'Wood Duck': 6, 'American Kestrel': 1, 'Osprey': 1, 'Ruby-throated Hummingbird': 3, 'Spotted Sandpiper': 2, 'Chimney Swift': 1, 'Eastern Phoebe': 1, 'Lark Sparrow': 2, 'Ring-billed Gull': 1, 'Dickcissel': 1, 'Merlin': 1, 'Ash-throated Flycatcher': 6, 'Pied-billed Grebe': 5, 'Lesser Scaup': 2, 'Orange-crowned Warbler': 2, 'Eastern Song Sparrow': 1, 'Philadelphia Vireo': 1, 'Ruby-crowned Kinglet': 2, 'Mallard × Muscovy Duck': 1, 'Fox Sparrow': 1, 'American Tree Sparrow': 1, 'Common Raven': 1}
+    </pre>
 
 If you routinely find yourself reading delimited files, you might want to use the `csv` library. The `csv` library also has the ability to parse Excel files or read and write to/from dictionaries directly. For more information, here's the [doc page :octicons-link-external-24:](https://docs.python.org/3/library/csv.html){:target="_blank"}. Here's what the above code would look like using the `csv` module:
 
@@ -610,6 +600,8 @@ If you routinely find yourself reading delimited files, you might want to use th
 import csv
 
 filename = 'bird_observations.csv'
+if not os.path.exists(filename):
+    filename = 'data/bird_observations.csv'
 
 bird_observations = dict()
 
@@ -663,17 +655,17 @@ this is the final test
 
 ```
 
-
-```python
-
-import csv
-
-with open('bird_counts.csv', 'w') as file:
-    writer = csv.writer(file)
-    writer.writerow(['bird', 'count'])
-    for bird, count in bird_observations.items():
-        writer.writerow([bird, count])
-```
+??? success "Solution"
+    ```python
+    
+    import csv
+    
+    with open('bird_counts.csv', 'w') as file:
+        writer = csv.writer(file)
+        writer.writerow(['bird', 'count'])
+        for bird, count in bird_observations.items():
+            writer.writerow([bird, count])
+    ```
 
 ## Pandas
 
@@ -704,14 +696,11 @@ s0 = pd.Series([10, 20, 30, 40])
 print(s0)
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[25], line 2
-      1 #Making a Series using the pd.Series method:
-----> 2 s0 = pd.Series([10, 20, 30, 40])
-      4 print(s0)
-
-NameError: name 'pd' is not defined
+<pre class="output-block">0    10
+1    20
+2    30
+3    40
+dtype: int64
 </pre>
 
 
@@ -722,14 +711,11 @@ s1 = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'])
 print(s1)
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[26], line 2
-      1 #Making a Series using the pd.Series method:
-----> 2 s1 = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'])
-      4 print(s1)
-
-NameError: name 'pd' is not defined
+<pre class="output-block">a    10
+b    20
+c    30
+d    40
+dtype: int64
 </pre>
 
 Another way to create a Series is to convert a (non-nested) dictionary into a Series. The keys of the dictionary will become the index labels while the values will become the data. 
@@ -743,15 +729,10 @@ s2 = pd.Series(my_dictionary)
 print(s2)
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[27], line 3
-      1 # Converting from dictionary to series
-      2 my_dictionary = {'first': 10, 'second': 20, 'third': 30}
-----> 3 s2 = pd.Series(my_dictionary)
-      5 print(s2)
-
-NameError: name 'pd' is not defined
+<pre class="output-block">first     10
+second    20
+third     30
+dtype: int64
 </pre>
 
 We can then access specific elements in the Series by referring to its index label enclosed in quotes and brackets. This is very similar to how a dictionary works!
@@ -765,14 +746,9 @@ print(s1["a"])
 print(s2["second"])
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[28], line 1
-----> 1 print(s0[0])
-      3 print(s1["a"])
-      5 print(s2["second"])
-
-NameError: name 's0' is not defined
+<pre class="output-block">10
+10
+20
 </pre>
 
 So, Series can be thought of as a more versatile version of base Python lists and dictionaries. They are one dimensional. They default to numerical indexing for labeling starting with index 0 (like lists), but have the capability to use labels as indexes as well (like dictionaries).
@@ -790,21 +766,25 @@ my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
 s3 = pd.Series(my_values, index=my_index)
 
 print(s3)
-print("---")
+print("...")
 print(s3.index) # an index is an ordered set of tuples
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[29], line 5
-      1 my_index = [["California", "California", "New York", "New York", "Texas", "Texas"], 
-      2             [2001, 2002, 2001, 2002, 2001, 2002]]
-      3 my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
-----> 5 s3 = pd.Series(my_values, index=my_index)
-      7 print(s3)
-      8 print("---")
-
-NameError: name 'pd' is not defined
+<pre class="output-block">California  2001    1.5
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2002    1.7
+New York    2001    3.6
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2002    4.2
+Texas       2001    3.2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2002    4.5
+dtype: float64
+...
+MultiIndex([('California', 2001),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('California', 2002),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(  'New York', 2001),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(  'New York', 2002),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(     'Texas', 2001),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(     'Texas', 2002)],
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
 </pre>
 
 Retrieving an item from this data structure is similar to a nested dictionary, using successive `[]` notation. Or, you can pass it a tuple. You must pass the index labels in the order they were created (left to right)
@@ -813,40 +793,58 @@ Retrieving an item from this data structure is similar to a nested dictionary, u
 ```python
 print("Just printing California")
 print(s3["California"])
-print("---")
+print("...")
 
 print("Just printing California 2001")
 print(s3["California"][2001])
-print("---")
+print("...")
 
 print("Using a tuple to get California 2001")
 print(s3[("California", 2001)])
-print("---")
+print("...")
 
 print("you can also use slicing to select multiple elements")
 print(s3["California":"New York"])
-print("---")
+print("...")
 
 print("You can use .index.isin to search for values that match your index")
 print(s3[s3.index.isin(["Texas", "New York"], level=0)])
-print("---")
+print("...")
 
 print("You can select inner levels of multi-indexed series by specifying level=")
 print(s3[s3.index.isin([2001], level=1)])
 ```
 
 <pre class="output-block">Just printing California
-</pre>
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[30], line 2
-      1 print("Just printing California")
-----> 2 print(s3["California"])
-      3 print("---")
-      5 print("Just printing California 2001")
-
-NameError: name 's3' is not defined
+2001    1.5
+2002    1.7
+dtype: float64
+...
+Just printing California 2001
+1.5
+...
+Using a tuple to get California 2001
+1.5
+...
+you can also use slicing to select multiple elements
+California  2001    1.5
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2002    1.7
+New York    2001    3.6
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2002    4.2
+dtype: float64
+...
+You can use .index.isin to search for values that match your index
+New York  2001    3.6
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2002    4.2
+Texas     2001    3.2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2002    4.5
+dtype: float64
+...
+You can select inner levels of multi-indexed series by specifying level=
+California  2001    1.5
+New York    2001    3.6
+Texas       2001    3.2
+dtype: float64
 </pre>
 
 In our work, we typically don't use multi-indexed Series. However, they are often the output of pandas functions, so it's good to know how to work with them. If you don't like the idea of multi-indexed Series, you can always convert them to a DataFrame using the `reset_index()` method.
@@ -856,12 +854,13 @@ In our work, we typically don't use multi-indexed Series. However, they are ofte
 s3.reset_index()
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[31], line 1
-----> 1 s3.reset_index()
-
-NameError: name 's3' is not defined
+<pre class="output-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_0  level_1    0
+0  California     2001  1.5
+1  California     2002  1.7
+2    New York     2001  3.6
+3    New York     2002  4.2
+4       Texas     2001  3.2
+5       Texas     2002  4.5
 </pre>
 
 `pandas` Series are useful for representing a single column of data and have several operations that can be performed on them. These operations include sorting, slicing, mathematical transformations, filtering, and more.
@@ -884,57 +883,41 @@ print(s3[s3.index.isin([2001], level=1)].sort_values(ascending=False).index[0][0
 # your code here
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[32], line 5
-      1 my_index = [["California", "California", "New York", "New York", "Texas", "Texas"], 
-      2             [2001, 2002, 2001, 2002, 2001, 2002]]
-      3 my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
-----> 5 s3 = pd.Series(my_values, index=my_index)
-      7 # make the below more readable
-      8 print(s3[s3.index.isin([2001], level=1)].sort_values(ascending=False).index[0][0])
-
-NameError: name 'pd' is not defined
+<pre class="output-block">New York
 </pre>
 
+??? success "Solution"
+    ```python
+    
+    my_index = [["California", "California", "New York", "New York", "Texas", "Texas"], 
+                [2001, 2002, 2001, 2002, 2001, 2002]]
+    my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
+    
+    s3 = pd.Series(my_values, index=my_index)
+    
+    # make the below more readable
+    print(s3[s3.index.isin([2001], level=1)].sort_values(ascending=False).index[0][0])
+    
+    # Get all values for the year 2001 across all states
+    pop_2001 = s3[s3.index.isin([2001], level=1)]
+    
+    # Sort the values in descending order to find the most populous state
+    pop_2001_sorted = pop_2001.sort_values(ascending=False)
+    
+    # Get the index (state name) of the most populous state in 2001
+    most_populous_2001_state = pop_2001_sorted.index[0][0]
+    print(most_populous_2001_state)
+    ```
 
-```python
-my_index = [["California", "California", "New York", "New York", "Texas", "Texas"], 
-            [2001, 2002, 2001, 2002, 2001, 2002]]
-my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
-
-s3 = pd.Series(my_values, index=my_index)
-
-# make the below more readable
-print(s3[s3.index.isin([2001], level=1)].sort_values(ascending=False).index[0][0])
-
-# Get all values for the year 2001 across all states
-pop_2001 = s3[s3.index.isin([2001], level=1)]
-
-# Sort the values in descending order to find the most populous state
-pop_2001_sorted = pop_2001.sort_values(ascending=False)
-
-# Get the index (state name) of the most populous state in 2001
-most_populous_2001_state = pop_2001_sorted.index[0][0]
-print(most_populous_2001_state)
-```
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[33], line 6
-      2 my_index = [["California", "California", "New York", "New York", "Texas", "Texas"], 
-      3             [2001, 2002, 2001, 2002, 2001, 2002]]
-      4 my_values = [1.5, 1.7, 3.6, 4.2, 3.2, 4.5]
-----> 6 s3 = pd.Series(my_values, index=my_index)
-      8 # make the below more readable
-      9 print(s3[s3.index.isin([2001], level=1)].sort_values(ascending=False).index[0][0])
-
-NameError: name 'pd' is not defined
-</pre>
+    <pre class="output-block">New York
+    New York
+    </pre>
 
 ## `pandas` DataFrame
 
-While Series is a "one-dimensional" data structure, DataFrames are two-dimensional. Where Series can only contain one type of data, the pandas DataFrame can have a combination of numerical and categorical data. Additionally, DataFrames allow you do have labels for your rows and columns. 
+Another `pandas` data structure is the **DataFrame**, which is really convenient for its ability to easily perform complex data transformations. This makes it a powerful tool for cleaning, filtering, and summarizing tabular data. 
+
+While a Series is a "one-dimensional" data structure, DataFrames are two-dimensional. Where Series can only contain one type of data, DataFrames can have a combination of numerical and categorical data. Additionally, DataFrames allow you do have labels for your rows and columns. 
 
 DataFrames are essentially a **collection of Series objects**. You can also think of python DataFrames as spreadsheets from Excel or dataframes from R. Since DataFrames are made of multiple Series, the operations we can do on Series are also available on DataFrames
 
@@ -958,19 +941,11 @@ sumo = pd.DataFrame(tournamentStats)
 print(sumo)
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[34], line 8
-      1 tournamentStats = {
-      2     "wrestler": ["Terunofuji", "Ura", "Shodai", "Takanosho"],
-      3     "wins": [13, 6, 10, 12],
-      4     "rank": ["yokozuna", "maegashira2", "komusubi", "maegashira6"]
-      5 }
-      7 #Converting to a pandas DataFrame
-----> 8 sumo = pd.DataFrame(tournamentStats)
-     10 print(sumo)
-
-NameError: name 'pd' is not defined
+<pre class="output-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrestler  wins         rank
+0  Terunofuji    13     yokozuna
+1         Ura     6  maegashira2
+2      Shodai    10     komusubi
+3   Takanosho    12  maegashira6
 </pre>
 
 This looks very similar to how we initialize base Python dictionaries.
@@ -981,24 +956,26 @@ Pandas dataframes have many **attributes**, including `shape`, `columns`, `index
 ```python
 print(sumo.shape)
 
-print("---")
+print("...")
 print(sumo.columns)
 
-print("---")
+print("...")
 print(sumo.index)
 
-print("---")
+print("...")
 print(sumo.dtypes)
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[35], line 1
-----> 1 print(sumo.shape)
-      3 print("---")
-      4 print(sumo.columns)
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">(4, 3)
+...
+Index(['wrestler', 'wins', 'rank'], dtype='object')
+...
+RangeIndex(start=0, stop=4, step=1)
+...
+wrestler    object
+wins         int64
+rank        object
+dtype: object
 </pre>
 
 Pandas DataFrames also have the handy `info()` function that summarizes the contents of the dataframe, including counts of the non-null values of each column and the data type of each column.
@@ -1008,13 +985,433 @@ Pandas DataFrames also have the handy `info()` function that summarizes the cont
 sumo.info()
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[36], line 1
-----> 1 sumo.info()
-
-NameError: name 'sumo' is not defined
+<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+RangeIndex: 4 entries, 0 to 3
+Data columns (total 3 columns):
+&nbsp;#   Column    Non-Null Count  Dtype
+---  ------    --------------  -----
+&nbsp;0   wrestler  4 non-null      object
+&nbsp;1   wins      4 non-null      int64
+&nbsp;2   rank      4 non-null      object
+dtypes: int64(1), object(2)
+memory usage: 228.0+ bytes
 </pre>
+
+## Importing data to `pandas`
+
+Earlier, we leared how to read and write data from and to files in Python. Now, we'll learn how to get data into our program from files using `pandas` functions and data structures. `pandas` natively reads data from tab-delimited files into DataFrames, which is very convenient.
+
+Below you can see an example of how to read files into pandas using the `pd.read_csv()` function. The `csv` stands for 'comma-separated values', which means by defaults it will assume that our columns are separated by **commas**; if we wanted to change the delimiter (e.g. in the case of a tab-separated file), we can set the delimiter explicitly using the `sep=` argument. 
+
+
+```python
+penguins = pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv", sep=',')
+
+# The head() function from pandas prints only the first N lines of a dataframe (default: 10)
+penguins.head()
+```
+
+<pre class="output-block">&nbsp;&nbsp;species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
+0  Adelie  Torgersen            39.1           18.7              181.0
+1  Adelie  Torgersen            39.5           17.4              186.0
+2  Adelie  Torgersen            40.3           18.0              195.0
+3  Adelie  Torgersen             NaN            NaN                NaN
+4  Adelie  Torgersen            36.7           19.3              193.0
+
+&nbsp;&nbsp;&nbsp;body_mass_g     sex  year
+0       3750.0    male  2007
+1       3800.0  female  2007
+2       3250.0  female  2007
+3          NaN     NaN  2007
+4       3450.0  female  2007
+</pre>
+
+When importing data into a DataFrame, pandas automatically detects what data type each column should be. For example, if the column contains only numbers, it will be imported as an floating point or integer data type. If the column contains strings or a mixture of strings and numbers, it will be imported as an "object" data type. Below are the different data types for the penguins column. 
+
+
+```python
+penguins.info()
+```
+
+<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+RangeIndex: 344 entries, 0 to 343
+Data columns (total 8 columns):
+&nbsp;#   Column             Non-Null Count  Dtype
+---  ------             --------------  -----
+&nbsp;0   species            344 non-null    object
+&nbsp;1   island             344 non-null    object
+&nbsp;2   bill_length_mm     342 non-null    float64
+&nbsp;3   bill_depth_mm      342 non-null    float64
+&nbsp;4   flipper_length_mm  342 non-null    float64
+&nbsp;5   body_mass_g        342 non-null    float64
+&nbsp;6   sex                333 non-null    object
+&nbsp;7   year               344 non-null    int64
+dtypes: float64(4), int64(1), object(3)
+memory usage: 21.6+ KB
+</pre>
+
+### Looping through a dataframe
+
+As a note, if we want to go through a dataframe line-by-line (i.e. row by row), because both the rows and columns are indexed it requires slightly more syntax than looping through other data structures (e.g. a dictionary or list). Specifically we need to use the `.iterrows()` method to make the data frame iterable. The `.iterrows()` method outputs each row as a `Series` object with a row index and the column:   
+
+
+```python
+for index, row in penguins.iterrows():
+    print(f"Row index: {index}, {row['species']}, {row['island']}")
+```
+
+<pre class="output-block">Row index: 0, Adelie, Torgersen
+Row index: 1, Adelie, Torgersen
+Row index: 2, Adelie, Torgersen
+Row index: 3, Adelie, Torgersen
+Row index: 4, Adelie, Torgersen
+Row index: 5, Adelie, Torgersen
+Row index: 6, Adelie, Torgersen
+Row index: 7, Adelie, Torgersen
+Row index: 8, Adelie, Torgersen
+Row index: 9, Adelie, Torgersen
+Row index: 10, Adelie, Torgersen
+Row index: 11, Adelie, Torgersen
+Row index: 12, Adelie, Torgersen
+Row index: 13, Adelie, Torgersen
+Row index: 14, Adelie, Torgersen
+Row index: 15, Adelie, Torgersen
+Row index: 16, Adelie, Torgersen
+Row index: 17, Adelie, Torgersen
+Row index: 18, Adelie, Torgersen
+Row index: 19, Adelie, Torgersen
+Row index: 20, Adelie, Biscoe
+Row index: 21, Adelie, Biscoe
+Row index: 22, Adelie, Biscoe
+Row index: 23, Adelie, Biscoe
+Row index: 24, Adelie, Biscoe
+Row index: 25, Adelie, Biscoe
+Row index: 26, Adelie, Biscoe
+Row index: 27, Adelie, Biscoe
+Row index: 28, Adelie, Biscoe
+Row index: 29, Adelie, Biscoe
+Row index: 30, Adelie, Dream
+Row index: 31, Adelie, Dream
+Row index: 32, Adelie, Dream
+Row index: 33, Adelie, Dream
+Row index: 34, Adelie, Dream
+Row index: 35, Adelie, Dream
+Row index: 36, Adelie, Dream
+Row index: 37, Adelie, Dream
+Row index: 38, Adelie, Dream
+Row index: 39, Adelie, Dream
+Row index: 40, Adelie, Dream
+Row index: 41, Adelie, Dream
+Row index: 42, Adelie, Dream
+Row index: 43, Adelie, Dream
+Row index: 44, Adelie, Dream
+Row index: 45, Adelie, Dream
+Row index: 46, Adelie, Dream
+Row index: 47, Adelie, Dream
+Row index: 48, Adelie, Dream
+Row index: 49, Adelie, Dream
+Row index: 50, Adelie, Biscoe
+Row index: 51, Adelie, Biscoe
+Row index: 52, Adelie, Biscoe
+Row index: 53, Adelie, Biscoe
+Row index: 54, Adelie, Biscoe
+Row index: 55, Adelie, Biscoe
+Row index: 56, Adelie, Biscoe
+Row index: 57, Adelie, Biscoe
+Row index: 58, Adelie, Biscoe
+Row index: 59, Adelie, Biscoe
+Row index: 60, Adelie, Biscoe
+Row index: 61, Adelie, Biscoe
+Row index: 62, Adelie, Biscoe
+Row index: 63, Adelie, Biscoe
+Row index: 64, Adelie, Biscoe
+Row index: 65, Adelie, Biscoe
+Row index: 66, Adelie, Biscoe
+Row index: 67, Adelie, Biscoe
+Row index: 68, Adelie, Torgersen
+Row index: 69, Adelie, Torgersen
+Row index: 70, Adelie, Torgersen
+Row index: 71, Adelie, Torgersen
+Row index: 72, Adelie, Torgersen
+Row index: 73, Adelie, Torgersen
+Row index: 74, Adelie, Torgersen
+Row index: 75, Adelie, Torgersen
+Row index: 76, Adelie, Torgersen
+Row index: 77, Adelie, Torgersen
+Row index: 78, Adelie, Torgersen
+Row index: 79, Adelie, Torgersen
+Row index: 80, Adelie, Torgersen
+Row index: 81, Adelie, Torgersen
+Row index: 82, Adelie, Torgersen
+Row index: 83, Adelie, Torgersen
+Row index: 84, Adelie, Dream
+Row index: 85, Adelie, Dream
+Row index: 86, Adelie, Dream
+Row index: 87, Adelie, Dream
+Row index: 88, Adelie, Dream
+Row index: 89, Adelie, Dream
+Row index: 90, Adelie, Dream
+Row index: 91, Adelie, Dream
+Row index: 92, Adelie, Dream
+Row index: 93, Adelie, Dream
+Row index: 94, Adelie, Dream
+Row index: 95, Adelie, Dream
+Row index: 96, Adelie, Dream
+Row index: 97, Adelie, Dream
+Row index: 98, Adelie, Dream
+Row index: 99, Adelie, Dream
+Row index: 100, Adelie, Biscoe
+Row index: 101, Adelie, Biscoe
+Row index: 102, Adelie, Biscoe
+Row index: 103, Adelie, Biscoe
+Row index: 104, Adelie, Biscoe
+Row index: 105, Adelie, Biscoe
+Row index: 106, Adelie, Biscoe
+Row index: 107, Adelie, Biscoe
+Row index: 108, Adelie, Biscoe
+Row index: 109, Adelie, Biscoe
+Row index: 110, Adelie, Biscoe
+Row index: 111, Adelie, Biscoe
+Row index: 112, Adelie, Biscoe
+Row index: 113, Adelie, Biscoe
+Row index: 114, Adelie, Biscoe
+Row index: 115, Adelie, Biscoe
+Row index: 116, Adelie, Torgersen
+Row index: 117, Adelie, Torgersen
+Row index: 118, Adelie, Torgersen
+Row index: 119, Adelie, Torgersen
+Row index: 120, Adelie, Torgersen
+Row index: 121, Adelie, Torgersen
+Row index: 122, Adelie, Torgersen
+Row index: 123, Adelie, Torgersen
+Row index: 124, Adelie, Torgersen
+Row index: 125, Adelie, Torgersen
+Row index: 126, Adelie, Torgersen
+Row index: 127, Adelie, Torgersen
+Row index: 128, Adelie, Torgersen
+Row index: 129, Adelie, Torgersen
+Row index: 130, Adelie, Torgersen
+Row index: 131, Adelie, Torgersen
+Row index: 132, Adelie, Dream
+Row index: 133, Adelie, Dream
+Row index: 134, Adelie, Dream
+Row index: 135, Adelie, Dream
+Row index: 136, Adelie, Dream
+Row index: 137, Adelie, Dream
+Row index: 138, Adelie, Dream
+Row index: 139, Adelie, Dream
+Row index: 140, Adelie, Dream
+Row index: 141, Adelie, Dream
+Row index: 142, Adelie, Dream
+Row index: 143, Adelie, Dream
+Row index: 144, Adelie, Dream
+Row index: 145, Adelie, Dream
+Row index: 146, Adelie, Dream
+Row index: 147, Adelie, Dream
+Row index: 148, Adelie, Dream
+Row index: 149, Adelie, Dream
+Row index: 150, Adelie, Dream
+Row index: 151, Adelie, Dream
+Row index: 152, Gentoo, Biscoe
+Row index: 153, Gentoo, Biscoe
+Row index: 154, Gentoo, Biscoe
+Row index: 155, Gentoo, Biscoe
+Row index: 156, Gentoo, Biscoe
+Row index: 157, Gentoo, Biscoe
+Row index: 158, Gentoo, Biscoe
+Row index: 159, Gentoo, Biscoe
+Row index: 160, Gentoo, Biscoe
+Row index: 161, Gentoo, Biscoe
+Row index: 162, Gentoo, Biscoe
+Row index: 163, Gentoo, Biscoe
+Row index: 164, Gentoo, Biscoe
+Row index: 165, Gentoo, Biscoe
+Row index: 166, Gentoo, Biscoe
+Row index: 167, Gentoo, Biscoe
+Row index: 168, Gentoo, Biscoe
+Row index: 169, Gentoo, Biscoe
+Row index: 170, Gentoo, Biscoe
+Row index: 171, Gentoo, Biscoe
+Row index: 172, Gentoo, Biscoe
+Row index: 173, Gentoo, Biscoe
+Row index: 174, Gentoo, Biscoe
+Row index: 175, Gentoo, Biscoe
+Row index: 176, Gentoo, Biscoe
+Row index: 177, Gentoo, Biscoe
+Row index: 178, Gentoo, Biscoe
+Row index: 179, Gentoo, Biscoe
+Row index: 180, Gentoo, Biscoe
+Row index: 181, Gentoo, Biscoe
+Row index: 182, Gentoo, Biscoe
+Row index: 183, Gentoo, Biscoe
+Row index: 184, Gentoo, Biscoe
+Row index: 185, Gentoo, Biscoe
+Row index: 186, Gentoo, Biscoe
+Row index: 187, Gentoo, Biscoe
+Row index: 188, Gentoo, Biscoe
+Row index: 189, Gentoo, Biscoe
+Row index: 190, Gentoo, Biscoe
+Row index: 191, Gentoo, Biscoe
+Row index: 192, Gentoo, Biscoe
+Row index: 193, Gentoo, Biscoe
+Row index: 194, Gentoo, Biscoe
+Row index: 195, Gentoo, Biscoe
+Row index: 196, Gentoo, Biscoe
+Row index: 197, Gentoo, Biscoe
+Row index: 198, Gentoo, Biscoe
+Row index: 199, Gentoo, Biscoe
+Row index: 200, Gentoo, Biscoe
+Row index: 201, Gentoo, Biscoe
+Row index: 202, Gentoo, Biscoe
+Row index: 203, Gentoo, Biscoe
+Row index: 204, Gentoo, Biscoe
+Row index: 205, Gentoo, Biscoe
+Row index: 206, Gentoo, Biscoe
+Row index: 207, Gentoo, Biscoe
+Row index: 208, Gentoo, Biscoe
+Row index: 209, Gentoo, Biscoe
+Row index: 210, Gentoo, Biscoe
+Row index: 211, Gentoo, Biscoe
+Row index: 212, Gentoo, Biscoe
+Row index: 213, Gentoo, Biscoe
+Row index: 214, Gentoo, Biscoe
+Row index: 215, Gentoo, Biscoe
+Row index: 216, Gentoo, Biscoe
+Row index: 217, Gentoo, Biscoe
+Row index: 218, Gentoo, Biscoe
+Row index: 219, Gentoo, Biscoe
+Row index: 220, Gentoo, Biscoe
+Row index: 221, Gentoo, Biscoe
+Row index: 222, Gentoo, Biscoe
+Row index: 223, Gentoo, Biscoe
+Row index: 224, Gentoo, Biscoe
+Row index: 225, Gentoo, Biscoe
+Row index: 226, Gentoo, Biscoe
+Row index: 227, Gentoo, Biscoe
+Row index: 228, Gentoo, Biscoe
+Row index: 229, Gentoo, Biscoe
+Row index: 230, Gentoo, Biscoe
+Row index: 231, Gentoo, Biscoe
+Row index: 232, Gentoo, Biscoe
+Row index: 233, Gentoo, Biscoe
+Row index: 234, Gentoo, Biscoe
+Row index: 235, Gentoo, Biscoe
+Row index: 236, Gentoo, Biscoe
+Row index: 237, Gentoo, Biscoe
+Row index: 238, Gentoo, Biscoe
+Row index: 239, Gentoo, Biscoe
+Row index: 240, Gentoo, Biscoe
+Row index: 241, Gentoo, Biscoe
+Row index: 242, Gentoo, Biscoe
+Row index: 243, Gentoo, Biscoe
+Row index: 244, Gentoo, Biscoe
+Row index: 245, Gentoo, Biscoe
+Row index: 246, Gentoo, Biscoe
+Row index: 247, Gentoo, Biscoe
+Row index: 248, Gentoo, Biscoe
+Row index: 249, Gentoo, Biscoe
+Row index: 250, Gentoo, Biscoe
+Row index: 251, Gentoo, Biscoe
+Row index: 252, Gentoo, Biscoe
+Row index: 253, Gentoo, Biscoe
+Row index: 254, Gentoo, Biscoe
+Row index: 255, Gentoo, Biscoe
+Row index: 256, Gentoo, Biscoe
+Row index: 257, Gentoo, Biscoe
+Row index: 258, Gentoo, Biscoe
+Row index: 259, Gentoo, Biscoe
+Row index: 260, Gentoo, Biscoe
+Row index: 261, Gentoo, Biscoe
+Row index: 262, Gentoo, Biscoe
+Row index: 263, Gentoo, Biscoe
+Row index: 264, Gentoo, Biscoe
+Row index: 265, Gentoo, Biscoe
+Row index: 266, Gentoo, Biscoe
+Row index: 267, Gentoo, Biscoe
+Row index: 268, Gentoo, Biscoe
+Row index: 269, Gentoo, Biscoe
+Row index: 270, Gentoo, Biscoe
+Row index: 271, Gentoo, Biscoe
+Row index: 272, Gentoo, Biscoe
+Row index: 273, Gentoo, Biscoe
+Row index: 274, Gentoo, Biscoe
+Row index: 275, Gentoo, Biscoe
+Row index: 276, Chinstrap, Dream
+</pre>
+
+<pre class="output-block">Row index: 277, Chinstrap, Dream
+Row index: 278, Chinstrap, Dream
+Row index: 279, Chinstrap, Dream
+Row index: 280, Chinstrap, Dream
+Row index: 281, Chinstrap, Dream
+Row index: 282, Chinstrap, Dream
+Row index: 283, Chinstrap, Dream
+Row index: 284, Chinstrap, Dream
+Row index: 285, Chinstrap, Dream
+Row index: 286, Chinstrap, Dream
+Row index: 287, Chinstrap, Dream
+Row index: 288, Chinstrap, Dream
+Row index: 289, Chinstrap, Dream
+Row index: 290, Chinstrap, Dream
+Row index: 291, Chinstrap, Dream
+Row index: 292, Chinstrap, Dream
+Row index: 293, Chinstrap, Dream
+Row index: 294, Chinstrap, Dream
+Row index: 295, Chinstrap, Dream
+Row index: 296, Chinstrap, Dream
+Row index: 297, Chinstrap, Dream
+Row index: 298, Chinstrap, Dream
+Row index: 299, Chinstrap, Dream
+Row index: 300, Chinstrap, Dream
+Row index: 301, Chinstrap, Dream
+Row index: 302, Chinstrap, Dream
+Row index: 303, Chinstrap, Dream
+Row index: 304, Chinstrap, Dream
+Row index: 305, Chinstrap, Dream
+Row index: 306, Chinstrap, Dream
+Row index: 307, Chinstrap, Dream
+Row index: 308, Chinstrap, Dream
+Row index: 309, Chinstrap, Dream
+Row index: 310, Chinstrap, Dream
+Row index: 311, Chinstrap, Dream
+Row index: 312, Chinstrap, Dream
+Row index: 313, Chinstrap, Dream
+Row index: 314, Chinstrap, Dream
+Row index: 315, Chinstrap, Dream
+Row index: 316, Chinstrap, Dream
+Row index: 317, Chinstrap, Dream
+Row index: 318, Chinstrap, Dream
+Row index: 319, Chinstrap, Dream
+Row index: 320, Chinstrap, Dream
+Row index: 321, Chinstrap, Dream
+Row index: 322, Chinstrap, Dream
+Row index: 323, Chinstrap, Dream
+Row index: 324, Chinstrap, Dream
+Row index: 325, Chinstrap, Dream
+Row index: 326, Chinstrap, Dream
+Row index: 327, Chinstrap, Dream
+Row index: 328, Chinstrap, Dream
+Row index: 329, Chinstrap, Dream
+Row index: 330, Chinstrap, Dream
+Row index: 331, Chinstrap, Dream
+Row index: 332, Chinstrap, Dream
+Row index: 333, Chinstrap, Dream
+Row index: 334, Chinstrap, Dream
+Row index: 335, Chinstrap, Dream
+Row index: 336, Chinstrap, Dream
+Row index: 337, Chinstrap, Dream
+Row index: 338, Chinstrap, Dream
+Row index: 339, Chinstrap, Dream
+Row index: 340, Chinstrap, Dream
+Row index: 341, Chinstrap, Dream
+Row index: 342, Chinstrap, Dream
+Row index: 343, Chinstrap, Dream
+</pre>
+
+This can be slow for very large dataframes, but is useful if you need to perform actions on individual rows.
+
+Before we dive into working with real data, we're going to create some DataFrames from scratch to better understand how they work.
+
 
 ## Selecting data in a `pandas` dataframe
 
@@ -1030,12 +1427,7 @@ We can always check the names of the columns in a `pandas` dataframe byt using t
 sumo.columns
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[37], line 1
-----> 1 sumo.columns
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">Index(['wrestler', 'wins', 'rank'], dtype='object')
 </pre>
 
 If we want to refer to a specific column, we can specify its index (enclosed in double quotes) inside of square brackets `[]` like so:
@@ -1046,13 +1438,11 @@ If we want to refer to a specific column, we can specify its index (enclosed in 
 sumo["wrestler"]
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[38], line 2
-      1 #Single column:
-----> 2 sumo["wrestler"]
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">0    Terunofuji
+1           Ura
+2        Shodai
+3     Takanosho
+Name: wrestler, dtype: object
 </pre>
 
 If we want to refer to *multiple* columns, we need to pass the columns as a **list** by enclosing the column indices in square brackets, so you will end up with *double brackets*:
@@ -1063,13 +1453,11 @@ If we want to refer to *multiple* columns, we need to pass the columns as a **li
 sumo[["wrestler", "rank"]]
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[39], line 2
-      1 #Multiple columns (note the double []!):
-----> 2 sumo[["wrestler", "rank"]]
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrestler         rank
+0  Terunofuji     yokozuna
+1         Ura  maegashira2
+2      Shodai     komusubi
+3   Takanosho  maegashira6
 </pre>
 
 ### Selecting rows:
@@ -1081,12 +1469,7 @@ The syntax for selecting specific rows is slightly different. Let's first check 
 print(sumo.index)
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[40], line 1
-----> 1 print(sumo.index)
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">RangeIndex(start=0, stop=4, step=1)
 </pre>
 
 Here we can see that while the column index labels were strings, the row index labels are *numerical values*, in this case `0` thru `3`. If we wanted to pull out the first row, we need to specify its index label (`0`) in combination with the `.loc` method (which is required for rows): 
@@ -1096,12 +1479,10 @@ Here we can see that while the column index labels were strings, the row index l
 sumo.loc[0]
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[41], line 1
-----> 1 sumo.loc[0]
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">wrestler    Terunofuji
+wins                13
+rank          yokozuna
+Name: 0, dtype: object
 </pre>
 
 If we want to select multiple rows, like with columns we need to pass it as a list using the double brackets. If we want to specify a **range** of rows (i.e. from this row to that row), we **don't** use double brackets and instead use `:`:
@@ -1111,12 +1492,9 @@ If we want to select multiple rows, like with columns we need to pass it as a li
 print(sumo.loc[[0,1]])
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[42], line 1
-----> 1 print(sumo.loc[[0,1]])
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrestler  wins         rank
+0  Terunofuji    13     yokozuna
+1         Ura     6  maegashira2
 </pre>
 
 
@@ -1124,12 +1502,10 @@ NameError: name 'sumo' is not defined
 print(sumo.loc[0:2])
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[43], line 1
-----> 1 print(sumo.loc[0:2])
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrestler  wins         rank
+0  Terunofuji    13     yokozuna
+1         Ura     6  maegashira2
+2      Shodai    10     komusubi
 </pre>
 
 Note that in this case the row index labels are numbers, but do not have to be numerical, and can have string labels similar to columns. Let's show how we could change the row index labels by taking the column with the wrestler's rank and setting it as the index label (note that the labels should be unique!):
@@ -1141,13 +1517,12 @@ sumo = sumo.set_index("rank")
 print(sumo)
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[44], line 1
-----> 1 sumo = sumo.set_index("rank")
-      3 print(sumo)
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrestler  wins
+rank
+yokozuna     Terunofuji    13
+maegashira2         Ura     6
+komusubi         Shodai    10
+maegashira6   Takanosho    12
 </pre>
 
 
@@ -1155,12 +1530,9 @@ NameError: name 'sumo' is not defined
 sumo.loc["yokozuna"]
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[45], line 1
-----> 1 sumo.loc["yokozuna"]
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">wrestler    Terunofuji
+wins                13
+Name: yokozuna, dtype: object
 </pre>
 
 We also need to use `.loc` if we are referring to a specific row AND column, e.g.:
@@ -1170,12 +1542,7 @@ We also need to use `.loc` if we are referring to a specific row AND column, e.g
 print(sumo.loc["komusubi", "wrestler"])
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[46], line 1
-----> 1 print(sumo.loc["komusubi", "wrestler"])
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">Shodai
 </pre>
 
 If we want to purely use numerical indexing, we can use the `.iloc()` method. If you use `.iloc()`, you can index a DataFrame using just the coordinates of the cells (but remember to begin counting from 0). 
@@ -1187,13 +1554,10 @@ If we want to purely use numerical indexing, we can use the `.iloc()` method. If
 sumo.iloc[0:2, 0:2]
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[47], line 3
-      1 # Select the first two rows and the first two columns
-----> 3 sumo.iloc[0:2, 0:2]
-
-NameError: name 'sumo' is not defined
+<pre class="output-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrestler  wins
+rank
+yokozuna     Terunofuji    13
+maegashira2         Ura     6
 </pre>
 
 There are many ways to select subsets of a dataframe. The rows and columns of a dataframe can be referred to either by their integer position or by their indexed name. Typically, for columns, you'll use the indexed name and can just do `[]` with the name of the column. For rows, if you want to use the integer position, you will use `.iloc[]`. If you want to use the index name, you will use `.loc[]`. 
@@ -1207,7 +1571,7 @@ For reference, here's a handy table on the best ways to index into a dataframe:
 | Select single row       | `df.loc['row_name']`                   | `df.iloc[row_position]` |
 | Select multiple rows    | `df.loc[['row_name1', 'row_name2']]`   | `df.iloc[[row_position1, row_position2]]` |
 
-> Exercise: we'll use the penguins dataset from our initial example.
+> **Exercise**: We'll use the penguins dataset from our initial example.
 > 1) Print the 'species' column
 > 2) Print the first five columns and first five rows
 > 3) Print the columns "species", "island", and "sex" and the first ten rows of the dataframe
@@ -1217,12 +1581,21 @@ For reference, here's a handy table on the best ways to index into a dataframe:
 penguins.info()
 ```
 
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[48], line 1
-----> 1 penguins.info()
-
-NameError: name 'penguins' is not defined
+<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+RangeIndex: 344 entries, 0 to 343
+Data columns (total 8 columns):
+&nbsp;#   Column             Non-Null Count  Dtype
+---  ------             --------------  -----
+&nbsp;0   species            344 non-null    object
+&nbsp;1   island             344 non-null    object
+&nbsp;2   bill_length_mm     342 non-null    float64
+&nbsp;3   bill_depth_mm      342 non-null    float64
+&nbsp;4   flipper_length_mm  342 non-null    float64
+&nbsp;5   body_mass_g        342 non-null    float64
+&nbsp;6   sex                333 non-null    object
+&nbsp;7   year               344 non-null    int64
+dtypes: float64(4), int64(1), object(3)
+memory usage: 21.6+ KB
 </pre>
 
 
@@ -1234,96 +1607,54 @@ NameError: name 'penguins' is not defined
 # 3. Print the columns "species", "island", and "sex" and the first 10 rows of the dataframe
 ```
 
+??? success "Solution"
+    ```python
+    
+    # 1. Print the "species" column
+    print(penguins['species'])
+    print("...")
+    
+    # 2. Print the first 5 columns and first five rows
+    print(penguins.iloc[0:5,0:5])
+    print("...")
+    
+    # 3. Print the columns "species", "island", and "sex" and the first 10 rows of the dataframe
+    print(penguins.loc[0:10, ['species', 'island', 'sex']])
+    ```
 
-```python
-
-# 1. Print the "species" column
-print(penguins['species'])
-print("---")
-
-# 2. Print the first 5 columns and first five rows
-print(penguins.iloc[0:5,0:5])
-print("---")
-
-# 3. Print the columns "species", "island", and "sex" and the first 10 rows of the dataframe
-print(penguins.loc[0:10, ['species', 'island', 'sex']])
-```
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[50], line 4
-      1 #@title Solution {display-mode: "form"}
-      2 
-      3 # 1. Print the "species" column
-----> 4 print(penguins['species'])
-      5 print("---")
-      7 # 2. Print the first 5 columns and first five rows
-
-NameError: name 'penguins' is not defined
-</pre>
-
-## Importing data to `pandas`
-
-Earlier, we leared how to read and write data from and to files in Python. Now, we'll learn how to get data into our program from files using `pandas` functions and data structures. `pandas` natively reads data from tab-delimited files as DataFrames, which is really convenient since one of the most useful features of `pandas` DataFrames is its ability to easily perform complex data transformations. This makes it a powerful tool for cleaning, filtering, and summarizing tabular data. Let's read some data into a DataFrame to demonstrate. 
-
-Below you can see an example of how to read files into pandas using the `pd.read_csv()` function. The `csv` stands for 'comma-separated values', which means by defaults it will assume that our columns are separated by **commas**; if we wanted to change the delimiter (e.g. in the case of a tab-separated file), we can set the delimiter explicitly using the `sep=` argument. 
-
-
-```python
-penguins = pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv", sep=',')
-
-# The head() function from pandas prints only the first N lines of a dataframe (default: 10)
-penguins.head()
-```
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[51], line 1
-----> 1 penguins = pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-07-28/penguins.csv", sep=',')
-      3 # The head() function from pandas prints only the first N lines of a dataframe (default: 10)
-      4 penguins.head()
-
-NameError: name 'pd' is not defined
-</pre>
-
-When importing data into a DataFrame, pandas automatically detects what data type each column should be. For example, if the column contains only numbers, it will be imported as an floating point or integer data type. If the column contains strings or a mixture of strings and numbers, it will be imported as an "object" data type. Below are the different data types for the penguins column. 
-
-
-```python
-penguins.info()
-```
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[52], line 1
-----> 1 penguins.info()
-
-NameError: name 'penguins' is not defined
-</pre>
-
-### Looping through a dataframe
-
-As a note, if we want to go through a dataframe line-by-line (i.e. row by row), because both the rows and columns are indexed it requires slightly more syntax than looping through other data structures (e.g. a dictionary or list). Specifically we need to use the `.iterrows()` method to make the data frame iterable. The `.iterrows()` method outputs each row as a `Series` object with a row index and the column:   
-
-
-```python
-for index, row in penguins.iterrows():
-    print(f"Row index: {index}, {row['species']}, {row['island']}")
-```
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[53], line 1
-----> 1 for index, row in penguins.iterrows():
-      2     print(f"Row index: {index}, {row['species']}, {row['island']}")
-
-NameError: name 'penguins' is not defined
-</pre>
-
-This can be slow for very large dataframes, but is useful if you need to perform actions on individual rows.
-
-Before we dive into working with real data, we're going to create some DataFrames from scratch to better understand how they work.
-
+    <pre class="output-block">0         Adelie
+    1         Adelie
+    2         Adelie
+    3         Adelie
+    4         Adelie
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+    339    Chinstrap
+    340    Chinstrap
+    341    Chinstrap
+    342    Chinstrap
+    343    Chinstrap
+    Name: species, Length: 344, dtype: object
+    ...
+    &nbsp;&nbsp;species     island  bill_length_mm  bill_depth_mm  flipper_length_mm
+    0  Adelie  Torgersen            39.1           18.7              181.0
+    1  Adelie  Torgersen            39.5           17.4              186.0
+    2  Adelie  Torgersen            40.3           18.0              195.0
+    3  Adelie  Torgersen             NaN            NaN                NaN
+    4  Adelie  Torgersen            36.7           19.3              193.0
+    ...
+    &nbsp;&nbsp;&nbsp;species     island     sex
+    0   Adelie  Torgersen    male
+    1   Adelie  Torgersen  female
+    2   Adelie  Torgersen  female
+    3   Adelie  Torgersen     NaN
+    4   Adelie  Torgersen  female
+    5   Adelie  Torgersen    male
+    6   Adelie  Torgersen  female
+    7   Adelie  Torgersen    male
+    8   Adelie  Torgersen     NaN
+    9   Adelie  Torgersen     NaN
+    10  Adelie  Torgersen     NaN
+    </pre>
 
 ## Learning to read documentation
 
@@ -1387,30 +1718,51 @@ pd.to_numeric(my_series)
 ```
 
 <pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[54], line 1
-----> 1 my_series = pd.Series(["1", "2", "missing", "3"])
-      3 pd.to_numeric(my_series)
+ValueError                                Traceback (most recent call last)
+File pandas/_libs/lib.pyx:2407, in pandas._libs.lib.maybe_convert_numeric()
 
-NameError: name 'pd' is not defined
+ValueError: Unable to parse string "missing"
+
+During handling of the above exception, another exception occurred:
+
+ValueError                                Traceback (most recent call last)
+Cell In[54], line 3
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 my_series = pd.Series(["1", "2", "missing", "3"])
+----> 3 pd.to_numeric(my_series)
+
+File /opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/pandas/core/tools/numeric.py:235, in to_numeric(arg, errors, downcast, dtype_backend)
+&nbsp;&nbsp;&nbsp;&nbsp;233 coerce_numeric = errors not in ("ignore", "raise")
+&nbsp;&nbsp;&nbsp;&nbsp;234 try:
+--> 235     values, new_mask = lib.maybe_convert_numeric(  # type: ignore[call-overload]
+&nbsp;&nbsp;&nbsp;&nbsp;236         values,
+&nbsp;&nbsp;&nbsp;&nbsp;237         set(),
+&nbsp;&nbsp;&nbsp;&nbsp;238         coerce_numeric=coerce_numeric,
+&nbsp;&nbsp;&nbsp;&nbsp;239         convert_to_masked_nullable=dtype_backend is not lib.no_default
+&nbsp;&nbsp;&nbsp;&nbsp;240         or isinstance(values_dtype, StringDtype)
+&nbsp;&nbsp;&nbsp;&nbsp;241         and values_dtype.na_value is libmissing.NA,
+&nbsp;&nbsp;&nbsp;&nbsp;242     )
+&nbsp;&nbsp;&nbsp;&nbsp;243 except (ValueError, TypeError):
+&nbsp;&nbsp;&nbsp;&nbsp;244     if errors == "raise":
+
+File pandas/_libs/lib.pyx:2449, in pandas._libs.lib.maybe_convert_numeric()
+
+ValueError: Unable to parse string "missing" at position 2
 </pre>
 
+??? success "Solution"
+    ```python
+    
+    my_series = pd.Series(["1", "2", "missing", "3"])
+    
+    pd.to_numeric(my_series, errors="coerce")
+    ```
 
-```python
-my_series = pd.Series(["1", "2", "missing", "3"])
-
-pd.to_numeric(my_series, errors="coerce")
-```
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[55], line 2
-      1 #@title Solution {display-mode: "form"}
-----> 2 my_series = pd.Series(["1", "2", "missing", "3"])
-      4 pd.to_numeric(my_series, errors="coerce")
-
-NameError: name 'pd' is not defined
-</pre>
+    <pre class="output-block">0    1.0
+    1    2.0
+    2    NaN
+    3    3.0
+    dtype: float64
+    </pre>
 
 **Exploring**
 
@@ -1488,22 +1840,21 @@ If you have data you want to import into pandas, it is worth reading the User Gu
     color: rgba(0,0,0,0.87) !important; 
   }
 
-  /* Code block styles */
+   /* Code block styles */ 
+ 
+   .language-python {
+     padding-left: 40px;
+     font-size: 15px;
+   } 
 
-  .language-python {
-    padding-left: 40px;
-    font-size: 15px;
-  }
-
-    /* Hide all 2nd-level navs */
-    .md-nav--secondary .md-nav__item .md-nav {
-        display: none !important;
-    }
-
-    /* Show when parent has .expanded class */
-    .md-nav--secondary .md-nav__item.expanded > .md-nav {
-        display: block !important;
-    }
+  /* Hide all 2nd-level navs */
+  .md-nav--secondary .md-nav__item .md-nav {
+      display: none !important;
+  } 
   
-
+  /* Show when parent has .expanded class */
+  .md-nav--secondary .md-nav__item.expanded > .md-nav {
+      display: block !important;
+  }
+  
 </style>

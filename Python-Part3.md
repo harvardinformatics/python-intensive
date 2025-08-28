@@ -157,8 +157,8 @@ print(m.log(100))
 <pre class="output-block">---------------------------------------------------------------------------
 AttributeError                            Traceback (most recent call last)
 Cell In[5], line 5
-      1 import math as m
-      3 m = "hello world!"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 import math as m
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 m = "hello world!"
 ----> 5 print(m.log(100))
 
 AttributeError: 'str' object has no attribute 'log'
@@ -241,7 +241,7 @@ print("The Magic 8-Ball says:", answer)
 # magic_8_ball()
 ```
 
-<pre class="output-block">The Magic 8-Ball says: Yes
+<pre class="output-block">The Magic 8-Ball says: Maybe
 </pre>
 
 ??? success "Solution"
@@ -268,8 +268,8 @@ print("The Magic 8-Ball says:", answer)
     magic_8_ball()
     ```
 
-    <pre class="output-block">The Magic 8-Ball says: No
-    The Magic 8-Ball says: Definitely
+    <pre class="output-block">The Magic 8-Ball says: Very doubtful
+    The Magic 8-Ball says: Yes
     The Magic 8-Ball says: Maybe
     </pre>
 
@@ -369,7 +369,7 @@ def magic_8_ball():
     magic_8_ball("Will it snow tomorrow?")
     ```
 
-    <pre class="output-block">Will it snow tomorrow? : Very doubtful
+    <pre class="output-block">Will it snow tomorrow? : I have no idea
     </pre>
 
 #### Default arguments
@@ -399,12 +399,12 @@ def square(num, also_cube=False):
     print(num ** 3)
 
 square(2)
-print("---")
+print("...")
 square(2, True)
 ```
 
 <pre class="output-block">4
----
+...
 4
 8
 </pre>
@@ -445,9 +445,9 @@ def add_2_nums(num1, also_multiply=False, num2):
 add_2_nums(2, 3)
 ```
 
-<pre class="output-block">  Cell In[18], line 1
-    def add_2_nums(num1, also_multiply=False, num2):
-                                              ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[18], line 1
+&nbsp;&nbsp;&nbsp;&nbsp;def add_2_nums(num1, also_multiply=False, num2):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: non-default argument follows default argument
 </pre>
 
@@ -466,12 +466,12 @@ def square(num, also_cube=False):
 
 my_num = 2
 square(my_num)
-print("---")
+print("...")
 square(my_num, True)
 ```
 
 <pre class="output-block">4
----
+...
 4
 8
 </pre>
@@ -489,17 +489,17 @@ def square(num, also_cube=False):
 
 my_num = 2
 square(num = my_num)
-print("---")
+print("...")
 square(num = my_num, also_cube = True)
-print("---")
+print("...")
 square(also_cube = True, num = 3)
 ```
 
 <pre class="output-block">4
----
+...
 4
 8
----
+...
 9
 27
 </pre>
@@ -557,7 +557,7 @@ Here, we only provided values for `person` and `puncutation`, skipping over `gre
     
     for num_list in [nums1, nums2, nums3]:
       num_summary(num_list)
-      print("---")
+      print("...")
     ```
 
     <pre class="output-block">There are 6 numbers in the list.
@@ -565,19 +565,19 @@ Here, we only provided values for `person` and `puncutation`, skipping over `gre
     The smallest number is: 22
     The sum of all the numbers is: 298
     The average of the numbers is: 49.666666666666664
-    ---
+    ...
     There are 10 numbers in the list.
     The largest number is: 92
     The smallest number is: 7
     The sum of all the numbers is: 509
     The average of the numbers is: 50.9
-    ---
+    ...
     There are 8 numbers in the list.
     The largest number is: 95
     The smallest number is: 5
     The sum of all the numbers is: 341
     The average of the numbers is: 42.625
-    ---
+    ...
     </pre>
 
 ### `return`ing data
@@ -628,31 +628,15 @@ For instance, this function, which takes a **list of tuples** and converts them 
 # Test your code on these lists
 my_list = [1, 2, 3, 4, 5]
 print("Original:", my_list)
-print("---")
+print("...")
 
 my_list = in_list(3, my_list)
 print("After first call:", my_list)
-print("---")
+print("...")
 
 my_list = in_list(30, my_list)
 print("After second call:", my_list)
 ```
-
-<pre class="output-block">Original: [1, 2, 3, 4, 5]
----
-</pre>
-
-<pre class="output-block">---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-Cell In[26], line 8
-      5 print("Original:", my_list)
-      6 print("---")
-----> 8 my_list = in_list(3, my_list)
-      9 print("After first call:", my_list)
-     10 print("---")
-
-NameError: name 'in_list' is not defined
-</pre>
 
 ??? success "Solution"
     ```python
@@ -669,21 +653,21 @@ NameError: name 'in_list' is not defined
     # Test your code on these lists
     my_list = [1, 2, 3, 4, 5]
     print("Original:", my_list)
-    print("---")
+    print("...")
     
     my_list = in_list(3, my_list)
     print("After first call:", my_list)
-    print("---")
+    print("...")
     
     my_list = in_list(30, my_list)
     print("After second call:", my_list)
     ```
 
     <pre class="output-block">Original: [1, 2, 3, 4, 5]
-    ---
+    ...
     3 is already in the list!
     After first call: [1, 2, 3, 4, 5]
-    ---
+    ...
     Adding 30 to the list!
     After second call: [1, 2, 3, 4, 5, 30]
     </pre>
@@ -1018,6 +1002,7 @@ Another important aspect of writing longer (or any) programs is code documentati
 
 
 ```python
+#@title Annotated display_walk() function {display-mode: "form"}
 
 def display_walk(size, position):
     """
@@ -1045,11 +1030,11 @@ help(display_walk)
 <pre class="output-block">Help on function display_walk in module __main__:
 
 display_walk(size, position)
-    Parameters: size (int) - a positive integer representing the size of the walk
-                position (int) - an integer representing the position of the walker
-    Displays a walk of size `size` with a walker at position `position`.
-    Walkers are represented by 'O' and out of bounds positions are represented by 'X'.
-    Unoccupied positions are represented by '-'.
+&nbsp;&nbsp;&nbsp;&nbsp;Parameters: size (int) - a positive integer representing the size of the walk
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position (int) - an integer representing the position of the walker
+&nbsp;&nbsp;&nbsp;&nbsp;Displays a walk of size `size` with a walker at position `position`.
+&nbsp;&nbsp;&nbsp;&nbsp;Walkers are represented by 'O' and out of bounds positions are represented by 'X'.
+&nbsp;&nbsp;&nbsp;&nbsp;Unoccupied positions are represented by '-'.
 </pre>
 
 >**Exercise:** For our final activity before writing our program, let's review the topics we have already learned. On a piece of paper or on the white board, draw a concept map of how all the topics connect to each other. It's fine if this only makes sense to you, but you can also work with others to see how they connect the topics. You may find this concept map as a helpful reference when you are writing your random walk program.
@@ -1198,18 +1183,6 @@ run_random_walk(2, 10)
 -------O--
 ---------O
 -------O--
------O----
--------O--
----------O
--------O--
------O----
--------O--
------O----
----O------
------O----
--------O--
----------O
--------O--
 ---------O
 ---------X
 Reached boundary!
@@ -1287,22 +1260,21 @@ Reached boundary!
     color: rgba(0,0,0,0.87) !important; 
   }
 
-  /* Code block styles */
+   /* Code block styles */ 
+ 
+   .language-python {
+     padding-left: 40px;
+     font-size: 15px;
+   } 
 
-  .language-python {
-    padding-left: 40px;
-    font-size: 15px;
-  }
-
-    /* Hide all 2nd-level navs */
-    .md-nav--secondary .md-nav__item .md-nav {
-        display: none !important;
-    }
-
-    /* Show when parent has .expanded class */
-    .md-nav--secondary .md-nav__item.expanded > .md-nav {
-        display: block !important;
-    }
+  /* Hide all 2nd-level navs */
+  .md-nav--secondary .md-nav__item .md-nav {
+      display: none !important;
+  } 
   
-
+  /* Show when parent has .expanded class */
+  .md-nav--secondary .md-nav__item.expanded > .md-nav {
+      display: block !important;
+  }
+  
 </style>

@@ -194,9 +194,9 @@ print("The number is smaller than 10")
 print("Done.")
 ```
 
-<pre class="output-block">  Cell In[3], line 4
-    print("Your number is", x)
-    ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[3], line 4
+&nbsp;&nbsp;&nbsp;&nbsp;print("Your number is", x)
+&nbsp;&nbsp;&nbsp;&nbsp;^
 IndentationError: expected an indented block after 'if' statement on line 3
 </pre>
 
@@ -211,9 +211,9 @@ if x < 10:
 print("Done.")
 ```
 
-<pre class="output-block">  Cell In[4], line 5
-    print("The number is smaller than 10")
-    ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[4], line 5
+&nbsp;&nbsp;&nbsp;&nbsp;print("The number is smaller than 10")
+&nbsp;&nbsp;&nbsp;&nbsp;^
 IndentationError: unexpected indent
 </pre>
 
@@ -253,9 +253,9 @@ if x < 10
 print("Done.")
 ```
 
-<pre class="output-block">  Cell In[6], line 3
-    if x < 10
-             ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[6], line 3
+&nbsp;&nbsp;&nbsp;&nbsp;if x < 10
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: expected ':'
 </pre>
 
@@ -268,9 +268,6 @@ SyntaxError: expected ':'
 
 print("Done.")
 ```
-
-<pre class="output-block">Done.
-</pre>
 
 ??? success "Solution"
     ```python
@@ -340,9 +337,9 @@ if x < 10:
 print("Done.")
 ```
 
-<pre class="output-block">  Cell In[10], line 5
-    else:
-    ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[9], line 5
+&nbsp;&nbsp;&nbsp;&nbsp;else:
+&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: invalid syntax
 </pre>
 
@@ -360,9 +357,9 @@ else:
 print("Done.")
 ```
 
-<pre class="output-block">  Cell In[11], line 5
-    else:
-    ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[10], line 5
+&nbsp;&nbsp;&nbsp;&nbsp;else:
+&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: invalid syntax
 </pre>
 
@@ -388,9 +385,9 @@ else:
 print("Done.")
 ```
 
-<pre class="output-block">  Cell In[12], line 9
-    else:
-    ^
+<pre class="output-block">&nbsp;&nbsp;Cell In[11], line 9
+&nbsp;&nbsp;&nbsp;&nbsp;else:
+&nbsp;&nbsp;&nbsp;&nbsp;^
 SyntaxError: invalid syntax
 </pre>
 
@@ -639,12 +636,6 @@ else: # Else handles if neither sub-strings are found
 
 print("Done.")
 ```
-
-<pre class="output-block">  Cell In[24], line 4
-    if : # An if statement if both sub-strings are found
-       ^
-SyntaxError: invalid syntax
-</pre>
 
 ??? success "Solution"
     ```python
@@ -1139,7 +1130,7 @@ e
 l
 l
 o
- 
+&nbsp;
 w
 o
 r
@@ -1228,10 +1219,10 @@ print("Done.")
 
 <pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-Cell In[45], line 1
+Cell In[43], line 1
 ----> 1 for x in 1048:
-      2   print(x)
-      3 print("Done.")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2   print(x)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 print("Done.")
 
 TypeError: 'int' object is not iterable
 </pre>
@@ -1257,14 +1248,14 @@ Syntactically, individual characters within a string are accessed within a progr
 my_string = "hello world!"
 print(my_string[2]) # Prints the third character because of 0-based indexing!
 
-print("---")
+print("...")
 
 first_char = my_string[0]
 print(first_char)
 ```
 
 <pre class="output-block">l
----
+...
 h
 </pre>
 
@@ -1299,7 +1290,7 @@ for cur_index in range(my_string_length):
 2 l
 3 l
 4 o
-5  
+5
 6 w
 7 o
 8 r
@@ -1471,9 +1462,9 @@ my_string[1] = "a" # This is not permitted because strings are immutable!
 
 <pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-Cell In[58], line 3
-      1 my_string = "hello_world!"
-      2 print(my_string[1])
+Cell In[56], line 3
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 my_string = "hello_world!"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 print(my_string[1])
 ----> 3 my_string[1] = "a" # This is not permitted because strings are immutable!
 
 TypeError: 'str' object does not support item assignment
@@ -1553,7 +1544,7 @@ range("hello") # This will fail because the range function expects an integer, n
 
 <pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-Cell In[64], line 1
+Cell In[62], line 1
 ----> 1 range("hello") # This will fail because the range function expects an integer, not a string
 
 TypeError: 'str' object cannot be interpreted as an integer
@@ -1577,7 +1568,7 @@ for string_index in range(len(my_string)):
 2 l
 3 l
 4 o
-5  
+5
 6 w
 7 o
 8 r
@@ -1609,7 +1600,7 @@ my_list = [1, 2, 3, 4, 5]
 print(my_list)
 print(my_list[1])
 
-print("---")
+print("...")
 
 my_list2 = ["hello", -12, "world", 985, "adshgadk"]
 print(my_list2[2])
@@ -1618,7 +1609,7 @@ print(my_list2[::-1])
 
 <pre class="output-block">[1, 2, 3, 4, 5]
 2
----
+...
 world
 ['adshgadk', 985, 'world', -12, 'hello']
 </pre>
@@ -1650,12 +1641,6 @@ print("The smallest number is:", list_min)
 print("The sum of all the numbers is:", list_sum)
 print("The average of the numbers is:", list_avg)
 ```
-
-<pre class="output-block">  Cell In[67], line 4
-    list_tally =
-                 ^
-SyntaxError: invalid syntax
-</pre>
 
 ??? success "Solution"
     ```python
@@ -1745,8 +1730,8 @@ print(sum(my_mixed_list))
 
 <pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-Cell In[72], line 2
-      1 my_mixed_list = [1, 2, "hello", 3, 4, 5]
+Cell In[69], line 2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 my_mixed_list = [1, 2, "hello", 3, 4, 5]
 ----> 2 print(sum(my_mixed_list))
 
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -1876,7 +1861,7 @@ Lists are an extremely open and flexible data structure. They can contain any ty
 ```python
 list_of_lists = [ [1,2,3], [4,5,6] ]
 print(list_of_lists)
-print("---")
+print("...")
 
 # OR, with a bit of indirection #
 
@@ -1888,7 +1873,7 @@ print(list_of_lists)
 ```
 
 <pre class="output-block">[[1, 2, 3], [4, 5, 6]]
----
+...
 [[1, 2, 3], [4, 5, 6]]
 </pre>
 
@@ -1907,7 +1892,7 @@ list_of_lists = [ my_list1, my_list2 ]
 for element in concatenated_list:
   print(element)
 
-print("---")
+print("...")
 
 for element in list_of_lists:
   print(element)
@@ -1919,7 +1904,7 @@ for element in list_of_lists:
 4
 5
 6
----
+...
 [1, 2, 3]
 [4, 5, 6]
 </pre>
@@ -2045,19 +2030,19 @@ for outer_list in list_of_lists:
   print(outer_list);
   for inner_num in outer_list:
     print(inner_num)
-  print("---")
+  print("...")
 ```
 
 <pre class="output-block">[1, 2, 3]
 1
 2
 3
----
+...
 [4, 5, 6]
 4
 5
 6
----
+...
 </pre>
 
 > **Exercise**: Using your nested list of names in each location from above, find the position of Waldo's name, or its **index** in any of the lists. 
@@ -2156,7 +2141,7 @@ my_sorted_list = sorted(my_list)
 print("original still unsorted:", my_list)
 print("sorted new list:" , my_sorted_list)
 
-print("---")
+print("...")
 
 my_sorted_list_or_not = my_list.sort()
 print("in place method doesn't return anything:", my_sorted_list_or_not)
@@ -2166,7 +2151,7 @@ print("but we've still sorted the original list:", my_list)
 <pre class="output-block">unsorted: [5, 8, 3, 6, 1]
 original still unsorted: [5, 8, 3, 6, 1]
 sorted new list: [1, 3, 5, 6, 8]
----
+...
 in place method doesn't return anything: None
 but we've still sorted the original list: [1, 3, 5, 6, 8]
 </pre>
@@ -2198,14 +2183,14 @@ Here are a few examples of in place list methods, that is ones that directly man
 ```python
 my_list = [1, 2, 3, 4]
 print("original:", my_list)
-print("---")
+print("...")
 to_add = 5
 my_list.append(to_add)
 print("appended:", my_list)
 ```
 
 <pre class="output-block">original: [1, 2, 3, 4]
----
+...
 appended: [1, 2, 3, 4, 5]
 </pre>
 
@@ -2271,13 +2256,13 @@ my_list = [1, 2, 3, 4, 2]
 my_index = my_list.index(2)
 print(my_index)
 
-print("---")
+print("...")
 my_index = my_list.index(2, 2) # Find the first occurrence of 2, starting from index 2
 print(my_index)
 ```
 
 <pre class="output-block">1
----
+...
 4
 </pre>
 
@@ -2296,7 +2281,7 @@ my_list_element = my_list.pop(my_index_to_get)
 print("modified:", my_list)
 print("the element it removed:", my_list_element)
 
-print("---")
+print("...")
 
 the_last_element = my_list.pop()
 
@@ -2307,7 +2292,7 @@ print("the last element from the list:", the_last_element)
 <pre class="output-block">original: [1, 2, 3, 4, 5, 6]
 modified: [1, 3, 4, 5, 6]
 the element it removed: 2
----
+...
 modified again: [1, 3, 4, 5]
 the last element from the list: 6
 </pre>
@@ -2485,7 +2470,7 @@ my_incorrect_dictionary = { ['key1'] : 1, 'key2' : 3, 'key3' : 6 }
 
 <pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-Cell In[106], line 1
+Cell In[103], line 1
 ----> 1 my_incorrect_dictionary = { ['key1'] : 1, 'key2' : 3, 'key3' : 6 }
 
 TypeError: unhashable type: 'list'
@@ -2524,8 +2509,8 @@ print("Value of key 'key7':", my_dictionary['key7'])
 
 <pre class="output-block">---------------------------------------------------------------------------
 KeyError                                  Traceback (most recent call last)
-Cell In[108], line 2
-      1 my_dictionary = { 'key1' : 1, 'key2' : 3, 'key3' : 6 }
+Cell In[105], line 2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 my_dictionary = { 'key1' : 1, 'key2' : 3, 'key3' : 6 }
 ----> 2 print("Value of key 'key7':", my_dictionary['key7'])
 
 KeyError: 'key7'
@@ -2550,13 +2535,13 @@ my_mixed_dictionary = { 'column-headers' : ['condition', 'time.point', 'measure'
 
 print(my_mixed_dictionary['sample1'])
 print(my_mixed_dictionary['sample3'][2])
-print("---")
+print("...")
 print(my_mixed_dictionary['meta-info'])
 ```
 
 <pre class="output-block">[1, 1, 0.93]
 0.94
----
+...
 This dataset is made up to show the flexibility of dictionary values.
 </pre>
 
@@ -2584,7 +2569,7 @@ my_dictionary['key4'] = 10
 print("We added a key using square brackets and the assignment operator:", my_dictionary)
 print("And we can access the value directly by key, e.g. 'key4':", my_dictionary['key4'])
 
-print("---")
+print("...")
 
 my_dictionary['key1'] = "NA"
 print("We've changed the value of 'key1', again with the square brackets and assignment operator:", my_dictionary)
@@ -2594,7 +2579,7 @@ print("Value of key 'key1':", my_dictionary['key1'])
 <pre class="output-block">Original: {'key1': 1, 'key2': 3, 'key3': 6}
 We added a key using square brackets and the assignment operator: {'key1': 1, 'key2': 3, 'key3': 6, 'key4': 10}
 And we can access the value directly by key, e.g. 'key4': 10
----
+...
 We've changed the value of 'key1', again with the square brackets and assignment operator: {'key1': 'NA', 'key2': 3, 'key3': 6, 'key4': 10}
 Value of key 'key1': NA
 </pre>
@@ -2632,18 +2617,18 @@ After removing key 'key1' with del: {'key2': 3, 'key3': 6, 'key4': 10}
     
     student_grades = { 'Alice' : 85, 'Bob' : 90, 'Wesley' : 100 }
     print("Original grades:", student_grades)
-    print("---")
+    print("...")
     student_grades["Gregg"] = 95
     print("New student 'Gregg':", student_grades['Gregg'])
-    print("---")
+    print("...")
     del(student_grades["Alice"])
     print("Alice moved:", student_grades)
     ```
 
     <pre class="output-block">Original grades: {'Alice': 85, 'Bob': 90, 'Wesley': 100}
-    ---
+    ...
     New student 'Gregg': 95
-    ---
+    ...
     Alice moved: {'Bob': 90, 'Wesley': 100, 'Gregg': 95}
     </pre>
 
@@ -2965,7 +2950,7 @@ print("Original:", my_dictionary)
 my_dictionary.update( {'key4' : 9, 'key5' : 2} )
 print("Updated:", my_dictionary)
 
-print("---")
+print("...")
 
 # Watch out for overlapping keys which overwrite the values!
 print("key1:", my_dictionary['key1'])
@@ -2976,7 +2961,7 @@ print("updated key1:", my_dictionary['key1'])
 
 <pre class="output-block">Original: {'key1': 1, 'key2': 3, 'key3': 6}
 Updated: {'key1': 1, 'key2': 3, 'key3': 6, 'key4': 9, 'key5': 2}
----
+...
 key1: 1
 Updated with overwitten key1: {'key1': 99, 'key2': 3, 'key3': 6, 'key4': 9, 'key5': 2}
 updated key1: 99
@@ -3178,7 +3163,7 @@ my_tuple = (1, 2, 3, 4, 5)
 print(my_tuple)
 print(my_tuple[1])
 
-print("---")
+print("...")
 
 my_tuple2 = ("hello", -12, "world", 985, "adshgadk")
 print(my_tuple2[2])
@@ -3187,7 +3172,7 @@ print(my_tuple2[::-1])
 
 <pre class="output-block">(1, 2, 3, 4, 5)
 2
----
+...
 world
 ('adshgadk', 985, 'world', -12, 'hello')
 </pre>
@@ -3211,9 +3196,9 @@ my_tuple[1] = 7
 
 <pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-Cell In[136], line 5
-      2 print(my_tuple)
-      3 print(my_tuple[1])
+Cell In[133], line 5
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 print(my_tuple)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 print(my_tuple[1])
 ----> 5 my_tuple[1] = 7
 
 TypeError: 'tuple' object does not support item assignment
@@ -3258,7 +3243,7 @@ Sets can be defined on their own with curly brackets `{}`, though unlike diction
 my_set = {1, 2, 3, 4, 5}
 print(my_set)
 
-print("---")
+print("...")
 
 # Sets can be used to remove duplicates from a list
 my_list = (1, 1, 1, 2, 3, 3, 4, 5)
@@ -3267,7 +3252,7 @@ print(my_uniq_list)
 ```
 
 <pre class="output-block">{1, 2, 3, 4, 5}
----
+...
 [1, 2, 3, 4, 5]
 </pre>
 
@@ -3376,22 +3361,21 @@ We also learned that we can write our own functions!
     color: rgba(0,0,0,0.87) !important; 
   }
 
-  /* Code block styles */
+   /* Code block styles */ 
+ 
+   .language-python {
+     padding-left: 40px;
+     font-size: 15px;
+   } 
 
-  .language-python {
-    padding-left: 40px;
-    font-size: 15px;
-  }
-
-    /* Hide all 2nd-level navs */
-    .md-nav--secondary .md-nav__item .md-nav {
-        display: none !important;
-    }
-
-    /* Show when parent has .expanded class */
-    .md-nav--secondary .md-nav__item.expanded > .md-nav {
-        display: block !important;
-    }
+  /* Hide all 2nd-level navs */
+  .md-nav--secondary .md-nav__item .md-nav {
+      display: none !important;
+  } 
   
-
+  /* Show when parent has .expanded class */
+  .md-nav--secondary .md-nav__item.expanded > .md-nav {
+      display: block !important;
+  }
+  
 </style>
