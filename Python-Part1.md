@@ -1146,7 +1146,7 @@ True
 False
 </pre>
 
-Any easy way to see how `and` and `or` work is with truth tables. In a truth table, we fill out all possible values for the variables in the expression and then evaluate each component of the expression. Here, the first two columns are for the variables being compared, A and B, and each row is a combination of values for those variables. The last columns show the result of the logical expression given those values of A and B.
+An easy way to see how `and` and `or` work is with truth tables. In a truth table, we fill out all possible values for the variables in the expression and then evaluate each component of the expression. Here, the first two columns are for the variables being compared, A and B, and each row is a combination of values for those variables. The last columns show the result of the logical expression given those values of A and B.
 
 A | B | A and B | A or B
 ---- | ---- | ------- | ------
@@ -1455,15 +1455,24 @@ True
 
 ```python
 # Your code here: Assign any two integers to variables my_int1 and my_int2
-my_int1 = 5
-my_int2 = 5
+
 
 # Your code here: Print out whether the integers stored in your variables are equal to each other
-print(my_int1 == my_int2)
 ```
 
-<pre class="output-block">True
-</pre>
+??? success "Solution"
+    ```python
+    
+    # Your code here: Assign any two integers to variables my_int1 and my_int2
+    my_int1 = 5
+    my_int2 = 5
+    
+    # Your code here: Print out whether the integers stored in your variables are equal to each other
+    print(my_int1 == my_int2)
+    ```
+
+    <pre class="output-block">True
+    </pre>
 
 ### Comparison operators and strings
 
