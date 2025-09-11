@@ -56,7 +56,7 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
     * Lists
     * Dictionaries
 
-[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part2.ipynb){ target="_blank" .md-button }
+[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part2-student.ipynb){ target="_blank" .md-button }
  - [View Jupyter notebook (non-interactive) :material-arrow-right:](Python-Part2.md){ .md-button }
 
 ### Part 3: Writing functions and putting all together
@@ -65,34 +65,34 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
 * Functions to programs
 * Writing a random walk program
 
-[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part3.ipynb){ target="_blank" .md-button }
+[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part3-student.ipynb){ target="_blank" .md-button }
  - [View Jupyter notebook (non-interactive) :material-arrow-right:](Python-Part3.md){ .md-button }
 
-### Day 4: Introduction to Python as a data science language
+### Part 4: Introduction to Python as a data science language
 
 * Python refresher
 * Reading and writing files
 * Introduction to [pandas :octicons-link-external-24:](https://pandas.pydata.org/){ target="_blank" }
 
-[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part4.ipynb){ target="_blank" .md-button }
+[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part4-student.ipynb){ target="_blank" .md-button }
  - [View Jupyter notebook (non-interactive) :material-arrow-right:](Python-Part4.md){ .md-button }
 
-### Day 5: More pandas dataframes and plotting
+### Part 5: More pandas dataframes and plotting
 
 * Filtering & modifying pandas dataframes
 * Summarizing and grouping dataframes
 * Plotting data with [Seaborn :octicons-link-external-24:](https://seaborn.pydata.org/){ target="_blank" }
 * Data cleaning exercise
 
-[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part5.ipynb){ target="_blank" .md-button } 
+[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part5-student.ipynb){ target="_blank" .md-button } 
 - [View Jupyter notebook (non-interactive) :material-arrow-right:](Python-Part5.md){ .md-button }
 
-### Day 6: Analyzing a real dataset: Indiana storms
+### Part 6: Analyzing a real dataset: Indiana storms
 
 * Introduction to the Indiana storms dataset
 * Exercises to practice the skills learned in the previous days
 
-[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part6.ipynb){ target="_blank" .md-button }
+[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part6-student.ipynb){ target="_blank" .md-button }
  - [View Jupyter notebook (non-interactive) :material-arrow-right:](Python-Part6.md){ .md-button }
 
  ---

@@ -241,7 +241,7 @@ print("The Magic 8-Ball says:", answer)
 # magic_8_ball()
 ```
 
-<pre class="output-block">The Magic 8-Ball says: Maybe
+<pre class="output-block">The Magic 8-Ball says: Outlook not so good
 </pre>
 
 ??? success "Solution"
@@ -268,9 +268,9 @@ print("The Magic 8-Ball says:", answer)
     magic_8_ball()
     ```
 
-    <pre class="output-block">The Magic 8-Ball says: Outlook not so good
-    The Magic 8-Ball says: Ask again later
-    The Magic 8-Ball says: Outlook not so good
+    <pre class="output-block">The Magic 8-Ball says: No
+    The Magic 8-Ball says: Yes
+    The Magic 8-Ball says: Without a doubt
     </pre>
 
 ### Handling arguments
@@ -369,7 +369,7 @@ def magic_8_ball():
     magic_8_ball("Will it snow tomorrow?")
     ```
 
-    <pre class="output-block">Will it snow tomorrow? : No
+    <pre class="output-block">Will it snow tomorrow? : Very doubtful
     </pre>
 
 #### Default arguments
@@ -960,6 +960,36 @@ One of the best things to do while coding up more complex problems is to break t
 ??? success "Solution"
     ```python
     
+    ## Some pseudocode
+    # display_walk(size, position):
+    #   create a string of length size
+    #   convert string to list of characters
+    #   if position is less than 0, make the first index in the list an X
+    #   if position is more than size, make the last index in the list an X
+    #   otherwise, just replace the index at position with an O
+    #   convert the list to a string
+    #   print the string
+    
+    
+    def display_walk(size, position):
+      walk = "-" * size
+      walk = list(walk)
+      
+      if position < 0:
+        walk[0] = "X"
+      elif position >= size:
+        walk[-1] = "X"
+      else:
+        walk[position] = "O"
+    
+      walk = "".join(walk)
+      print(walk)
+      # return walk # Do this for the alternate solution below
+    ```
+
+??? success "Solution"
+    ```python
+    
     def display_walk(size, position):
         if 0 <= position < size:
         # Create a string with 'O' at the specified position
@@ -1082,6 +1112,80 @@ Write your code below. If you get stuck, check out your concept map, work with a
 ```python
 # Your code here
 ```
+
+??? success "Solution"
+    ```python
+    
+    ## Some pseudocode
+    # run_random_walk(step_size, size):
+    #   calculate the starting position
+    #   initialize the board with display_walk()
+    #   randomly decide a direction (left or right)
+    #   update the position according to the direction and the step size
+    #   call display_walk() again
+    #   repeat the 3 steps above until off the board
+    
+    import random
+    
+    def run_random_walk(step_size, size):
+      print("Starting random walk with boundary size", size, "and step size", step_size)
+    
+      position = size // 2
+      #position = random.choice(range(size)) # A different starting position heuristic
+      print("Starting position:", position)
+    
+      walk = display_walk(size, position)
+    
+      #while "X" not in walk: # Alternate solution if you return the walk string from display_walk()
+      while position >= 0 and position < size:
+        direction = random.choice(["l", "r"])
+    
+        if direction == "l":
+          position = position - step_size
+        else:
+          position += step_size
+    
+        walk = display_walk(size, position)
+    
+      print("Off the board!")
+    
+    run_random_walk(1, 10)
+    ```
+
+    <pre class="output-block">Starting random walk with boundary size 10 and step size 1
+    Starting position: 5
+    -----O----
+    ------O---
+    -------O--
+    ------O---
+    -------O--
+    ------O---
+    -----O----
+    ----O-----
+    -----O----
+    ----O-----
+    -----O----
+    ----O-----
+    ---O------
+    ----O-----
+    ---O------
+    ----O-----
+    -----O----
+    ----O-----
+    ---O------
+    ----O-----
+    -----O----
+    ----O-----
+    -----O----
+    ------O---
+    -------O--
+    --------O-
+    ---------O
+    --------O-
+    ---------O
+    ---------X
+    Off the board!
+    </pre>
 
 ??? success "Solution"
     ```python

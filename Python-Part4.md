@@ -395,9 +395,12 @@ First, run this block to download the file to the Jupyter notebook environment..
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
 ```
 
-<pre class="output-block">--2025-08-28 02:38:06--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.111.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+<pre class="output-block">--2025-09-11 19:56:55--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
+</pre>
+
+<pre class="output-block">
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
 HTTP request sent, awaiting response...
 </pre>
 
@@ -409,7 +412,7 @@ Saving to: ‘bird_names.csv’
 bird_names.csv        0%[                    ]       0  --.-KB/s
 bird_names.csv      100%[===================>]   4.28K  --.-KB/s    in 0s
 
-2025-08-28 02:38:06 (72.6 MB/s) - ‘bird_names.csv’ saved [4383/4383]
+2025-09-11 19:56:55 (89.3 MB/s) - ‘bird_names.csv’ saved [4383/4383]
 </pre>
 
 In the code below we first read the file line by line, then strip the whitespace and split the line by a comma. Then, we will create a dictionary where the key is the taxon id and the value is the common name of the bird.
@@ -513,18 +516,26 @@ Run the code block below to download the file to the Jupyter notebook environmen
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
 ```
 
-<pre class="output-block">--2025-08-28 02:38:06--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.109.133, 185.199.111.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
+<pre class="output-block">--2025-09-11 19:56:55--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+</pre>
+
+<pre class="output-block">HTTP request sent, awaiting response...
+</pre>
+
+<pre class="output-block">200 OK
 Length: 50448 (49K) [text/plain]
 Saving to: ‘bird_observations.csv’
 
 
 bird_observations.c   0%[                    ]       0  --.-KB/s
-bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.002s
+</pre>
 
-2025-08-28 02:38:06 (30.0 MB/s) - ‘bird_observations.csv’ saved [50448/50448]
+<pre class="output-block">
+bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.01s
+
+2025-09-11 19:56:55 (3.41 MB/s) - ‘bird_observations.csv’ saved [50448/50448]
 </pre>
 
 >**Exercise:** Work with a neighbor or two to do the following exercise:
@@ -1250,7 +1261,9 @@ Row index: 192, Gentoo, Biscoe
 Row index: 193, Gentoo, Biscoe
 Row index: 194, Gentoo, Biscoe
 Row index: 195, Gentoo, Biscoe
-Row index: 196, Gentoo, Biscoe
+</pre>
+
+<pre class="output-block">Row index: 196, Gentoo, Biscoe
 Row index: 197, Gentoo, Biscoe
 Row index: 198, Gentoo, Biscoe
 Row index: 199, Gentoo, Biscoe
