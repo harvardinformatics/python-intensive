@@ -87,6 +87,20 @@ In this bonus notebook, we've collected tips, tricks, and healthy habits for Pyt
 [Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/Python-Part5-student.ipynb){ target="_blank" .md-button } 
 - [View Jupyter notebook (non-interactive) :material-arrow-right:](Python-Part5.md){ .md-button }
 
+### Supplement: Basic data validation with pandas
+
+In this supplemental notebook, we cover some of the most basic data validation checks you can do with pandas to make sure your data (and your analysis of it) are what you expect. It builds on the file reading and pandas skills from Part 4.
+
+* Checking for header and metadata lines
+* File size
+* Counting rows before and after filtering
+* Counting duplicated rows
+* Counting unique IDs
+* Counting missing data (NAs)
+
+[Open Jupyter notebook :simple-googlecolab:](https://colab.research.google.com/github/harvardinformatics/python-intensive/blob/main/python-data-validation-student.ipynb){ target="_blank" .md-button }
+- [View Jupyter notebook (non-interactive) :material-arrow-right:](python-data-validation.md){ .md-button }
+
 ### Part 6: Analyzing a real dataset: Indiana storms
 
 * Introduction to the Indiana storms dataset

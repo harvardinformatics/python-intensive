@@ -3,9 +3,9 @@ name: Jupyter nbconvert to Markdown
 on:
   push:
     paths:
-      - 'Python-Day*.ipynb' 
+      - '*.ipynb'
+      - '!*-student.ipynb'
       - '.github/scripts/jupyter_convert.py'
-      - '!Python-Day*-Student.ipynb' 
   workflow_dispatch:
 
 jobs:
@@ -33,9 +33,9 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-      - name: Commit and push any changes to .md files
+      - name: Commit and push any changes to .md files and student notebooks
         run: |
-          git add *.md 2>/dev/null || true
+          git add *.md *-student.ipynb 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else

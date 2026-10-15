@@ -486,6 +486,16 @@ jupyter_files = {
         ),
         "authors": ["Lei Ma"],
         "alts" : []
+    },
+    "python-data-validation.ipynb": {
+        "title": "[Workshop] Python intensive - data validation",
+        "description": (
+            "A supplemental resource for the Python intensive workshop. "
+            "Basic data validation checks with pandas: headers, file size, row counts, "
+            "duplicated rows, unique IDs, and missing data."
+        ),
+        "authors": ["Gregg Thomas"],
+        "alts": []
     }
 }
 
@@ -495,11 +505,18 @@ jupyter_files = {
 skip = []
 SKIP_TAG = "no-execute"
 
+# Optionally convert only the notebooks named on the command line, e.g.:
+#   python .github/scripts/jupyter_convert.py python-data-validation.ipynb
+# With no arguments, every notebook in jupyter_files is converted.
+selected = [os.path.normpath(arg) for arg in sys.argv[1:]]
+unknown = [name for name in selected if name not in jupyter_files]
+if unknown:
+    sys.exit(f"[HOOK] ERROR: not in jupyter_files: {', '.join(unknown)}")
+
 for jupyter_file in jupyter_files:
 
-    # For debugging
-    # if jupyter_file != "Python-Part6.ipynb":
-    #     continue;
+    if selected and jupyter_file not in selected:
+        continue
 
     if jupyter_file in skip:
         print(f"[HOOK] Skipping {jupyter_file}")

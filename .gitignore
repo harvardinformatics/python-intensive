@@ -1,2 +1,8 @@
 my_text.txt
 bird_counts.csv
+
+# Data files downloaded to the repo root when notebooks are run locally
+# (the tracked copies are in data/)
+/bird_names.csv
+/bird_observations.csv
+/indiana_storms_full.csv
