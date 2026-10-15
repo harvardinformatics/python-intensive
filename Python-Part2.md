@@ -3197,8 +3197,10 @@ my_tuple[1] = 7
 <pre class="output-block">---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 Cell In[133], line 5
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 my_tuple = (1, 2, 3, 4, 5)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 print(my_tuple)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 print(my_tuple[1])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
 ----> 5 my_tuple[1] = 7
 
 TypeError: 'tuple' object does not support item assignment

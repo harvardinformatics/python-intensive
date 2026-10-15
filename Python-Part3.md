@@ -158,7 +158,9 @@ print(m.log(100))
 AttributeError                            Traceback (most recent call last)
 Cell In[5], line 5
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 import math as m
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 m = "hello world!"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
 ----> 5 print(m.log(100))
 
 AttributeError: 'str' object has no attribute 'log'
@@ -241,7 +243,7 @@ print("The Magic 8-Ball says:", answer)
 # magic_8_ball()
 ```
 
-<pre class="output-block">The Magic 8-Ball says: Outlook not so good
+<pre class="output-block">The Magic 8-Ball says: I have no idea
 </pre>
 
 ??? success "Solution"
@@ -268,9 +270,9 @@ print("The Magic 8-Ball says:", answer)
     magic_8_ball()
     ```
 
-    <pre class="output-block">The Magic 8-Ball says: No
-    The Magic 8-Ball says: Yes
-    The Magic 8-Ball says: Without a doubt
+    <pre class="output-block">The Magic 8-Ball says: Ask again later
+    The Magic 8-Ball says: Very doubtful
+    The Magic 8-Ball says: Outlook not so good
     </pre>
 
 ### Handling arguments
@@ -369,7 +371,7 @@ def magic_8_ball():
     magic_8_ball("Will it snow tomorrow?")
     ```
 
-    <pre class="output-block">Will it snow tomorrow? : Very doubtful
+    <pre class="output-block">Will it snow tomorrow? : No
     </pre>
 
 #### Default arguments
@@ -1100,7 +1102,7 @@ import random
 print(random.choice(["heads", "tails"]))
 ```
 
-<pre class="output-block">heads
+<pre class="output-block">tails
 </pre>
 
 Write your code below. If you get stuck, check out your concept map, work with a neighbor, or review the topics we learned today. And of course, remember to use your debugging skills!
@@ -1154,28 +1156,6 @@ Write your code below. If you get stuck, check out your concept map, work with a
 
     <pre class="output-block">Starting random walk with boundary size 10 and step size 1
     Starting position: 5
-    -----O----
-    ------O---
-    -------O--
-    ------O---
-    -------O--
-    ------O---
-    -----O----
-    ----O-----
-    -----O----
-    ----O-----
-    -----O----
-    ----O-----
-    ---O------
-    ----O-----
-    ---O------
-    ----O-----
-    -----O----
-    ----O-----
-    ---O------
-    ----O-----
-    -----O----
-    ----O-----
     -----O----
     ------O---
     -------O--
@@ -1285,8 +1265,22 @@ run_random_walk(2, 10)
 <pre class="output-block">Starting random walk with boundary size: 10 and step size: 2
 -----O----
 ---O------
--O--------
-X---------
+-----O----
+---O------
+-----O----
+-------O--
+---------O
+-------O--
+---------O
+-------O--
+-----O----
+-------O--
+-----O----
+-------O--
+-----O----
+-------O--
+---------O
+---------X
 Reached boundary!
 </pre>
 

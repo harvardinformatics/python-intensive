@@ -395,11 +395,11 @@ First, run this block to download the file to the Jupyter notebook environment..
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
 ```
 
-<pre class="output-block">--2025-09-11 19:56:55--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
+<pre class="output-block">--2026-10-15 03:46:59--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)...
 </pre>
 
-<pre class="output-block">
+<pre class="output-block">185.199.111.133, 185.199.108.133, 185.199.109.133, ...
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
 HTTP request sent, awaiting response...
 </pre>
@@ -412,7 +412,7 @@ Saving to: ‘bird_names.csv’
 bird_names.csv        0%[                    ]       0  --.-KB/s
 bird_names.csv      100%[===================>]   4.28K  --.-KB/s    in 0s
 
-2025-09-11 19:56:55 (89.3 MB/s) - ‘bird_names.csv’ saved [4383/4383]
+2026-10-15 03:46:59 (63.9 MB/s) - ‘bird_names.csv’ saved [4383/4383]
 </pre>
 
 In the code below we first read the file line by line, then strip the whitespace and split the line by a comma. Then, we will create a dictionary where the key is the taxon id and the value is the common name of the bird.
@@ -516,12 +516,10 @@ Run the code block below to download the file to the Jupyter notebook environmen
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
 ```
 
-<pre class="output-block">--2025-09-11 19:56:55--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
-</pre>
-
-<pre class="output-block">HTTP request sent, awaiting response...
+<pre class="output-block">--2026-10-15 03:46:59--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response...
 </pre>
 
 <pre class="output-block">200 OK
@@ -530,12 +528,9 @@ Saving to: ‘bird_observations.csv’
 
 
 bird_observations.c   0%[                    ]       0  --.-KB/s
-</pre>
+bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.008s
 
-<pre class="output-block">
-bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.01s
-
-2025-09-11 19:56:55 (3.41 MB/s) - ‘bird_observations.csv’ saved [50448/50448]
+2026-10-15 03:47:00 (6.07 MB/s) - ‘bird_observations.csv’ saved [50448/50448]
 </pre>
 
 >**Exercise:** Work with a neighbor or two to do the following exercise:
@@ -973,13 +968,13 @@ print(sumo.dtypes)
 
 <pre class="output-block">(4, 3)
 ...
-Index(['wrestler', 'wins', 'rank'], dtype='object')
+Index(['wrestler', 'wins', 'rank'], dtype='str')
 ...
 RangeIndex(start=0, stop=4, step=1)
 ...
-wrestler    object
-wins         int64
-rank        object
+wrestler      str
+wins        int64
+rank          str
 dtype: object
 </pre>
 
@@ -990,16 +985,16 @@ Pandas DataFrames also have the handy `info()` function that summarizes the cont
 sumo.info()
 ```
 
-<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+<pre class="output-block"><class 'pandas.DataFrame'>
 RangeIndex: 4 entries, 0 to 3
 Data columns (total 3 columns):
 &nbsp;#   Column    Non-Null Count  Dtype
 ---  ------    --------------  -----
-&nbsp;0   wrestler  4 non-null      object
+&nbsp;0   wrestler  4 non-null      str
 &nbsp;1   wins      4 non-null      int64
-&nbsp;2   rank      4 non-null      object
-dtypes: int64(1), object(2)
-memory usage: 228.0+ bytes
+&nbsp;2   rank      4 non-null      str
+dtypes: int64(1), str(2)
+memory usage: 228.0 bytes
 </pre>
 
 ## Importing data to `pandas`
@@ -1038,21 +1033,21 @@ When importing data into a DataFrame, pandas automatically detects what data typ
 penguins.info()
 ```
 
-<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+<pre class="output-block"><class 'pandas.DataFrame'>
 RangeIndex: 344 entries, 0 to 343
 Data columns (total 8 columns):
 &nbsp;#   Column             Non-Null Count  Dtype
 ---  ------             --------------  -----
-&nbsp;0   species            344 non-null    object
-&nbsp;1   island             344 non-null    object
+&nbsp;0   species            344 non-null    str
+&nbsp;1   island             344 non-null    str
 &nbsp;2   bill_length_mm     342 non-null    float64
 &nbsp;3   bill_depth_mm      342 non-null    float64
 &nbsp;4   flipper_length_mm  342 non-null    float64
 &nbsp;5   body_mass_g        342 non-null    float64
-&nbsp;6   sex                333 non-null    object
+&nbsp;6   sex                333 non-null    str
 &nbsp;7   year               344 non-null    int64
-dtypes: float64(4), int64(1), object(3)
-memory usage: 21.6+ KB
+dtypes: float64(4), int64(1), str(3)
+memory usage: 21.6 KB
 </pre>
 
 ### Looping through a dataframe
@@ -1261,9 +1256,7 @@ Row index: 192, Gentoo, Biscoe
 Row index: 193, Gentoo, Biscoe
 Row index: 194, Gentoo, Biscoe
 Row index: 195, Gentoo, Biscoe
-</pre>
-
-<pre class="output-block">Row index: 196, Gentoo, Biscoe
+Row index: 196, Gentoo, Biscoe
 Row index: 197, Gentoo, Biscoe
 Row index: 198, Gentoo, Biscoe
 Row index: 199, Gentoo, Biscoe
@@ -1432,7 +1425,7 @@ We can always check the names of the columns in a `pandas` dataframe byt using t
 sumo.columns
 ```
 
-<pre class="output-block">Index(['wrestler', 'wins', 'rank'], dtype='object')
+<pre class="output-block">Index(['wrestler', 'wins', 'rank'], dtype='str')
 </pre>
 
 If we want to refer to a specific column, we can specify its index (enclosed in double quotes) inside of square brackets `[]` like so:
@@ -1447,7 +1440,7 @@ sumo["wrestler"]
 1           Ura
 2        Shodai
 3     Takanosho
-Name: wrestler, dtype: object
+Name: wrestler, dtype: str
 </pre>
 
 If we want to refer to *multiple* columns, we need to pass the columns as a **list** by enclosing the column indices in square brackets, so you will end up with *double brackets*:
@@ -1586,21 +1579,21 @@ For reference, here's a handy table on the best ways to index into a dataframe:
 penguins.info()
 ```
 
-<pre class="output-block"><class 'pandas.core.frame.DataFrame'>
+<pre class="output-block"><class 'pandas.DataFrame'>
 RangeIndex: 344 entries, 0 to 343
 Data columns (total 8 columns):
 &nbsp;#   Column             Non-Null Count  Dtype
 ---  ------             --------------  -----
-&nbsp;0   species            344 non-null    object
-&nbsp;1   island             344 non-null    object
+&nbsp;0   species            344 non-null    str
+&nbsp;1   island             344 non-null    str
 &nbsp;2   bill_length_mm     342 non-null    float64
 &nbsp;3   bill_depth_mm      342 non-null    float64
 &nbsp;4   flipper_length_mm  342 non-null    float64
 &nbsp;5   body_mass_g        342 non-null    float64
-&nbsp;6   sex                333 non-null    object
+&nbsp;6   sex                333 non-null    str
 &nbsp;7   year               344 non-null    int64
-dtypes: float64(4), int64(1), object(3)
-memory usage: 21.6+ KB
+dtypes: float64(4), int64(1), str(3)
+memory usage: 21.6 KB
 </pre>
 
 
@@ -1638,7 +1631,7 @@ memory usage: 21.6+ KB
     341    Chinstrap
     342    Chinstrap
     343    Chinstrap
-    Name: species, Length: 344, dtype: object
+    Name: species, Length: 344, dtype: str
     ...
     &nbsp;&nbsp;species     island  bill_length_mm  bill_depth_mm  flipper_length_mm
     0  Adelie  Torgersen            39.1           18.7              181.0
@@ -1724,7 +1717,8 @@ pd.to_numeric(my_series)
 
 <pre class="output-block">---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
-File pandas/_libs/lib.pyx:2407, in pandas._libs.lib.maybe_convert_numeric()
+File pandas/_libs/lib.pyx:2478, in pandas._libs.lib.maybe_convert_numeric()
+-> 2478 'Could not get source, probably due dynamically evaluated source code.'
 
 ValueError: Unable to parse string "missing"
 
@@ -1733,23 +1727,29 @@ During handling of the above exception, another exception occurred:
 ValueError                                Traceback (most recent call last)
 Cell In[54], line 3
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 my_series = pd.Series(["1", "2", "missing", "3"])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
 ----> 3 pd.to_numeric(my_series)
 
-File /opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/pandas/core/tools/numeric.py:235, in to_numeric(arg, errors, downcast, dtype_backend)
-&nbsp;&nbsp;&nbsp;&nbsp;233 coerce_numeric = errors not in ("ignore", "raise")
-&nbsp;&nbsp;&nbsp;&nbsp;234 try:
+File /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pandas/core/tools/numeric.py:235, in to_numeric(arg, errors, downcast, dtype_backend)
+&nbsp;&nbsp;&nbsp;&nbsp;233     values = ensure_object(values)
+&nbsp;&nbsp;&nbsp;&nbsp;234     coerce_numeric = errors != "raise"
 --> 235     values, new_mask = lib.maybe_convert_numeric(  # type: ignore[call-overload]
 &nbsp;&nbsp;&nbsp;&nbsp;236         values,
 &nbsp;&nbsp;&nbsp;&nbsp;237         set(),
 &nbsp;&nbsp;&nbsp;&nbsp;238         coerce_numeric=coerce_numeric,
 &nbsp;&nbsp;&nbsp;&nbsp;239         convert_to_masked_nullable=dtype_backend is not lib.no_default
-&nbsp;&nbsp;&nbsp;&nbsp;240         or isinstance(values_dtype, StringDtype)
-&nbsp;&nbsp;&nbsp;&nbsp;241         and values_dtype.na_value is libmissing.NA,
-&nbsp;&nbsp;&nbsp;&nbsp;242     )
-&nbsp;&nbsp;&nbsp;&nbsp;243 except (ValueError, TypeError):
-&nbsp;&nbsp;&nbsp;&nbsp;244     if errors == "raise":
+&nbsp;&nbsp;&nbsp;&nbsp;240         or (
+&nbsp;&nbsp;&nbsp;&nbsp;241             isinstance(values_dtype, StringDtype)
+&nbsp;&nbsp;&nbsp;&nbsp;242             and values_dtype.na_value is libmissing.NA
+&nbsp;&nbsp;&nbsp;&nbsp;243         ),
+&nbsp;&nbsp;&nbsp;&nbsp;244     )
+&nbsp;&nbsp;&nbsp;&nbsp;246 if new_mask is not None:
+&nbsp;&nbsp;&nbsp;&nbsp;247     # Remove unnecessary values, is expected later anyway and enables
+&nbsp;&nbsp;&nbsp;&nbsp;248     # downcasting
+&nbsp;&nbsp;&nbsp;&nbsp;249     values = values[~new_mask]
 
-File pandas/_libs/lib.pyx:2449, in pandas._libs.lib.maybe_convert_numeric()
+File pandas/_libs/lib.pyx:2521, in pandas._libs.lib.maybe_convert_numeric()
+-> 2521 'Could not get source, probably due dynamically evaluated source code.'
 
 ValueError: Unable to parse string "missing" at position 2
 </pre>

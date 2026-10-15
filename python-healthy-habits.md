@@ -131,32 +131,32 @@ print(add(x, y))
 <pre class="output-block">---------------------------------------------------------------------------
 StdinNotImplementedError                  Traceback (most recent call last)
 Cell In[1], line 35
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;31     """
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32     return x + y
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;33
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;34 # main code
 ---> 35 x, y = user_input()
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36 print(add(x, y))
 
 Cell In[1], line 16, in user_input()
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 def user_input():
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9     """
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10     This function asks the user for two numbers.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11
-&nbsp;&nbsp;&nbsp;(...)     14     int: The second number the user inputs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12     Returns:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13     int: The first number the user inputs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14     int: The second number the user inputs
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15     """
 ---> 16     x = int(input("Enter the first number: "))
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17     y = int(input("Enter the second number: "))
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18     return x, y
 
-File /opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1274, in Kernel.raw_input(self, prompt)
-&nbsp;&nbsp;&nbsp;1272 if not self._allow_stdin:
-&nbsp;&nbsp;&nbsp;1273     msg = "raw_input was called, but this frontend does not support input requests."
--> 1274     raise StdinNotImplementedError(msg)
-&nbsp;&nbsp;&nbsp;1275 return self._input_request(
-&nbsp;&nbsp;&nbsp;1276     str(prompt),
-&nbsp;&nbsp;&nbsp;1277     self._parent_ident["shell"],
-&nbsp;&nbsp;&nbsp;1278     self.get_parent("shell"),
-&nbsp;&nbsp;&nbsp;1279     password=False,
-&nbsp;&nbsp;&nbsp;1280 )
+File /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514, in Kernel.raw_input(self, prompt)
+&nbsp;&nbsp;&nbsp;1512 if not self._allow_stdin:
+&nbsp;&nbsp;&nbsp;1513     msg = "raw_input was called, but this frontend does not support input requests."
+-> 1514     raise StdinNotImplementedError(msg)
+&nbsp;&nbsp;&nbsp;1515 return self._input_request(
+&nbsp;&nbsp;&nbsp;1516     str(prompt),
+&nbsp;&nbsp;&nbsp;1517     self._get_shell_context_var(self._shell_parent_ident),
+&nbsp;&nbsp;&nbsp;1518     self.get_parent("shell"),
+&nbsp;&nbsp;&nbsp;1519     password=False,
+&nbsp;&nbsp;&nbsp;1520 )
 
 StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
 </pre>
@@ -489,25 +489,25 @@ Cell In[16], line 2
 ----> 2 guessing_game()
 
 Cell In[15], line 13, in guessing_game()
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 # this begins the while loop
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9 # note that the loop has no end condition. It relies on the break statement!
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 while True:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11     # ask the user to guess the number
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12     # note that input() always returns a string
----> 13     guess = input("Take a guess: ")
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14     # try to convert the input to an integer
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15     try:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9     # note that the loop has no end condition. It relies on the break statement!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10     while True:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11         # ask the user to guess the number
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12         # note that input() always returns a string
+---> 13         guess = input("Take a guess: ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14         # try to convert the input to an integer
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15         try:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16             guess = int(guess)
 
-File /opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1274, in Kernel.raw_input(self, prompt)
-&nbsp;&nbsp;&nbsp;1272 if not self._allow_stdin:
-&nbsp;&nbsp;&nbsp;1273     msg = "raw_input was called, but this frontend does not support input requests."
--> 1274     raise StdinNotImplementedError(msg)
-&nbsp;&nbsp;&nbsp;1275 return self._input_request(
-&nbsp;&nbsp;&nbsp;1276     str(prompt),
-&nbsp;&nbsp;&nbsp;1277     self._parent_ident["shell"],
-&nbsp;&nbsp;&nbsp;1278     self.get_parent("shell"),
-&nbsp;&nbsp;&nbsp;1279     password=False,
-&nbsp;&nbsp;&nbsp;1280 )
+File /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514, in Kernel.raw_input(self, prompt)
+&nbsp;&nbsp;&nbsp;1512 if not self._allow_stdin:
+&nbsp;&nbsp;&nbsp;1513     msg = "raw_input was called, but this frontend does not support input requests."
+-> 1514     raise StdinNotImplementedError(msg)
+&nbsp;&nbsp;&nbsp;1515 return self._input_request(
+&nbsp;&nbsp;&nbsp;1516     str(prompt),
+&nbsp;&nbsp;&nbsp;1517     self._get_shell_context_var(self._shell_parent_ident),
+&nbsp;&nbsp;&nbsp;1518     self.get_parent("shell"),
+&nbsp;&nbsp;&nbsp;1519     password=False,
+&nbsp;&nbsp;&nbsp;1520 )
 
 StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
 </pre>
@@ -590,6 +590,7 @@ NameError                                 Traceback (most recent call last)
 Cell In[19], line 1
 ----> 1 a_series = pd.Series(["my", "list", "of", "words"])
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 b_series = a_series[:]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 # Modify b_series
 
 NameError: name 'pd' is not defined
@@ -615,6 +616,7 @@ with pd.option_context("mode.copy_on_write", True):
 NameError                                 Traceback (most recent call last)
 Cell In[20], line 1
 ----> 1 with pd.option_context("mode.copy_on_write", True):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3     a_series = pd.Series(["my", "list", "of", "words"])
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4     b_series = a_series[:]
 

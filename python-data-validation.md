@@ -35,11 +35,9 @@ Run the following cells to download the data and load the libraries we'll use.
 !wget https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
 ```
 
-<pre class="output-block">--2026-10-14 23:36:46--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
-</pre>
-
-<pre class="output-block">Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8001::154, 2606:50c0:8002::154, 2606:50c0:8003::154, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8001::154|:443... connected.
+<pre class="output-block">--2026-10-15 03:47:13--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_names.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
 HTTP request sent, awaiting response...
 </pre>
 
@@ -49,16 +47,14 @@ Saving to: ‘bird_names.csv.1’
 
 
 bird_names.csv.1      0%[                    ]       0  --.-KB/s
-bird_names.csv.1    100%[===================>]   4.28K  --.-KB/s    in 0.001s
+bird_names.csv.1    100%[===================>]   4.28K  --.-KB/s    in 0s
 
-2026-10-14 23:36:46 (4.05 MB/s) - ‘bird_names.csv.1’ saved [4383/4383]
+2026-10-15 03:47:13 (74.3 MB/s) - ‘bird_names.csv.1’ saved [4383/4383]
 </pre>
 
-<pre class="output-block">--2026-10-14 23:36:46--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
-</pre>
-
-<pre class="output-block">Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8001::154, 2606:50c0:8002::154, 2606:50c0:8003::154, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8001::154|:443... connected.
+<pre class="output-block">--2026-10-15 03:47:13--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/bird_observations.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
 HTTP request sent, awaiting response...
 </pre>
 
@@ -68,16 +64,14 @@ Saving to: ‘bird_observations.csv.1’
 
 
 bird_observations.c   0%[                    ]       0  --.-KB/s
-bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.01s
+bird_observations.c 100%[===================>]  49.27K  --.-KB/s    in 0.001s
 
-2026-10-14 23:36:47 (4.72 MB/s) - ‘bird_observations.csv.1’ saved [50448/50448]
+2026-10-15 03:47:14 (34.0 MB/s) - ‘bird_observations.csv.1’ saved [50448/50448]
 </pre>
 
-<pre class="output-block">--2026-10-14 23:36:47--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
-</pre>
-
-<pre class="output-block">Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8000::154, 2606:50c0:8001::154, 2606:50c0:8002::154, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8000::154|:443... connected.
+<pre class="output-block">--2026-10-15 03:47:14--  https://raw.githubusercontent.com/harvardinformatics/python-intensive/refs/heads/main/data/indiana_storms_full.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.111.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
 HTTP request sent, awaiting response...
 </pre>
 
@@ -87,9 +81,12 @@ Saving to: ‘indiana_storms_full.csv.1’
 
 
           indiana_s   0%[                    ]       0  --.-KB/s
-indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.04s
+</pre>
 
-2026-10-14 23:36:47 (21.0 MB/s) - ‘indiana_storms_full.csv.1’ saved [952491/952491]
+<pre class="output-block">
+indiana_storms_full 100%[===================>] 930.17K  --.-KB/s    in 0.05s
+
+2026-10-15 03:47:14 (19.2 MB/s) - ‘indiana_storms_full.csv.1’ saved [952491/952491]
 </pre>
 
 
@@ -365,9 +362,7 @@ print("Unique event IDs:", storms["EVENT_ID"].nunique())
 ```
 
 <pre class="output-block">Rows: 1315
-</pre>
-
-<pre class="output-block">Unique event IDs: 1315
+Unique event IDs: 1315
 </pre>
 
 The number of unique event IDs is the same as the number of rows, so each row is a different storm event. The storms data also has an `EPISODE_ID` column. Let's count those too:
@@ -393,8 +388,8 @@ storms["EPISODE_ID"].value_counts().head()
 98724     38
 101603    29
 101193    27
+93198     25
 98723     25
-94440     25
 Name: count, dtype: int64
 </pre>
 
